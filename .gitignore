@@ -1,0 +1,3 @@
+*.pro.user
+# test - been a while since I used .gitignore
+*.txt 
