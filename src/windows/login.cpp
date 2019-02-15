@@ -81,7 +81,7 @@ Login::Login()
 bool Login::authenticate(QString usernameInput, QString passwordInput) const
 {
     QString fileErrMsg = "Authentication failed, contact admin!";
-    QFile authFile(":/res/auth.txt"); //TODO change auth file path
+    QFile authFile(":/res/auth.txt");
     QTextStream qin(&authFile);
 
     if(!authFile.open(QIODevice::ReadOnly))
@@ -125,6 +125,7 @@ void Login::authSuccessful() const
     m_ui->label_message->setStyleSheet(" QLabel { background-color: green; color: white; } ");
     m_ui->label_message->setText("Login successful");
 
+    //Delays the closing of the window by 500ms
     QTimer::singleShot(500, m_instance, SLOT(accept()));
 }
 
