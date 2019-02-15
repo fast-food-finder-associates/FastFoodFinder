@@ -42,10 +42,10 @@ FORMS += \
     src/windows/mainwindow.ui
     src/windows/mainwindow.ui
 
+RESOURCES += \
+    res.qrc
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-RESOURCES += \
-    res.qrc
