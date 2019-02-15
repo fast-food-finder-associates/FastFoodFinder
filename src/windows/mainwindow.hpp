@@ -18,7 +18,7 @@ public:
     ~MainWindow() override;
 
 private slots:
-    void on_pushButton_clicked();
+    void on_actionLogout_triggered();
 
 private:
     Ui::MainWindow* m_ui;

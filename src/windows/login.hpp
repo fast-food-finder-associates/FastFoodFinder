@@ -13,11 +13,8 @@ class Login : public QDialog
 public:
     enum class Type{GUEST, USER, ADMIN};
 
-    /* Singleton access */
-    static Login* getInstance();
-
     /* Login usage */
-    static void requestLogin();
+    static Login* requestLogin();
     static Type getType();
 
 private slots:

@@ -1,5 +1,6 @@
 #include <QTextStream>
 #include <QTimer>
+#include <QCryptographicHash>
 #include "login.hpp"
 #include "ui_login.h"
 #include "../utils/exceptions.hpp"
@@ -8,20 +9,16 @@
 Login::Type Login::m_type     = Login::Type::GUEST;
 Login*      Login::m_instance = nullptr;
 
-/* Singleton access */
-Login* Login::getInstance()
-{
-    return m_instance;
-}
-
 /* Login usage */
-void Login::requestLogin()
+Login* Login::requestLogin()
 {
     if(m_instance == nullptr)
         m_instance = new Login;
 
     m_instance->resetUi();
     m_instance->show();
+
+    return m_instance;
 }
 
 Login::Type Login::getType()
@@ -64,58 +61,6 @@ void Login::on_checkBox_showPW_stateChanged(int state)
                                                                            : QLineEdit::EchoMode::Password));
 }
 
-/* Authentication handling */
-bool Login::authenticate(QString usernameInput, QString passwordInput) const
-{
-    QString fileErrMsg = "Authentication failed, contact admin!";
-    QFile authFile(":/res/login/auth.txt"); //TODO change auth file path
-    QTextStream qin(&authFile);
-
-    if(!authFile.open(QIODevice::ReadOnly))
-    {
-        throw fff::BadFile(fileErrMsg);
-    }
-
-    QString usernameFile;
-    QString passwordFile;
-    QString accTypeFile;
-    bool authValid = false;
-
-    /* Search for correct username and password */
-    while(!authValid && !qin.atEnd())
-    {
-        usernameFile = qin.readLine();
-        passwordFile = qin.readLine();
-        accTypeFile  = qin.readLine();
-
-        if(usernameFile.isEmpty() || passwordFile.isEmpty() || accTypeFile.isEmpty())
-        {
-            throw fff::BadFileFormat(fileErrMsg);
-        }
-        else if(usernameFile == usernameInput && passwordFile == passwordInput)
-        {
-            authValid = true;
-
-            if(accTypeFile == "admin")
-            {
-                m_type = Type::ADMIN;
-            }
-            else if(accTypeFile == "user")
-            {
-                m_type = Type::USER;
-            }
-            else
-            {
-                throw fff::BadFileFormat(fileErrMsg);
-            }
-        }
-    }
-
-    authFile.close();
-
-    return authValid;
-}
-
 /* Constructors */
 Login::Login()
     : QDialog(nullptr), m_ui(new Ui::Login)
@@ -130,6 +75,49 @@ Login::Login()
 
     QPixmap pix(":/res/missing.png"); //TODO change logo file path
     m_ui->label_logo->setPixmap(pix.scaled(150, 150, Qt::KeepAspectRatio));
+}
+
+/* Authentication handling */
+bool Login::authenticate(QString usernameInput, QString passwordInput) const
+{
+    QString fileErrMsg = "Authentication failed, contact admin!";
+    QFile authFile(":/res/auth.txt"); //TODO change auth file path
+    QTextStream qin(&authFile);
+
+    if(!authFile.open(QIODevice::ReadOnly))
+    {
+        throw fff::BadFile(fileErrMsg);
+    }
+
+    QString usernameFile;
+    QString hashedPWFile;
+    QString accTypeFile;
+    QString hashedPW;
+    bool authValid = false;
+
+    /* Search for correct username and password */
+    while(!authValid && !qin.atEnd())
+    {
+        usernameFile = qin.readLine();
+        hashedPWFile = qin.readLine();
+        accTypeFile  = qin.readLine();
+        hashedPW = QCryptographicHash::hash(passwordInput.toStdString().data(), QCryptographicHash::Keccak_512).toHex();
+
+        if(usernameFile.isEmpty() || hashedPWFile.isEmpty() || accTypeFile.isEmpty() ||
+          (accTypeFile != "admin" && accTypeFile != "user"))
+        {
+            throw fff::BadFileFormat(fileErrMsg);
+        }
+        else if(usernameFile == usernameInput && hashedPWFile == hashedPW)
+        {
+            authValid = true;
+            m_type = (accTypeFile == "admin" ? Type::ADMIN : Type::USER);
+        }
+    }
+
+    authFile.close();
+
+    return authValid;
 }
 
 void Login::authSuccessful() const

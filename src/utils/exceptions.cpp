@@ -15,7 +15,7 @@ GeneralException::GeneralException(QString m)
 void GeneralException::errorWindow() const
 {
     QMessageBox error(QMessageBox::Critical, "Error", message);
-    error.setWindowIcon(QIcon(":/res/missing.png")); //TODO place logo
+    error.setWindowIcon(QIcon(":/res/missing.png")); //TODO change logo file path
     error.exec();
 }
 
