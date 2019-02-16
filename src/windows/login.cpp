@@ -6,9 +6,9 @@
 #include "../utils/exceptions.hpp"
 
 /* Static members */
-Login::Type   Login::type         = Login::Type::GUEST;
-Login*        Login::instance     = nullptr;
-const QString Login::FILE_NAME    = "authFile.txt";
+Login::Type   Login::type      = Login::Type::GUEST;
+Login*        Login::instance  = nullptr;
+const QString Login::FILE_NAME = "authFile.txt";
 
 /* Login usage */
 Login* Login::requestLogin()
