@@ -1,7 +1,6 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 #include "login.hpp"
-#include <QDebug>
 
 /* Constructors */
 MainWindow::MainWindow()

@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
         <file>res/missing.png</file>
-        <file>res/auth.txt</file>
     </qresource>
 </RCC>

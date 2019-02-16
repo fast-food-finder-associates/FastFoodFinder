@@ -40,7 +40,6 @@ HEADERS += \
 FORMS += \
     src/windows/login.ui \
     src/windows/mainwindow.ui
-    src/windows/mainwindow.ui
 
 RESOURCES += \
     res.qrc
