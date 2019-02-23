@@ -7,7 +7,7 @@ namespace cm
 {
 namespace utils
 {
-class GeneralException : public QException
+class CMLIBSHARED_EXPORT GeneralException : public QException
 {
 public:
     /* Constructors */
@@ -26,14 +26,14 @@ protected:
     QString message;
 };
 
-class BadFile : public GeneralException
+class CMLIBSHARED_EXPORT BadFile : public GeneralException
 {
 public:
     BadFile(QString);
     BadFile(const QFile&);
 };
 
-class BadFileFormat : public GeneralException
+class CMLIBSHARED_EXPORT BadFileFormat : public GeneralException
 {
 public:
     BadFileFormat(QString);

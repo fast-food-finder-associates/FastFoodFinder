@@ -20,9 +20,15 @@ Login::Type Login::getType()
     return type;
 }
 
+/* Failed registration fields */
 Login::RegField Login::getFailedRegFields()
 {
     return failedRegField;
+}
+
+void Login::resetFailedRegFields()
+{
+    failedRegField = static_cast<RegField>(0);
 }
 
 /* Attempts */

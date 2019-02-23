@@ -8,9 +8,10 @@ namespace cm
 {
 namespace utils
 {
-class Login : public QObject
+class CMLIBSHARED_EXPORT Login : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(RegField failedRegField READ getFailedRegFields RESET resetFailedRegFields)
 
 public:
     enum class Type{USER, ADMIN};
@@ -18,7 +19,10 @@ public:
 
     /* Type */
     static Type getType();
+
+    /* Failed registration fields */
     static RegField getFailedRegFields();
+    static void resetFailedRegFields();
 
 public slots:
     /* Attempts */
