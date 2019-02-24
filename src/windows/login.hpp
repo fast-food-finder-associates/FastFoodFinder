@@ -12,7 +12,7 @@ class Login : public QDialog
     Q_OBJECT
 
 public:
-    enum class Type{GUEST, USER, ADMIN};
+    enum class Type{USER, ADMIN};
 
     /* Login usage */
     static Login* requestLogin();
@@ -20,19 +20,18 @@ public:
 
 private slots:
     /* Login page */
-    void on_pushButton_userLogin_clicked();
-    void on_pushButton_guestLogin_clicked();
+    void on_pushButton_login_clicked();
     void on_pushButton_register_clicked();
     void on_checkBox_showPW_stateChanged(int);
 
     /* Registration page */
     void on_pushButton_confirmReg_clicked();
     void on_pushButton_cancelReg_clicked();
-    void on_checkBox_showPWReg_stateChanged(int);
 
 private:
-    enum RegField{UN = 1, PW = 2, CPW = 4}; //Each value gets its own bit
+    enum RegField{UN = 0b1, PW = 0b10, CPW = 0b100};
 
+    /* Constructor */
     Login();
 
     /* Deleted members */
@@ -61,5 +60,6 @@ private:
     static Type type;
     static Login* instance;
     static const QString FILE_NAME;
+    static const QString FILE_PATH;
     const QString FILE_ERR_MSG;
 };
