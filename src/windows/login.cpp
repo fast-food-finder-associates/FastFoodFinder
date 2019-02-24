@@ -1,14 +1,16 @@
+#include <QCryptographicHash>
 #include <QTextStream>
 #include <QTimer>
-#include <QCryptographicHash>
+#include <QDir>
 #include "login.hpp"
 #include "ui_login.h"
 #include "../utils/exceptions.hpp"
 
 /* Static members */
-Login::Type   Login::type      = Login::Type::GUEST;
+Login::Type   Login::type      = Login::Type::USER;
 Login*        Login::instance  = nullptr;
 const QString Login::FILE_NAME = "authFile.txt";
+const QString Login::FILE_PATH = QDir::homePath() + '/';
 
 /* Login usage */
 Login* Login::requestLogin()
@@ -18,7 +20,7 @@ Login* Login::requestLogin()
         instance = new Login;
 
         /* Initialize the credential file */
-        QFile authFile(FILE_NAME);
+        QFile authFile(FILE_PATH + FILE_NAME);
         authFile.open(QIODevice::NewOnly);
     }
 
@@ -35,7 +37,7 @@ Login::Type Login::getType()
 }
 
 /* Private slots (Login page) */
-void Login::on_pushButton_userLogin_clicked()
+void Login::on_pushButton_login_clicked()
 {
     resetUi();
 
@@ -50,12 +52,6 @@ void Login::on_pushButton_userLogin_clicked()
     {
         exception.errorWindow();
     }
-}
-
-void Login::on_pushButton_guestLogin_clicked()
-{
-    type = Type::GUEST;
-    authSuccessful();
 }
 
 void Login::on_pushButton_register_clicked()
@@ -96,15 +92,6 @@ void Login::on_pushButton_cancelReg_clicked()
     m_ui->stackedWidget->setCurrentWidget(m_ui->page_login);
 }
 
-void Login::on_checkBox_showPWReg_stateChanged(int state)
-{
-    m_ui->lineEdit_passwordReg->setEchoMode((state == Qt::CheckState::Checked ? QLineEdit::EchoMode::Normal
-                                                                              : QLineEdit::EchoMode::Password));
-
-    m_ui->lineEdit_confirmPassword->setEchoMode((state == Qt::CheckState::Checked ? QLineEdit::EchoMode::Normal
-                                                                                  : QLineEdit::EchoMode::Password));
-}
-
 /* Constructors */
 Login::Login()
     : QDialog(nullptr), m_ui(new Ui::Login), FILE_ERR_MSG("Authentication failed, contact admin!")
@@ -119,15 +106,15 @@ Login::Login()
                    Qt::WindowMinimizeButtonHint |
                    Qt::WindowCloseButtonHint);
 
-    QPixmap pix(":/res/missing.png"); //TODO change logo file path
-    QSize labelLogoSize = m_ui->label_logo->size();
-    m_ui->label_logo->setPixmap(pix.scaled(labelLogoSize, Qt::KeepAspectRatio));
+    QPixmap logo(":/res/missing.png"); //TODO change logo file path
+    QSize labelSize = m_ui->label_logo->size();
+    m_ui->label_logo->setPixmap(logo.scaled(labelSize, Qt::KeepAspectRatio));
 }
 
 /* Authentication handling */
 void Login::authenticate(QString usernameInput, QString passwordInput) const
 {
-    QFile authFile(FILE_NAME);
+    QFile authFile(FILE_PATH + FILE_NAME);
     QTextStream qin(&authFile);
 
     if(!authFile.open(QIODevice::ReadOnly))
@@ -165,8 +152,8 @@ void Login::authenticate(QString usernameInput, QString passwordInput) const
 
 void Login::authSuccessful() const
 {
-    m_ui->label_message->setStyleSheet("QLabel { background-color: green; color: white; }");
-    m_ui->label_message->setText("Login successful");
+    m_ui->label_loginMsg->setStyleSheet("QLabel { background-color: green; color: white; }");
+    m_ui->label_loginMsg->setText("Login successful");
 
     //Delays the closing of the window
     QTimer::singleShot(500, instance, SLOT(accept()));
@@ -174,8 +161,8 @@ void Login::authSuccessful() const
 
 void Login::authFailed() const
 {
-    m_ui->label_message->setStyleSheet("QLabel { background-color: red; color: white; }");
-    m_ui->label_message->setText("Username/Password was incorrect");
+    m_ui->label_loginMsg->setStyleSheet("QLabel { background-color: red; color: white; }");
+    m_ui->label_loginMsg->setText("Invalid login");
 }
 
 /* Registration handling */
@@ -183,11 +170,6 @@ void Login::registration(QString usernameInput, QString passwordInput, QString p
 {
     /* Check the validity of each input field */
     int flags = 0;
-
-    if(passwordInput != pwConfirmed)
-    {
-        flags |= RegField::PW | RegField::CPW;
-    }
 
     if(usernameInput.isEmpty())
     {
@@ -199,7 +181,7 @@ void Login::registration(QString usernameInput, QString passwordInput, QString p
         flags |= RegField::PW;
     }
 
-    if(pwConfirmed.isEmpty())
+    if(pwConfirmed.isEmpty() || passwordInput != pwConfirmed)
     {
         flags |= RegField::CPW;
     }
@@ -210,7 +192,7 @@ void Login::registration(QString usernameInput, QString passwordInput, QString p
         return;
     }
 
-    QFile authFile(FILE_NAME);
+    QFile authFile(FILE_PATH + FILE_NAME);
     QTextStream qin(&authFile);
 
     if(!authFile.open(QIODevice::ReadWrite))
@@ -253,23 +235,34 @@ void Login::regSuccessful() const
     m_ui->lineEdit_username->setText(newUserUsername);
 
     m_ui->stackedWidget->setCurrentWidget(m_ui->page_login);
-    m_ui->label_message->setStyleSheet("QLabel { background-color: green; color: white; }");
-    m_ui->label_message->setText("Registration successful");
+    m_ui->label_loginMsg->setStyleSheet("QLabel { background-color: green; color: white; }");
+    m_ui->label_loginMsg->setText("Registration successful");
 }
 
 void Login::regFailed(RegField fieldFlags) const
 {
-    QString style = "QLabel { background-color: red; color: white; }";
+    if(fieldFlags == 0)
+        return;
+
+    QString txtStyle = "QLabel { color: red; }";
+
+    /* Initializing the labels with the error marker */
+    m_ui->label_regMsg->setText("Invalid fields (*)");
+    m_ui->label_regMsg->setStyleSheet(txtStyle);
+    m_ui->label_usernameReg->setText("*");
+    m_ui->label_passwordReg->setText("*");
+    m_ui->label_confirmPassword->setText("*");
+
 
     /* Bitwise operations to see if a flag is are set for each flag */
     if((fieldFlags & 1) == RegField::UN)
-        m_ui->label_usernameReg->setStyleSheet(style);
+        m_ui->label_usernameReg->setStyleSheet(txtStyle);
 
     if((fieldFlags & 2) == RegField::PW)
-        m_ui->label_passwordReg->setStyleSheet(style);
+        m_ui->label_passwordReg->setStyleSheet(txtStyle);
 
     if((fieldFlags & 4) == RegField::CPW)
-        m_ui->label_confirmPassword->setStyleSheet(style);
+        m_ui->label_confirmPassword->setStyleSheet(txtStyle);
 }
 
 /* Hash algorithm */
@@ -281,13 +274,16 @@ QByteArray Login::hashString(QString string) const
 /* Ui */
 void Login::resetUi() const
 {
-    QString style = "QLabel { background-color: transparent; }";
+    QString bgStyle = "QLabel { background-color: transparent; }";
+    QString txtStyle = "QLabel { color: transparent; }";
 
-    m_ui->label_message->setStyleSheet(style);
-    m_ui->label_usernameReg->setStyleSheet(style);
-    m_ui->label_passwordReg->setStyleSheet(style);
-    m_ui->label_confirmPassword->setStyleSheet(style);
-    m_ui->label_message->setText("");
+    m_ui->label_regMsg->setStyleSheet(bgStyle);
+    m_ui->label_loginMsg->setStyleSheet(bgStyle);
+    m_ui->label_usernameReg->setStyleSheet(txtStyle);
+    m_ui->label_passwordReg->setStyleSheet(txtStyle);
+    m_ui->label_confirmPassword->setStyleSheet(txtStyle);
+    m_ui->label_loginMsg->setText("");
+    m_ui->label_regMsg->setText("");
 }
 
 void Login::clearFields() const
