@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	QQmlApplicationEngine engine;
 	engine.addImportPath("qrc:/");
 	engine.rootContext()->setContextProperty("masterController", &masterController);
-	engine.load(QUrl(QStringLiteral("qrc:/views/MasterView.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/views/LoginView.qml")));
 
 	if (engine.rootObjects().isEmpty())
 		return -1;
