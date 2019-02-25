@@ -20,6 +20,9 @@ public:
 private slots:
     void on_actionLogout_triggered();
 
+    void on_listWidget_currentRowChanged(int currentRow);
+
 private:
     Ui::MainWindow* m_ui;
+    unsigned int m_selected;
 };
