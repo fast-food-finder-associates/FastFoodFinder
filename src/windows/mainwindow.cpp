@@ -14,7 +14,7 @@ MainWindow::MainWindow()
     m_ui->setupUi(this);
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
-    for(size_t i = 0; i < restNames.size(); ++i)
+    for(unsigned int i = 0; i < restNames.size(); ++i)
     {
        QFont fixed = QFontDatabase::systemFont(QFontDatabase::FixedFont);
        fixed.setWeight(2);
