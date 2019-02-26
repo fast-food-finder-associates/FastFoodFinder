@@ -8,12 +8,15 @@ assignees: ''
 
 ---
 
-As a <someone>, I want to be able to <do something>.
+As a (someone), I want to be able to (do something).
 
-# Tasks:
-*
+### Tasks:
+* 
 
-# Tests:
-*
+### Tests:
+* 
+
+### Definition of done:
+* 
 
 **Priority:** (Highest/High/Medium/Low/Lowest)
