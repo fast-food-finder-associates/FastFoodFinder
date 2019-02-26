@@ -8,15 +8,12 @@ assignees: ''
 
 ---
 
-As a (someone), I want to be able to (do something).
+Closes #(issue)
 
-### Tasks:
+### Key features
 * 
 
-### Tests:
+### Future Improvements
 * 
 
-### Definition of done:
-* 
-
-**Priority:** (Highest/High/Medium/Low/Lowest)
+### Notes
