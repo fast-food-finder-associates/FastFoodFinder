@@ -14,7 +14,7 @@ MainWindow::MainWindow()
     m_ui->setupUi(this);
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
-    for(size_t i = 0; i < restNames.size(); ++i)
+    for(unsigned int i = 0; i < restNames.size(); ++i)
     {
        QFont fixed = QFontDatabase::systemFont(QFontDatabase::FixedFont);
        fixed.setWeight(2);
@@ -28,7 +28,7 @@ MainWindow::MainWindow()
     lblFont.setBold(true);
     lblFont.setItalic(true);
     lblFont.setPixelSize(20);
-    m_ui->label->setFont(lblFont);
+    m_ui->restaurantMenuLabel->setFont(lblFont);
 
 
 }
@@ -48,7 +48,7 @@ void MainWindow::on_actionLogout_triggered()
 
 void MainWindow::on_listWidget_currentRowChanged(int currentRow)
 {
-    m_selected = static_cast<size_t>(currentRow);
+    m_selected = static_cast<unsigned int>(currentRow);
     QString msg = restNames[m_selected]+ " restaurants menu items";
-    m_ui->label->setText(msg);
+    m_ui->restaurantMenuLabel->setText(msg);
 }

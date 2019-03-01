@@ -24,5 +24,5 @@ private slots:
 
 private:
     Ui::MainWindow* m_ui;
-    size_t m_selected;
+    unsigned int m_selected;
 };
