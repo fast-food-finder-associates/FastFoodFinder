@@ -28,21 +28,25 @@ SOURCES += \
     src/main.cpp \
     src/windows/login.cpp \
     src/windows/mainwindow.cpp \
-    src/utils/exceptions.cpp
+    src/utils/exceptions.cpp \
+    src/windows/navitem.cpp
 
 
 HEADERS += \
     src/windows/login.hpp \
     src/windows/mainwindow.hpp \
-    src/utils/exceptions.hpp
+    src/utils/exceptions.hpp \
+    src/windows/navitem.hpp
 
 
 FORMS += \
     src/windows/login.ui \
-    src/windows/mainwindow.ui
+    src/windows/mainwindow.ui \
+    src/windows/navitem.ui
 
 RESOURCES += \
-    res.qrc
+    res.qrc \
+    assets.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

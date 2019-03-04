@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/assets">
+        <file alias="FontAwesome.ttf">assets/fontawesome-webfont.ttf</file>
+    </qresource>
+</RCC>
