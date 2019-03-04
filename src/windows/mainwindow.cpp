@@ -59,10 +59,10 @@ MainWindow::MainWindow()
       inventoryManagement->setText(QString::fromUtf8("Inventory\nManagement"));
       inventoryManagement->setIcon(QString::fromUtf8("\uf1c0"));
 
-      connect(dashboard, SIGNAL(onClicked()),this, SLOT(navToggle()));
-      connect(planTrip, SIGNAL(onClicked()),this, SLOT(goToPlanTripView()));
-      connect(viewRestaurants, SIGNAL(onClicked()),this, SLOT(goToRestaurantView()));
-      connect(inventoryManagement, SIGNAL(onClicked()),this, SLOT(goToInventoryManageView()));
+      connect(dashboard, &NavItem::onClicked,this, &MainWindow::navToggle);
+      connect(planTrip, &NavItem::onClicked,this, &MainWindow::goToPlanTripView);
+      connect(viewRestaurants, &NavItem::onClicked,this, &MainWindow::goToRestaurantView);
+      connect(inventoryManagement, &NavItem::onClicked,this, &MainWindow::goToInventoryManageView);
 }
 
 
