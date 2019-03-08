@@ -27,6 +27,7 @@ private slots:
     void goToPlanTripView();
     void goToRestaurantView();
     void goToInventoryManageView();
+
 signals:
 
 private:

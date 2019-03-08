@@ -1,7 +1,7 @@
 #include "navitem.hpp"
 #include "mainwindow.hpp"
 #include "ui_navitem.h"
-#include <QFontDatabase>
+//#include <QFontDatabase>
 #include <QFont>
 #include <QDebug>
 #include <QWidget>
@@ -19,16 +19,9 @@ NavItem::NavItem(QWidget *parent) :
 
     m_nav_ui->navLabel->setWordWrap(true);
     m_nav_ui->navLabel->setFont(navFont);
-
-    if (QFontDatabase::addApplicationFont(":/assets/FontAwesome.ttf") == -1)
-        qWarning() << "FontAwesome cannot be loaded !";
-
     navFont.setBold(false);
     navFont.setFamily("fontAwesome");
-    navFont.setWeight(900);
-
     navFont.setPixelSize(38);
-
     navFont.setStyle(QFont::StyleNormal);
     m_nav_ui->navIcon->setFont(navFont);
     m_nav_ui->navIcon->setFixedWidth(50);
@@ -48,12 +41,8 @@ NavItem::NavItem(QWidget *parent,QString icon, QString label, bool isBack) :
     m_nav_ui->navLabel->setWordWrap(true);
     m_nav_ui->navLabel->setFont(navFont);
 
-    if (QFontDatabase::addApplicationFont(":/assets/FontAwesome.ttf") == -1)
-        qWarning() << "FontAwesome cannot be loaded !";
-
     navFont.setBold(false);
     navFont.setFamily("fontAwesome");
-    navFont.setWeight(900);
 
     navFont.setPixelSize(38);
 
@@ -155,7 +144,3 @@ void NavItem::showIcon()
     this->m_nav_ui->navIcon->show();
 }
 
-void NavItem::setIndex(int test)
-{
-    m_row = test;
-}

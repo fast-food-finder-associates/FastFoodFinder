@@ -24,7 +24,6 @@ public:
     void hideIcon();
     void showLabel();
     void showIcon();
-    void setIndex(int);
     void resizeEvent(QResizeEvent *event) override;
     void enterEvent(QEvent * event) override;
     void leaveEvent(QEvent * event) override;
@@ -37,6 +36,5 @@ signals:
 private:
     Ui::NavItem *m_nav_ui;
     bool m_backButton;
-    int m_row;
 };
 

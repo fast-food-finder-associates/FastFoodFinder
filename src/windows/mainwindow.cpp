@@ -6,13 +6,10 @@
 #include <QString>
 #include <QFont>
 #include <QFontDatabase>
-#include <iostream>
 #include <QDebug>
-#include <QWidget>
-#include <QListWidgetItem>
 #include "navbar.hpp"
 
-//const int M_ANIMATION_DURATION = 130;
+
 const static std::vector<QString> restNames = {"MacDonalds","Chipotle","Dominos Pizza","KFC","Subway","In-N-Out Burger","Wendys","Jack in the Box","El Pollo Loco","Papa Johns Pizza","Pizza Hut","Sonic"};
 const static std::vector<double> distance = {8,4.29,12.41,7.56,2.67,5.94,8.44,12.75,9.19,14.54,10.1,6.6};
 /* Constructors */
@@ -21,6 +18,9 @@ MainWindow::MainWindow()
 {
     m_ui->setupUi(this);
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
+
+    if (QFontDatabase::addApplicationFont(":/assets/FontAwesome.ttf") == -1)
+        qWarning() << "FontAwesome cannot be loaded !";
 
     NavBar *navigationButtonList = new NavBar(m_ui->NavBarWidget);
 
@@ -34,6 +34,7 @@ MainWindow::MainWindow()
 // Navbar height resizes to window height when window height changes
 void MainWindow::resizeEvent(QResizeEvent *e)
 {
+    QWidget::resizeEvent(e);
     m_ui->NavBarWidget->setFixedHeight(this->height());
     m_ui->mainViews->setFixedHeight(this->height());
     m_ui->mainViews->setFixedWidth(this->width());

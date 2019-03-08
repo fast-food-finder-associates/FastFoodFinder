@@ -107,6 +107,8 @@ void NavBar::changeToInventoryView()
     m_ui->listWidget->item(3)->setHidden(true);
     m_ui->listWidget->item(4)->setHidden(false);
     m_ui->listWidget->item(5)->setHidden(false);
+    m_ui->listWidget->setCurrentRow(5);
+    m_ui->listWidget->item(5)->setSelected(true);
     m_ui->listWidget->item(6)->setHidden(false);
     m_ui->listWidget->item(7)->setHidden(false);
     m_ui->listWidget->item(8)->setHidden(false);
