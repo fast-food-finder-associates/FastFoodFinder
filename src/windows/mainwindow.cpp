@@ -10,9 +10,9 @@
 #include <QDebug>
 #include <QWidget>
 #include <QListWidgetItem>
+#include "navbar.hpp"
 
-
-const int WINDOW_RESIZE = 130;
+//const int M_ANIMATION_DURATION = 130;
 const static std::vector<QString> restNames = {"MacDonalds","Chipotle","Dominos Pizza","KFC","Subway","In-N-Out Burger","Wendys","Jack in the Box","El Pollo Loco","Papa Johns Pizza","Pizza Hut","Sonic"};
 const static std::vector<double> distance = {8,4.29,12.41,7.56,2.67,5.94,8.44,12.75,9.19,14.54,10.1,6.6};
 /* Constructors */
@@ -22,54 +22,22 @@ MainWindow::MainWindow()
     m_ui->setupUi(this);
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
-      QListWidgetItem *listWidgetItem = new QListWidgetItem(m_ui->navigationButtonList);
-      m_ui->navigationButtonList->addItem(listWidgetItem);
+    NavBar *navigationButtonList = new NavBar(m_ui->NavBarWidget);
 
-      NavItem *dashboard = new NavItem;
-      NavItem *planTrip = new NavItem;
-      NavItem *viewRestaurants = new NavItem;
-      NavItem *inventoryManagement = new NavItem;
-
-      listWidgetItem->setSizeHint(dashboard->sizeHint());
-      m_ui->navigationButtonList->setItemWidget(listWidgetItem,dashboard);
-      dashboard->setText(QString::fromUtf8("Dashboard"));
-      dashboard->setIcon(QString::fromUtf8("\uf0c9"));
-      dashboard->setObjectName("dashboard");
-      dashboard->setMouseTracking(true);
-
-      listWidgetItem = new QListWidgetItem(m_ui->navigationButtonList);
-      m_ui->navigationButtonList->addItem(listWidgetItem);
-      listWidgetItem->setSizeHint(planTrip->sizeHint());
-      m_ui->navigationButtonList->setItemWidget(listWidgetItem,planTrip);
-      planTrip->setText(QString::fromUtf8("Plan\nA Trip"));
-      planTrip->setIcon(QString::fromUtf8("\uf1b9"));
-      planTrip->setObjectName("planTrip");
-
-      listWidgetItem = new QListWidgetItem(m_ui->navigationButtonList);
-      m_ui->navigationButtonList->addItem(listWidgetItem);
-      listWidgetItem->setSizeHint(viewRestaurants->sizeHint());
-      m_ui->navigationButtonList->setItemWidget(listWidgetItem,viewRestaurants);
-      viewRestaurants->setText(QString::fromUtf8("View\nRestaurants"));
-      viewRestaurants->setIcon(QString::fromUtf8("\uf03A"));
-
-      listWidgetItem = new QListWidgetItem(m_ui->navigationButtonList);
-      m_ui->navigationButtonList->addItem(listWidgetItem);
-      listWidgetItem->setSizeHint(inventoryManagement->sizeHint());
-      m_ui->navigationButtonList->setItemWidget(listWidgetItem,inventoryManagement);
-      inventoryManagement->setText(QString::fromUtf8("Inventory\nManagement"));
-      inventoryManagement->setIcon(QString::fromUtf8("\uf1c0"));
-
-      connect(dashboard, &NavItem::onClicked,this, &MainWindow::navToggle);
-      connect(planTrip, &NavItem::onClicked,this, &MainWindow::goToPlanTripView);
-      connect(viewRestaurants, &NavItem::onClicked,this, &MainWindow::goToRestaurantView);
-      connect(inventoryManagement, &NavItem::onClicked,this, &MainWindow::goToInventoryManageView);
+    connect(this, SIGNAL(changing(const int)), navigationButtonList, SLOT(resize(const int)));
+    connect(navigationButtonList,SIGNAL(newChoice(const int)), this, SLOT(changeView(const int)));
+    connect(this,&MainWindow::inventoryView, navigationButtonList, &NavBar::changeToInventoryView);
+    connect(this,&MainWindow::mainView, navigationButtonList, &NavBar::changeToMainView);
 }
 
 
 // Navbar height resizes to window height when window height changes
 void MainWindow::resizeEvent(QResizeEvent *e)
 {
-    m_ui->navigationButtonList->setFixedHeight(this->height());
+    m_ui->NavBarWidget->setFixedHeight(this->height());
+    m_ui->mainViews->setFixedHeight(this->height());
+    m_ui->mainViews->setFixedWidth(this->width());
+    emit changing(this->height());
 }
 
 /* Destructor */
@@ -85,28 +53,9 @@ void MainWindow::on_actionLogout_triggered()
     Login::requestLogin();
 }
 
-// Resizes NavBar
-void MainWindow::navToggle()
-{
-    m_toggle ^=1;
-    if(m_toggle)
-    {
-        m_ui->navigationButtonList->setFixedWidth(m_ui->navigationButtonList->width()-WINDOW_RESIZE);
-        m_ui->mainViews->setFixedWidth(m_ui->mainViews->width()+WINDOW_RESIZE);
-        m_ui->mainViews->move(m_ui->navigationButtonList->width(),0);
-    }
-    else
-    {
-        m_ui->navigationButtonList->setFixedWidth(m_ui->navigationButtonList->width()+WINDOW_RESIZE);
-        m_ui->mainViews->setFixedWidth(m_ui->mainViews->width()-WINDOW_RESIZE);
-        m_ui->mainViews->move(m_ui->navigationButtonList->width(),0);
-    }
-
-}
-
 void MainWindow::goToPlanTripView()
 {
-     m_ui->mainViews->setCurrentWidget(m_ui->planTripView);
+    m_ui->mainViews->setCurrentWidget(m_ui->planTripView);
 }
 
 void MainWindow::goToRestaurantView()
@@ -120,3 +69,40 @@ void MainWindow::goToInventoryManageView()
 }
 
 
+void MainWindow::changeView(const int rowView)
+{
+    qDebug() << rowView;
+
+    switch(rowView)
+    {
+    case 0:
+        m_ui->mainViews->setCurrentWidget(m_ui->dashboardView);
+        break;
+    case 1:
+        m_ui->mainViews->setCurrentWidget(m_ui->planTripView);
+        break;
+    case 2:
+        m_ui->mainViews->setCurrentWidget(m_ui->viewRestaurantView);
+        break;
+    case 3:
+        m_ui->mainViews->setCurrentWidget(m_ui->inventoryManageView);
+        emit inventoryView();
+        break;
+    case 4:
+        m_ui->mainViews->setCurrentWidget(m_ui->dashboardView);
+        emit mainView();
+        break;
+    case 5:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->searchView);
+        break;
+    case 6:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->addView);
+        break;
+    case 7:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->editView);
+        break;
+    case 8:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->deleteView);
+        break;
+    }
+}

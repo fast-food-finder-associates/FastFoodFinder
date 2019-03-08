@@ -1,6 +1,4 @@
-#ifndef NAVITEM_HPP
-#define NAVITEM_HPP
-
+#pragma once
 #include <QWidget>
 #include <QString>
 #include <QEvent>
@@ -17,18 +15,28 @@ class NavItem : public QWidget
 
 public:
     explicit NavItem(QWidget *parent = nullptr);
+    NavItem(QWidget *parent = nullptr,QString icon = "",QString label = "", bool isBack = false);
     ~NavItem() override;
     void mousePressEvent(QMouseEvent * event) override;
-    void setText(QString);
+    void setLabel(QString);
     void setIcon(QString);
-    void resizeEvent(QResizeEvent *e) override;
-
+    void hideLabel();
+    void hideIcon();
+    void showLabel();
+    void showIcon();
+    void setIndex(int);
+    void resizeEvent(QResizeEvent *event) override;
+    void enterEvent(QEvent * event) override;
+    void leaveEvent(QEvent * event) override;
 public slots:
 
 signals:
     void onClicked();
+    void onHover();
+    void onLeave();
 private:
     Ui::NavItem *m_nav_ui;
+    bool m_backButton;
+    int m_row;
 };
 
-#endif // NAVITEM_HPP

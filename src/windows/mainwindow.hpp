@@ -1,9 +1,5 @@
 #pragma once
 #include <QMainWindow>
-#include <QWidget>
-#include <QListWidgetItem>
-#include <QEvent>
-#include "navitem.hpp"
 
 namespace Ui
 {
@@ -20,7 +16,12 @@ public:
     /* Destructor */
     ~MainWindow() override;
 public slots:
-    void navToggle();
+    void changeView(const int);
+signals:
+    void changing(const int);
+    void inventoryView();
+    void mainView();
+
 private slots:
     void on_actionLogout_triggered();
     void goToPlanTripView();
@@ -30,5 +31,4 @@ signals:
 
 private:
     Ui::MainWindow* m_ui;
-    bool m_toggle;
 };

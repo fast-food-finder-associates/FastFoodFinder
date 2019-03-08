@@ -29,31 +29,7 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget#NavItem:hover{
-background-color:green;
-}
-
-QWidget#navLabel{
-color:white;
-}
-
-QWidget#navIcon{
-color:white;
-}
-
-QWidget:hover{
-background-color:white;
-}
-
-QWidget#navIcon:hover{
-color:black;
-}
-
-QWidget#navLabel:hover{
-color:black;
-}
-
-</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -94,7 +70,7 @@ color:black;
         </sizepolicy>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>iconLabel</string>
@@ -119,7 +95,16 @@ color:black;
         <bool>true</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:5px</string>
+        <string notr="true"/>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <property name="lineWidth">
+        <number>1</number>
        </property>
        <property name="text">
         <string>NavLabel</string>

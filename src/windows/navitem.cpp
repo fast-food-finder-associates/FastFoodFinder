@@ -12,10 +12,11 @@ NavItem::NavItem(QWidget *parent) :
     m_nav_ui(new Ui::NavItem)
 {
     m_nav_ui->setupUi(this);
-
+    m_backButton = false;
     QFont navFont;
-    navFont.setPixelSize(10);
+    navFont.setPixelSize(16);
     navFont.setBold(true);
+
     m_nav_ui->navLabel->setWordWrap(true);
     m_nav_ui->navLabel->setFont(navFont);
 
@@ -30,33 +31,65 @@ NavItem::NavItem(QWidget *parent) :
 
     navFont.setStyle(QFont::StyleNormal);
     m_nav_ui->navIcon->setFont(navFont);
-    m_nav_ui->navIcon->setFixedWidth(40);
-
+    m_nav_ui->navIcon->setFixedWidth(50);
+    this->setFixedHeight(75);
 }
 
-
-void NavItem::setText(QString str)
+NavItem::NavItem(QWidget *parent,QString icon, QString label, bool isBack) :
+    QWidget(parent),
+    m_nav_ui(new Ui::NavItem)
 {
-      m_nav_ui->navLabel->setText(str);
+    m_nav_ui->setupUi(this);
+    m_backButton = isBack;
+    QFont navFont;
+    navFont.setPixelSize(16);
+    navFont.setBold(true);
+
+    m_nav_ui->navLabel->setWordWrap(true);
+    m_nav_ui->navLabel->setFont(navFont);
+
+    if (QFontDatabase::addApplicationFont(":/assets/FontAwesome.ttf") == -1)
+        qWarning() << "FontAwesome cannot be loaded !";
+
+    navFont.setBold(false);
+    navFont.setFamily("fontAwesome");
+    navFont.setWeight(900);
+
+    navFont.setPixelSize(38);
+
+    navFont.setStyle(QFont::StyleNormal);
+    m_nav_ui->navIcon->setFont(navFont);
+    m_nav_ui->navIcon->setFixedWidth(50);
+    this->setFixedHeight(75);
+
+    this->setIcon(icon);
+    this->setLabel(label);
+
+    if(m_backButton)
+        this->hideLabel();
+}
+
+void NavItem::setLabel(QString str)
+{
+    m_nav_ui->navLabel->setText(str);
 }
 
 void NavItem::setIcon(QString str)
 {
-      m_nav_ui->navIcon->setText(str);
+    m_nav_ui->navIcon->setText(str);
 }
 
 // When the NavBar becomes smaller the NavItem label hides
-void NavItem::resizeEvent(QResizeEvent *e)
+void NavItem::resizeEvent(QResizeEvent *event)
 {
-    if(this->width() < 100)
+    if(this->width() < 180 && !this->m_backButton)
     {
-        m_nav_ui->navLabel->hide();
-        m_nav_ui->navIcon->setFixedWidth(50);
+        this->hideLabel();
     }
     else
     {
-        m_nav_ui->navLabel->show();
-        m_nav_ui->navIcon->setFixedWidth(40);
+        if(!this->m_backButton)
+             this->showLabel();
     }
 }
 
@@ -68,5 +101,61 @@ NavItem::~NavItem()
 // made signal for clicked for this class
 void NavItem::mousePressEvent(QMouseEvent * event)
 {
+    QWidget::mousePressEvent(event);
     emit onClicked();
+}
+
+void NavItem::enterEvent(QEvent * event)
+{
+    //    qDebug() << this->objectName();
+    QWidget::enterEvent(event);
+
+    emit onHover();
+    this->setStyleSheet("* {background-color:white;color:black}");
+
+    if(m_backButton)
+    {
+        this->hideIcon();
+        this->showLabel();
+    }
+}
+
+void NavItem::leaveEvent(QEvent * event)
+{
+    //    qDebug() << Q_FUNC_INFO << this->objectName();
+    QWidget::leaveEvent(event);
+    emit onLeave();
+    this->setStyleSheet("* {background-color:none;color:white}");
+
+    if(m_backButton)
+    {
+        this->showIcon();
+        this->hideLabel();
+    }
+}
+
+void NavItem::hideLabel()
+{
+    this->m_nav_ui->navLabel->hide();
+}
+
+void NavItem::hideIcon()
+{
+    this->m_nav_ui->navIcon->hide();
+}
+
+
+void NavItem::showLabel()
+{
+    this->m_nav_ui->navLabel->show();
+}
+
+void NavItem::showIcon()
+{
+    this->m_nav_ui->navIcon->show();
+}
+
+void NavItem::setIndex(int test)
+{
+    m_row = test;
 }
