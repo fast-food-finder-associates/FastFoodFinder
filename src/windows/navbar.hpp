@@ -40,6 +40,5 @@ private slots:
 private:
     Ui::NavBar *m_ui;
     QPropertyAnimation *m_animation_navBar;
-    QPropertyAnimation *m_animation_parent;
 };
 

@@ -1,10 +1,6 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 #include "login.hpp"
-#include "navitem.hpp"
-#include <vector>
-#include <QString>
-#include <QFont>
 #include <QFontDatabase>
 #include <QDebug>
 #include "navbar.hpp"

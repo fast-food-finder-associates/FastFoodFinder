@@ -1,7 +1,5 @@
 #include "navitem.hpp"
-#include "mainwindow.hpp"
 #include "ui_navitem.h"
-//#include <QFontDatabase>
 #include <QFont>
 #include <QDebug>
 #include <QWidget>
@@ -71,6 +69,7 @@ void NavItem::setIcon(QString str)
 // When the NavBar becomes smaller the NavItem label hides
 void NavItem::resizeEvent(QResizeEvent *event)
 {
+    QWidget::resizeEvent(event);
     if(this->width() < 180 && !this->m_backButton)
     {
         this->hideLabel();
