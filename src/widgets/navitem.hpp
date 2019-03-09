@@ -1,6 +1,5 @@
 #pragma once
 #include <QListWidget>
-#include <QString>
 
 namespace Ui
 {

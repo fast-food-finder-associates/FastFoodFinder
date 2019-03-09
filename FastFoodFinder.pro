@@ -27,30 +27,28 @@ CONFIG += c++14
 
 
 HEADERS += \
+    src/utils/exceptions.hpp \
     src/windows/login.hpp \
     src/windows/mainwindow.hpp \
-    src/windows/navitem.hpp \
-    src/utils/exceptions.hpp \
-    src/windows/navbar.hpp
+    src/widgets/navbar.hpp \
+    src/widgets/navitem.hpp
 
 
 SOURCES += \
     src/main.cpp \
+    src/utils/exceptions.cpp \
     src/windows/login.cpp \
     src/windows/mainwindow.cpp \
-    src/windows/navitem.cpp \
-    src/utils/exceptions.cpp \
-    src/windows/navbar.cpp
+    src/widgets/navbar.cpp \
+    src/widgets/navitem.cpp
 
 FORMS += \
     src/windows/login.ui \
     src/windows/mainwindow.ui \
-    src/windows/navitem.ui \
-    src/windows/navbar.ui
+    src/widgets/navitem.ui
 
 RESOURCES += \
-    res.qrc \
-    assets.qrc
+    res.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

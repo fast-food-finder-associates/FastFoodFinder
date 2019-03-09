@@ -1,13 +1,11 @@
 #include "navbar.hpp"
-#include "ui_navbar.h"
 #include "navitem.hpp"
 #include <QPropertyAnimation>
 
 /* Constructor */
 NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
-    : QListWidget(parent), m_ui(new Ui::NavBar), m_minWidth(minWidth), m_maxWidth(maxWidth)
+    : QListWidget(parent), m_minWidth(minWidth), m_maxWidth(maxWidth)
 {
-    m_ui->setupUi(this);
     setStyleSheet("QListWidget { background-color: #303030; }");
 
     //Initial size
@@ -17,15 +15,20 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
     connect(this, &QListWidget::currentRowChanged, this, &NavBar::currentItemChanged);
 }
 
-/* Destructor */
-NavBar::~NavBar()
-{
-    delete m_ui;
-}
-
+/* Setters */
 void NavBar::setHeight(int height)
 {
     resize(width(), height);
+}
+
+void NavBar::setMinWidth(int width)
+{
+    m_minWidth = width;
+}
+
+void NavBar::setMaxWidth(int width)
+{
+    m_maxWidth = width;
 }
 
 void NavBar::addItem(QString icon, QString label)
@@ -45,6 +48,7 @@ void NavBar::addItem(QString icon, QString label)
     connect(this, &NavBar::shrink, navItem, &NavItem::shrink);
 }
 
+/* Events */
 void NavBar::leaveEvent(QEvent*)
 {
     /* Shrinking animation */

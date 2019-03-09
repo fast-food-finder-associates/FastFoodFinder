@@ -16,12 +16,14 @@ MainWindow::MainWindow()
     : QMainWindow(nullptr), m_ui(new Ui::MainWindow)
 {
     m_ui->setupUi(this);
+
+    //Requests a login
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
-    if(QFontDatabase::addApplicationFont(":/assets/FontAwesome.ttf") == -1)
+    if(QFontDatabase::addApplicationFont(":/res/FontAwesome.ttf") == -1)
         qWarning() << "FontAwesome cannot be loaded !";
 
-    /* Initialize navigation bar */
+    /* Initialize navigation bar and items */
     m_navbar = new NavBar(m_ui->NavBarWidget, 90, 220);
     connect(m_navbar, &NavBar::currentItemChanged, this, &MainWindow::changeView);
     m_navbar->addItem("\uf0c9", "Dashboard");
@@ -65,12 +67,13 @@ void MainWindow::changeView(int rowView)
     }
 }
 
+/* Events */
 void MainWindow::resizeEvent(QResizeEvent*)
 {
     /* Stacked widget */
     m_ui->mainViews->setFixedSize(size());
 
-    /* NavBar */
+    /* Navigation bar */
     m_ui->NavBarWidget->setFixedHeight(height());
     m_navbar->setHeight(height());
 }

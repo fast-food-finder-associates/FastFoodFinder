@@ -1,6 +1,6 @@
 #pragma once
 #include <QMainWindow>
-#include "navbar.hpp"
+#include "src/widgets/navbar.hpp"
 
 namespace Ui
 {
