@@ -1,11 +1,10 @@
 #pragma once
-#include <QWidget>
+#include <QListWidget>
 #include <QString>
 #include <QEvent>
-#include <QListWidget>
-#include <QMouseEvent>
 
-namespace Ui {
+namespace Ui
+{
 class NavItem;
 }
 
@@ -14,27 +13,20 @@ class NavItem : public QWidget
     Q_OBJECT
 
 public:
-    explicit NavItem(QWidget *parent = nullptr);
-    NavItem(QWidget *parent = nullptr,QString icon = "",QString label = "", bool isBack = false);
+    /* Constructor */
+    NavItem(QWidget* parent, QString icon, QString label);
+
+    /* Destructor */
     ~NavItem() override;
-    void mousePressEvent(QMouseEvent * event) override;
-    void setLabel(QString);
-    void setIcon(QString);
-    void hideLabel();
-    void hideIcon();
-    void showLabel();
-    void showIcon();
-    void resizeEvent(QResizeEvent *event) override;
-    void enterEvent(QEvent * event) override;
-    void leaveEvent(QEvent * event) override;
+
 public slots:
+    void expand() const;
+    void shrink() const;
 
-signals:
-    void onClicked();
-    void onHover();
-    void onLeave();
 private:
-    Ui::NavItem *m_nav_ui;
-    bool m_backButton;
-};
+    /* Events */
+    void enterEvent(QEvent*) override;
+    void leaveEvent(QEvent*) override;
 
+    Ui::NavItem* m_ui;
+};

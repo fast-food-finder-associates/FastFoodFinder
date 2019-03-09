@@ -1,128 +1,73 @@
 #include "navbar.hpp"
-#include "mainwindow.hpp"
 #include "ui_navbar.h"
-#include <QString>
-#include <QDebug>
-#include <QSize>
+#include "navitem.hpp"
+#include <QPropertyAnimation>
+#include <QMouseEvent>
 
-NavBar::NavBar(QWidget *parent) :
-    QWidget(parent),
-    m_ui(new Ui::NavBar)
+/* Constructor */
+NavBar::NavBar(QWidget* parent)
+    : QWidget(parent), m_ui(new Ui::NavBar), m_expanded(false), m_minWidth(90), m_maxWidth(220)
 {
     m_ui->setupUi(this);
     m_ui->listWidget->raise();
+    setMouseTracking(true); //Allows mouse move event to toggle without button events
 
-    connect(this, &NavBar::navHover, this, &NavBar::navExpand);
-    connect(this, &NavBar::navLeave, this, &NavBar::navShrink);
-
-    this->addItem("\uf0c9","Dashboard");
-    this->addItem("\uf124","Plan\nA Trip");
-    this->addItem("\uf03A","View\nRestaurants");
-    this->addItem("\uf1c0","Inventory\nManagement");
-    this->addItem("\uf03B","Back", true);
-    this->addItem("\uf002","Search\nRestaurants");
-    this->addItem("\uf0fe","Add\nRestaurants");
-    this->addItem("\uf044","Edit\nRestaurants");
-    this->addItem("\uf1f8","Delete\nRestaurants");
-
-    m_ui->listWidget->item(4)->setHidden(true);
-    m_ui->listWidget->item(5)->setHidden(true);
-    m_ui->listWidget->item(6)->setHidden(true);
-    m_ui->listWidget->item(7)->setHidden(true);
-    m_ui->listWidget->item(8)->setHidden(true);
-
+    connect(m_ui->listWidget, &QListWidget::currentRowChanged, this, &NavBar::currentItemChanged);
 }
 
+/* Destructor */
 NavBar::~NavBar()
 {
     delete m_ui;
 }
 
-NavItem* NavBar::addItem(std::string icon, std::string label, bool isBack)
+void NavBar::addItem(QString icon, QString label)
 {
-    QListWidgetItem *listWidgetItem = new QListWidgetItem(m_ui->listWidget);
+    const QSize itemSize(70, 80);
+
+    QListWidgetItem* listWidgetItem = new QListWidgetItem(m_ui->listWidget);
+    listWidgetItem->setSizeHint(itemSize);
     m_ui->listWidget->addItem(listWidgetItem);
-    NavItem *navItemTemp = new NavItem(m_ui->listWidget,QString::fromStdString(icon), QString::fromStdString(label), isBack);
-    QSize setSize(70,80);
-    listWidgetItem->setSizeHint(setSize);
-    //    qDebug() << listWidgetItem->sizeHint().rheight();
-    //    qDebug() << listWidgetItem->sizeHint().rwidth();
-    //    qDebug() << navItemTemp->height();
-    m_ui->listWidget->setItemWidget(listWidgetItem,navItemTemp);
-    m_ui->listWidget->setObjectName(QString::fromStdString(label));
-    navItemTemp->setMouseTracking(true);
-    return navItemTemp;
+
+    /* Set the QListWidgetItem to hold a NavItem */
+    NavItem* navItem = new NavItem(m_ui->listWidget, icon, label);
+    m_ui->listWidget->setItemWidget(listWidgetItem, navItem);
+
+    /* Allows the NavBar and NavItem to expand and shrink simultaneously */
+    connect(this, &NavBar::expand, navItem, &NavItem::expand);
+    connect(this, &NavBar::shrink, navItem, &NavItem::shrink);
 }
 
-
-
-void NavBar::navExpand()
+/* Events */
+void NavBar::leaveEvent(QEvent*)
 {
-    m_animation_navBar = new QPropertyAnimation(m_ui->listWidget,"size");
-    m_animation_navBar->setDuration(150);
-    m_animation_navBar->setStartValue(QSize(90, m_ui->listWidget->height()));
-    m_animation_navBar->setEndValue(QSize(220, m_ui->listWidget->height()));
-    m_animation_navBar->start();
+    m_expanded = false;
+
+    /* Shrinking animation */
+    QPropertyAnimation* animation = new QPropertyAnimation(m_ui->listWidget, "size");
+    animation->setDuration(75);
+    animation->setStartValue(m_ui->listWidget->size());
+    animation->setEndValue(QSize(m_minWidth, m_ui->listWidget->height()));
+    animation->start();
+
+    //Tells each NavItem to shrink
+    emit shrink();
 }
 
-void NavBar::navShrink()
+void NavBar::mouseMoveEvent(QMouseEvent* event)
 {
-    m_animation_navBar = new QPropertyAnimation(m_ui->listWidget,"size");
-    m_animation_navBar->setDuration(150);
-    m_animation_navBar->setStartValue(QSize(220,m_ui->listWidget->height()));
-    m_animation_navBar->setEndValue(QSize(90,m_ui->listWidget->height()));
-    m_animation_navBar->start();
-}
+    if(event->pos().x() <= m_minWidth && !m_expanded)
+    {
+        m_expanded = true;
 
-void NavBar::resize(const int resizeHeight)
-{
-    //   qDebug() << resizeHeight;
-    this->setFixedHeight(resizeHeight);
-}
+        /* Expanding animation */
+        QPropertyAnimation* animation = new QPropertyAnimation(m_ui->listWidget, "size");
+        animation->setDuration(75);
+        animation->setStartValue(m_ui->listWidget->size());
+        animation->setEndValue(QSize(m_maxWidth, m_ui->listWidget->height()));
+        animation->start();
 
-void NavBar::enterEvent(QEvent * event)
-{
-    //    qDebug() << this->objectName();
-    QWidget::enterEvent(event);
-    emit navHover();
-}
-
-void NavBar::leaveEvent(QEvent * event)
-{
-    //    qDebug() << this->objectName();
-    QWidget::leaveEvent(event);
-    emit navLeave();
-}
-
-void NavBar::on_listWidget_currentRowChanged(int currentRow)
-{
-    emit newChoice(currentRow);
-}
-
-void NavBar::changeToInventoryView()
-{
-    m_ui->listWidget->item(0)->setHidden(true);
-    m_ui->listWidget->item(1)->setHidden(true);
-    m_ui->listWidget->item(2)->setHidden(true);
-    m_ui->listWidget->item(3)->setHidden(true);
-    m_ui->listWidget->item(4)->setHidden(false);
-    m_ui->listWidget->item(5)->setHidden(false);
-    m_ui->listWidget->setCurrentRow(5);
-    m_ui->listWidget->item(5)->setSelected(true);
-    m_ui->listWidget->item(6)->setHidden(false);
-    m_ui->listWidget->item(7)->setHidden(false);
-    m_ui->listWidget->item(8)->setHidden(false);
-}
-
-void NavBar::changeToMainView()
-{
-    m_ui->listWidget->item(0)->setHidden(false);
-    m_ui->listWidget->item(1)->setHidden(false);
-    m_ui->listWidget->item(2)->setHidden(false);
-    m_ui->listWidget->item(3)->setHidden(false);
-    m_ui->listWidget->item(4)->setHidden(true);
-    m_ui->listWidget->item(5)->setHidden(true);
-    m_ui->listWidget->item(6)->setHidden(true);
-    m_ui->listWidget->item(7)->setHidden(true);
-    m_ui->listWidget->item(8)->setHidden(true);
+        //Tells each NavItem to expand
+        emit expand();
+    }
 }

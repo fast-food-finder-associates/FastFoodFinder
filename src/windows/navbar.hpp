@@ -1,13 +1,8 @@
 #pragma once
-
-
 #include <QWidget>
-#include <QEvent>
-#include <QPropertyAnimation>
-#include "navitem.hpp"
-#include <vector>
 
-namespace Ui {
+namespace Ui
+{
 class NavBar;
 }
 
@@ -16,30 +11,25 @@ class NavBar : public QWidget
     Q_OBJECT
 
 public:
-    explicit NavBar(QWidget *parent = nullptr);
-    ~NavBar() override;
-    NavItem* addItem(std::string = "", std::string = "", bool = false);
-    void enterEvent(QEvent * event) override;
-    void leaveEvent(QEvent * event) override;
+    /* Constructor */
+    explicit NavBar(QWidget* parent);
 
-public slots:
-    void navExpand();
-    void navShrink();
-    void resize(const int);
-    void changeToInventoryView();
-    void changeToMainView();
+    /* Destructor */
+    ~NavBar() override;
+
+    void addItem(QString icon, QString label);
 
 signals:
-    void navHover();
-    void navLeave();
-    void newChoice(const int);
-
-private slots:
-    void on_listWidget_currentRowChanged(int currentRow);
+    void expand() const;
+    void shrink() const;
+    void currentItemChanged(int) const;
 
 private:
-    Ui::NavBar *m_ui;
-    QPropertyAnimation *m_animation_navBar;
-    QPropertyAnimation *m_animation_parent;
-};
+    void leaveEvent(QEvent*) override;
+    void mouseMoveEvent(QMouseEvent*) override;
 
+    Ui::NavBar* m_ui;
+    bool m_expanded;
+    const int m_minWidth;
+    const int m_maxWidth;
+};

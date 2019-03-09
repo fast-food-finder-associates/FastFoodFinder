@@ -1,5 +1,6 @@
 #pragma once
 #include <QMainWindow>
+#include "navbar.hpp"
 
 namespace Ui
 {
@@ -9,27 +10,19 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
 public:
     /* Constructors */
     MainWindow();
-    void resizeEvent(QResizeEvent *e) override;
+
     /* Destructor */
     ~MainWindow() override;
-public slots:
-    void changeView(const int);
-signals:
-    void changing(const int);
-    void inventoryView();
-    void mainView();
 
 private slots:
     void on_actionLogout_triggered();
-    void goToPlanTripView();
-    void goToRestaurantView();
-    void goToInventoryManageView();
-
-signals:
+    void changeView(int);
 
 private:
     Ui::MainWindow* m_ui;
+    NavBar* m_navbar;
 };
