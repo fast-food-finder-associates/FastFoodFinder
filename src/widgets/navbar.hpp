@@ -1,13 +1,13 @@
 #pragma once
 #include <QListWidget>
 
-class NavBar : public QListWidget
+class NavBar : protected QListWidget
 {
     Q_OBJECT
 
 public:
     /* Constructor */
-    explicit NavBar(QWidget* parent, int minWidth, int maxWidth);
+    NavBar(QWidget* parent, int minWidth, int maxWidth);
 
     /* Setters */
     void setHeight(int);

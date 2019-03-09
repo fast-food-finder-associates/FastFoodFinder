@@ -13,7 +13,7 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
     resize(m_minWidth, parent->height());
 
     //Rebroadcasts the QListWidget's signal
-    connect(this, &QListWidget::currentRowChanged, this, &NavBar::currentItemChanged);
+    connect(this, SIGNAL(currentRowChanged(int)), this, SIGNAL(currentItemChanged(int)));
 }
 
 /* Setters */
@@ -57,7 +57,7 @@ void NavBar::leaveEvent(QEvent*)
     animation->setDuration(75);
     animation->setStartValue(size());
     animation->setEndValue(QSize(m_minWidth, height()));
-    animation->start();
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
 
     //Tells each NavItem to shrink
     emit shrink();
@@ -70,7 +70,7 @@ void NavBar::enterEvent(QEvent*)
     animation->setDuration(75);
     animation->setStartValue(size());
     animation->setEndValue(QSize(m_maxWidth, height()));
-    animation->start();
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
 
     //Tells each NavItem to expand
     emit expand();
