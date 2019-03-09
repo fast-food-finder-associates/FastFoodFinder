@@ -1,35 +1,35 @@
 #pragma once
-#include <QWidget>
+#include <QListWidget>
 
 namespace Ui
 {
 class NavBar;
 }
 
-class NavBar : public QWidget
+class NavBar : public QListWidget
 {
     Q_OBJECT
 
 public:
     /* Constructor */
-    explicit NavBar(QWidget* parent);
+    explicit NavBar(QWidget* parent, int minWidth, int maxWidth);
 
     /* Destructor */
     ~NavBar() override;
 
     void addItem(QString icon, QString label);
+    void setHeight(int);
 
 signals:
-    void expand() const;
-    void shrink() const;
-    void currentItemChanged(int) const;
+    void expand();
+    void shrink();
+    void currentItemChanged(int);
 
 private:
     void leaveEvent(QEvent*) override;
-    void mouseMoveEvent(QMouseEvent*) override;
+    void enterEvent(QEvent*) override;
 
     Ui::NavBar* m_ui;
-    bool m_expanded;
     const int m_minWidth;
     const int m_maxWidth;
 };

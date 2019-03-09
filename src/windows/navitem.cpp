@@ -3,7 +3,7 @@
 #include <QFont>
 
 /* Constructor */
-NavItem::NavItem(QWidget* parent, QString icon, QString label)
+NavItem::NavItem(QListWidget* parent, QString icon, QString label)
     : QWidget(parent), m_ui(new Ui::NavItem)
 {
     m_ui->setupUi(this);

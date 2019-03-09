@@ -1,7 +1,6 @@
 #pragma once
 #include <QListWidget>
 #include <QString>
-#include <QEvent>
 
 namespace Ui
 {
@@ -14,7 +13,7 @@ class NavItem : public QWidget
 
 public:
     /* Constructor */
-    NavItem(QWidget* parent, QString icon, QString label);
+    NavItem(QListWidget* parent, QString icon, QString label);
 
     /* Destructor */
     ~NavItem() override;
