@@ -1,6 +1,7 @@
 #pragma once
 #include <QMainWindow>
 #include "src/widgets/navbar.hpp"
+#include "src/widgets/restaurantlist.hpp"
 
 namespace Ui
 {
@@ -28,4 +29,5 @@ private:
 
     Ui::MainWindow* m_ui;
     NavBar* m_navbar;
+    RestaurantList* m_restaurantList;
 };

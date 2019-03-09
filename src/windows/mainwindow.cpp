@@ -7,6 +7,7 @@
 #include <QFontDatabase>
 #include <QDebug>
 #include <QResizeEvent>
+#include <utility>
 
 const static std::vector<QString> restNames = {"MacDonalds","Chipotle","Dominos Pizza","KFC","Subway","In-N-Out Burger","Wendys","Jack in the Box","El Pollo Loco","Papa Johns Pizza","Pizza Hut","Sonic"};
 const static std::vector<double> distance = {8,4.29,12.41,7.56,2.67,5.94,8.44,12.75,9.19,14.54,10.1,6.6};
@@ -33,6 +34,17 @@ MainWindow::MainWindow()
 
     //Initial view for dashboard
     changeView(0);
+
+    Restaurants rest;
+
+    for(unsigned int i = 0; i < restNames.size(); i++)
+    {
+        rest.push_back(std::make_pair(restNames[i], distance[i]));
+        rest.push_back(std::make_pair(restNames[i], distance[i]));
+        rest.push_back(std::make_pair(restNames[i], distance[i]));
+    }
+
+    m_restaurantList = new RestaurantList(m_ui->restaurantList, rest);
 }
 
 /* Destructor */
