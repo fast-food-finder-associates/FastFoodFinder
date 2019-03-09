@@ -1,7 +1,7 @@
 #pragma once
 #include <QListWidget>
 
-class NavBar : protected QListWidget
+class NavBar : public QListWidget
 {
     Q_OBJECT
 

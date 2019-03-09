@@ -12,15 +12,7 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
     //Initial size
     resize(m_minWidth, parent->height());
 
-    /*
-     * Rebroadcasts the QListWidget's signal
-     *
-     * Note:
-     * Since QListWidget is protectedly inheritted, the new connection style
-     * won't work for some reason. In addition, making the inherit private will
-     * break any other connections that relate to the class
-     */
-    connect(this, SIGNAL(currentRowChanged(int)), this, SIGNAL(currentItemChanged(int)));
+    connect(this, &QListWidget::currentRowChanged, this, &NavBar::currentItemChanged);
 }
 
 /* Setters */
