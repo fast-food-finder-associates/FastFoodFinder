@@ -6,7 +6,7 @@
 using Restaurant = std::pair<QString, double>;
 using Restaurants = std::vector<Restaurant>;
 
-class RestaurantList : private QListWidget
+class RestaurantList : public QListWidget
 {
     Q_OBJECT
 
