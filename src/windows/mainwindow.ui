@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>879</width>
-    <height>716</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -33,15 +33,12 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <property name="styleSheet">
-    <string notr="true">QListWidget#navButton &gt; </string>
-   </property>
    <widget class="QStackedWidget" name="mainViews">
     <property name="geometry">
      <rect>
       <x>90</x>
       <y>0</y>
-      <width>791</width>
+      <width>711</width>
       <height>701</height>
      </rect>
     </property>
@@ -52,13 +49,10 @@
      </sizepolicy>
     </property>
     <property name="styleSheet">
-     <string notr="true">* {
-color: black;
-}
-</string>
+     <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
@@ -69,8 +63,8 @@ background-color: orange;
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>150</y>
+        <x>0</x>
+        <y>0</y>
         <width>100</width>
         <height>16</height>
        </rect>
@@ -95,8 +89,8 @@ background-color: lightgreen;
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>110</y>
+        <x>0</x>
+        <y>0</y>
         <width>87</width>
         <height>16</height>
        </rect>
@@ -118,8 +112,8 @@ background-color: lightblue;
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>120</y>
+        <x>0</x>
+        <y>0</y>
         <width>110</width>
         <height>16</height>
        </rect>
@@ -138,8 +132,8 @@ background-color: gray;
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>180</x>
-        <y>30</y>
+        <x>0</x>
+        <y>0</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -156,7 +150,7 @@ background-color: gray;
       <x>0</x>
       <y>0</y>
       <width>220</width>
-      <height>691</height>
+      <height>571</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -165,19 +159,16 @@ background-color: gray;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QWidget {
-background-color: transparent;
-}</string>
-    </property>
    </widget>
+   <zorder>NavBarWidget</zorder>
+   <zorder>mainViews</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>879</width>
+     <width>800</width>
      <height>20</height>
     </rect>
    </property>
