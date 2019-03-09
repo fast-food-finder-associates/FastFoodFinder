@@ -24,22 +24,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++14
 
-SOURCES += \
-    src/main.cpp \
-    src/windows/login.cpp \
-    src/windows/mainwindow.cpp \
-    src/utils/exceptions.cpp
-
 
 HEADERS += \
+    src/utils/exceptions.hpp \
     src/windows/login.hpp \
     src/windows/mainwindow.hpp \
-    src/utils/exceptions.hpp
+    src/widgets/navbar.hpp \
+    src/widgets/navitem.hpp
 
+
+SOURCES += \
+    src/main.cpp \
+    src/utils/exceptions.cpp \
+    src/windows/login.cpp \
+    src/windows/mainwindow.cpp \
+    src/widgets/navbar.cpp \
+    src/widgets/navitem.cpp
 
 FORMS += \
     src/windows/login.ui \
-    src/windows/mainwindow.ui
+    src/windows/mainwindow.ui \
+    src/widgets/navitem.ui
 
 RESOURCES += \
     res.qrc

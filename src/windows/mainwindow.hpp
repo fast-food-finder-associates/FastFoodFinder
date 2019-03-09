@@ -1,5 +1,6 @@
 #pragma once
 #include <QMainWindow>
+#include "src/widgets/navbar.hpp"
 
 namespace Ui
 {
@@ -19,10 +20,12 @@ public:
 
 private slots:
     void on_actionLogout_triggered();
-
-    void on_listWidget_currentRowChanged(int currentRow);
+    void changeView(int);
 
 private:
+    /* Events */
+    void resizeEvent(QResizeEvent*) override;
+
     Ui::MainWindow* m_ui;
-    unsigned int m_selected;
+    NavBar* m_navbar;
 };
