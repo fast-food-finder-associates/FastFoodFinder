@@ -43,7 +43,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QWidget" name="layoutWidget">
@@ -51,7 +51,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>236</width>
+       <width>227</width>
        <height>131</height>
       </rect>
      </property>
@@ -70,9 +70,6 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-radius:4</string>
         </property>
         <property name="placeholderText">
          <string>username</string>
@@ -113,9 +110,6 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-radius:4</string>
         </property>
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>
@@ -161,8 +155,8 @@
       <rect>
        <x>1</x>
        <y>1</y>
-       <width>234</width>
-       <height>152</height>
+       <width>221</width>
+       <height>129</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
@@ -227,9 +221,6 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="styleSheet">
-         <string notr="true">border-radius:4</string>
-        </property>
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>
         </property>
@@ -246,9 +237,6 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="styleSheet">
-         <string notr="true">border-radius:4</string>
-        </property>
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>
         </property>
@@ -264,9 +252,6 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-radius:4</string>
         </property>
         <property name="placeholderText">
          <string>username</string>
