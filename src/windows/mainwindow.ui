@@ -100,9 +100,9 @@
      <widget class="QWidget" name="restaurantList" native="true">
       <property name="geometry">
        <rect>
-        <x>560</x>
+        <x>520</x>
         <y>0</y>
-        <width>151</width>
+        <width>191</width>
         <height>581</height>
        </rect>
       </property>

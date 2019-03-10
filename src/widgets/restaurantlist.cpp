@@ -4,8 +4,7 @@
 RestaurantList::RestaurantList(QWidget* parent)
     : m_listWidget(new QListWidget(parent))
 {
-    m_listWidget->setStyleSheet("QListWidget { background-color: #303030; color: white; }"
-                                "QListWidget::item { border-color: grey; border-width: 2px; border-style: outset; }");
+    m_listWidget->setStyleSheet("QListWidget { background-color: #303030; color: white; }");
 
     //Initial size
     m_listWidget->resize(parent->size());
@@ -39,7 +38,7 @@ void RestaurantList::addItem(const Restaurant& restaurant)
 {
     const QSize itemSize(0, 50);
 
-    QListWidgetItem* item = new QListWidgetItem(restaurant, m_listWidget);
+    QListWidgetItem* item = new QListWidgetItem("\uf2e7 " + restaurant, m_listWidget);
     item->setSizeHint(itemSize);
     item->setFont(QFont("fontAwesome", 13));
 

@@ -23,7 +23,7 @@ MainWindow::MainWindow()
     //Requests a login
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
-    if(QFontDatabase::addApplicationFont(":/res/FontAwesome.ttf") == -1)
+    if(QFontDatabase::addApplicationFont(":/res/fontAwesome.otf") == -1)
         qWarning() << "FontAwesome cannot be loaded !";
 
     /* Initialize navigation bar and items */
@@ -31,7 +31,7 @@ MainWindow::MainWindow()
     connect(m_navbar, &NavBar::currentItemChanged, this, &MainWindow::changeView);
     m_navbar->addItem("\uf0c9", "Dashboard");
     m_navbar->addItem("\uf124", "Plan\na Trip");
-    m_navbar->addItem("\uf03A", "View\nRestaurants");
+    m_navbar->addItem("\uf0ca", "View\nRestaurants");
     m_navbar->addItem("\uf1c0", "Inventory\nManagement");
 
     //Initial view for dashboard
