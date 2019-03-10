@@ -21,12 +21,14 @@ public:
     void setFont(QFont);
 
     /* List modifiers */
+    //TODO these should be restaurant IDs later
     void addItem(const Restaurant&);
     void addItems(const Restaurants&);
     void removeItem(const Restaurant&);
     void removeItems(const Restaurants&);
+    void clearItems();
 
-signals:
+signals: //TODO without the backend, we don't have restaurant IDs
     void currentRestaurantChanged(int restaurantID);
 
 private:

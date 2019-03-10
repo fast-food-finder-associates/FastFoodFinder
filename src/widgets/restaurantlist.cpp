@@ -62,3 +62,8 @@ void RestaurantList::removeItems(const Restaurants& restaurants)
 {
     //TODO finish functionality
 }
+
+void RestaurantList::clearItems()
+{
+    m_listWidget->clear();
+}
