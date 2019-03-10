@@ -23,9 +23,6 @@
    <iconset resource="../../res.qrc">
     <normaloff>:/res/missing.png</normaloff>:/res/missing.png</iconset>
   </property>
-  <property name="styleSheet">
-   <string notr="true"/>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -48,17 +45,12 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
-      <string notr="true">* {
-background-color: orange;
-}</string>
+      <string notr="true">.QWidget { background-color: #91CAFF; }</string>
      </property>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
@@ -82,9 +74,7 @@ background-color: orange;
     </widget>
     <widget class="QWidget" name="planTripView">
      <property name="styleSheet">
-      <string notr="true">* {
-background-color: lightgreen;
-}</string>
+      <string notr="true">.QWidget { background-color: #7CC2E8; }</string>
      </property>
      <widget class="QLabel" name="label">
       <property name="geometry">
@@ -105,9 +95,7 @@ background-color: lightgreen;
     </widget>
     <widget class="QWidget" name="viewRestaurantView">
      <property name="styleSheet">
-      <string notr="true">* {
-background-color: lightblue;
-}</string>
+      <string notr="true">.QWidget { background-color: #95E8FF; }</string>
      </property>
      <widget class="QWidget" name="restaurantList" native="true">
       <property name="geometry">
@@ -122,9 +110,7 @@ background-color: lightblue;
     </widget>
     <widget class="QWidget" name="inventoryManageView">
      <property name="styleSheet">
-      <string notr="true">* {
-background-color: gray;
-}</string>
+      <string notr="true">.QWidget { background-color: #7CDFE8; }</string>
      </property>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
