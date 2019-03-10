@@ -1,55 +1,81 @@
 #include "restaurantlist.hpp"
 
 /* Constructor */
-RestaurantList::RestaurantList(QWidget* parent, const Restaurants& restaurants)
-    : QListWidget(parent)
+RestaurantList::RestaurantList(QWidget* parent)
+    : m_listWidget(new QListWidget(parent)), m_font("fontAwesome", 10)
 {
-    setStyleSheet("QListWidget { background-color: #303030; color: white; }");
+    m_listWidget->setStyleSheet("QListWidget { background-color: #303030; color: white; }");
 
     //Initial size
-    resize(parent->size());
+    m_listWidget->resize(parent->size());
+
+    //Rebroadcasts the QListWidget's signal
+    connect(m_listWidget, &QListWidget::currentRowChanged, this, &RestaurantList::currentRestaurantChanged);
+}
+
+RestaurantList::RestaurantList(QWidget* parent, const Restaurants& restaurants)
+    : m_listWidget(new QListWidget(parent))
+{
+    m_listWidget->setStyleSheet("QListWidget { background-color: #303030; color: white; }");
+
+    //Initial size
+    m_listWidget->resize(parent->size());
 
     addItems(restaurants);
 
     //Rebroadcasts the QListWidget's signal
-    connect(this, &QListWidget::currentRowChanged, this, &RestaurantList::currentRestaurantChanged);
+    connect(m_listWidget, &QListWidget::currentRowChanged, this, &RestaurantList::currentRestaurantChanged);
+}
+
+/* Destructor */
+RestaurantList::~RestaurantList()
+{
+    delete m_listWidget;
 }
 
 /* Setters */
 void RestaurantList::setWidth(int width)
 {
-    resize(width, height());
+    m_listWidget->resize(width, m_listWidget->height());
 }
 
 void RestaurantList::setHeight(int height)
 {
-    resize(width(), height);
+    m_listWidget->resize(m_listWidget->width(), height);
 }
 
 void RestaurantList::setSize(QSize size)
 {
-    resize(size);
+    m_listWidget->resize(size);
 }
 
+/* List modifiers */
 void RestaurantList::addItem(const Restaurant& restaurant)
 {
-    QListWidgetItem* item = new QListWidgetItem(restaurant.first, this);
-    QFont font("fontAwesome", 16);
-    item->setFont(font);
+    QListWidgetItem* item = new QListWidgetItem(restaurant.first, m_listWidget);
+    item->setFont(m_font);
 
-    QListWidget::addItem(item);
+    m_listWidget->addItem(item);
 }
 
-void  RestaurantList::addItems(const Restaurants& restaurants)
+void RestaurantList::addItems(const Restaurants& restaurants)
 {
-    QFont font("fontAwesome", 16);
-
     /* Fill the QListWidget with items */
     for(const Restaurant& restaurant : restaurants)
     {
-        QListWidgetItem* item = new QListWidgetItem(this);
+        QListWidgetItem* item = new QListWidgetItem(m_listWidget);
         item->setText(restaurant.first);
-        item->setFont(font);
-        QListWidget::addItem(item);
+        item->setFont(m_font);
+        m_listWidget->addItem(item);
     }
+}
+
+void RestaurantList::removeItem(const Restaurant& restaurant)
+{
+    //TODO finish functionality
+}
+
+void RestaurantList::removeItems(const Restaurants& restaurants)
+{
+    //TODO finish functionality
 }
