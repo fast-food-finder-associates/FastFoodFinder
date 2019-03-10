@@ -30,7 +30,7 @@ HEADERS += \
     src/windows/login.hpp \
     src/windows/mainwindow.hpp \
     src/widgets/navbar.hpp \
-    src/widgets/navitem.hpp
+    src/widgets/navitem.hpp \
     src/widgets/restaurantlist.hpp
 
 

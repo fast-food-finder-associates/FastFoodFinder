@@ -109,17 +109,14 @@ background-color: lightgreen;
 background-color: lightblue;
 }</string>
      </property>
-     <widget class="QLabel" name="label_2">
+     <widget class="QWidget" name="restaurantList" native="true">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>560</x>
         <y>0</y>
-        <width>110</width>
-        <height>16</height>
+        <width>151</width>
+        <height>581</height>
        </rect>
-      </property>
-      <property name="text">
-       <string>Restaurant Listings</string>
       </property>
      </widget>
     </widget>
@@ -143,16 +140,6 @@ background-color: gray;
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="restaurantList" native="true">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>0</y>
-       <width>391</width>
-       <height>231</height>
-      </rect>
-     </property>
-    </widget>
    </widget>
    <widget class="QWidget" name="NavBarWidget" native="true">
     <property name="geometry">
@@ -160,7 +147,7 @@ background-color: gray;
       <x>0</x>
       <y>0</y>
       <width>220</width>
-      <height>571</height>
+      <height>581</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -191,7 +178,6 @@ background-color: gray;
    </widget>
    <addaction name="menuFile"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionLogout">
    <property name="text">
     <string>Logout</string>

@@ -24,9 +24,6 @@ private slots:
     void changeView(int);
 
 private:
-    /* Events */
-    void resizeEvent(QResizeEvent*) override;
-
     Ui::MainWindow* m_ui;
     NavBar* m_navbar;
     RestaurantList* m_restaurantList;

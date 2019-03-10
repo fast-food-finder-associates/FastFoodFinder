@@ -2,7 +2,7 @@
 #include <QListWidget>
 #include <vector>
 
-using Restaurant = std::pair<QString, double>;
+using Restaurant = QString;
 using Restaurants = std::vector<Restaurant>;
 
 class RestaurantList : public QObject
@@ -10,17 +10,23 @@ class RestaurantList : public QObject
     Q_OBJECT
 
 public:
-    /* Constructors */
+    /* Constructor */
     RestaurantList(QWidget* parent);
-    RestaurantList(QWidget* parent, const Restaurants&);
 
     /* Destructor */
     ~RestaurantList() override;
+
+    /* Getters */
+    int getWidth() const;
+    int getHeight() const;
+    QSize getSize() const;
+    QFont getFont() const;
 
     /* Setters */
     void setWidth(int);
     void setHeight(int);
     void setSize(QSize);
+    void setFont(QFont);
 
     /* List modifiers */
     void addItem(const Restaurant&);
@@ -33,5 +39,4 @@ signals:
 
 private:
     QListWidget* m_listWidget;
-    const QFont m_font;
 };
