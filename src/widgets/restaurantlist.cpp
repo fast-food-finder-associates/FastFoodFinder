@@ -9,6 +9,7 @@ RestaurantList::RestaurantList(QWidget* parent)
 
     //Initial size
     m_listWidget->resize(parent->size());
+    m_listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 
     //Rebroadcasts the QListWidget's signal
     connect(m_listWidget, &QListWidget::currentRowChanged, this, &RestaurantList::currentRestaurantChanged);
