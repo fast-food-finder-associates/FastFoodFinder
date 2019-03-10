@@ -20,42 +20,11 @@ RestaurantList::~RestaurantList()
     delete m_listWidget;
 }
 
-/* Getters */
-int RestaurantList::getWidth() const
-{
-    return m_listWidget->width();
-}
-
-int RestaurantList::getHeight() const
-{
-    return m_listWidget->height();
-}
-
-QSize RestaurantList::getSize() const
-{
-    return m_listWidget->size();
-}
-
+/* Font */
 QFont RestaurantList::getFont() const
 {
     //All the items should have the same font
     return m_listWidget->item(0)->font();
-}
-
-/* Setters */
-void RestaurantList::setWidth(int width)
-{
-    m_listWidget->resize(width, m_listWidget->height());
-}
-
-void RestaurantList::setHeight(int height)
-{
-    m_listWidget->resize(m_listWidget->width(), height);
-}
-
-void RestaurantList::setSize(QSize size)
-{
-    m_listWidget->resize(size);
 }
 
 void RestaurantList::setFont(QFont font)

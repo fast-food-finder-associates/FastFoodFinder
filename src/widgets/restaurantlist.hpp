@@ -16,16 +16,8 @@ public:
     /* Destructor */
     ~RestaurantList() override;
 
-    /* Getters */
-    int getWidth() const;
-    int getHeight() const;
-    QSize getSize() const;
+    /* Font */
     QFont getFont() const;
-
-    /* Setters */
-    void setWidth(int);
-    void setHeight(int);
-    void setSize(QSize);
     void setFont(QFont);
 
     /* List modifiers */
