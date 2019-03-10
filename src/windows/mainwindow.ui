@@ -17,11 +17,11 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>FastFoodFinder</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../res.qrc">
-    <normaloff>:/res/missing.png</normaloff>:/res/missing.png</iconset>
+    <normaloff>:/res/fff128.png</normaloff>:/res/fff128.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -46,11 +46,11 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
-      <string notr="true">.QWidget { background-color: #91CAFF; }</string>
+      <string notr="true">.QWidget { background-color: #D2E1FF; }</string>
      </property>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
@@ -74,7 +74,7 @@
     </widget>
     <widget class="QWidget" name="planTripView">
      <property name="styleSheet">
-      <string notr="true">.QWidget { background-color: #7CC2E8; }</string>
+      <string notr="true">.QWidget { background-color: #99C2E8; }</string>
      </property>
      <widget class="QLabel" name="label">
       <property name="geometry">
@@ -95,7 +95,7 @@
     </widget>
     <widget class="QWidget" name="viewRestaurantView">
      <property name="styleSheet">
-      <string notr="true">.QWidget { background-color: #95E8FF; }</string>
+      <string notr="true">.QWidget { background-color: #7DD8FF; }</string>
      </property>
      <widget class="QWidget" name="restaurantList" native="true">
       <property name="geometry">
@@ -110,7 +110,7 @@
     </widget>
     <widget class="QWidget" name="inventoryManageView">
      <property name="styleSheet">
-      <string notr="true">.QWidget { background-color: #7CDFE8; }</string>
+      <string notr="true">.QWidget { background-color: #98DFE8; }</string>
      </property>
      <widget class="QLabel" name="label_4">
       <property name="geometry">

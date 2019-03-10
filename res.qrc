@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>res/missing.png</file>
         <file alias="res/FontAwesome.ttf">res/fontawesome-webfont.ttf</file>
+        <file>res/fff128.png</file>
+        <file>res/fff256.png</file>
     </qresource>
 </RCC>
