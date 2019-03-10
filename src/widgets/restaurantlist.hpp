@@ -11,10 +11,13 @@ class RestaurantList : public QObject
 
 public:
     /* Constructor */
-    RestaurantList(QWidget* parent);
+    RestaurantList(QWidget* parent, QSize size);
 
     /* Destructor */
     ~RestaurantList() override;
+
+    /* Drag and drop */
+    void setDragDropMode(QAbstractItemView::DragDropMode);
 
     /* Font */
     QFont getFont() const;
@@ -33,4 +36,5 @@ signals: //TODO without the backend, we don't have restaurant IDs
 
 private:
     QListWidget* m_listWidget;
+    const QSize m_itemSize;
 };

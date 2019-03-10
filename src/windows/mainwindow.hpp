@@ -27,4 +27,5 @@ private:
     Ui::MainWindow* m_ui;
     NavBar* m_navbar;
     RestaurantList* m_restaurantList;
+    RestaurantList* m_restaurantList2;
 };

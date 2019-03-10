@@ -1,14 +1,17 @@
 #include "restaurantlist.hpp"
 
 /* Constructor */
-RestaurantList::RestaurantList(QWidget* parent)
-    : m_listWidget(new QListWidget(parent))
+RestaurantList::RestaurantList(QWidget* parent, QSize size)
+    : m_listWidget(new QListWidget(parent)), m_itemSize(size)
 {
     m_listWidget->setStyleSheet("QListWidget { background-color: #303030; color: white; }");
 
-    //Initial size
+    /* List widget settings */
     m_listWidget->resize(parent->size());
     m_listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    m_listWidget->setFlow(QListView::LeftToRight);
+    m_listWidget->setWrapping(true);
+    m_listWidget->setUniformItemSizes(true);
 
     //Rebroadcasts the QListWidget's signal
     connect(m_listWidget, &QListWidget::currentRowChanged, this, &RestaurantList::currentRestaurantChanged);
@@ -18,6 +21,12 @@ RestaurantList::RestaurantList(QWidget* parent)
 RestaurantList::~RestaurantList()
 {
     delete m_listWidget;
+}
+
+/* Drag and drop */
+void RestaurantList::setDragDropMode(QAbstractItemView::DragDropMode v)
+{
+    m_listWidget->setDragDropMode(v);
 }
 
 /* Font */
@@ -36,10 +45,8 @@ void RestaurantList::setFont(QFont font)
 /* List modifiers */
 void RestaurantList::addItem(const Restaurant& restaurant)
 {
-    const QSize itemSize(0, 50);
-
     QListWidgetItem* item = new QListWidgetItem("\uf2e7 " + restaurant, m_listWidget);
-    item->setSizeHint(itemSize);
+    item->setSizeHint(m_itemSize);
     item->setFont(QFont("fontAwesome", 13));
 
     m_listWidget->addItem(item);

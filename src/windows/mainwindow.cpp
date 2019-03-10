@@ -6,7 +6,6 @@
 #include <QFont>
 #include <QFontDatabase>
 #include <QDebug>
-#include <QResizeEvent>
 
 const static std::vector<QString> restNames = {"MacDonalds","Chipotle","Dominos Pizza","KFC","Subway","In-N-Out Burger","Wendys","Jack in the Box","El Pollo Loco","Papa Johns Pizza","Pizza Hut","Sonic"};
 const static std::vector<double> distance = {8,4.29,12.41,7.56,2.67,5.94,8.44,12.75,9.19,14.54,10.1,6.6};
@@ -37,11 +36,17 @@ MainWindow::MainWindow()
     //Initial view for dashboard
     changeView(0);
 
-    m_restaurantList = new RestaurantList(m_ui->restaurantList);
+    /* Restaurant list */
+    QSize itemSize1(m_ui->restaurantList->width(), 50);
+    m_restaurantList = new RestaurantList(m_ui->restaurantList, itemSize1);
+    m_restaurantList->setDragDropMode(QAbstractItemView::DragOnly);
     m_restaurantList->addItems(restNames);
-    m_restaurantList->addItems(restNames);
-    m_restaurantList->addItems(restNames);
-    m_restaurantList->addItems(restNames); //TODO remove these addItems
+
+    /* TODO Temporary item list for demonstration */
+    QSize itemSize2(m_ui->restaurantList_2->width() / 2 - 15, 50); //30 for the scroll bar
+    m_restaurantList2 = new RestaurantList(m_ui->restaurantList_2, itemSize2);
+    m_restaurantList2->setDragDropMode(QAbstractItemView::DropOnly);
+    m_restaurantList2->addItems(restNames);
 }
 
 /* Destructor */
@@ -50,6 +55,7 @@ MainWindow::~MainWindow()
     delete m_ui;
     delete m_navbar;
     delete m_restaurantList;
+    delete m_restaurantList2;
 }
 
 void MainWindow::on_actionLogout_triggered()
