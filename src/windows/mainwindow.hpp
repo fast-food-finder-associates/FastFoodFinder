@@ -22,6 +22,9 @@ private slots:
     void on_actionLogout_triggered();
     void changeView(int);
 
+    void on_actionContact_Us_triggered();
+
+
 private:
     /* Events */
     void resizeEvent(QResizeEvent*) override;

@@ -7,6 +7,7 @@
 #include <QFontDatabase>
 #include <QDebug>
 #include <QResizeEvent>
+#include "contactus.h"
 
 const static std::vector<QString> restNames = {"MacDonalds","Chipotle","Dominos Pizza","KFC","Subway","In-N-Out Burger","Wendys","Jack in the Box","El Pollo Loco","Papa Johns Pizza","Pizza Hut","Sonic"};
 const static std::vector<double> distance = {8,4.29,12.41,7.56,2.67,5.94,8.44,12.75,9.19,14.54,10.1,6.6};
@@ -76,4 +77,11 @@ void MainWindow::resizeEvent(QResizeEvent*)
     /* Navigation bar */
     m_ui->NavBarWidget->setFixedHeight(height());
     m_navbar->setHeight(height());
+
+void MainWindow::on_actionContact_Us_triggered()
+{
+    ContactUs *contacts;
+
+    contacts = new ContactUs();
+    contacts->show();
 }
