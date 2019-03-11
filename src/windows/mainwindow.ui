@@ -46,7 +46,7 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
@@ -103,7 +103,7 @@
         <x>520</x>
         <y>0</y>
         <width>191</width>
-        <height>581</height>
+        <height>600</height>
        </rect>
       </property>
      </widget>
