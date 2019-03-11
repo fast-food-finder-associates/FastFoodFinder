@@ -9,7 +9,7 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
     setStyleSheet("QListWidget { background-color: #303030; }");
 
     //Initial size
-    this->resize(this->width(),parent->height());
+    this->resize(m_minWidth,parent->height());
 
     connect(this, &QListWidget::currentRowChanged, this, &NavBar::currentItemChanged);
 }

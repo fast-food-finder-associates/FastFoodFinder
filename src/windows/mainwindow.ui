@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>581</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -36,7 +36,7 @@
       <x>90</x>
       <y>0</y>
       <width>711</width>
-      <height>581</height>
+      <height>600</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -46,7 +46,7 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
@@ -169,7 +169,7 @@
       <x>0</x>
       <y>0</y>
       <width>220</width>
-      <height>581</height>
+      <height>600</height>
      </rect>
     </property>
     <property name="sizePolicy">
