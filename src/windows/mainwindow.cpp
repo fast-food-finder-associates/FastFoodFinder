@@ -6,7 +6,6 @@
 #include <QFont>
 #include <QFontDatabase>
 #include <QDebug>
-#include <QResizeEvent>
 
 const static std::vector<QString> restNames = {"MacDonalds","Chipotle","Dominos Pizza","KFC","Subway","In-N-Out Burger","Wendys","Jack in the Box","El Pollo Loco","Papa Johns Pizza","Pizza Hut","Sonic"};
 const static std::vector<double> distance = {8,4.29,12.41,7.56,2.67,5.94,8.44,12.75,9.19,14.54,10.1,6.6};
@@ -17,10 +16,13 @@ MainWindow::MainWindow()
 {
     m_ui->setupUi(this);
 
+    //Doesn't allow window resizing
+    setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
+
     //Requests a login
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
-    if(QFontDatabase::addApplicationFont(":/res/FontAwesome.ttf") == -1)
+    if(QFontDatabase::addApplicationFont(":/res/fontAwesome.otf") == -1)
         qWarning() << "FontAwesome cannot be loaded !";
 
     /* Initialize navigation bar and items */
@@ -28,17 +30,36 @@ MainWindow::MainWindow()
     connect(m_navbar, &NavBar::currentItemChanged, this, &MainWindow::changeView);
     m_navbar->addItem("\uf0c9", "Dashboard");
     m_navbar->addItem("\uf124", "Plan\na Trip");
-    m_navbar->addItem("\uf03A", "View\nRestaurants");
+    m_navbar->addItem("\uf0ca", "View\nRestaurants");
     m_navbar->addItem("\uf1c0", "Inventory\nManagement");
 
     //Initial view for dashboard
     changeView(0);
+
+    /* Restaurant list */
+    QSize itemSize1(m_ui->restaurantList->width(), 50);
+    m_restaurantList = new RestaurantList(m_ui->restaurantList, itemSize1);
+    m_restaurantList->setDragDropMode(QAbstractItemView::DragOnly);
+    m_restaurantList->addItems(restNames);
+
+    /* TODO Temporary item list for demonstration */
+    QSize itemSize2(m_ui->restaurantList_2->width() / 2 - 15, 50); //30 for the scroll bar
+    m_restaurantList2 = new RestaurantList(m_ui->restaurantList_2, itemSize2);
+    m_restaurantList2->setDragDropMode(QAbstractItemView::DropOnly);
+    m_restaurantList2->addItems(restNames);
+
+    //Connects the current row to the distance
+    connect(m_restaurantList, &RestaurantList::currentRestaurantChanged,
+            [&](int row){m_ui->restaurant_distance->setText(QString::number(distance[row]));});
 }
 
 /* Destructor */
 MainWindow::~MainWindow()
 {
     delete m_ui;
+    delete m_navbar;
+    delete m_restaurantList;
+    delete m_restaurantList2;
 }
 
 void MainWindow::on_actionLogout_triggered()
@@ -65,15 +86,4 @@ void MainWindow::changeView(int rowView)
         m_ui->mainViews->setCurrentWidget(m_ui->inventoryManageView);
         break;
     }
-}
-
-/* Events */
-void MainWindow::resizeEvent(QResizeEvent*)
-{
-    /* Stacked widget */
-    m_ui->mainViews->setFixedSize(size());
-
-    /* Navigation bar */
-    m_ui->NavBarWidget->setFixedHeight(height());
-    m_navbar->setHeight(height());
 }

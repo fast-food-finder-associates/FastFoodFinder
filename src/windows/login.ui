@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../res.qrc">
-    <normaloff>:/res/missing.png</normaloff>:/res/missing.png</iconset>
+    <normaloff>:/res/fff128.png</normaloff>:/res/fff128.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -31,6 +31,9 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../../res.qrc">:/res/fff128.png</pixmap>
    </property>
   </widget>
   <widget class="QStackedWidget" name="stackedWidget">

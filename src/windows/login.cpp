@@ -105,10 +105,6 @@ Login::Login()
                    Qt::WindowSystemMenuHint |
                    Qt::WindowMinimizeButtonHint |
                    Qt::WindowCloseButtonHint);
-
-    QPixmap logo(":/res/missing.png"); //TODO change logo file path
-    QSize labelSize = m_ui->label_logo->size();
-    m_ui->label_logo->setPixmap(logo.scaled(labelSize, Qt::KeepAspectRatio));
 }
 
 /* Authentication handling */
