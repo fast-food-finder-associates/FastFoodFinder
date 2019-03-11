@@ -3,6 +3,6 @@
         <file alias="/missing.png">res/missing.png</file>
         <file alias="/fff128.png">res/fff128.png</file>
         <file alias="/fff256.png">res/fff256.png</file>
-        <file alias="/fontAwesome.otf">res/Font Awesome 5 Free-Solid-900.otf</file>
+        <file alias="/fontAwesome.ttf">res/fontawesome-webfont.ttf</file>
     </qresource>
 </RCC>
