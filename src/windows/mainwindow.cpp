@@ -47,6 +47,10 @@ MainWindow::MainWindow()
     m_restaurantList2 = new RestaurantList(m_ui->restaurantList_2, itemSize2);
     m_restaurantList2->setDragDropMode(QAbstractItemView::DropOnly);
     m_restaurantList2->addItems(restNames);
+
+    //Connects the current row to the distance
+    connect(m_restaurantList, &RestaurantList::currentRestaurantChanged,
+            [&](int row){m_ui->restaurant_distance->setText(QString::number(distance[row]));});
 }
 
 /* Destructor */

@@ -117,6 +117,32 @@
        </rect>
       </property>
      </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>20</y>
+        <width>141</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Current restaurant distance:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="restaurant_distance">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>60</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>none</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="inventoryManageView">
      <property name="styleSheet">
