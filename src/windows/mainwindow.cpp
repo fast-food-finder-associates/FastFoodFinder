@@ -15,6 +15,7 @@ MainWindow::MainWindow()
     : QMainWindow(nullptr), m_ui(new Ui::MainWindow)
 {
     m_ui->setupUi(this);
+
     //Doesn't allow window resizing
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 
