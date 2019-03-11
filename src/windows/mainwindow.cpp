@@ -31,8 +31,16 @@ MainWindow::MainWindow()
     m_navbar->addItem("\uf03A", "View\nRestaurants");
     m_navbar->addItem("\uf1c0", "Inventory\nManagement");
 
+    m_navbar_admin = new NavBar(m_ui->NavBarInvManageWidget, 90, 220);
+    connect(m_navbar_admin, &NavBar::currentItemChanged, this, &MainWindow::changeViewInvManage);
+    m_navbar_admin->addItem("\uf03b", "Back");
+    m_navbar_admin->addItem("\uf002", "Search\nRestaurants");
+    m_navbar_admin->addItem("\uf0fe", "Add A\nRestaurant");
+    m_navbar_admin->addItem("\uf044", "Edit A\nRestaurant");
+    m_navbar_admin->addItem("\uf1f8", "Delete A\nRestaurant");
+
     //Initial view for dashboard
-    changeView(0);
+    m_navbar->setCurrentRow(0);
 }
 
 /* Destructor */
@@ -48,8 +56,10 @@ void MainWindow::on_actionLogout_triggered()
     Login::requestLogin();
 }
 
+/*Swich views for stacks in mainView within the mainWindow page (page 1) in centralStack*/
 void MainWindow::changeView(int rowView)
 {
+    qDebug() << rowView;
     switch(rowView)
     {
     case 0:
@@ -62,7 +72,32 @@ void MainWindow::changeView(int rowView)
         m_ui->mainViews->setCurrentWidget(m_ui->viewRestaurantView);
         break;
     case 3:
-        m_ui->mainViews->setCurrentWidget(m_ui->inventoryManageView);
+        m_ui->centralStack->setCurrentWidget(m_ui->InvManageWindow);
+        m_navbar_admin->setCurrentRow(1);
+     break;
+    }
+}
+
+/*Swich views for stacks in inventoryViews within the invManageWindow page (page 2) in centralStack*/
+void MainWindow::changeViewInvManage(int rowView)
+{
+    switch(rowView)
+    {
+    case 0:
+        m_ui->centralStack->setCurrentWidget(m_ui->mainWindow);
+        m_navbar->setCurrentRow(0);
+        break;
+    case 1:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->searchView);
+        break;
+    case 2:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->addView);
+        break;
+    case 3:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->editView);
+        break;
+    case 4:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->deleteView);
         break;
     }
 }

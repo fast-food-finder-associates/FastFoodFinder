@@ -21,6 +21,7 @@ public:
 private slots:
     void on_actionLogout_triggered();
     void changeView(int);
+    void changeViewInvManage(int);
 
 private:
     /* Events */
@@ -28,4 +29,5 @@ private:
 
     Ui::MainWindow* m_ui;
     NavBar* m_navbar;
+    NavBar* m_navbar_admin;
 };
