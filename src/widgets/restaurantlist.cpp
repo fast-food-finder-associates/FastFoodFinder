@@ -47,7 +47,7 @@ void RestaurantList::addItem(const Restaurant& restaurant)
 {
     QListWidgetItem* item = new QListWidgetItem("\uf2e7 " + restaurant, m_listWidget);
     item->setSizeHint(m_itemSize);
-    item->setFont(QFont("fontAwesome", 13));
+    item->setFont(QFont("Font Awesome 5 Free", 13));
 
     m_listWidget->addItem(item);
 }
