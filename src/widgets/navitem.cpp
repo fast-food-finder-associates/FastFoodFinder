@@ -11,8 +11,7 @@ NavItem::NavItem(QListWidget* parent, QString icon, QString label)
     /* fontAwesome has built-in icons */
     QFont font;
     font.setFamily("fontAwesome");
-
-    /* Label */
+    font.setStyle(QFont::Style::StyleNormal);    /* Label */
     m_ui->navLabel->setWordWrap(true);
     font.setPixelSize(16);
     m_ui->navLabel->setFont(font);

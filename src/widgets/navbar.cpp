@@ -1,7 +1,6 @@
 #include "navbar.hpp"
 #include "navitem.hpp"
 #include <QPropertyAnimation>
-
 /* Constructor */
 NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
     : QListWidget(parent), m_minWidth(minWidth), m_maxWidth(maxWidth)
@@ -10,7 +9,7 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
     setStyleSheet("QListWidget { background-color: #303030; }");
 
     //Initial size
-    resize(m_minWidth, parent->height());
+    this->resize(this->width(),parent->height());
 
     connect(this, &QListWidget::currentRowChanged, this, &NavBar::currentItemChanged);
 }
