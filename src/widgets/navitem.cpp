@@ -44,12 +44,14 @@ void NavItem::shrink() const
 }
 
 /* Events */
-void NavItem::enterEvent(QEvent*)
+void NavItem::enterEvent(QEvent* e)
 {
+    QWidget::enterEvent(e);
     setStyleSheet("* { background-color: white; color: black }");
 }
 
-void NavItem::leaveEvent(QEvent*)
+void NavItem::leaveEvent(QEvent* e)
 {
+    QWidget::leaeEvent(e);
     setStyleSheet("* { background-color: none; color: white }");
 }

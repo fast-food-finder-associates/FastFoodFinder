@@ -42,6 +42,9 @@
       <height>571</height>
      </rect>
     </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QWidget" name="NavBarWidget" native="true">
       <property name="geometry">
@@ -193,7 +196,7 @@ background-color: lightblue;
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="searchView">
        <property name="styleSheet">
@@ -220,6 +223,19 @@ background-color: orange;
          <string>search view</string>
         </property>
        </widget>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>691</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Search...</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="addView">
        <property name="styleSheet">
@@ -231,7 +247,7 @@ background-color: lightgreen;
         <property name="geometry">
          <rect>
           <x>260</x>
-          <y>170</y>
+          <y>0</y>
           <width>87</width>
           <height>16</height>
          </rect>
@@ -242,6 +258,44 @@ background-color: lightgreen;
         <property name="scaledContents">
          <bool>false</bool>
         </property>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>20</y>
+          <width>711</width>
+          <height>531</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <layout class="QFormLayout" name="formLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>Restaurant Name:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="lineEdit_2">
+               <property name="styleSheet">
+                <string notr="true">border-radius:3px;
+background:white</string>
+               </property>
+               <property name="placeholderText">
+                <string>Restaurant Name</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="editView">

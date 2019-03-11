@@ -21,7 +21,7 @@ MainWindow::MainWindow()
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
     qDebug() << QFontDatabase::addApplicationFont(":/res/FontAwesome.ttf");
-    qDebug() << QFontDatabase::applicationFontFamilies(0);
+//    qDebug() << QFontDatabase::applicationFontFamilies(0);
 //        qWarning() << "FontAwesome cannot be loaded !";
 
 
@@ -40,6 +40,9 @@ MainWindow::MainWindow()
     m_navbar_admin->addItem("\uf0fe", "Add A\nRestaurant");
     m_navbar_admin->addItem("\uf044", "Edit A\nRestaurant");
     m_navbar_admin->addItem("\uf2ed", "Delete A\nRestaurant");
+
+    //Initial view for mainView
+    m_ui->centralStack->setCurrentWidget(m_ui->mainWindow);
 
     //Initial view for dashboard
     m_navbar->setCurrentRow(0);
@@ -61,7 +64,6 @@ void MainWindow::on_actionLogout_triggered()
 /*Swich views for stacks in mainView within the mainWindow page (page 1) in centralStack*/
 void MainWindow::changeView(int rowView)
 {
-    qDebug() << rowView;
     switch(rowView)
     {
     case 0:
