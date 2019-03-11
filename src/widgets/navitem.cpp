@@ -10,8 +10,8 @@ NavItem::NavItem(QListWidget* parent, QString icon, QString label)
 
     /* fontAwesome has built-in icons */
     QFont font;
-    font.setFamily("fontAwesome");
-
+    font.setFamily("Font Awesome 5 Free");
+//    font.setStyle(QFont::Style::StyleNormal);
     /* Label */
     m_ui->navLabel->setWordWrap(true);
     font.setPixelSize(16);
@@ -23,7 +23,6 @@ NavItem::NavItem(QListWidget* parent, QString icon, QString label)
     font.setPixelSize(38);
     m_ui->navIcon->setFont(font);
     m_ui->navIcon->setText(icon);
-
     setStyleSheet("* { background-color: none; color: white}");
 }
 

@@ -20,24 +20,26 @@ MainWindow::MainWindow()
     //Requests a login
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
-    if(QFontDatabase::addApplicationFont(":/res/FontAwesome.ttf") == -1)
-        qWarning() << "FontAwesome cannot be loaded !";
+    qDebug() << QFontDatabase::addApplicationFont(":/res/FontAwesome.ttf");
+    qDebug() << QFontDatabase::applicationFontFamilies(0);
+//        qWarning() << "FontAwesome cannot be loaded !";
+
 
     /* Initialize navigation bar and items */
     m_navbar = new NavBar(m_ui->NavBarWidget, 90, 220);
     connect(m_navbar, &NavBar::currentItemChanged, this, &MainWindow::changeView);
     m_navbar->addItem("\uf0c9", "Dashboard");
-    m_navbar->addItem("\uf124", "Plan\na Trip");
+    m_navbar->addItem("\uf5a0", "Plan\na Trip");
     m_navbar->addItem("\uf03A", "View\nRestaurants");
     m_navbar->addItem("\uf1c0", "Inventory\nManagement");
 
     m_navbar_admin = new NavBar(m_ui->NavBarInvManageWidget, 90, 220);
     connect(m_navbar_admin, &NavBar::currentItemChanged, this, &MainWindow::changeViewInvManage);
-    m_navbar_admin->addItem("\uf03b", "Back");
+    m_navbar_admin->addItem("\uf137", "Back");
     m_navbar_admin->addItem("\uf002", "Search\nRestaurants");
     m_navbar_admin->addItem("\uf0fe", "Add A\nRestaurant");
     m_navbar_admin->addItem("\uf044", "Edit A\nRestaurant");
-    m_navbar_admin->addItem("\uf1f8", "Delete A\nRestaurant");
+    m_navbar_admin->addItem("\uf2ed", "Delete A\nRestaurant");
 
     //Initial view for dashboard
     m_navbar->setCurrentRow(0);
