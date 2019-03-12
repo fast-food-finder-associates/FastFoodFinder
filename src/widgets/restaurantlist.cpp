@@ -2,11 +2,11 @@
 
 /* Constructor */
 RestaurantList::RestaurantList(QWidget* parent, QSize size)
-    : m_listWidget(new QListWidget(parent)), m_itemSize(size)
+    : QWidget(parent), m_itemSize(size)
 {
-    m_listWidget->setStyleSheet("QListWidget { background-color: #303030; color: white; }");
-
     /* List widget settings */
+    m_listWidget = new QListWidget(this);
+    m_listWidget->setStyleSheet("QListWidget { background-color: #303030; color: white; }");
     m_listWidget->resize(parent->size());
     m_listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     m_listWidget->setFlow(QListView::LeftToRight);

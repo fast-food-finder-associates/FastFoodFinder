@@ -5,7 +5,7 @@
 using Restaurant = QString;
 using Restaurants = std::vector<Restaurant>;
 
-class RestaurantList : public QObject
+class RestaurantList : public QWidget
 {
     Q_OBJECT
 
@@ -35,6 +35,6 @@ signals: //TODO without the backend, we don't have restaurant IDs
     void currentRestaurantChanged(int restaurantID);
 
 private:
-    QListWidget* m_listWidget;
     const QSize m_itemSize;
+    QListWidget* m_listWidget;
 };
