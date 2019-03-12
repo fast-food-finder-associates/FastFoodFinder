@@ -29,23 +29,10 @@ void RestaurantList::setDragDropMode(QAbstractItemView::DragDropMode v)
     m_listWidget->setDragDropMode(v);
 }
 
-/* Font */
-QFont RestaurantList::getFont() const
-{
-    //All the items should have the same font
-    return m_listWidget->item(0)->font();
-}
-
-void RestaurantList::setFont(QFont font)
-{
-    for(int i = 0; i < m_listWidget->count(); i++)
-        m_listWidget->item(i)->setFont(font);
-}
-
 /* List modifiers */
 void RestaurantList::addItem(const Restaurant& restaurant)
 {
-    QListWidgetItem* item = new QListWidgetItem("\uf2e7 " + restaurant, m_listWidget);
+    QListWidgetItem* item = new QListWidgetItem("\uf2e7 " + restaurant.first, m_listWidget);
     item->setSizeHint(m_itemSize);
     item->setFont(QFont("Font Awesome 5 Free", 13));
 

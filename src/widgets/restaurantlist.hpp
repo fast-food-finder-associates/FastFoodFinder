@@ -1,8 +1,9 @@
 #pragma once
 #include <QListWidget>
 #include <vector>
+#include <utility>
 
-using Restaurant = QString;
+using Restaurant = std::pair<QString, double>;
 using Restaurants = std::vector<Restaurant>;
 
 class RestaurantList : public QWidget
@@ -18,10 +19,6 @@ public:
 
     /* Drag and drop */
     void setDragDropMode(QAbstractItemView::DragDropMode);
-
-    /* Font */
-    QFont getFont() const;
-    void setFont(QFont);
 
     /* List modifiers */
     //TODO these should be restaurant IDs later
