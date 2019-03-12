@@ -36,21 +36,20 @@ MainWindow::MainWindow()
     //Initial view for dashboard
     changeView(0);
 
+    /* Create restaurant std::pair vector */
+    std::vector<std::pair<QString, double>> restaurants;
+    for(unsigned int i = 0; i < restNames.size(); i++)
+        restaurants.push_back(Restaurant(restNames[i], distance[i]));
+
     /* Restaurant list */
-    QSize itemSize1(m_ui->restaurantList->width(), 50);
-    m_restaurantList = new RestaurantList(m_ui->restaurantList, itemSize1);
+    m_restaurantList = new RestaurantList(m_ui->restaurantList);
     m_restaurantList->setDragDropMode(QAbstractItemView::DragOnly);
-    m_restaurantList->addItems(restNames);
+    m_restaurantList->addItems(restaurants);
 
     /* TODO Temporary item list for demonstration */
-    QSize itemSize2(m_ui->restaurantList_2->width() / 2 - 15, 50); //30 for the scroll bar
-    m_restaurantList2 = new RestaurantList(m_ui->restaurantList_2, itemSize2);
+    m_restaurantList2 = new RestaurantList(m_ui->restaurantList_2);
     m_restaurantList2->setDragDropMode(QAbstractItemView::DropOnly);
-    m_restaurantList2->addItems(restNames);
-
-    //Connects the current row to the distance
-    connect(m_restaurantList, &RestaurantList::currentRestaurantChanged,
-            [&](int row){m_ui->restaurant_distance->setText(QString::number(distance[row]));});
+    m_restaurantList2->addItems(restaurants);
 }
 
 /* Destructor */

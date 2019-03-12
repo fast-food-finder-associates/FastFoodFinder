@@ -1,8 +1,9 @@
 #include "restaurantlist.hpp"
+#include "src/widgets/restaurantitem.hpp"
 
 /* Constructor */
-RestaurantList::RestaurantList(QWidget* parent, QSize size)
-    : QWidget(parent), m_itemSize(size)
+RestaurantList::RestaurantList(QWidget* parent)
+    : QWidget(parent)
 {
     /* List widget settings */
     m_listWidget = new QListWidget(this);
@@ -12,6 +13,7 @@ RestaurantList::RestaurantList(QWidget* parent, QSize size)
     m_listWidget->setFlow(QListView::LeftToRight);
     m_listWidget->setWrapping(true);
     m_listWidget->setUniformItemSizes(true);
+    m_listWidget->setDefaultDropAction(Qt::DropAction::CopyAction); //TODO make function for this
 
     //Rebroadcasts the QListWidget's signal
     connect(m_listWidget, &QListWidget::currentRowChanged, this, &RestaurantList::currentRestaurantChanged);
@@ -32,11 +34,10 @@ void RestaurantList::setDragDropMode(QAbstractItemView::DragDropMode v)
 /* List modifiers */
 void RestaurantList::addItem(const Restaurant& restaurant)
 {
-    QListWidgetItem* item = new QListWidgetItem("\uf2e7 " + restaurant.first, m_listWidget);
-    item->setSizeHint(m_itemSize);
-    item->setFont(QFont("Font Awesome 5 Free", 13));
-
-    m_listWidget->addItem(item);
+    QListWidgetItem* listItem = new QListWidgetItem(m_listWidget);
+    RestaurantItem* restItem = new RestaurantItem(m_listWidget, restaurant);
+    listItem->setSizeHint(RestaurantItem::getSizeHint());
+    m_listWidget->setItemWidget(listItem, restItem);
 }
 
 void RestaurantList::addItems(const Restaurants& restaurants)

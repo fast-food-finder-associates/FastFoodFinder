@@ -31,7 +31,8 @@ HEADERS += \
     src/windows/mainwindow.hpp \
     src/widgets/navbar.hpp \
     src/widgets/navitem.hpp \
-    src/widgets/restaurantlist.hpp
+    src/widgets/restaurantlist.hpp \
+    src/widgets/restaurantitem.hpp
 
 
 SOURCES += \
@@ -41,12 +42,14 @@ SOURCES += \
     src/windows/mainwindow.cpp \
     src/widgets/navbar.cpp \
     src/widgets/navitem.cpp \
-    src/widgets/restaurantlist.cpp
+    src/widgets/restaurantlist.cpp \
+    src/widgets/restaurantitem.cpp
 
 FORMS += \
     src/windows/login.ui \
     src/windows/mainwindow.ui \
-    src/widgets/navitem.ui
+    src/widgets/navitem.ui \
+    src/widgets/restaurantitem.ui
 
 RESOURCES += \
     res.qrc

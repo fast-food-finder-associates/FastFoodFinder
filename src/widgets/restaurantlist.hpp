@@ -1,9 +1,8 @@
 #pragma once
-#include <QListWidget>
+#include "src/widgets/restaurantitem.hpp"
 #include <vector>
-#include <utility>
+#include <QListWidget>
 
-using Restaurant = std::pair<QString, double>;
 using Restaurants = std::vector<Restaurant>;
 
 class RestaurantList : public QWidget
@@ -12,7 +11,7 @@ class RestaurantList : public QWidget
 
 public:
     /* Constructor */
-    RestaurantList(QWidget* parent, QSize size);
+    RestaurantList(QWidget* parent);
 
     /* Destructor */
     ~RestaurantList() override;
@@ -32,6 +31,5 @@ signals: //TODO without the backend, we don't have restaurant IDs
     void currentRestaurantChanged(int restaurantID);
 
 private:
-    const QSize m_itemSize;
     QListWidget* m_listWidget;
 };
