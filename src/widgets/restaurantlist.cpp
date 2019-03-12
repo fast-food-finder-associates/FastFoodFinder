@@ -1,5 +1,5 @@
 #include "restaurantlist.hpp"
-#include "restaurantitem.hpp"
+#include "src/widgets/restaurantitem.hpp"
 
 /* Constructor */
 RestaurantList::RestaurantList(QWidget* parent)
