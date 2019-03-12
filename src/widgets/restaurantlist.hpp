@@ -5,7 +5,7 @@
 
 using Restaurants = std::vector<Restaurant>;
 
-class RestaurantList : public QWidget
+class RestaurantList : public QListWidget
 {
     Q_OBJECT
 
@@ -13,11 +13,9 @@ public:
     /* Constructor */
     RestaurantList(QWidget* parent);
 
-    /* Destructor */
-    ~RestaurantList() override;
-
     /* Drag and drop */
     void setDragDropMode(QAbstractItemView::DragDropMode);
+    void setDropActionMode(Qt::DropAction);
 
     /* List modifiers */
     //TODO these should be restaurant IDs later
@@ -30,6 +28,6 @@ public:
 signals: //TODO without the backend, we don't have restaurant IDs
     void currentRestaurantChanged(int restaurantID);
 
-private:
-    QListWidget* m_listWidget;
+private slots:
+    void rowsInsertedHandler(const QModelIndex&, int, int);
 };

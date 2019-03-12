@@ -1,43 +1,46 @@
 #include "restaurantlist.hpp"
-#include "src/widgets/restaurantitem.hpp"
+#include "restaurantitem.hpp"
 
 /* Constructor */
 RestaurantList::RestaurantList(QWidget* parent)
-    : QWidget(parent)
+    : QListWidget(parent)
 {
     /* List widget settings */
-    m_listWidget = new QListWidget(this);
-    m_listWidget->setStyleSheet("QListWidget { background-color: #303030; color: white; }");
-    m_listWidget->resize(parent->size());
-    m_listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    m_listWidget->setFlow(QListView::LeftToRight);
-    m_listWidget->setWrapping(true);
-    m_listWidget->setUniformItemSizes(true);
-    m_listWidget->setDefaultDropAction(Qt::DropAction::CopyAction); //TODO make function for this
+    QListWidget::setStyleSheet("QListWidget { background-color: #303030; color: white; }");
+    QListWidget::resize(parent->size());
+    QListWidget::setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    QListWidget::setFlow(QListView::LeftToRight);
+    QListWidget::setWrapping(true);
+    QListWidget::setUniformItemSizes(true);
+    QListWidget::setDefaultDropAction(Qt::DropAction::MoveAction);
 
     //Rebroadcasts the QListWidget's signal
-    connect(m_listWidget, &QListWidget::currentRowChanged, this, &RestaurantList::currentRestaurantChanged);
-}
-
-/* Destructor */
-RestaurantList::~RestaurantList()
-{
-    delete m_listWidget;
+    connect(this, &QListWidget::currentRowChanged, this, &RestaurantList::currentRestaurantChanged);
+    connect(this->model(), &QAbstractItemModel::rowsInserted, this, &RestaurantList::rowsInsertedHandler);
 }
 
 /* Drag and drop */
 void RestaurantList::setDragDropMode(QAbstractItemView::DragDropMode v)
 {
-    m_listWidget->setDragDropMode(v);
+    QListWidget::setDragDropMode(v);
+}
+
+void RestaurantList::setDropActionMode(Qt::DropAction v)
+{
+    QListWidget::setDefaultDropAction(v);
 }
 
 /* List modifiers */
 void RestaurantList::addItem(const Restaurant& restaurant)
 {
-    QListWidgetItem* listItem = new QListWidgetItem(m_listWidget);
-    RestaurantItem* restItem = new RestaurantItem(m_listWidget, restaurant);
+    QListWidgetItem* listItem = new QListWidgetItem();
+    listItem->setData(Qt::ItemDataRole::UserRole, restaurant.first);
     listItem->setSizeHint(RestaurantItem::getSizeHint());
-    m_listWidget->setItemWidget(listItem, restItem);
+
+//    RestaurantItem* restWidget = new RestaurantItem(this, restaurant);
+
+        QListWidget::addItem(listItem);
+//    QListWidget::setItemWidget(listItem, restWidget);
 }
 
 void RestaurantList::addItems(const Restaurants& restaurants)
@@ -59,5 +62,27 @@ void RestaurantList::removeItems(const Restaurants& restaurants)
 
 void RestaurantList::clearItems()
 {
-    m_listWidget->clear();
+    QListWidget::clear();
+}
+
+void RestaurantList::rowsInsertedHandler(const QModelIndex&, int start, int end)
+{
+    for(int i = start; i <= end; i++)
+    {
+        //Get the QListWidgetItem at the given row in the dropped QListWidget
+        QListWidgetItem* item = QListWidget::item(i);
+
+        //True if the item isn't nullptr and if it's item QWidget is empty (so we can store something there)
+        if(item != nullptr && QListWidget::itemWidget(item) == nullptr)
+        {
+            //Get the item's QVariant
+            QVariant restData = item->data(Qt::ItemDataRole::UserRole);
+
+            //Create a new restaurant item QWidget using the data from the QVariant
+            RestaurantItem* restWidget = new RestaurantItem(this, Restaurant(restData.toString(), 0));
+
+            //Store the restaurant item into the QListWidgetItem
+            QListWidget::setItemWidget(item, restWidget);
+        }
+    }
 }
