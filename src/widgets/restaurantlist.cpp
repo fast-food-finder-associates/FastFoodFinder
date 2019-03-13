@@ -1,5 +1,4 @@
 #include "restaurantlist.hpp"
-#include "src/widgets/restaurantitem.hpp"
 
 /* Constructor */
 RestaurantList::RestaurantList(QWidget* parent)
@@ -15,8 +14,7 @@ RestaurantList::RestaurantList(QWidget* parent)
     QListWidget::setDefaultDropAction(Qt::DropAction::MoveAction);
 
     //Rebroadcasts the QListWidget's signal
-    connect(this, &QListWidget::currentRowChanged, this, &RestaurantList::currentRestaurantChanged);
-    connect(this->model(), &QAbstractItemModel::rowsInserted, this, &RestaurantList::rowsInsertedHandler);
+    connect(this, &QListWidget::currentRowChanged, this, &RestaurantList::rowToIDConverter);
 }
 
 /* Drag and drop */
@@ -33,17 +31,16 @@ void RestaurantList::setDropActionMode(Qt::DropAction v)
 /* List modifiers */
 void RestaurantList::addItem(ID id)
 {
-    QListWidgetItem* listItem = new QListWidgetItem();
+    QListWidgetItem* listItem = new QListWidgetItem(this);
     listItem->setData(Qt::ItemDataRole::UserRole, id);
     listItem->setSizeHint(RestaurantItem::getSizeHint());
 
-//    RestaurantItem* restWidget = new RestaurantItem(this, restaurant);
+    RestaurantItem* restWidget = new RestaurantItem(this, id);
 
-    QListWidget::addItem(listItem);
-//    QListWidget::setItemWidget(listItem, restWidget);
+    QListWidget::setItemWidget(listItem, restWidget);
 }
 
-void RestaurantList::addItems(IDList idList)
+void RestaurantList::addItems(const IDList& idList)
 {
     for(ID id : idList)
         addItem(id);
@@ -65,7 +62,7 @@ void RestaurantList::removeItem(ID id)
     }
 }
 
-void RestaurantList::removeItems(IDList idList)
+void RestaurantList::removeItems(const IDList& idList)
 {
     for(ID id : idList)
         removeItem(id);
@@ -76,24 +73,9 @@ void RestaurantList::clearItems()
     QListWidget::clear();
 }
 
-void RestaurantList::rowsInsertedHandler(const QModelIndex&, int start, int end)
+/* Private slots */
+void RestaurantList::rowToIDConverter(int row) const
 {
-    for(int i = start; i <= end; i++)
-    {
-        //Get the QListWidgetItem at the given row in the dropped QListWidget
-        QListWidgetItem* item = QListWidget::item(i);
-
-        //True if the item isn't nullptr and if it's item QWidget is empty (so we can store something there)
-        if(item != nullptr && QListWidget::itemWidget(item) == nullptr)
-        {
-            //Get the item's QVariant
-            QVariant restData = item->data(Qt::ItemDataRole::UserRole);
-
-            //Create a new restaurant item QWidget using the data from the QVariant
-            RestaurantItem* restWidget = new RestaurantItem(this, Restaurant(restData.toString(), 0));
-
-            //Store the restaurant item into the QListWidgetItem
-            QListWidget::setItemWidget(item, restWidget);
-        }
-    }
+    QListWidgetItem* item = QListWidget::item(row);
+    emit currentRestaurantChanged(item->data(Qt::ItemDataRole::UserRole).toInt());
 }

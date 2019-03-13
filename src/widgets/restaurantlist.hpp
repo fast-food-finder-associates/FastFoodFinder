@@ -3,8 +3,7 @@
 #include <vector>
 #include <QListWidget>
 
-using ID = int;
-using IDList = const std::vector<ID>&;
+using IDList = std::vector<ID>;
 
 class RestaurantList : public QListWidget
 {
@@ -20,14 +19,14 @@ public:
 
     /* List modifiers */
     void addItem(ID);
-    void addItems(IDList);
+    void addItems(const IDList&);
     void removeItem(ID);
-    void removeItems(IDList);
+    void removeItems(const IDList&);
     void clearItems();
 
 signals:
-    void currentRestaurantChanged(ID);
+    void currentRestaurantChanged(ID) const;
 
 private slots:
-    void rowsInsertedHandler(const QModelIndex&, int, int);
+    void rowToIDConverter(int row) const;
 };

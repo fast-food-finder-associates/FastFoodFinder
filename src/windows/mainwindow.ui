@@ -107,16 +107,6 @@
        </rect>
       </property>
      </widget>
-     <widget class="QWidget" name="restaurantList_2" native="true">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>190</y>
-        <width>421</width>
-        <height>191</height>
-       </rect>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="inventoryManageView">
      <property name="styleSheet">

@@ -1,7 +1,7 @@
 #pragma once
 #include <QWidget>
 
-using Restaurant = std::pair<QString, double>;
+using ID = int;
 
 namespace Ui
 {
@@ -14,15 +14,17 @@ class RestaurantItem : public QWidget
 
 public:
     /* Constructor */
-    RestaurantItem(QWidget*, const Restaurant&);
+    RestaurantItem(QWidget*, ID);
 
     /* Destructor */
     ~RestaurantItem() override;
 
     /* Getters */
+    ID getID() const;
     static QSize getSizeHint();
 
 private:
+    ID m_id;
     Ui::RestaurantItem* m_ui;
     static const QSize itemSizeHint;
 };

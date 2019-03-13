@@ -5,8 +5,8 @@
 const QSize RestaurantItem::itemSizeHint(190, 70);
 
 /* Constructor */
-RestaurantItem::RestaurantItem(QWidget* parent, const Restaurant& restaurant)
-    : QWidget(parent), m_ui(new Ui::RestaurantItem)
+RestaurantItem::RestaurantItem(QWidget* parent, ID id)
+    : QWidget(parent), m_id(id), m_ui(new Ui::RestaurantItem)
 {
     m_ui->setupUi(this);
 
@@ -17,12 +17,12 @@ RestaurantItem::RestaurantItem(QWidget* parent, const Restaurant& restaurant)
     font.setPixelSize(16);
     m_ui->label_name->setWordWrap(true);
     m_ui->label_name->setFont(font);
-    m_ui->label_name->setText("\uf2e7 " + restaurant.first);
+    m_ui->label_name->setText("\uf2e7 " + QString::number(id));
 
     /* Distance */
     font.setPixelSize(11);
     m_ui->label_distance->setFont(font);
-    m_ui->label_distance->setText("\uf3c5 " + QString::number(restaurant.second) + " mi");
+    m_ui->label_distance->setText("\uf3c5 " + QString::number(id) + " mi");
 }
 
 /* Destructor */
@@ -32,6 +32,11 @@ RestaurantItem::~RestaurantItem()
 }
 
 /* Getters */
+ID RestaurantItem::getID() const
+{
+    return m_id;
+}
+
 QSize RestaurantItem::getSizeHint()
 {
     return itemSizeHint;

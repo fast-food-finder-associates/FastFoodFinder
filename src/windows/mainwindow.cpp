@@ -37,14 +37,7 @@ MainWindow::MainWindow()
 
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
-    m_restaurantList->setDragDropMode(QAbstractItemView::DragOnly);
     m_restaurantList->addItems(ids);
-
-    /* TODO Temporary item list for demonstration */
-    m_restaurantList2 = new RestaurantList(m_ui->restaurantList_2);
-    m_restaurantList2->setDragDropMode(QAbstractItemView::DropOnly);
-
-    m_restaurantList->removeItem(2);
 }
 
 /* Destructor */
@@ -53,7 +46,6 @@ MainWindow::~MainWindow()
     delete m_ui;
     delete m_navbar;
     delete m_restaurantList;
-    delete m_restaurantList2;
 }
 
 void MainWindow::on_actionLogout_triggered()
