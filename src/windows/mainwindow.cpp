@@ -7,8 +7,7 @@
 #include <QFontDatabase>
 #include <QDebug>
 
-const static std::vector<QString> restNames = {"MacDonalds","Chipotle","Dominos Pizza","KFC","Subway","In-N-Out Burger","Wendys","Jack in the Box","El Pollo Loco","Papa Johns Pizza","Pizza Hut","Sonic"};
-const static std::vector<double> distance = {8,4.29,12.41,7.56,2.67,5.94,8.44,12.75,9.19,14.54,10.1,6.6};
+const static IDList ids = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 /* Constructors */
 MainWindow::MainWindow()
@@ -36,20 +35,16 @@ MainWindow::MainWindow()
     //Initial view for dashboard
     changeView(0);
 
-    /* Create restaurant std::pair vector */
-    std::vector<std::pair<QString, double>> restaurants;
-    for(unsigned int i = 0; i < restNames.size(); i++)
-        restaurants.push_back(Restaurant(restNames[i], distance[i]));
-
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
     m_restaurantList->setDragDropMode(QAbstractItemView::DragOnly);
-    m_restaurantList->addItems(restaurants);
+    m_restaurantList->addItems(ids);
 
     /* TODO Temporary item list for demonstration */
     m_restaurantList2 = new RestaurantList(m_ui->restaurantList_2);
     m_restaurantList2->setDragDropMode(QAbstractItemView::DropOnly);
-    m_restaurantList2->addItems(restaurants);
+
+    m_restaurantList->removeItem(2);
 }
 
 /* Destructor */

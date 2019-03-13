@@ -3,7 +3,8 @@
 #include <vector>
 #include <QListWidget>
 
-using Restaurants = std::vector<Restaurant>;
+using ID = int;
+using IDList = const std::vector<ID>&;
 
 class RestaurantList : public QListWidget
 {
@@ -18,15 +19,14 @@ public:
     void setDropActionMode(Qt::DropAction);
 
     /* List modifiers */
-    //TODO these should be restaurant IDs later
-    void addItem(const Restaurant&);
-    void addItems(const Restaurants&);
-    void removeItem(const Restaurant&);
-    void removeItems(const Restaurants&);
+    void addItem(ID);
+    void addItems(IDList);
+    void removeItem(ID);
+    void removeItems(IDList);
     void clearItems();
 
-signals: //TODO without the backend, we don't have restaurant IDs
-    void currentRestaurantChanged(int restaurantID);
+signals:
+    void currentRestaurantChanged(ID);
 
 private slots:
     void rowsInsertedHandler(const QModelIndex&, int, int);

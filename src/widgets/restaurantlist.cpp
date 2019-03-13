@@ -31,33 +31,44 @@ void RestaurantList::setDropActionMode(Qt::DropAction v)
 }
 
 /* List modifiers */
-void RestaurantList::addItem(const Restaurant& restaurant)
+void RestaurantList::addItem(ID id)
 {
     QListWidgetItem* listItem = new QListWidgetItem();
-    listItem->setData(Qt::ItemDataRole::UserRole, restaurant.first);
+    listItem->setData(Qt::ItemDataRole::UserRole, id);
     listItem->setSizeHint(RestaurantItem::getSizeHint());
 
 //    RestaurantItem* restWidget = new RestaurantItem(this, restaurant);
 
-        QListWidget::addItem(listItem);
+    QListWidget::addItem(listItem);
 //    QListWidget::setItemWidget(listItem, restWidget);
 }
 
-void RestaurantList::addItems(const Restaurants& restaurants)
+void RestaurantList::addItems(IDList idList)
 {
-    /* Fill the QListWidget with items */
-    for(const Restaurant& restaurant : restaurants)
-        addItem(restaurant);
+    for(ID id : idList)
+        addItem(id);
 }
 
-void RestaurantList::removeItem(const Restaurant& restaurant)
+void RestaurantList::removeItem(ID id)
 {
-    //TODO finish functionality
+    for(int i = 0; i < QListWidget::count(); i++)
+    {
+        QListWidgetItem* item = QListWidget::item(i);
+        QVariant data = item->data(Qt::ItemDataRole::UserRole);
+
+        if(data.toInt() == id)
+        {
+            QListWidget::removeItemWidget(item);
+            QListWidget::model()->removeRow(i);
+            return;
+        }
+    }
 }
 
-void RestaurantList::removeItems(const Restaurants& restaurants)
+void RestaurantList::removeItems(IDList idList)
 {
-    //TODO finish functionality
+    for(ID id : idList)
+        removeItem(id);
 }
 
 void RestaurantList::clearItems()
