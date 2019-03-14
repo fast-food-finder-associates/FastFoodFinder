@@ -15,8 +15,6 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
 
     //Sets the parent's size
     parent->resize(m_minWidth, parent->height());
-
-    connect(this, &QListWidget::currentRowChanged, this, &NavBar::currentItemChanged);
 }
 
 /* Setters */

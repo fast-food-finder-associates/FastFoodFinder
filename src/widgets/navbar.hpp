@@ -20,7 +20,6 @@ public:
 signals:
     void expand();
     void shrink();
-    void currentItemChanged(int);
 
 private:
     /* Events */
