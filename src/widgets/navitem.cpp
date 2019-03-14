@@ -52,6 +52,6 @@ void NavItem::enterEvent(QEvent* e)
 
 void NavItem::leaveEvent(QEvent* e)
 {
-    QWidget::leaeEvent(e);
+    QWidget::leaveEvent(e);
     setStyleSheet("* { background-color: none; color: white }");
 }

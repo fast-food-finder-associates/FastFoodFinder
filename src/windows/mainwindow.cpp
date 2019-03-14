@@ -20,9 +20,8 @@ MainWindow::MainWindow()
     //Requests a login
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
-    qDebug() << QFontDatabase::addApplicationFont(":/res/FontAwesome.ttf");
-//    qDebug() << QFontDatabase::applicationFontFamilies(0);
-//        qWarning() << "FontAwesome cannot be loaded !";
+   if( QFontDatabase::addApplicationFont(":/res/FontAwesome.ttf") == -1)
+        qWarning() << "FontAwesome cannot be loaded !";
 
 
     /* Initialize navigation bar and items */
@@ -43,6 +42,9 @@ MainWindow::MainWindow()
 
     //Initial view for mainView
     m_ui->centralStack->setCurrentWidget(m_ui->mainWindow);
+
+    // Connecting mainWindow signal to QStackWidget (Central Stack)
+    connect(this, &MainWindow::changeCentralStack,m_ui->centralStack,&QStackedWidget::setCurrentWidget);
 
     //Initial view for dashboard
     m_navbar->setCurrentRow(0);
@@ -76,8 +78,8 @@ void MainWindow::changeView(int rowView)
         m_ui->mainViews->setCurrentWidget(m_ui->viewRestaurantView);
         break;
     case 3:
-        m_ui->centralStack->setCurrentWidget(m_ui->InvManageWindow);
         m_navbar_admin->setCurrentRow(1);
+        emit changeCentralStack(m_ui->InvManageWindow);
      break;
     }
 }
@@ -88,8 +90,8 @@ void MainWindow::changeViewInvManage(int rowView)
     switch(rowView)
     {
     case 0:
-        m_ui->centralStack->setCurrentWidget(m_ui->mainWindow);
         m_navbar->setCurrentRow(0);
+        emit changeCentralStack(m_ui->mainWindow);
         break;
     case 1:
         m_ui->inventoryViews->setCurrentWidget(m_ui->searchView);

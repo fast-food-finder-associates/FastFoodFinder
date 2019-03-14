@@ -23,6 +23,8 @@ private slots:
     void changeView(int);
     void changeViewInvManage(int);
 
+signals:
+    void changeCentralStack(QWidget *);
 private:
     /* Events */
     void resizeEvent(QResizeEvent*) override;
