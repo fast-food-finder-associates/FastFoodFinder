@@ -3,9 +3,7 @@
 //
 // --------------------------------------------------------------------------
 
-
-#ifndef __MYDBLLINKLIST_H_INCL__
-#define __MYDBLLINKLIST_H_INCL__
+#pragma once
 
 #include <stdlib.h>
 #include <string.h>
@@ -905,6 +903,3 @@ InputIterator find_if(InputIterator first, InputIterator last, Predicate pred)
 }
 
 } /* namespace */
-
-
-#endif // __MYDBLLINKLIST_H_INCL__

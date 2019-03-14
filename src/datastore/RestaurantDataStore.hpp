@@ -1,18 +1,17 @@
 /**
  * CS1D - Fast Food Associates
  *
- * Implements a data storage mechanism for Restaurant objects.
+ * Defines a data storage mechanism for Restaurant objects.
  * These objects are contained in a doublly linked list that
  * supports iterators and a comperable interfacen
  *
  * @author   edt
  */
 
-#ifndef __RESTURANTDATASTORE_H_INCL__
-#define __RESTURANTDATASTORE_H_INCL__
+#pragma once
 
-#include "MyDblLinkList.h"
-#include "Restaurant.h"
+#include "MyDblLinkList.hpp"
+#include "Restaurant.hpp"
 #include <list>
 
 using namespace std;
@@ -28,6 +27,7 @@ public:
     virtual ~RestaurantDataStore();
 
     void printAsDebug(bool printeol, bool printcontent) const;
+    Restaurant &FindbyNumber(int Number);
 
     //std::list<Restaurant> list;
     MyDblLinkList<Restaurant> list;
@@ -38,7 +38,4 @@ private:
     RestaurantDataStore(const RestaurantDataStore& src);
 
     // Assignment operator
-    RestaurantDataStore& operator=(const RestaurantDataStore& src);
-};
-
-#endif // __RESTURANTDATASTORE_H_INCL__
+    RestaurantDataStore& operator=(const RestaurantDataStore& src); } ;

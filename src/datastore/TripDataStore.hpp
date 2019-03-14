@@ -1,19 +1,17 @@
 /**
  * CS1D - Fast Food Associates
  *
- * Implements a data storage mechanism for User objects. These
+ * Defines a data storage mechanism for User objects. These
  * objects are contained in a doublly linked list that supports
  * iterators and a comperable interfacen
  *
  * @author   edt
  */
 
-#ifndef __TRIPATASTORE_H_INCL__
-#define __TRIPATASTORE_H_INCL__
-
+#pragma once
 #include <list>
-#include "MyDblLinkList.h"
-#include "Trip.h"
+#include "MyDblLinkList.hpp"
+#include "Trip.hpp"
 
 using namespace std;
 using namespace nsMyDblLinkList;
@@ -40,5 +38,3 @@ private:
     // Assignment operator
     TripDataStore& operator=(const TripDataStore& src);
 };
-
-#endif // __TRIPATASTORE_H_INCL__

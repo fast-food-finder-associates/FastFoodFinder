@@ -1,10 +1,19 @@
-#ifndef __Restaurant_H_INCL__
-#define __Restaurant_H_INCL__
+/**
+ * CS1D - Fast Food Associates
+ *
+ * Definitionn of the Restaurant class that provides a means for
+ * validating restaurants, string menu items and distances to
+ * other restaurants
+ *
+ * @author   edt
+ */
+
+ #pragma once
 
 #include <vector>
 #include <string>
 
-#include "Trip.h"
+#include "Trip.hpp"
 
 using namespace std;
 
@@ -52,10 +61,12 @@ public:
     const vector<RestaurantDistance> &GetDistances(void) const;
     float GetPurchaseAmount(void) const;
     bool MarkDeleted(bool Delete);
+    bool IsDeleted(void) const;
     bool AddTrip(int TripNumber);
     int AddCustCount(void);
     float AddPurchasePrice(float PurchaseAmount);
     float GetDistSaddleback(void) const;
+    Restaurant &FindbyNumber(int Number);
 
 private:
     bool                m_bInitialized;
@@ -104,7 +115,4 @@ struct Cmp_by_distance {
     {
         // dereference pointer, compare ids
         return (s1->GetDistSaddleback() < s2->GetDistSaddleback());
-    }
-};
-
-#endif // __Restaurant_H_INCL__
+    } } ;

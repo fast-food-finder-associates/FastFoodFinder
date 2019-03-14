@@ -9,7 +9,7 @@
  */
 
 
-#include "Trip.h"
+#include "Trip.hpp"
 #include <string>
 #include <ostream>
 #include <iostream>
@@ -23,7 +23,7 @@ Trip::Trip(int User,
            const string &Name)
         : m_nCreatingUser(User),
           m_Name(Name),
-          m_Restraurants(Restaurants),
+          m_Restaurants(Restaurants),
           m_fTotalDistance(TotalDistance)
 {
     m_bDeleted = false;
@@ -43,7 +43,7 @@ Trip::Trip(int TripNum,
         : m_nNumber(TripNum),
           m_nCreatingUser(User),
           m_Name(Name),
-          m_Restraurants(Restaurants),
+          m_Restaurants(Restaurants),
           m_fTotalDistance(TotalDistance),
           m_bDeleted(bTripDeleted)
 {
@@ -63,13 +63,13 @@ Trip::~Trip()
     int         m_nNumber;
     string      m_Name;
     int         m_nCreatingUser;
-    vector<int> m_Restraurants;
+    vector<int> m_Restaurants;
     bool        m_bDeleted; // if true, do not display on general GUI (maybe in admin GUI)
     float       m_fTotalDistance;
 
 Trip::Trip(const Trip& src)
 : m_nNumber(src.m_nNumber), m_Name(src.m_Name),
-  m_nCreatingUser(src.m_nCreatingUser), m_Restraurants(src.m_Restraurants),
+  m_nCreatingUser(src.m_nCreatingUser), m_Restaurants(src.m_Restaurants),
   m_bDeleted(src.m_bDeleted), m_fTotalDistance(src.m_fTotalDistance)
 {
     m_bInitialized      = true;
@@ -84,7 +84,7 @@ Trip& Trip::operator=(const Trip& rhs)
     m_nNumber           = rhs.m_nNumber;
     m_Name              = rhs.m_Name;
     m_nCreatingUser     = rhs.m_nCreatingUser;
-    m_Restraurants      = rhs.m_Restraurants;
+    m_Restaurants      = rhs.m_Restaurants;
     m_bDeleted          = rhs.m_bDeleted;
     m_fTotalDistance    = rhs.m_fTotalDistance;
 
@@ -104,9 +104,9 @@ int  Trip::GetCreatingUser(void) const
     return m_nCreatingUser;
 }
 
-const vector<int> &Trip::GetResturants(void) const
+const vector<int> &Trip::GetRestaurants(void) const
 {
-    return m_Restraurants;
+    return m_Restaurants;
 }
 
 float Trip::GetTotalDistance(void) const
@@ -120,10 +120,15 @@ bool Trip::MarkDeleted(bool Delete)
     return m_bDeleted;
 }
 
-bool Trip::AddRestaurant(int Resturaurant)
+bool Trip::IsDeleted(void) const
+{
+    return m_bDeleted;
+}
+
+bool Trip::AddRestaurant(int Restaurant)
 {
     // prevent dupes
-    m_Restraurants.push_back(Resturaurant);
+    m_Restaurants.push_back(Restaurant);
     return true;
 }
 
@@ -145,11 +150,11 @@ bool Trip::PrintAsDebug(bool print_endl) const
              << " Total Dist :" << m_fTotalDistance << endl
              << " Deleted    :" << m_bDeleted << endl
              << " Restaurants  :";
-        for (std::vector<int>::const_iterator it = m_Restraurants.begin(); it != m_Restraurants.end(); it++)
+        for (std::vector<int>::const_iterator it = m_Restaurants.begin(); it != m_Restaurants.end(); it++)
         {
             cout << " " << *it;
         }
-        if (m_Restraurants.size() == 0)
+        if (m_Restaurants.size() == 0)
         {
             cout << "None";
         }
@@ -164,11 +169,11 @@ bool Trip::PrintAsDebug(bool print_endl) const
              << " Total Dist :" << m_fTotalDistance << endl
              << " Deleted    :" << m_bDeleted
              << " Restaurants  :";
-        for (std::vector<int>::const_iterator it = m_Restraurants.begin(); it != m_Restraurants.end(); it++)
+        for (std::vector<int>::const_iterator it = m_Restaurants.begin(); it != m_Restaurants.end(); it++)
         {
             cout << " " << *it;
         }
-        if (m_Restraurants.size() == 0)
+        if (m_Restaurants.size() == 0)
         {
             cout << "None";
         }

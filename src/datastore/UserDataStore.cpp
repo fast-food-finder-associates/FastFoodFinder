@@ -8,7 +8,7 @@
  * @author   edt
  */
 
-#include "UserDataStore.h"
+#include "UserDataStore.hpp"
 #include <stdio.h>
 #include <fstream>
 

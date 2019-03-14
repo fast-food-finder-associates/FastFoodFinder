@@ -8,8 +8,7 @@
  * @author   edt
  */
 
-#ifndef __USER_H_INCL__
-#define __USER_H_INCL__
+#pragma once
 
 #include <vector>
 #include <string>
@@ -42,11 +41,14 @@ public:
     const string &GetName(void) const;
     const  string &GetHashedPasswd(void) const;
     bool MarkDeleted(bool Delete);
+    bool IsDeleted(void) const;
     bool MarkBlocked(bool Block);
+    bool IsBlocked(void) const;
     float Purchase(float PurchaseAmount);
     void AddTrip(int Trip);
     const vector<int> &GetTrips(void) const;
     float GetTotalPurchase(void) const;
+    bool operator<(User &rhs);
 
 private:
     bool        m_bInitialized;
@@ -77,5 +79,3 @@ private:
     bool PrintAsDebug(bool print_endl) const;
 
 };
-
-#endif // __USER_H_INCL__

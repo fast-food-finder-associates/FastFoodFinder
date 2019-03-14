@@ -9,7 +9,7 @@
  */
 
 
-#include "User.h"
+#include "User.hpp"
 #include <string>
 #include <ostream>
 #include <iostream>
@@ -86,6 +86,11 @@ User& User::operator=(const User& rhs)
    return *this;
 }
 
+bool User::operator<(User &rhs)
+{
+    return (this->m_UserName < rhs.m_UserName);
+}
+
 
 const string &User::GetName(void) const
 {
@@ -102,9 +107,18 @@ bool User::MarkDeleted(bool Delete)
     m_bDeleted = Delete;
     return m_bDeleted;
 }
+bool User::IsDeleted(void) const
+{
+    return m_bDeleted;
+}
 bool User::MarkBlocked(bool Block)
 {
     m_bBlocked = Block;
+    return m_bBlocked;
+}
+
+bool User::IsBlocked(void) const
+{
     return m_bBlocked;
 }
 

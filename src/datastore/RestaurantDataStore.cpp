@@ -8,8 +8,8 @@
  * @author   edt
  */
 
-#include "RestaurantDataStore.h"
-#include "Restaurant.h"
+#include "RestaurantDataStore.hpp"
+#include "Restaurant.hpp"
 #include <stdio.h>
 #include <fstream>
 
@@ -111,6 +111,18 @@ RestaurantDataStore::RestaurantDataStore()
         }
     }
 };
+
+Restaurant &RestaurantDataStore::FindbyNumber(int Number)
+{
+    for (MyDblLinkList<Restaurant>::iterator it = list.begin(); it != list.end(); ++it)
+    {
+        if ( (*it).m_nNumber == Number)
+        {
+            return *it;
+        }
+    }
+    return *(list.end());  // never reached  - should throw exception
+}
 
 void RestaurantDataStore::printAsDebug(bool printeol, bool printcontent) const
 {

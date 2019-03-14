@@ -9,7 +9,7 @@
  */
 
 
-#include "Restaurant.h"
+#include "Restaurant.hpp"
 #include <string>
 #include <ostream>
 #include <iostream>
@@ -119,6 +119,11 @@ float Restaurant::GetPurchaseAmount(void) const
 bool Restaurant::MarkDeleted(bool Delete)
 {
     m_bDeleted = Delete;
+    return m_bDeleted;
+}
+
+bool Restaurant::IsDeleted(void) const
+{
     return m_bDeleted;
 }
 

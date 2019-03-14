@@ -8,7 +8,7 @@
  * @author   edt
  */
 
-#include "TripDataStore.h"
+#include "TripDataStore.hpp"
 #include <stdio.h>
 #include <fstream>
 
@@ -54,9 +54,9 @@ TripDataStore::TripDataStore()
 
                 // Parse the Restaurants List
                 std::vector<int> Restaurants;
-                int nNumResturants = std::stoi(commaSeparated[5]);
+                int nNumRestaurants = std::stoi(commaSeparated[5]);
                 int it = 6;
-                while (it < (6 + nNumResturants))
+                while (it < (6 + nNumRestaurants))
                 {
                     Restaurants.push_back(std::stoi(commaSeparated[it++]));
                 }
