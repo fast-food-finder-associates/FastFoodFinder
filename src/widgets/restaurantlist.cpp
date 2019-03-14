@@ -28,8 +28,8 @@ RestaurantList::RestaurantList(QWidget* parent)
 /* List modifiers */
 void RestaurantList::addItem(ID id)
 {
-    QFont font("Font Awesome 5 Free", 13);
-    QString content = "\uf2e7 " + QString::number(id) + "\n\uf3c5 " + QString::number(id);
+    QFont font("Font Awesome 5 Free", 12);
+    QString content = "\uf2e7 " + QString::number(id) + "\n\uf3c5 " + QString::number(id); //TODO get name and distance from ID
 
     QListWidgetItem* listItem = new QListWidgetItem(content, this);
     listItem->setSizeHint(itemSizeHint);
