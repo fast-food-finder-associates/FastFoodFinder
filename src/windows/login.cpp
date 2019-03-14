@@ -280,6 +280,7 @@ void Login::resetUi() const
     m_ui->label_confirmPassword->setStyleSheet(txtStyle);
     m_ui->label_loginMsg->setText("");
     m_ui->label_regMsg->setText("");
+    m_ui->lineEdit_username->setFocus();
 }
 
 void Login::clearFields() const
