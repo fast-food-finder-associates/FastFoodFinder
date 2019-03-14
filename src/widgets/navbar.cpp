@@ -7,7 +7,8 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
     : QListWidget(parent), m_minWidth(minWidth), m_maxWidth(maxWidth)
 {
     parent->raise();
-    setStyleSheet("QListWidget { background-color: #303030; }");
+    setStyleSheet("QListWidget { background-color: #303030; }"
+                  "QListWidget::item:hover { background-color: white; }");
 
     //Initial size
     resize(m_minWidth, parent->height());
