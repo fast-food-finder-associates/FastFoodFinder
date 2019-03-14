@@ -14,6 +14,7 @@ public:
     void setMinWidth(int);
     void setMaxWidth(int);
 
+    /* List modifiers */
     void addItem(QString icon, QString label);
 
 signals:

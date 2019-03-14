@@ -12,6 +12,9 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
     //Initial size
     resize(m_minWidth, parent->height());
 
+    //Sets the parent's size
+    parent->resize(m_minWidth, parent->height());
+
     connect(this, &QListWidget::currentRowChanged, this, &NavBar::currentItemChanged);
 }
 
@@ -31,6 +34,7 @@ void NavBar::setMaxWidth(int width)
     m_maxWidth = width;
 }
 
+/* List modifiers */
 void NavBar::addItem(QString icon, QString label)
 {
     const QSize itemSize(70, 80);
@@ -51,8 +55,15 @@ void NavBar::addItem(QString icon, QString label)
 /* Events */
 void NavBar::leaveEvent(QEvent*)
 {
-    /* Shrinking animation */
-    QPropertyAnimation* animation = new QPropertyAnimation(this, "size");
+    /* Shrinking animation for parent widget */
+    QPropertyAnimation* animation = new QPropertyAnimation(parentWidget(), "size");
+    animation->setDuration(75);
+    animation->setStartValue(size());
+    animation->setEndValue(QSize(m_minWidth, height()));
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
+
+    /* Shrinking animation for list widget */
+    animation = new QPropertyAnimation(this, "size");
     animation->setDuration(75);
     animation->setStartValue(size());
     animation->setEndValue(QSize(m_minWidth, height()));
@@ -64,8 +75,15 @@ void NavBar::leaveEvent(QEvent*)
 
 void NavBar::enterEvent(QEvent*)
 {
-    /* Expanding animation */
-    QPropertyAnimation* animation = new QPropertyAnimation(this, "size");
+    /* Expanding animation for parent widget */
+    QPropertyAnimation* animation = new QPropertyAnimation(parentWidget(), "size");
+    animation->setDuration(75);
+    animation->setStartValue(size());
+    animation->setEndValue(QSize(m_maxWidth, height()));
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
+
+    /* Expanding animation for list widget */
+    animation = new QPropertyAnimation(this, "size");
     animation->setDuration(75);
     animation->setStartValue(size());
     animation->setEndValue(QSize(m_maxWidth, height()));
