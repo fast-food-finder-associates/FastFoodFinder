@@ -46,8 +46,7 @@ SOURCES += \
 FORMS += \
     src/windows/login.ui \
     src/windows/mainwindow.ui \
-    src/widgets/navitem.ui \
-    src/widgets/restaurantitem.ui
+    src/widgets/navitem.ui
 
 RESOURCES += \
     res.qrc
