@@ -19,6 +19,9 @@ MainWindow::MainWindow()
     if(QFontDatabase::addApplicationFont(":/res/fontAwesome.ttf") == -1)
         qWarning() << "FontAwesome cannot be loaded !";
 
+    if(QFontDatabase::addApplicationFont(":/res/IBMPlexMono-Regular.ttf") == -1)
+        qWarning() << "IBMPlexMono-Regular cannot be loaded !";
+
     /* Initialize navigation bar and items */
     m_navbar = new NavBar(m_ui->NavBarWidget, 90, 220);
     connect(m_navbar, &NavBar::currentRowChanged, this, &MainWindow::changeView);
@@ -35,6 +38,7 @@ MainWindow::MainWindow()
     /* Initialize views */
     m_restView = new RestaurantsView(m_ui->restaurantsView, &m_store);
     m_adminView = new AdminView(m_ui->adminView, &m_store);
+    m_planTrip = new PlanTrip(m_ui->planTripView, &m_store, m_navbar);
 
     //Triggers changeView() and changes the navbar item
     m_navbar->setCurrentRow(0);
@@ -82,4 +86,6 @@ void MainWindow::resetUi()
     /* Reset views */
     m_restView->resetView();
     m_adminView->resetView();
+    m_planTrip->resetPlanTripView();
 }
+

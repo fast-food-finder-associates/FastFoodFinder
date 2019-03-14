@@ -23,6 +23,7 @@ class RestaurantList : public QListWidget
     Q_OBJECT
 
 public:
+
     /* Constructor */
     RestaurantList(QWidget* parent);
 
@@ -62,10 +63,12 @@ private:
 template<typename Container>
 void RestaurantList::getRestaurantIDs(Container& container) const
 {
-    for(int i = 0; i < QListWidget::count(); i++)
+
+    for(int i = 0; i < this->count(); i++)
     {
-        QListWidgetItem* item = QListWidget::item(i);
+        QListWidgetItem* item = this->item(i);
         QVariant data = item->data(Qt::ItemDataRole::UserRole);
+
         container.push_back(data.toInt());
     }
 }

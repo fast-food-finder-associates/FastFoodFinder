@@ -109,7 +109,7 @@ void UserDataStore::save(const string path)
     std::ofstream outfile(path, ios::trunc);
     if (outfile.is_open())
     {
-        for (MyDblLinkList<User>::iterator it = list.begin(); it != list.end(); it++)
+        for (std::list<User>::iterator it = list.begin(); it != list.end(); it++)
         {
             line_count++;
 
@@ -148,7 +148,7 @@ void UserDataStore::save(const string path)
 
 User &UserDataStore::FindbyNumber(int Number)
 {
-    for (MyDblLinkList<User>::iterator it = list.begin(); it != list.end(); ++it)
+    for (std::list<User>::iterator it = list.begin(); it != list.end(); ++it)
     {
         if ( (*it).m_nNumber == Number)
         {
@@ -161,7 +161,7 @@ User &UserDataStore::FindbyNumber(int Number)
 bool UserDataStore::DuplicateNumPresent(int Number)
 {
     bool dupe_found = false;
-    for (MyDblLinkList<User>::iterator it = list.begin(); it != list.end(); ++it)
+    for (std::list<User>::iterator it = list.begin(); it != list.end(); ++it)
     {
         if ( (*it).m_nNumber == Number)
         {
@@ -174,7 +174,7 @@ bool UserDataStore::DuplicateNumPresent(int Number)
 
 void UserDataStore::printAsDebug(bool printeol, bool printcontent) const
 {
-    list.printAsDebug(printeol,printcontent);
+//    list.printAsDebug(printeol,printcontent);
 }
 
 // Destructor implementation

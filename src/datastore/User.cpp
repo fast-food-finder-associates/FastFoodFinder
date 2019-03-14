@@ -235,4 +235,3 @@ ostream& operator<<(ostream& os, const User& user)
     os << user.PrintAsDebug(true);
     return(os);
 }
-

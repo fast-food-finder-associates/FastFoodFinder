@@ -152,7 +152,8 @@ void MenuList::removeItem(IDs id)
 
         if(widget != nullptr && id == widget->getIDs())
         {
-            QListWidget::removeItemWidget(listItem);
+            m_IDQtys.erase(widget->getIDs());
+            QListWidget::takeItem(i);
             return;
         }
     }
@@ -229,5 +230,5 @@ void MenuList::quantityChangedHandler(IDs id, int qty)
     if(qty != 0)
         m_IDQtys[id] = qty; //Store/replace the key with the value
     else
-        m_IDQtys.erase(id); //Erase the the key-value pair
+        this->removeItem(id); //Erase the the key-value pair
 }

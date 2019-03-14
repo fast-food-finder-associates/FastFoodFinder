@@ -4,7 +4,7 @@
  * Defines a data storage mechanism for User objects. These
  * objects are contained in a doublly linked list that supports
  * iterators and a comperable interfacen
- * 
+ *
  * @author   edt
  */
 
@@ -29,11 +29,10 @@ public:
 
     void load(const string path);
     void save(const string path);
+    User &FindbyNumber(int Number);
+    std::list<User> list;
+//    MyDblLinkList<User> list;
 
-    User &FindbyNumber(int Number); 
-
-    //std::list<User> list;
-    MyDblLinkList<User> list;
 private:
     bool DuplicateNumPresent(int Number);
 

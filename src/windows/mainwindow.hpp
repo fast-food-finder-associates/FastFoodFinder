@@ -6,6 +6,7 @@
 #include "src/datastore/RestaurantDataStore.hpp"
 #include "src/views/adminview.hpp"
 #include "src/views/restaurantsview.hpp"
+#include "src/widgets/plantrip.hpp"
 
 namespace Ui
 {
@@ -36,4 +37,5 @@ private:
     RestaurantsView* m_restView;
     AdminView* m_adminView;
     RestaurantDataStore m_store;
+    PlanTrip* m_planTrip;
 };
