@@ -46,7 +46,8 @@ MainWindow::MainWindow()
     //Initial view for dashboard
     changeView(0);
 
-    RestaurantDataStore store;
+    //Load the restaurant database from the file
+    m_store.load(""); //TODO add your database directory here (include '/' at the end)
 
     // WARNING: Put database filepath here
     store.load("");
@@ -54,9 +55,16 @@ MainWindow::MainWindow()
 
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
-    m_restaurantList->setDragDropMode(QAbstractItemView::DragDrop);
-    m_restaurantList->setAcceptDrops(true);
-    m_restaurantList->addItems(store.list.begin(), store.list.end());
+    m_restaurantList->addItems(m_store.list.begin(), m_store.list.end());
+
+    /* Menu list */
+    m_menuList = new MenuList(m_ui->menuList);
+    m_menuList->setWrapping(true);
+    m_menuList->setFlow(QListView::LeftToRight);
+
+    //On current restaurant change, display its menu items
+    connect(m_restaurantList, &RestaurantList::currentRestaurantChanged,
+            this, &MainWindow::menuListChange);
 }
 
 /* Destructor */
@@ -149,4 +157,11 @@ void MainWindow::changeNavState(ViewStates state)
         m_navbar->item(9)->setHidden(false);
         break;
     }
+}
+
+void MainWindow::menuListChange(int id)
+{
+    Restaurant restaurant = m_store.FindbyNumber(id);
+    m_ui->currentRestaurantName->setText(QString::fromStdString(restaurant.GetName()));
+    m_menuList->addAllItems(restaurant);
 }

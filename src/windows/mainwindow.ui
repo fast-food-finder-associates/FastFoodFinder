@@ -95,16 +95,87 @@
     </widget>
     <widget class="QWidget" name="viewRestaurantView">
      <property name="styleSheet">
-      <string notr="true">QWidget#viewRestaurantView { background-color: #7DD8FF; }</string>
+      <string notr="true">QWidget#viewRestaurantView { background-color: #7DD8FF; }
+
+QWidget#currentRestaurantName {
+background-color: #303030;
+font-size: 46px;
+color: white;
+font:bold italic;
+}
+
+QWidget#menu {
+color: black;
+background-color: #7F7F7F;
+font-size: 28px;
+font: bold italic;
+}</string>
      </property>
      <widget class="QWidget" name="restaurantList" native="true">
       <property name="geometry">
        <rect>
-        <x>520</x>
+        <x>530</x>
         <y>0</y>
-        <width>191</width>
+        <width>180</width>
         <height>600</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="menuList" native="true">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>169</y>
+        <width>440</width>
+        <height>370</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="currentRestaurantName">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>530</width>
+        <height>90</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Restaurant</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="menu">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>130</y>
+        <width>440</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>MENU</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
