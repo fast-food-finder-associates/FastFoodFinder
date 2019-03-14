@@ -10,7 +10,7 @@ NavItem::NavItem(QListWidget* parent, QString icon, QString label)
 
     /* fontAwesome has built-in icons */
     QFont font;
-    font.setFamily("fontAwesome");
+    font.setFamily("Font Awesome 5 Free");
 
     /* Label */
     m_ui->navLabel->setWordWrap(true);

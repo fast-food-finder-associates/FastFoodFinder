@@ -14,8 +14,8 @@
    <string notr="true">Login</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../res.qrc">
-    <normaloff>:/res/missing.png</normaloff>:/res/missing.png</iconset>
+   <iconset>
+    <normaloff>:/res/fff128.png</normaloff>:/res/fff128.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -31,6 +31,9 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>:/res/fff128.png</pixmap>
    </property>
   </widget>
   <widget class="QStackedWidget" name="stackedWidget">
@@ -286,8 +289,6 @@
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="../../res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

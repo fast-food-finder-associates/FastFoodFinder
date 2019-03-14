@@ -17,14 +17,11 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>FastFoodFinder</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../res.qrc">
-    <normaloff>:/res/missing.png</normaloff>:/res/missing.png</iconset>
-  </property>
-  <property name="styleSheet">
-   <string notr="true"/>
+    <normaloff>:/res/fff128.png</normaloff>:/res/fff128.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -39,7 +36,7 @@
       <x>90</x>
       <y>0</y>
       <width>711</width>
-      <height>701</height>
+      <height>600</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -48,17 +45,12 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
-      <string notr="true">* {
-background-color: orange;
-}</string>
+      <string notr="true">QWidget#dashboardView { background-color: #D2E1FF; }</string>
      </property>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
@@ -82,9 +74,7 @@ background-color: orange;
     </widget>
     <widget class="QWidget" name="planTripView">
      <property name="styleSheet">
-      <string notr="true">* {
-background-color: lightgreen;
-}</string>
+      <string notr="true">QWidget#planTripView { background-color: #99C2E8; }</string>
      </property>
      <widget class="QLabel" name="label">
       <property name="geometry">
@@ -105,29 +95,22 @@ background-color: lightgreen;
     </widget>
     <widget class="QWidget" name="viewRestaurantView">
      <property name="styleSheet">
-      <string notr="true">* {
-background-color: lightblue;
-}</string>
+      <string notr="true">QWidget#viewRestaurantView { background-color: #7DD8FF; }</string>
      </property>
-     <widget class="QLabel" name="label_2">
+     <widget class="QWidget" name="restaurantList" native="true">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>520</x>
         <y>0</y>
-        <width>110</width>
-        <height>16</height>
+        <width>191</width>
+        <height>600</height>
        </rect>
-      </property>
-      <property name="text">
-       <string>Restaurant Listings</string>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="inventoryManageView">
      <property name="styleSheet">
-      <string notr="true">* {
-background-color: gray;
-}</string>
+      <string notr="true">QWidget#inventoryManageView { background-color: #98DFE8; }</string>
      </property>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
@@ -150,7 +133,7 @@ background-color: gray;
       <x>0</x>
       <y>0</y>
       <width>220</width>
-      <height>571</height>
+      <height>600</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -181,7 +164,6 @@ background-color: gray;
    </widget>
    <addaction name="menuFile"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionLogout">
    <property name="text">
     <string>Logout</string>
