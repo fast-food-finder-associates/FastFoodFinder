@@ -1,5 +1,8 @@
 #include "restaurantlist.hpp"
 
+/* Static variables */
+const QSize RestaurantList::itemSizeHint(190, 70);
+
 /* Constructor */
 RestaurantList::RestaurantList(QWidget* parent)
     : QListWidget(parent)
@@ -8,36 +11,32 @@ RestaurantList::RestaurantList(QWidget* parent)
     QListWidget::setStyleSheet("QListWidget { background-color: #303030; color: white; }");
     QListWidget::resize(parent->size());
     QListWidget::setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    QListWidget::setFlow(QListView::LeftToRight);
-    QListWidget::setWrapping(true);
     QListWidget::setUniformItemSizes(true);
+
+    /* Settings for wrapping */
+    QListWidget::setWrapping(false);
+    QListWidget::setFlow(QListView::TopToBottom);
+
+    /* Settings for drag and drop */
+    QListWidget::setDragDropMode(DragDropMode::NoDragDrop);
     QListWidget::setDefaultDropAction(Qt::DropAction::MoveAction);
 
-    //Rebroadcasts the QListWidget's signal
+    //Rebroadcasts the current row changed into a usable restaurant ID
     connect(this, &QListWidget::currentRowChanged, this, &RestaurantList::rowToIDConverter);
-}
-
-/* Drag and drop */
-void RestaurantList::setDragDropMode(QAbstractItemView::DragDropMode v)
-{
-    QListWidget::setDragDropMode(v);
-}
-
-void RestaurantList::setDropActionMode(Qt::DropAction v)
-{
-    QListWidget::setDefaultDropAction(v);
 }
 
 /* List modifiers */
 void RestaurantList::addItem(ID id)
 {
-    QListWidgetItem* listItem = new QListWidgetItem(this);
+    QFont font("Font Awesome 5 Free", 13);
+    QString content = "\uf2e7 " + QString::number(id) + "\n\uf3c5 " + QString::number(id);
+
+    QListWidgetItem* listItem = new QListWidgetItem(content, this);
+    listItem->setSizeHint(itemSizeHint);
+    listItem->setFont(font);
+
+    //Store the ID into the item to reference a restaurant later on
     listItem->setData(Qt::ItemDataRole::UserRole, id);
-    listItem->setSizeHint(RestaurantItem::getSizeHint());
-
-    RestaurantItem* restWidget = new RestaurantItem(this, id);
-
-    QListWidget::setItemWidget(listItem, restWidget);
 }
 
 void RestaurantList::addItems(const IDList& idList)
@@ -77,5 +76,7 @@ void RestaurantList::clearItems()
 void RestaurantList::rowToIDConverter(int row) const
 {
     QListWidgetItem* item = QListWidget::item(row);
-    emit currentRestaurantChanged(item->data(Qt::ItemDataRole::UserRole).toInt());
+
+    if(item != nullptr)
+        emit currentRestaurantChanged(item->data(Qt::ItemDataRole::UserRole).toInt());
 }

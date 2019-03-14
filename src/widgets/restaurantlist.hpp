@@ -1,8 +1,8 @@
 #pragma once
-#include "src/widgets/restaurantitem.hpp"
 #include <vector>
 #include <QListWidget>
 
+using ID = int;
 using IDList = std::vector<ID>;
 
 class RestaurantList : public QListWidget
@@ -13,9 +13,8 @@ public:
     /* Constructor */
     RestaurantList(QWidget* parent);
 
-    /* Drag and drop */
-    void setDragDropMode(QAbstractItemView::DragDropMode);
-    void setDropActionMode(Qt::DropAction);
+    /* Static getters */
+    static QSize getItemSizeHint();
 
     /* List modifiers */
     void addItem(ID);
@@ -29,4 +28,7 @@ signals:
 
 private slots:
     void rowToIDConverter(int row) const;
+
+private:
+    static const QSize itemSizeHint;
 };

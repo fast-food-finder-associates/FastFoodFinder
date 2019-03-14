@@ -37,7 +37,17 @@ MainWindow::MainWindow()
 
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
+    m_restaurantList->setDragDropMode(QAbstractItemView::DragDrop);
+    m_restaurantList->setAcceptDrops(true);
     m_restaurantList->addItems(ids);
+
+    //TODO remove before merge
+    m_restaurantList2 = new RestaurantList(m_ui->restaurantList_2);
+    m_restaurantList2->setDragDropMode(QAbstractItemView::DragDrop);
+    m_restaurantList2->setAcceptDrops(true);
+
+    connect(m_restaurantList, &RestaurantList::currentRestaurantChanged, [&](int id){ m_ui->distance->setText(QString::number(id));});
+    connect(m_restaurantList2, &RestaurantList::currentRestaurantChanged, [&](int id){ m_ui->distance_2->setText(QString::number(id));});
 }
 
 /* Destructor */
