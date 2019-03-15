@@ -49,6 +49,13 @@ void NavBar::addItem(QString icon, QString label)
     NavItem* navItem = new NavItem(this, icon, label);
     setItemWidget(listWidgetItem, navItem);
 
+    QPalette palette;
+    palette.setColor(QPalette::Disabled, QPalette::Highlight, Qt::transparent);
+    palette.setColor(QPalette::Inactive, QPalette::Highlight, Qt::transparent);
+    palette.setColor(QPalette::Active, QPalette::Highlight, "#166ACC");
+
+    this->setPalette(palette);
+
     /* Allows the NavBar and NavItem to expand and shrink simultaneously */
     connect(this, &NavBar::expand, navItem, &NavItem::expand);
     connect(this, &NavBar::shrink, navItem, &NavItem::shrink);

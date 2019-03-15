@@ -7,7 +7,8 @@
 #include <QFontDatabase>
 #include <QDebug>
 #include <QResizeEvent>
-#include <QThread>
+#include <QTimer>
+
 const static std::vector<QString> restNames = {"MacDonalds","Chipotle","Dominos Pizza","KFC","Subway","In-N-Out Burger","Wendys","Jack in the Box","El Pollo Loco","Papa Johns Pizza","Pizza Hut","Sonic"};
 const static std::vector<double> distance = {8,4.29,12.41,7.56,2.67,5.94,8.44,12.75,9.19,14.54,10.1,6.6};
 
@@ -79,13 +80,21 @@ void MainWindow::changeView(int rowView)
     case 3:
         changeNavInvManage();
         m_navbar->setCurrentRow(5);
+        m_navbar->setDisabled(true);
         m_ui->mainViews->setCurrentWidget(m_ui->InvManageView);
+        QTimer::singleShot(300, m_navbar, [&]()
+        {
+            m_navbar->setEnabled(!m_navbar->isEnabled());
+            m_navbar->setCurrentRow(5);
+            m_navbar->item(5)->setFlags( m_navbar->item(5)->flags() | Qt::ItemIsEditable);
+            m_navbar->item(5)->setSelected(true);
+        });
+
         break;
     case 4:
         changeNavMain();
         m_navbar->setCurrentRow(0);
         m_ui->mainViews->setCurrentWidget(m_ui->dashboardView);
-        QThread::usleep(7000);
         break;
     case 5:
         m_ui->inventoryViews->setCurrentWidget(m_ui->searchView);
@@ -94,10 +103,10 @@ void MainWindow::changeView(int rowView)
         m_ui->inventoryViews->setCurrentWidget(m_ui->addView);
         break;
     case 7:
-        m_ui->mainViews->setCurrentWidget(m_ui->editView);
+        m_ui->inventoryViews->setCurrentWidget(m_ui->editView);
         break;
     case 8:
-        m_ui->mainViews->setCurrentWidget(m_ui->deleteView);
+        m_ui->inventoryViews->setCurrentWidget(m_ui->deleteView);
         break;
     }
 }

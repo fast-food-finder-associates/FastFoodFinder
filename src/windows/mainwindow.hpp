@@ -32,5 +32,4 @@ private:
 
     Ui::MainWindow* m_ui;
     NavBar* m_navbar;
-    NavBar* m_navbar_admin;
 };
