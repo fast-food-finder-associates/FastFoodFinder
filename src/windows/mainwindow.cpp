@@ -6,10 +6,8 @@
 #include <QFont>
 #include <QFontDatabase>
 #include <QDebug>
-#include <QResizeEvent>
 
-const static std::vector<QString> restNames = {"MacDonalds","Chipotle","Dominos Pizza","KFC","Subway","In-N-Out Burger","Wendys","Jack in the Box","El Pollo Loco","Papa Johns Pizza","Pizza Hut","Sonic"};
-const static std::vector<double> distance = {8,4.29,12.41,7.56,2.67,5.94,8.44,12.75,9.19,14.54,10.1,6.6};
+const static IDList ids = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 /* Constructors */
 MainWindow::MainWindow()
@@ -17,28 +15,39 @@ MainWindow::MainWindow()
 {
     m_ui->setupUi(this);
 
+    //Doesn't allow window resizing
+    setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
+
     //Requests a login
     connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
-    if(QFontDatabase::addApplicationFont(":/res/FontAwesome.ttf") == -1)
+    if(QFontDatabase::addApplicationFont(":/res/fontAwesome.ttf") == -1)
         qWarning() << "FontAwesome cannot be loaded !";
 
     /* Initialize navigation bar and items */
     m_navbar = new NavBar(m_ui->NavBarWidget, 90, 220);
     connect(m_navbar, &NavBar::currentItemChanged, this, &MainWindow::changeView);
     m_navbar->addItem("\uf0c9", "Dashboard");
-    m_navbar->addItem("\uf124", "Plan\na Trip");
-    m_navbar->addItem("\uf03A", "View\nRestaurants");
+    m_navbar->addItem("\uf5a0", "Plan\na Trip");
+    m_navbar->addItem("\uf0ca", "View\nRestaurants");
     m_navbar->addItem("\uf1c0", "Inventory\nManagement");
 
     //Initial view for dashboard
     changeView(0);
+
+    /* Restaurant list */
+    m_restaurantList = new RestaurantList(m_ui->restaurantList);
+    m_restaurantList->setDragDropMode(QAbstractItemView::DragDrop);
+    m_restaurantList->setAcceptDrops(true);
+    m_restaurantList->addItems(ids);
 }
 
 /* Destructor */
 MainWindow::~MainWindow()
 {
     delete m_ui;
+    delete m_navbar;
+    delete m_restaurantList;
 }
 
 void MainWindow::on_actionLogout_triggered()
@@ -65,15 +74,4 @@ void MainWindow::changeView(int rowView)
         m_ui->mainViews->setCurrentWidget(m_ui->inventoryManageView);
         break;
     }
-}
-
-/* Events */
-void MainWindow::resizeEvent(QResizeEvent*)
-{
-    /* Stacked widget */
-    m_ui->mainViews->setFixedSize(size());
-
-    /* Navigation bar */
-    m_ui->NavBarWidget->setFixedHeight(height());
-    m_navbar->setHeight(height());
 }

@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../res.qrc">
-    <normaloff>:/res/missing.png</normaloff>:/res/missing.png</iconset>
+    <normaloff>:/res/fff128.png</normaloff>:/res/fff128.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -32,6 +32,9 @@
    <property name="text">
     <string/>
    </property>
+   <property name="pixmap">
+    <pixmap resource="../../res.qrc">:/res/fff128.png</pixmap>
+   </property>
   </widget>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
@@ -43,7 +46,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QWidget" name="layoutWidget">
@@ -286,6 +289,18 @@
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_username</tabstop>
+  <tabstop>lineEdit_password</tabstop>
+  <tabstop>pushButton_login</tabstop>
+  <tabstop>pushButton_register</tabstop>
+  <tabstop>checkBox_showPW</tabstop>
+  <tabstop>lineEdit_usernameReg</tabstop>
+  <tabstop>lineEdit_passwordReg</tabstop>
+  <tabstop>lineEdit_confirmPassword</tabstop>
+  <tabstop>pushButton_confirmReg</tabstop>
+  <tabstop>pushButton_cancelReg</tabstop>
+ </tabstops>
  <resources>
   <include location="../../res.qrc"/>
  </resources>
