@@ -26,7 +26,7 @@ MainWindow::MainWindow()
         qWarning() << "FontAwesome cannot be loaded !";
 
     /* Initialize navigation bar and items */
-    m_navbar = new NavBar(m_ui->NavBarWidget, 90, 220, false);
+    m_navbar = new NavBar(m_ui->NavBarWidget, 90, 220);
     connect(m_navbar, &NavBar::currentItemChanged, this, &MainWindow::changeView);
 
     /* NavItems for main NavBar State */
@@ -79,13 +79,13 @@ void MainWindow::changeView(int rowView)
         break;
     case 3:
         changeNavInvManage();
-        m_navbar->setCurrentRow(5);
         m_navbar->setDisabled(true);
         m_ui->mainViews->setCurrentWidget(m_ui->InvManageView);
         QTimer::singleShot(300, m_navbar, [&]()
         {
             m_navbar->setEnabled(!m_navbar->isEnabled());
             m_navbar->item(5)->setSelected(true);
+            m_navbar->setCurrentRow(5);
         });
 
         break;
