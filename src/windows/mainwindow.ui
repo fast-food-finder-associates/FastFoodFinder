@@ -317,24 +317,6 @@ background-color: #B19CD9;
    <zorder>NavBarWidget</zorder>
    <zorder>mainViews</zorder>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="separator"/>
-    <addaction name="actionLogout"/>
-   </widget>
-   <addaction name="menuFile"/>
-  </widget>
   <action name="actionLogout">
    <property name="text">
     <string>Logout</string>

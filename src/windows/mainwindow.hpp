@@ -26,7 +26,7 @@ signals:
     void logout() const;
 
 private slots:
-    void on_actionLogout_triggered();
+    void logout();
     void changeView(int);
     void changeNavState(ViewStates);
 

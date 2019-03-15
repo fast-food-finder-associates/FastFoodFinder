@@ -6,6 +6,7 @@
 #include <QFontDatabase>
 #include <QDebug>
 #include <QTimer>
+#include <QMessageBox>
 #include "src/datastore/RestaurantDataStore.hpp"
 
 /* Constructors */
@@ -29,6 +30,7 @@ MainWindow::MainWindow()
     m_navbar->addItem("\uf5a0", "Plan\na Trip");
     m_navbar->addItem("\uf0ca", "View\nRestaurants");
     m_navbar->addItem("\uf1c0", "Inventory\nManagement");
+    m_navbar->addItem("\uf2f5", "Logout");
 
 
     /* NavItems for InvManagement NavBar State */
@@ -61,7 +63,8 @@ MainWindow::~MainWindow()
     delete m_restaurantList;
 }
 
-void MainWindow::on_actionLogout_triggered()
+/* Private slots */
+void MainWindow::logout()
 {
     emit logout();
 }
@@ -137,6 +140,11 @@ void MainWindow::changeNavState(ViewStates state)
         m_navbar->item(6)->setHidden(false);
         m_navbar->item(7)->setHidden(false);
         m_navbar->item(8)->setHidden(false);
+        break;
+    case 4:
+        QMessageBox::StandardButton reply = QMessageBox::question(this, "Logout", "Are you sure you want to logout?", QMessageBox::Yes | QMessageBox::No);
+        if(reply == QMessageBox::Yes)
+            logout();
         break;
     }
 }
