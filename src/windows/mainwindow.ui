@@ -33,154 +33,120 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <widget class="QStackedWidget" name="centralStack">
+   <widget class="QWidget" name="NavBarWidget" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>801</width>
-      <height>571</height>
+      <width>300</width>
+      <height>600</height>
      </rect>
     </property>
-    <property name="currentIndex">
-     <number>1</number>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
-    <widget class="QWidget" name="mainWindow">
-     <widget class="QWidget" name="NavBarWidget" native="true">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>301</width>
-        <height>601</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-     </widget>
-     <widget class="QStackedWidget" name="mainViews">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>0</y>
-        <width>711</width>
-        <height>601</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="dashboardView">
-       <property name="styleSheet">
-        <string notr="true">* {
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+   </widget>
+   <widget class="QStackedWidget" name="mainViews">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>0</y>
+      <width>711</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="currentIndex">
+     <number>3</number>
+    </property>
+    <widget class="QWidget" name="dashboardView">
+     <property name="styleSheet">
+      <string notr="true">* {
 background-color: orange;
 }</string>
-       </property>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>229</x>
-          <y>170</y>
-          <width>181</width>
-          <height>151</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Dashboard View</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="planTripView">
-       <property name="styleSheet">
-        <string notr="true">* {
-background-color: lightgreen;
-}</string>
-       </property>
-       <widget class="QLabel" name="label">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>140</y>
-          <width>121</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Plan Trip View</string>
-        </property>
-        <property name="scaledContents">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="viewRestaurantView">
-       <property name="styleSheet">
-        <string notr="true">* {
-background-color: lightblue;
-}</string>
-       </property>
-       <widget class="QLabel" name="label_2">
-        <property name="geometry">
-         <rect>
-          <x>210</x>
-          <y>170</y>
-          <width>191</width>
-          <height>101</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Restaurant Listings</string>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="InvManageWindow">
-     <widget class="QWidget" name="NavBarInvManageWidget" native="true">
+     </property>
+     <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>301</width>
-        <height>601</height>
+        <x>229</x>
+        <y>170</y>
+        <width>181</width>
+        <height>151</height>
        </rect>
       </property>
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <property name="styleSheet">
-       <string notr="true"/>
+      <property name="text">
+       <string>Dashboard View</string>
       </property>
      </widget>
+    </widget>
+    <widget class="QWidget" name="planTripView">
+     <property name="styleSheet">
+      <string notr="true">* {
+background-color: lightgreen;
+}</string>
+     </property>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>140</y>
+        <width>121</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Plan Trip View</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="viewRestaurantView">
+     <property name="styleSheet">
+      <string notr="true">* {
+background-color: lightblue;
+}</string>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>170</y>
+        <width>191</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Restaurant Listings</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="InvManageView">
      <widget class="QStackedWidget" name="inventoryViews">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>0</x>
         <y>0</y>
         <width>711</width>
         <height>601</height>
@@ -196,7 +162,7 @@ background-color: lightblue;
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="searchView">
        <property name="styleSheet">

@@ -26,6 +26,7 @@ NavItem::NavItem(QListWidget* parent, QString icon, QString label)
     setStyleSheet("* { background-color: none; color: white}");
 }
 
+
 /* Destructor */
 NavItem::~NavItem()
 {

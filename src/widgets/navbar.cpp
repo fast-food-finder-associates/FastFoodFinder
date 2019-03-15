@@ -3,15 +3,21 @@
 #include <QPropertyAnimation>
 
 /* Constructor */
-NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
+NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth, bool expand)
     : QListWidget(parent), m_minWidth(minWidth), m_maxWidth(maxWidth)
 {
     parent->raise();
     setStyleSheet("QListWidget { background-color: #303030; }");
 
     //Initial size
-    resize(m_minWidth, parent->height());
-
+    if(!expand)
+    {
+        resize(m_minWidth, parent->height());
+    }
+    else
+    {
+        resize(m_maxWidth, parent->height());
+    }
     connect(this, &QListWidget::currentRowChanged, this, &NavBar::currentItemChanged);
 }
 

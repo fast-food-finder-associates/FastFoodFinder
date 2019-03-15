@@ -7,7 +7,7 @@ class NavBar : public QListWidget
 
 public:
     /* Constructor */
-    NavBar(QWidget* parent, int minWidth, int maxWidth);
+    NavBar(QWidget* parent, int minWidth, int maxWidth, bool expand);
 
     /* Setters */
     void setHeight(int);

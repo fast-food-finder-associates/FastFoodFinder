@@ -21,7 +21,8 @@ public:
 private slots:
     void on_actionLogout_triggered();
     void changeView(int);
-    void changeViewInvManage(int);
+    void changeNavInvManage();
+    void changeNavMain();
 
 signals:
     void changeCentralStack(QWidget *);
