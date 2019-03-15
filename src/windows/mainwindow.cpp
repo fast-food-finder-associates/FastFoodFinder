@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QResizeEvent>
 #include <QTimer>
+#include <QCursor>
 
 const static std::vector<QString> restNames = {"MacDonalds","Chipotle","Dominos Pizza","KFC","Subway","In-N-Out Burger","Wendys","Jack in the Box","El Pollo Loco","Papa Johns Pizza","Pizza Hut","Sonic"};
 const static std::vector<double> distance = {8,4.29,12.41,7.56,2.67,5.94,8.44,12.75,9.19,14.54,10.1,6.6};
@@ -81,13 +82,12 @@ void MainWindow::changeView(int rowView)
         changeNavInvManage();
         m_navbar->setDisabled(true);
         m_ui->mainViews->setCurrentWidget(m_ui->InvManageView);
-        QTimer::singleShot(300, m_navbar, [&]()
+        QTimer::singleShot(100, m_navbar, [&]()
         {
             m_navbar->setEnabled(!m_navbar->isEnabled());
             m_navbar->item(5)->setSelected(true);
             m_navbar->setCurrentRow(5);
         });
-
         break;
     case 4:
         changeNavMain();
