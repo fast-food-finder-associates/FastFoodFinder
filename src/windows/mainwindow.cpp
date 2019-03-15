@@ -85,8 +85,6 @@ void MainWindow::changeView(int rowView)
         QTimer::singleShot(300, m_navbar, [&]()
         {
             m_navbar->setEnabled(!m_navbar->isEnabled());
-            m_navbar->setCurrentRow(5);
-            m_navbar->item(5)->setFlags( m_navbar->item(5)->flags() | Qt::ItemIsEditable);
             m_navbar->item(5)->setSelected(true);
         });
 
