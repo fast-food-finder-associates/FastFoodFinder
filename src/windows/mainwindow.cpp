@@ -26,7 +26,7 @@ MainWindow::MainWindow()
 
     /* Initialize navigation bar and items */
     m_navbar = new NavBar(m_ui->NavBarWidget, 90, 220);
-    connect(m_navbar, &NavBar::currentItemChanged, this, &MainWindow::changeView);
+    connect(m_navbar, &NavBar::currentRowChanged, this, &MainWindow::changeView);
     m_navbar->addItem("\uf0c9", "Dashboard");
     m_navbar->addItem("\uf5a0", "Plan\na Trip");
     m_navbar->addItem("\uf0ca", "View\nRestaurants");

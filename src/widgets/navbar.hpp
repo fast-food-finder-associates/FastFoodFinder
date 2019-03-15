@@ -14,12 +14,12 @@ public:
     void setMinWidth(int);
     void setMaxWidth(int);
 
+    /* List modifiers */
     void addItem(QString icon, QString label);
 
 signals:
     void expand();
     void shrink();
-    void currentItemChanged(int);
 
 private:
     /* Events */
