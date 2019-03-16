@@ -19,9 +19,13 @@ public:
     /* Destructor */
     ~MainWindow() override;
 
+    /* Enum class for each view state */
+    enum class ViewStates { MAIN, ADMIN };
+
 private slots:
     void on_actionLogout_triggered();
     void changeView(int);
+    void changeNavState(ViewStates);
 
 private:
     Ui::MainWindow* m_ui;

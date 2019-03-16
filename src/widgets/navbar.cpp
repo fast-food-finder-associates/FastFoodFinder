@@ -15,6 +15,14 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
 
     //Sets the parent's size
     parent->resize(m_minWidth, parent->height());
+
+    /* Setting background color for highlight - when NavItem is selected this will be it's background color */
+    QPalette palette;
+    palette.setColor(QPalette::Disabled, QPalette::Highlight, Qt::darkBlue);
+    palette.setColor(QPalette::Inactive, QPalette::Highlight, Qt::darkBlue);
+    palette.setColor(QPalette::Active, QPalette::Highlight,  Qt::darkBlue);
+    this->setPalette(palette);
+
 }
 
 /* Setters */
