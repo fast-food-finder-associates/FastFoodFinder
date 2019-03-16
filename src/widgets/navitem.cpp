@@ -24,7 +24,7 @@ NavItem::NavItem(QListWidget* parent, QString icon, QString label)
     m_ui->navIcon->setFont(font);
     m_ui->navIcon->setText(icon);
 
-    setStyleSheet("* { background-color: none; color: white}");
+    setStyleSheet("* { color: white; }");
 }
 
 /* Destructor */
@@ -47,10 +47,10 @@ void NavItem::shrink() const
 /* Events */
 void NavItem::enterEvent(QEvent*)
 {
-    setStyleSheet("* { background-color: white; color: black }");
+    setStyleSheet("* { color: black; }");
 }
 
 void NavItem::leaveEvent(QEvent*)
 {
-    setStyleSheet("* { background-color: none; color: white }");
+    setStyleSheet("* { color: white; }");
 }
