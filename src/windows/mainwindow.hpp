@@ -20,12 +20,12 @@ public:
     ~MainWindow() override;
 
     /* Enum class for each view state */
-    enum class viewStates { MAIN, ADMIN };
+    enum class ViewStates { MAIN, ADMIN };
 
 private slots:
     void on_actionLogout_triggered();
     void changeView(int);
-    void changeNavState(viewStates);
+    void changeNavState(ViewStates);
 
 private:
     Ui::MainWindow* m_ui;
