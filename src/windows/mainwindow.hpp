@@ -22,6 +22,8 @@ public:
 private slots:
     void on_actionLogout_triggered();
     void changeView(int);
+    void changeNavInvManage();
+    void changeNavMain();
 
 private:
     Ui::MainWindow* m_ui;

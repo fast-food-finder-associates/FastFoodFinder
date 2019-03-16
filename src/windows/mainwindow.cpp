@@ -6,6 +6,8 @@
 #include <QFont>
 #include <QFontDatabase>
 #include <QDebug>
+#include <QResizeEvent>
+#include <QTimer>
 
 const static IDList ids = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
@@ -27,10 +29,23 @@ MainWindow::MainWindow()
     /* Initialize navigation bar and items */
     m_navbar = new NavBar(m_ui->NavBarWidget, 90, 220);
     connect(m_navbar, &NavBar::currentRowChanged, this, &MainWindow::changeView);
+
+    /* NavItems for main NavBar State */
     m_navbar->addItem("\uf0c9", "Dashboard");
     m_navbar->addItem("\uf5a0", "Plan\na Trip");
-    m_navbar->addItem("\uf0ca", "View\nRestaurants");
+    m_navbar->addItem("\uf03A", "View\nRestaurants");
     m_navbar->addItem("\uf1c0", "Inventory\nManagement");
+
+
+    /* NavItems for InvManagement NavBar State */
+    m_navbar->addItem("\uf137", "Back");
+    m_navbar->addItem("\uf002", "Search\nRestaurants");
+    m_navbar->addItem("\uf0fe", "Add A\nRestaurant");
+    m_navbar->addItem("\uf044", "Edit A\nRestaurant");
+    m_navbar->addItem("\uf2ed", "Delete A\nRestaurant");
+
+    // Toggle hide on the Top five NavItems "back" to -> "Delete A\nRestaurant"
+    changeNavMain();
 
     //Initial view for dashboard
     changeView(0);
@@ -40,6 +55,7 @@ MainWindow::MainWindow()
     m_restaurantList->setDragDropMode(QAbstractItemView::DragDrop);
     m_restaurantList->setAcceptDrops(true);
     m_restaurantList->addItems(ids);
+    m_navbar->setCurrentRow(0);
 }
 
 /* Destructor */
@@ -57,6 +73,7 @@ void MainWindow::on_actionLogout_triggered()
     Login::requestLogin();
 }
 
+/*Swich views for stacks in mainView within the mainWindow page (page 1) in centralStack*/
 void MainWindow::changeView(int rowView)
 {
     switch(rowView)
@@ -71,7 +88,71 @@ void MainWindow::changeView(int rowView)
         m_ui->mainViews->setCurrentWidget(m_ui->viewRestaurantView);
         break;
     case 3:
-        m_ui->mainViews->setCurrentWidget(m_ui->inventoryManageView);
+        changeNavInvManage();
+        m_navbar->setDisabled(true);
+        m_ui->mainViews->setCurrentWidget(m_ui->InvManageView);
+        QTimer::singleShot(25, m_navbar, [&]()
+        {
+            m_navbar->setEnabled(!m_navbar->isEnabled());
+            m_navbar->item(5)->setSelected(true);
+            m_navbar->setCurrentRow(5);
+        });
+        break;
+    case 4:
+        changeNavMain();
+        m_navbar->setCurrentRow(0);
+        m_ui->mainViews->setCurrentWidget(m_ui->dashboardView);
+        break;
+    case 5:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->searchView);
+        break;
+    case 6:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->addView);
+        break;
+    case 7:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->editView);
+        break;
+    case 8:
+        m_ui->inventoryViews->setCurrentWidget(m_ui->deleteView);
         break;
     }
 }
+
+/* Toggle NavItems for main NavBar State */
+void MainWindow::changeNavInvManage()
+{
+    m_navbar->item(0)->setHidden(true);
+    m_navbar->item(1)->setHidden(true);
+    m_navbar->item(2)->setHidden(true);
+    m_navbar->item(3)->setHidden(true);
+    m_navbar->item(4)->setHidden(false);
+    m_navbar->item(5)->setHidden(false);
+    m_navbar->item(6)->setHidden(false);
+    m_navbar->item(7)->setHidden(false);
+    m_navbar->item(8)->setHidden(false);
+}
+
+/* Toggle NavItems for InvManagement NavBar State */
+void MainWindow::changeNavMain()
+{
+    m_navbar->item(0)->setHidden(false);
+    m_navbar->item(1)->setHidden(false);
+    m_navbar->item(2)->setHidden(false);
+    m_navbar->item(3)->setHidden(false);
+    m_navbar->item(4)->setHidden(true);
+    m_navbar->item(5)->setHidden(true);
+    m_navbar->item(6)->setHidden(true);
+    m_navbar->item(7)->setHidden(true);
+    m_navbar->item(8)->setHidden(true);
+}
+
+///* Events */
+//void MainWindow::resizeEvent(QResizeEvent*)
+//{
+//    /* Stacked widget */
+//    m_ui->mainViews->setFixedSize(size());
+
+//    /* Navigation bar */
+//    m_ui->NavBarWidget->setFixedHeight(height());
+//    m_navbar->setHeight(height());
+//}
