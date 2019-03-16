@@ -44,7 +44,7 @@ MainWindow::MainWindow()
     m_navbar->addItem("\uf2ed", "Delete A\nRestaurant");
 
     // Toggle hide on the Top five NavItems "back" to -> "Delete A\nRestaurant"
-    changeNavMain();
+    changeNavState(viewStates::MAIN);
 
     //Initial view for dashboard
     changeView(0);
@@ -54,7 +54,6 @@ MainWindow::MainWindow()
     m_restaurantList->setDragDropMode(QAbstractItemView::DragDrop);
     m_restaurantList->setAcceptDrops(true);
     m_restaurantList->addItems(ids);
-    m_navbar->setCurrentRow(0);
 }
 
 /* Destructor */
@@ -87,10 +86,10 @@ void MainWindow::changeView(int rowView)
         m_ui->mainViews->setCurrentWidget(m_ui->viewRestaurantView);
         break;
     case 3:
-        changeNavInvManage();
+        changeNavState(viewStates::ADMIN);
         m_navbar->setDisabled(true);
         m_ui->mainViews->setCurrentWidget(m_ui->InvManageView);
-        QTimer::singleShot(25, m_navbar, [&]()
+        QTimer::singleShot(15, m_navbar, [&]()
         {
             m_navbar->setEnabled(!m_navbar->isEnabled());
             m_navbar->item(5)->setSelected(true);
@@ -98,7 +97,7 @@ void MainWindow::changeView(int rowView)
         });
         break;
     case 4:
-        changeNavMain();
+        changeNavState(viewStates::MAIN);
         m_navbar->setCurrentRow(0);
         m_ui->mainViews->setCurrentWidget(m_ui->dashboardView);
         break;
@@ -117,30 +116,32 @@ void MainWindow::changeView(int rowView)
     }
 }
 
-/* Toggle NavItems for main NavBar State */
-void MainWindow::changeNavInvManage()
+/* Switches between MAIN and ADMIN NavBar State */
+void MainWindow::changeNavState(viewStates state)
 {
-    m_navbar->item(0)->setHidden(true);
-    m_navbar->item(1)->setHidden(true);
-    m_navbar->item(2)->setHidden(true);
-    m_navbar->item(3)->setHidden(true);
-    m_navbar->item(4)->setHidden(false);
-    m_navbar->item(5)->setHidden(false);
-    m_navbar->item(6)->setHidden(false);
-    m_navbar->item(7)->setHidden(false);
-    m_navbar->item(8)->setHidden(false);
-}
-
-/* Toggle NavItems for InvManagement NavBar State */
-void MainWindow::changeNavMain()
-{
-    m_navbar->item(0)->setHidden(false);
-    m_navbar->item(1)->setHidden(false);
-    m_navbar->item(2)->setHidden(false);
-    m_navbar->item(3)->setHidden(false);
-    m_navbar->item(4)->setHidden(true);
-    m_navbar->item(5)->setHidden(true);
-    m_navbar->item(6)->setHidden(true);
-    m_navbar->item(7)->setHidden(true);
-    m_navbar->item(8)->setHidden(true);
+    switch(state)
+    {
+    case viewStates::MAIN:
+        m_navbar->item(0)->setHidden(false);
+        m_navbar->item(1)->setHidden(false);
+        m_navbar->item(2)->setHidden(false);
+        m_navbar->item(3)->setHidden(false);
+        m_navbar->item(4)->setHidden(true);
+        m_navbar->item(5)->setHidden(true);
+        m_navbar->item(6)->setHidden(true);
+        m_navbar->item(7)->setHidden(true);
+        m_navbar->item(8)->setHidden(true);
+        break;
+    case viewStates::ADMIN:
+        m_navbar->item(0)->setHidden(true);
+        m_navbar->item(1)->setHidden(true);
+        m_navbar->item(2)->setHidden(true);
+        m_navbar->item(3)->setHidden(true);
+        m_navbar->item(4)->setHidden(false);
+        m_navbar->item(5)->setHidden(false);
+        m_navbar->item(6)->setHidden(false);
+        m_navbar->item(7)->setHidden(false);
+        m_navbar->item(8)->setHidden(false);
+        break;
+    }
 }

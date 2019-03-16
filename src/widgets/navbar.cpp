@@ -15,6 +15,14 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
 
     //Sets the parent's size
     parent->resize(m_minWidth, parent->height());
+
+    /* Setting background color for highlight - when NavItem is selected this will be it's background color */
+    QPalette palette;
+    palette.setColor(QPalette::Disabled, QPalette::Highlight, Qt::darkBlue);
+    palette.setColor(QPalette::Inactive, QPalette::Highlight, Qt::darkBlue);
+    palette.setColor(QPalette::Active, QPalette::Highlight,  Qt::darkBlue);
+    this->setPalette(palette);
+
 }
 
 /* Setters */
@@ -45,13 +53,6 @@ void NavBar::addItem(QString icon, QString label)
     /* Set the QListWidgetItem to hold a NavItem */
     NavItem* navItem = new NavItem(this, icon, label);
     setItemWidget(listWidgetItem, navItem);
-
-    /* Setting background color for highlight - when NavItem is selected this will be it's background color */
-    QPalette palette;
-    palette.setColor(QPalette::Disabled, QPalette::Highlight, Qt::darkBlue);
-    palette.setColor(QPalette::Inactive, QPalette::Highlight, Qt::darkBlue);
-    palette.setColor(QPalette::Active, QPalette::Highlight,  Qt::darkBlue);
-    this->setPalette(palette);
 
     /* Allows the NavBar and NavItem to expand and shrink simultaneously */
     connect(this, &NavBar::expand, navItem, &NavItem::expand);
