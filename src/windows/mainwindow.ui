@@ -233,6 +233,7 @@ background-color: lightgreen;
              <item row="0" column="0">
               <widget class="QLabel" name="label_8">
                <property name="text">
+                <string/>
                </property>
               </widget>
              </item>
@@ -277,7 +278,7 @@ background-color: lightblue;
       <widget class="QWidget" name="deleteView">
        <property name="styleSheet">
         <string notr="true">QWidget#deleteView {
-background-color: &quot;#B19CD9&quot;;
+background-color: #B19CD9;
 }</string>
        </property>
        <widget class="QLabel" name="label_7">

@@ -44,7 +44,7 @@ MainWindow::MainWindow()
     m_navbar->addItem("\uf2ed", "Delete A\nRestaurant");
 
     // Toggle hide on the Top five NavItems "back" to -> "Delete A\nRestaurant"
-    changeNavState(viewStates::MAIN);
+    changeNavState(ViewStates::MAIN);
 
     //Initial view for dashboard
     changeView(0);
@@ -86,7 +86,7 @@ void MainWindow::changeView(int rowView)
         m_ui->mainViews->setCurrentWidget(m_ui->viewRestaurantView);
         break;
     case 3:
-        changeNavState(viewStates::ADMIN);
+        changeNavState(ViewStates::ADMIN);
         m_navbar->setDisabled(true);
         m_ui->mainViews->setCurrentWidget(m_ui->InvManageView);
         QTimer::singleShot(15, m_navbar, [&]()
@@ -97,7 +97,7 @@ void MainWindow::changeView(int rowView)
         });
         break;
     case 4:
-        changeNavState(viewStates::MAIN);
+        changeNavState(ViewStates::MAIN);
         m_navbar->setCurrentRow(0);
         m_ui->mainViews->setCurrentWidget(m_ui->dashboardView);
         break;
@@ -117,11 +117,11 @@ void MainWindow::changeView(int rowView)
 }
 
 /* Switches between MAIN and ADMIN NavBar State */
-void MainWindow::changeNavState(viewStates state)
+void MainWindow::changeNavState(ViewStates state)
 {
     switch(state)
     {
-    case viewStates::MAIN:
+    case ViewStates::MAIN:
         m_navbar->item(0)->setHidden(false);
         m_navbar->item(1)->setHidden(false);
         m_navbar->item(2)->setHidden(false);
@@ -132,7 +132,7 @@ void MainWindow::changeNavState(viewStates state)
         m_navbar->item(7)->setHidden(true);
         m_navbar->item(8)->setHidden(true);
         break;
-    case viewStates::ADMIN:
+    case ViewStates::ADMIN:
         m_navbar->item(0)->setHidden(true);
         m_navbar->item(1)->setHidden(true);
         m_navbar->item(2)->setHidden(true);
