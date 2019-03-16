@@ -11,6 +11,7 @@ NavItem::NavItem(QListWidget* parent, QString icon, QString label)
     /* fontAwesome has built-in icons */
     QFont font;
     font.setFamily("Font Awesome 5 Free");
+
     /* Label */
     m_ui->navLabel->setWordWrap(true);
     font.setPixelSize(16);
@@ -25,7 +26,6 @@ NavItem::NavItem(QListWidget* parent, QString icon, QString label)
 
     setStyleSheet("* { color: white; }");
 }
-
 
 /* Destructor */
 NavItem::~NavItem()
@@ -45,12 +45,12 @@ void NavItem::shrink() const
 }
 
 /* Events */
-void NavItem::enterEvent(QEvent* e)
+void NavItem::enterEvent(QEvent*)
 {
     setStyleSheet("* { color: black; }");
 }
 
-void NavItem::leaveEvent(QEvent* e)
+void NavItem::leaveEvent(QEvent*)
 {
     setStyleSheet("* { color: white; }");
 }

@@ -6,7 +6,6 @@
 #include <QFont>
 #include <QFontDatabase>
 #include <QDebug>
-#include <QResizeEvent>
 #include <QTimer>
 
 const static IDList ids = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -33,7 +32,7 @@ MainWindow::MainWindow()
     /* NavItems for main NavBar State */
     m_navbar->addItem("\uf0c9", "Dashboard");
     m_navbar->addItem("\uf5a0", "Plan\na Trip");
-    m_navbar->addItem("\uf03A", "View\nRestaurants");
+    m_navbar->addItem("\uf0ca", "View\nRestaurants");
     m_navbar->addItem("\uf1c0", "Inventory\nManagement");
 
 
@@ -145,14 +144,3 @@ void MainWindow::changeNavMain()
     m_navbar->item(7)->setHidden(true);
     m_navbar->item(8)->setHidden(true);
 }
-
-///* Events */
-//void MainWindow::resizeEvent(QResizeEvent*)
-//{
-//    /* Stacked widget */
-//    m_ui->mainViews->setFixedSize(size());
-
-//    /* Navigation bar */
-//    m_ui->NavBarWidget->setFixedHeight(height());
-//    m_navbar->setHeight(height());
-//}
