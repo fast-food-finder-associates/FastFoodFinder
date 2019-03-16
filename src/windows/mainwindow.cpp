@@ -43,7 +43,7 @@ MainWindow::MainWindow()
     m_navbar->addItem("\uf044", "Edit A\nRestaurant");
     m_navbar->addItem("\uf2ed", "Delete A\nRestaurant");
 
-    // Toggle hide on the Top five NavItems "back" to -> "Delete A\nRestaurant"
+    // Set's MAIN NavItems to show and ADMIN NavItems to hide
     changeNavState(ViewStates::MAIN);
 
     //Initial view for dashboard
@@ -91,7 +91,7 @@ void MainWindow::changeView(int rowView)
         m_ui->mainViews->setCurrentWidget(m_ui->InvManageView);
         QTimer::singleShot(15, m_navbar, [&]()
         {
-            m_navbar->setEnabled(!m_navbar->isEnabled());
+            m_navbar->setEnabled(true);
             m_navbar->item(5)->setSelected(true);
             m_navbar->setCurrentRow(5);
         });
