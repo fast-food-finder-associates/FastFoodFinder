@@ -51,14 +51,16 @@ void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
     MenuListItem* widget = new MenuListItem(this, restID, menuItem);
     QListWidget::setItemWidget(listItem, widget);
 
-    //Allows all MenuItem's to toggle its quantity widgets through the emitter
-    connect(this, &MenuList::showQtyEmitter, widget, &MenuListItem::showQty);
+        //Allows all MenuItem's to toggle its quantity widgets through the emitter
+        connect(this, &MenuList::showQtyEmitter, widget, &MenuListItem::showQty);
 
-    //Handles the quantity change of a menu item
-    connect(widget, &MenuListItem::quantityChanged, this, &MenuList::quantityChangedHandler);
+        //Handles the quantity change of a menu item
+        connect(widget, &MenuListItem::quantityChanged, this, &MenuList::quantityChangedHandler);
 
-    //Resets each spinbox of each MenuItem when emitted
-    connect(this, &MenuList::resetQtyEmitter, widget, &MenuListItem::resetQty);
+        //Resets each spinbox of each MenuItem when emitted
+        connect(this, &MenuList::resetQtyEmitter, widget, &MenuListItem::resetQty);
+    }
+
 }
 
 void MenuList::addAllItems(const Restaurant& restaurant)
