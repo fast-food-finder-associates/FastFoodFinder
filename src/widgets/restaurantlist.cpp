@@ -40,12 +40,6 @@ void RestaurantList::addItem(const Restaurant& rest)
     listItem->setData(Qt::ItemDataRole::UserRole, rest.GetNumber());
 }
 
-void RestaurantList::addItems(Iterator begin, Iterator end)
-{
-    for(Iterator it = begin; it != end; ++it)
-        addItem(*it);
-}
-
 void RestaurantList::removeItem(const Restaurant& rest)
 {
     for(int i = 0; i < QListWidget::count(); i++)
@@ -60,12 +54,6 @@ void RestaurantList::removeItem(const Restaurant& rest)
             return;
         }
     }
-}
-
-void RestaurantList::removeItems(Iterator begin, Iterator end)
-{
-    for(Iterator it = begin; it != end; ++it)
-        removeItem(*it);
 }
 
 void RestaurantList::clearItems()
