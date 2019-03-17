@@ -31,7 +31,14 @@ HEADERS += \
     src/windows/mainwindow.hpp \
     src/widgets/navbar.hpp \
     src/widgets/navitem.hpp \
-    src/widgets/restaurantlist.hpp
+    src/widgets/restaurantlist.hpp \
+    src/datastore/MyDblLinkList.h \
+    src/datastore/Restaurant.h \
+    src/datastore/RestaurantDataStore.h \
+    src/datastore/Trip.h \
+    src/datastore/TripDataStore.h \
+    src/datastore/User.h \
+    src/datastore/UserDataStore.h
 
 
 SOURCES += \
@@ -41,7 +48,13 @@ SOURCES += \
     src/windows/mainwindow.cpp \
     src/widgets/navbar.cpp \
     src/widgets/navitem.cpp \
-    src/widgets/restaurantlist.cpp
+    src/widgets/restaurantlist.cpp \
+    src/datastore/Restaurant.cpp \
+    src/datastore/RestaurantDataStore.cpp \
+    src/datastore/Trip.cpp \
+    src/datastore/TripDataStore.cpp \
+    src/datastore/User.cpp \
+    src/datastore/UserDataStore.cpp
 
 FORMS += \
     src/windows/login.ui \
