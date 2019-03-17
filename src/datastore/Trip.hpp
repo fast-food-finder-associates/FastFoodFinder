@@ -31,7 +31,7 @@ public:
     friend ostream& operator<<(ostream& os, const Trip& trip);
 
     // No arg constructor
-    Trip() { m_nNumber = -1; m_bInitialized = false; };
+    Trip() { m_nNumber = -1; m_bInitialized = false; }
 
     // Destructor
     virtual ~Trip();

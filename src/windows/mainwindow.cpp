@@ -8,6 +8,7 @@
 #include <QTimer>
 #include <QMessageBox>
 #include "src/datastore/RestaurantDataStore.hpp"
+#include "src/datastore/TripDataStore.hpp"
 
 /* Constructors */
 MainWindow::MainWindow()

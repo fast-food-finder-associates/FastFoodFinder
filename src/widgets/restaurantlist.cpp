@@ -78,3 +78,25 @@ void RestaurantList::rowToIDConverter(int row) const
     if(item != nullptr)
         emit currentRestaurantChanged(item->data(Qt::ItemDataRole::UserRole).toInt());
 }
+
+/* addListToTripDB takes restaurants(items) held within it's list and populates m_tripChoiceStorage (vector) with them */
+void RestaurantList::addListToTripDB(Iterator begin, Iterator end)
+{
+    // This only needs to be set once, if called again reset items to avoid duplicate items
+    m_tripChoiceStorage.clear();
+
+    for (int i = 0; i < QListWidget::count(); ++i)
+    {
+        QListWidgetItem* item = QListWidget::item(i);
+        QVariant data = item->data(Qt::ItemDataRole::UserRole);
+
+        for(Iterator it = begin; it != end; ++it)
+        {
+            if(data.toInt() == (*it).GetNumber())
+            {
+                m_tripChoiceStorage.push_back(*it);
+                break;
+            }
+        }
+    }
+}

@@ -25,6 +25,9 @@ public:
     template<typename Iterator>
     void removeItems(Iterator begin, Iterator end);
 
+    // m_tripCoiceStorage modifier
+    void addListToTripDB(Iterator begin, Iterator end);
+
 signals:
     void currentRestaurantChanged(RestaurantID) const;
 
@@ -33,6 +36,7 @@ private slots:
 
 private:
     static const QSize itemSizeHint;
+    std::vector<Restaurant> m_tripChoiceStorage;
 };
 
 /* Templated getters */
