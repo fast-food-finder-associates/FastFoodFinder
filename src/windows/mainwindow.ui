@@ -46,7 +46,7 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
@@ -79,8 +79,8 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>140</y>
+        <x>190</x>
+        <y>10</y>
         <width>121</width>
         <height>61</height>
        </rect>
@@ -90,6 +90,39 @@
       </property>
       <property name="scaledContents">
        <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QWidget" name="planTripList" native="true">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>0</y>
+        <width>191</width>
+        <height>600</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="planTripList_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>109</y>
+        <width>381</width>
+        <height>491</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="TripButton">
+      <property name="geometry">
+       <rect>
+        <x>323</x>
+        <y>40</y>
+        <width>151</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ready To Take Trip</string>
       </property>
      </widget>
     </widget>

@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "src/datastore/RestaurantDataStore.hpp"
 #include "src/windows/login.hpp"
+#include "src/datastore/TripDataStore.hpp"
 
 /* Constructors */
 MainWindow::MainWindow()
