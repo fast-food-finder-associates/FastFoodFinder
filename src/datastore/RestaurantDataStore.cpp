@@ -114,7 +114,7 @@ RestaurantDataStore::RestaurantDataStore()
 
 Restaurant &RestaurantDataStore::FindbyNumber(int Number)
 {
-    for (MyDblLinkList<Restaurant>::iterator it = list.begin(); it != list.end(); ++it)
+    for (std::list<Restaurant>::iterator it = list.begin(); it != list.end(); ++it)
     {
         if ( (*it).m_nNumber == Number)
         {
@@ -126,7 +126,7 @@ Restaurant &RestaurantDataStore::FindbyNumber(int Number)
 
 void RestaurantDataStore::printAsDebug(bool printeol, bool printcontent) const
 {
-    list.printAsDebug(printeol,printcontent);
+//    list.printAsDebug(printeol,printcontent);
 }
 
 // Destructor implementation

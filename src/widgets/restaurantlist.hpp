@@ -1,9 +1,7 @@
 #pragma once
 #include <vector>
 #include <QListWidget>
-
-using ID = int;
-using IDList = std::vector<ID>;
+#include "src/datastore/Restaurant.hpp"
 
 class RestaurantList : public QListWidget
 {
@@ -15,16 +13,20 @@ public:
 
     /* Static getters */
     static QSize getItemSizeHint();
+    template<typename Container>
+    void getRestaurantIDs(Container&) const;
 
     /* List modifiers */
-    void addItem(ID);
-    void addItems(const IDList&);
-    void removeItem(ID);
-    void removeItems(const IDList&);
+    void addItem(const Restaurant&);
+    template<typename Iterator>
+    void addItems(Iterator begin, Iterator end);
+    void removeItem(const Restaurant&);
+    template<typename Iterator>
+    void removeItems(Iterator begin, Iterator end);
     void clearItems();
 
 signals:
-    void currentRestaurantChanged(ID) const;
+    void currentRestaurantChanged(int ID) const;
 
 private slots:
     void rowToIDConverter(int row) const;
@@ -32,3 +34,30 @@ private slots:
 private:
     static const QSize itemSizeHint;
 };
+
+/* Templated getters */
+template<typename Container>
+void RestaurantList::getRestaurantIDs(Container& container) const
+{
+    for(int i = 0; i < QListWidget::count(); i++)
+    {
+        QListWidgetItem* item = QListWidget::item(i);
+        QVariant data = item->data(Qt::ItemDataRole::UserRole);
+        container.push_back(data.toInt());
+    }
+}
+
+/* Templated list modifiers */
+template<typename Iterator>
+void RestaurantList::addItems(Iterator begin, Iterator end)
+{
+    for(Iterator it = begin; it != end; ++it)
+        addItem(*it);
+}
+
+template<typename Iterator>
+void RestaurantList::removeItems(Iterator begin, Iterator end)
+{
+    for(Iterator it = begin; it != end; ++it)
+        removeItem(*it);
+}

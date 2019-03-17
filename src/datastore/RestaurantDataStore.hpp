@@ -29,8 +29,7 @@ public:
     void printAsDebug(bool printeol, bool printcontent) const;
     Restaurant &FindbyNumber(int Number);
 
-    //std::list<Restaurant> list;
-    MyDblLinkList<Restaurant> list;
+    std::list<Restaurant> list;
 
 private:
 

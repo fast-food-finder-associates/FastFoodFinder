@@ -26,45 +26,34 @@ RestaurantList::RestaurantList(QWidget* parent)
 }
 
 /* List modifiers */
-void RestaurantList::addItem(ID id)
+void RestaurantList::addItem(const Restaurant& rest)
 {
     QFont font("Font Awesome 5 Free", 12);
-    QString content = "\uf2e7 " + QString::number(id) + "\n\uf3c5 " + QString::number(id); //TODO get name and distance from ID
+    QString content = "\uf2e7 " + QString::fromStdString(rest.GetName()) + "\n" +
+                      "\uf3c5 " + QString::number(rest.GetDistSaddleback(), 'f', 2) + " mi.";
 
     QListWidgetItem* listItem = new QListWidgetItem(content, this);
     listItem->setSizeHint(itemSizeHint);
     listItem->setFont(font);
 
     //Store the ID into the item to reference a restaurant later on
-    listItem->setData(Qt::ItemDataRole::UserRole, id);
+    listItem->setData(Qt::ItemDataRole::UserRole, rest.GetNumber());
 }
 
-void RestaurantList::addItems(const IDList& idList)
-{
-    for(ID id : idList)
-        addItem(id);
-}
-
-void RestaurantList::removeItem(ID id)
+void RestaurantList::removeItem(const Restaurant& rest)
 {
     for(int i = 0; i < QListWidget::count(); i++)
     {
         QListWidgetItem* item = QListWidget::item(i);
         QVariant data = item->data(Qt::ItemDataRole::UserRole);
 
-        if(data.toInt() == id)
+        if(data.toInt() == rest.GetNumber())
         {
             QListWidget::removeItemWidget(item);
             QListWidget::model()->removeRow(i);
             return;
         }
     }
-}
-
-void RestaurantList::removeItems(const IDList& idList)
-{
-    for(ID id : idList)
-        removeItem(id);
 }
 
 void RestaurantList::clearItems()
