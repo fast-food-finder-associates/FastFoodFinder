@@ -7,12 +7,22 @@ NavBar::NavBar(QWidget* parent, int minWidth, int maxWidth)
     : QListWidget(parent), m_minWidth(minWidth), m_maxWidth(maxWidth)
 {
     parent->raise();
-    setStyleSheet("QListWidget { background-color: #303030; }");
+    setStyleSheet("QListWidget { background-color: #303030; }"
+                  "QListWidget::item:hover { background-color: white; }");
 
     //Initial size
     resize(m_minWidth, parent->height());
 
-    connect(this, &QListWidget::currentRowChanged, this, &NavBar::currentItemChanged);
+    //Sets the parent's size
+    parent->resize(m_minWidth, parent->height());
+
+    /* Setting background color for highlight - when NavItem is selected this will be it's background color */
+    QPalette palette;
+    palette.setColor(QPalette::Disabled, QPalette::Highlight, Qt::darkBlue);
+    palette.setColor(QPalette::Inactive, QPalette::Highlight, Qt::darkBlue);
+    palette.setColor(QPalette::Active, QPalette::Highlight,  Qt::darkBlue);
+    this->setPalette(palette);
+
 }
 
 /* Setters */
@@ -31,6 +41,7 @@ void NavBar::setMaxWidth(int width)
     m_maxWidth = width;
 }
 
+/* List modifiers */
 void NavBar::addItem(QString icon, QString label)
 {
     const QSize itemSize(70, 80);
@@ -51,8 +62,15 @@ void NavBar::addItem(QString icon, QString label)
 /* Events */
 void NavBar::leaveEvent(QEvent*)
 {
-    /* Shrinking animation */
-    QPropertyAnimation* animation = new QPropertyAnimation(this, "size");
+    /* Shrinking animation for parent widget */
+    QPropertyAnimation* animation = new QPropertyAnimation(parentWidget(), "size");
+    animation->setDuration(75);
+    animation->setStartValue(size());
+    animation->setEndValue(QSize(m_minWidth, height()));
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
+
+    /* Shrinking animation for list widget */
+    animation = new QPropertyAnimation(this, "size");
     animation->setDuration(75);
     animation->setStartValue(size());
     animation->setEndValue(QSize(m_minWidth, height()));
@@ -64,8 +82,15 @@ void NavBar::leaveEvent(QEvent*)
 
 void NavBar::enterEvent(QEvent*)
 {
-    /* Expanding animation */
-    QPropertyAnimation* animation = new QPropertyAnimation(this, "size");
+    /* Expanding animation for parent widget */
+    QPropertyAnimation* animation = new QPropertyAnimation(parentWidget(), "size");
+    animation->setDuration(75);
+    animation->setStartValue(size());
+    animation->setEndValue(QSize(m_maxWidth, height()));
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
+
+    /* Expanding animation for list widget */
+    animation = new QPropertyAnimation(this, "size");
     animation->setDuration(75);
     animation->setStartValue(size());
     animation->setEndValue(QSize(m_maxWidth, height()));
