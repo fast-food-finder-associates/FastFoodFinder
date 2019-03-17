@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
 #include <QListWidget>
+#include "src/datastore/Restaurant.hpp"
 
-using ID = int;
-using IDList = std::vector<ID>;
+using Iterator = std::list<Restaurant>::iterator;
 
 class RestaurantList : public QListWidget
 {
@@ -17,14 +17,14 @@ public:
     static QSize getItemSizeHint();
 
     /* List modifiers */
-    void addItem(ID);
-    void addItems(const IDList&);
-    void removeItem(ID);
-    void removeItems(const IDList&);
+    void addItem(const Restaurant&);
+    void addItems(Iterator begin, Iterator end);
+    void removeItem(const Restaurant&);
+    void removeItems(Iterator begin, Iterator end);
     void clearItems();
 
 signals:
-    void currentRestaurantChanged(ID) const;
+    void currentRestaurantChanged(int ID) const;
 
 private slots:
     void rowToIDConverter(int row) const;
