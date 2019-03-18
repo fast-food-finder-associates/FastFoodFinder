@@ -38,6 +38,15 @@ TripDataStore Trips;
 
 int main (int argc, char *argv[])
 {
+    Restaurants.load("./");
+    Restaurants.save("./");
+
+    Trips.load("./");
+    Trips.save("./");
+
+    Users.load("./");
+    Users.save("./");
+
     for (MyDblLinkList<Restaurant>::iterator it = Restaurants.list.begin(); it != Restaurants.list.end(); ++it)
     {
         cout << "Restaurant name:" << (*it).GetName() << " Distance to Saddleback (miles) " << (*it).GetDistSaddleback() << endl;
@@ -54,8 +63,8 @@ int main (int argc, char *argv[])
     cout << "Print Imported Users ======================================" << endl;
     Users.printAsDebug(true, true);
 
-    //cout << "Print Imported Restaurants ================================" << endl;
-    //Restaurants.printAsDebug(true, true);
+    cout << "Print Imported Restaurants ================================" << endl;
+    Restaurants.printAsDebug(true, true);
 
     //cout << "Print Imported Trips ======================================" << endl;
     //Trips.printAsDebug(true, true);

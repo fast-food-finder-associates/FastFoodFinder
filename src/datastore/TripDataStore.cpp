@@ -11,6 +11,7 @@
 #include "TripDataStore.hpp"
 #include <stdio.h>
 #include <fstream>
+#include <stdexcept>
 
 using namespace std;
 using namespace nsMyDblLinkList;
@@ -20,7 +21,13 @@ static const int nMaxUserInputLine = 200;
 // Constructor implementation
 TripDataStore::TripDataStore()
 {
-    std::ifstream infile("TripData.csv", ios::in);
+}
+
+void TripDataStore::load(const string path)
+{
+    string fullpath = path + "TripData.csv";
+    std::ifstream infile(fullpath, ios::in);
+    int line_count = 0;
     if (infile.is_open())
     {
         std::string inputline;
@@ -29,7 +36,7 @@ TripDataStore::TripDataStore()
             std::getline(infile, inputline);
             if (!infile.eof())
             {
-                //cout << inputline << endl;
+                line_count++;
                 std::vector<std::string> commaSeparated(1);
                 int commaCounter = 0;
                 for (int i=0; i < inputline.size(); i++)
@@ -70,7 +77,60 @@ TripDataStore::TripDataStore()
             }
         }
     }
-};
+    else
+    {
+        throw std::invalid_argument("Trip File name invalid");
+    }
+    if (line_count == 0)
+    {
+        throw std::invalid_argument("Trip File Empty");
+    }
+}
+
+void TripDataStore::save(const string path)
+{
+    string fullpath = path + "TripData.csv.tmp";
+    string outline;
+    int line_count = 0;
+
+    std::ofstream outfile(fullpath, ios::trunc);
+    if (outfile.is_open())
+    {
+        for (MyDblLinkList<Trip>::iterator it = list.begin(); it != list.end(); it++)
+        {
+            line_count++;
+
+            outfile << (*it).m_nNumber << ",";
+            outfile << (*it).m_Name << ",";
+            outfile << (*it).m_nCreatingUser << ",";
+            outfile << (*it).m_fTotalDistance << ",";
+            outfile << (*it).m_bDeleted << ",";
+
+            int num_rests = (*it).m_Restaurants.size();
+            outfile << num_rests << ",";
+            if (num_rests > 0)
+            {
+                for (std::vector<int>::const_iterator itt = (*it).m_Restaurants.begin();
+                                                           itt != (*it).m_Restaurants.end(); itt++)
+                {
+                    outfile << (*itt) << ",";
+            }
+        }
+
+            outfile << endl;
+        }
+
+    }
+    else
+    {
+        throw std::invalid_argument("Trip Save File name invalid");
+    }
+    if (line_count == 0)
+    {
+        throw std::invalid_argument("Trip Save File Empty");
+    }
+
+}
 
 void TripDataStore::printAsDebug(bool printeol, bool printcontent) const
 {

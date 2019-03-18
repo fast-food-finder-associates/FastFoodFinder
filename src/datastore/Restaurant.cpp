@@ -185,7 +185,7 @@ bool Restaurant::PrintAsDebug(bool print_endl) const
         for (std::vector<MenuItem>::const_iterator it = m_Menu.begin(); it != m_Menu.end(); it++)
         {
             cout << " " << it->m_MenuItemName;
-            cout << " Price " << it->m_MenuItemPrice << endl;
+            cout << " Price " << it->GetPrice() << endl;
         }
         if (m_Menu.size() == 0)
         {
@@ -228,7 +228,7 @@ bool Restaurant::PrintAsDebug(bool print_endl) const
         for (std::vector<MenuItem>::const_iterator it = m_Menu.begin(); it != m_Menu.end(); it++)
         {
             cout << " " << it->m_MenuItemName;
-            cout << " Price " << it->m_MenuItemPrice;
+            cout << " Price " << it->GetPrice();
         }
         if (m_Menu.size() == 0)
         {

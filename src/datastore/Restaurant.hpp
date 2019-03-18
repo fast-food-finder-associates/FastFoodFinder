@@ -14,6 +14,7 @@
 #include <string>
 
 #include "Trip.hpp"
+#include "MenuItem.hpp"
 
 using namespace std;
 
@@ -21,11 +22,6 @@ struct RestaurantDistance
 {
     int m_nRestaurantNumber;
     float m_fDistanceMiles;
-};
-struct MenuItem
-{
-    string m_MenuItemName;
-    float m_MenuItemPrice;
 };
 /**
  * TODO: Add class description
