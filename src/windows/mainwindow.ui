@@ -45,12 +45,19 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
-      <string notr="true">QWidget#dashboardView { background-color: #D2E1FF; }</string>
+      <string notr="true">QWidget#dashboardView { 
+background: url(:/res/artboard.png);
+background-color: #D2E1FF;
+color: #BDCAE5
+}</string>
      </property>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
