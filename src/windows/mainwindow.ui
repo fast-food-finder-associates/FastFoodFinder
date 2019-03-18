@@ -221,18 +221,14 @@ font: bold italic;
      <widget class="QLabel" name="menu">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>59</y>
-        <width>430</width>
-        <height>31</height>
+        <x>40</x>
+        <y>130</y>
+        <width>440</width>
+        <height>40</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QWidget#menu {
-color: black;
-background-color: #7F7F7F;
-font-size: 28px;
-}</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>MENU</string>
