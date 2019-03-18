@@ -13,18 +13,6 @@
 #include <ostream>
 #include <iostream>
 
-int MenuItem::sm_NextNumber = 1;
-
-MenuItem::MenuItem(const string &Name, const float &Price)
-    :m_MenuItemName(Name), m_fMenuItemPrice(Price)
-{
-    m_bDeleted = false;
-
-    m_nNumber =  sm_NextNumber++;
-
-    m_bInitialized = true;
-}
-
 MenuItem::~MenuItem()
 {
 }
@@ -58,10 +46,6 @@ bool MenuItem::MarkDeleted(bool Delete)
 {
     m_bDeleted = Delete;
     return m_bDeleted;
-}
-
-const MenuItem&MenuItem::FindbyNumber(int Number) const
-{
 }
 
     // used by database load only

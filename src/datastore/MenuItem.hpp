@@ -21,8 +21,6 @@ friend class Restaurant;
 friend class RestaurantDataStore;
 
 public:
-    MenuItem(const string &Name, const float &Price);
-
     virtual ~MenuItem();
 
     // Copy constructor
@@ -38,7 +36,7 @@ public:
     bool IsDeleted(void) const;
     bool MarkDeleted(bool Delete);
 
-    const MenuItem&FindbyNumber(int Number) const;
+    const MenuItem&FindMenuItembyNumber(int Number) const;
 
 private:
     bool        m_bInitialized;
@@ -46,8 +44,6 @@ private:
     bool        m_bDeleted;
     string      m_MenuItemName;
     float       m_fMenuItemPrice;
-
-    static int  sm_NextNumber;
 
     // private to prevent usage
 

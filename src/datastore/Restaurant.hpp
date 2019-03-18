@@ -62,7 +62,10 @@ public:
     int AddCustCount(void);
     float AddPurchasePrice(float PurchaseAmount);
     float GetDistSaddleback(void) const;
-    Restaurant &FindbyNumber(int Number);
+    void AddMenuItem(const string &Name, const float &Price);
+    const MenuItem&FindMenuItembyNumber(int Number) const;
+
+    bool PrintAsDebug(bool print_endl) const;
 
 private:
     bool                m_bInitialized;
@@ -94,8 +97,6 @@ private:
          vector<RestaurantDistance> &Distances,
          vector<MenuItem>           &MenuItems,
          vector<int>                &ReferencedByTrips);
-
-    bool PrintAsDebug(bool print_endl) const;
 };
 
 struct Cmp_by_name {

@@ -64,7 +64,7 @@ int main (int argc, char *argv[])
     Users.printAsDebug(true, true);
 
     cout << "Print Imported Restaurants ================================" << endl;
-    Restaurants.printAsDebug(true, true);
+    //Restaurants.printAsDebug(true, true);
 
     //cout << "Print Imported Trips ======================================" << endl;
     //Trips.printAsDebug(true, true);
@@ -74,6 +74,12 @@ int main (int argc, char *argv[])
     Users.list.push_back(new1);
 
     cout << "Name from id test " << Restaurants.FindbyNumber(2).GetName() << endl;
+
+    cout << "Add a menu item test" << endl;
+    Restaurant &myrest = Restaurants.FindbyNumber(2);
+    myrest.PrintAsDebug(true);
+    myrest.AddMenuItem("Test Item", 9.89);
+    myrest.PrintAsDebug(true);
 
     for (MyDblLinkList<User>::iterator it = Users.list.begin(); it != Users.list.end(); ++it)
     {
