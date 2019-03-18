@@ -49,7 +49,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
@@ -204,6 +204,35 @@ font: bold italic;
       </property>
       <property name="styleSheet">
        <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>MENU</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="menu">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>59</y>
+        <width>430</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget#menu {
+color: black;
+background-color: #7F7F7F;
+font-size: 28px;
+}</string>
       </property>
       <property name="text">
        <string>MENU</string>
