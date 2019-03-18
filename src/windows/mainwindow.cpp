@@ -7,8 +7,7 @@
 #include <QFontDatabase>
 #include <QDebug>
 #include <QTimer>
-
-const static IDList ids = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+#include "src/datastore/RestaurantDataStore.hpp"
 
 /* Constructors */
 MainWindow::MainWindow()
@@ -49,11 +48,13 @@ MainWindow::MainWindow()
     //Initial view for dashboard
     changeView(0);
 
+    RestaurantDataStore store;
+
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
     m_restaurantList->setDragDropMode(QAbstractItemView::DragDrop);
     m_restaurantList->setAcceptDrops(true);
-    m_restaurantList->addItems(ids);
+    m_restaurantList->addItems(store.list.begin(), store.list.end());
 }
 
 /* Destructor */

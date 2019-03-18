@@ -27,9 +27,12 @@ public:
 
     void printAsDebug(bool printeol, bool printcontent) const;
 
+<<<<<<< HEAD
     void load(const string path);
     void save(const string path);
 
+=======
+>>>>>>> master
     //std::list<User> list;
     MyDblLinkList<User> list;
 private:

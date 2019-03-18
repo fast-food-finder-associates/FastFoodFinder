@@ -32,6 +32,7 @@ HEADERS += \
     src/widgets/navbar.hpp \
     src/widgets/navitem.hpp \
     src/widgets/restaurantlist.hpp \
+<<<<<<< HEAD
     src/datastore/MyDblLinkList.h \
     src/datastore/Restaurant.h \
     src/datastore/RestaurantDataStore.h \
@@ -39,6 +40,15 @@ HEADERS += \
     src/datastore/TripDataStore.h \
     src/datastore/User.h \
     src/datastore/UserDataStore.h
+=======
+    src/datastore/MyDblLinkList.hpp \
+    src/datastore/Restaurant.hpp \
+    src/datastore/RestaurantDataStore.hpp \
+    src/datastore/Trip.hpp \
+    src/datastore/TripDataStore.hpp \
+    src/datastore/User.hpp \
+    src/datastore/UserDataStore.hpp
+>>>>>>> master
 
 
 SOURCES += \

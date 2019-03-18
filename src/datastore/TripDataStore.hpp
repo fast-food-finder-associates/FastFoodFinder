@@ -10,7 +10,10 @@
 
 #pragma once
 #include <list>
+<<<<<<< HEAD
 #include <string>
+=======
+>>>>>>> master
 #include "MyDblLinkList.hpp"
 #include "Trip.hpp"
 
@@ -28,9 +31,12 @@ public:
 
     void printAsDebug(bool printeol, bool printcontent) const;
 
+<<<<<<< HEAD
     void load(const string path);
     void save(const string path);
 
+=======
+>>>>>>> master
     //std::list<Trip> list;
     MyDblLinkList<Trip> list;
 
