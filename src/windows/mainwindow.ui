@@ -46,11 +46,7 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-<<<<<<< HEAD
      <number>1</number>
-=======
-     <number>2</number>
->>>>>>> Created intial menu list files
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">

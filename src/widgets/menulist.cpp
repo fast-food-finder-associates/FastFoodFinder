@@ -2,7 +2,7 @@
 
 /* Constructor */
 MenuList::MenuList(QWidget* parent)
-    : QListWidget(parent)
+    : QListWidget(parent), m_restaurantID(-1)
 {
     /* List widget settings */
     QListWidget::setStyleSheet("QListWidget { background-color: #303030; color: white; }");
@@ -60,7 +60,6 @@ void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
         //Resets each spinbox of each MenuItem when emitted
         connect(this, &MenuList::resetQtyEmitter, widget, &MenuListItem::resetQty);
     }
-
 }
 
 void MenuList::addAllItems(const Restaurant& restaurant)
