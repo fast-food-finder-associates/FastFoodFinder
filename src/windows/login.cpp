@@ -1,16 +1,17 @@
+#include "login.hpp"
+#include "ui_login.h"
 #include <QCryptographicHash>
 #include <QTextStream>
 #include <QTimer>
 #include <QDir>
-#include "login.hpp"
-#include "ui_login.h"
-#include "../utils/exceptions.hpp"
+#include "src/utils/exceptions.hpp"
 
 /* Static members */
-Login::Type   Login::type      = Login::Type::USER;
-Login*        Login::instance  = nullptr;
-const QString Login::FILE_NAME = "authFile.txt";
-const QString Login::FILE_PATH = QDir::homePath() + '/';
+Login::Type   Login::type         = Login::Type::USER;
+Login*        Login::instance     = nullptr;
+const QString Login::FILE_NAME    = "authFile.txt";
+const QString Login::FILE_PATH    = QDir::homePath() + '/';
+const QString Login::FILE_ERR_MSG = "Authentication failed, contact admin!";
 
 /* Login usage */
 Login* Login::requestLogin()
@@ -19,7 +20,7 @@ Login* Login::requestLogin()
     {
         instance = new Login;
 
-        /* Initialize the credential file */
+        /* Initialize the credential file if it doesn't exist */
         QFile authFile(FILE_PATH + FILE_NAME);
         authFile.open(QIODevice::NewOnly);
     }
@@ -94,7 +95,7 @@ void Login::on_pushButton_cancelReg_clicked()
 
 /* Constructors */
 Login::Login()
-    : QDialog(nullptr), m_ui(new Ui::Login), FILE_ERR_MSG("Authentication failed, contact admin!")
+    : QDialog(nullptr), m_ui(new Ui::Login)
 {
     m_ui->setupUi(this);
     setModal(true);
@@ -168,19 +169,13 @@ void Login::registration(QString usernameInput, QString passwordInput, QString p
     int flags = 0;
 
     if(usernameInput.isEmpty())
-    {
         flags |= RegField::UN;
-    }
 
     if(passwordInput.isEmpty())
-    {
         flags |= RegField::PW;
-    }
 
     if(pwConfirmed.isEmpty() || passwordInput != pwConfirmed)
-    {
         flags |= RegField::CPW;
-    }
 
     if(flags != 0)
     {
@@ -191,10 +186,9 @@ void Login::registration(QString usernameInput, QString passwordInput, QString p
     QFile authFile(FILE_PATH + FILE_NAME);
     QTextStream qin(&authFile);
 
+    /* Check if file is open */
     if(!authFile.open(QIODevice::ReadWrite))
-    {
         throw BadFile(FILE_ERR_MSG);
-    }
 
     QString usernameFile;
     QByteArray hashedPW = hashString(passwordInput);
