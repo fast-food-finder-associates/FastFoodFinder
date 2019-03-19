@@ -48,7 +48,7 @@ void Login::on_pushButton_login_clicked()
 
         authenticate(username, password);
     }
-    catch(fff::GeneralException& exception)
+    catch(GeneralException& exception)
     {
         exception.errorWindow();
     }
@@ -79,7 +79,7 @@ void Login::on_pushButton_confirmReg_clicked()
 
         registration(username, password, pwConfirm);
     }
-    catch(fff::GeneralException& exception)
+    catch(GeneralException& exception)
     {
         exception.errorWindow();
     }
@@ -115,7 +115,7 @@ void Login::authenticate(QString usernameInput, QString passwordInput) const
 
     if(!authFile.open(QIODevice::ReadOnly))
     {
-        throw fff::BadFile(FILE_ERR_MSG);
+        throw BadFile(FILE_ERR_MSG);
     }
 
     QString usernameFile;
@@ -133,7 +133,7 @@ void Login::authenticate(QString usernameInput, QString passwordInput) const
         if(usernameFile.isEmpty() || hashedPWFile.isEmpty() || typeFile.isEmpty() ||
           (typeFile != "admin" && typeFile != "user"))
         {
-            throw fff::BadFileFormat(FILE_ERR_MSG);
+            throw BadFileFormat(FILE_ERR_MSG);
         }
         else if(usernameFile == usernameInput && hashedPWFile == hashedPW)
         {
@@ -193,7 +193,7 @@ void Login::registration(QString usernameInput, QString passwordInput, QString p
 
     if(!authFile.open(QIODevice::ReadWrite))
     {
-        throw fff::BadFile(FILE_ERR_MSG);
+        throw BadFile(FILE_ERR_MSG);
     }
 
     QString usernameFile;
@@ -206,7 +206,7 @@ void Login::registration(QString usernameInput, QString passwordInput, QString p
 
         if(qin.readLine().isEmpty() || qin.readLine().isEmpty()) //Skips the next 2 lines
         {
-            throw fff::BadFileFormat(FILE_ERR_MSG);
+            throw BadFileFormat(FILE_ERR_MSG);
         }
         else if(usernameInput == usernameFile)
         {
