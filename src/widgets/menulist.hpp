@@ -1,7 +1,6 @@
 #pragma once
 #include <QListWidget>
 #include "src/widgets/menulistitem.hpp"
-#include "src/datastore/Restaurant.hpp"
 
 using IDQtys = std::map<IDs,Qty>;
 

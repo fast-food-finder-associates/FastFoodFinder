@@ -2,7 +2,7 @@
 
 /* Constructor */
 MenuList::MenuList(QWidget* parent)
-    : QListWidget(parent), m_restaurantID(-1)
+    : QListWidget(parent)
 {
     /* List widget settings */
     QListWidget::setStyleSheet("QListWidget { background-color: #303030; color: white; }");
@@ -54,11 +54,21 @@ void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
         //Allows all MenuItem's to toggle its quantity widgets through the emitter
         connect(this, &MenuList::showQtyEmitter, widget, &MenuListItem::showQty);
 
-        //Handles the quantity change of a menu item
-        connect(widget, &MenuListItem::quantityChanged, this, &MenuList::quantityChangedHandler);
+void MenuList::removeItem(IDs id)
+{
+    for(int i = 0; i < QListWidget::count(); i++)
+    {
+        QListWidgetItem* listItem = QListWidget::item(i);
+        MenuListItem* widget = dynamic_cast<MenuListItem*>(QListWidget::itemWidget(listItem));
 
-        //Resets each spinbox of each MenuItem when emitted
-        connect(this, &MenuList::resetQtyEmitter, widget, &MenuListItem::resetQty);
+        if(widget != nullptr)
+        {
+            if(id == widget->getIDs())
+            {
+                QListWidget::removeItemWidget(listItem);
+                return;
+            }
+        }
     }
 }
 
