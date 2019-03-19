@@ -61,13 +61,10 @@ void MenuList::removeItem(IDs id)
         QListWidgetItem* listItem = QListWidget::item(i);
         MenuListItem* widget = dynamic_cast<MenuListItem*>(QListWidget::itemWidget(listItem));
 
-        if(widget != nullptr)
+        if(widget != nullptr && id == widget->getIDs())
         {
-            if(id == widget->getIDs())
-            {
-                QListWidget::removeItemWidget(listItem);
-                return;
-            }
+            QListWidget::removeItemWidget(listItem);
+            return;
         }
     }
 }
