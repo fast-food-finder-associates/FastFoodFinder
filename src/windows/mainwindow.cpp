@@ -54,6 +54,22 @@ MainWindow::MainWindow()
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
     m_restaurantList->addItems(m_store.list.begin(), m_store.list.end());
 
+    /* Plan Trip list Drag */
+    m_planTripListDrag = new RestaurantList(m_ui->planTripListDrag);
+    m_planTripListDrag->setDragDropMode(QAbstractItemView::DragDrop);
+    m_planTripListDrag->setAcceptDrops(true);
+    m_planTripListDrag->addItems(m_store.list.begin(), m_store.list.end());
+
+    /* Plan Trip list Drop */
+    m_planTripListDrop = new RestaurantList(m_ui->planTripListDrop);
+    m_planTripListDrop->setDragDropMode(QAbstractItemView::DragDrop);
+    m_planTripListDrop->setAcceptDrops(true);
+
+    /* Setting options within startLocation comboBox -- default is set to first restaurant on the list */
+    m_ui->startLocation->addItem(tr("Saddleback"), RestaurantList::Saddleback);
+    m_ui->startLocation->addItem(tr("First Restaurant"), RestaurantList::FirstRestaurant);
+    m_ui->startLocation->setCurrentIndex(1);
+
     /* Menu list */
     m_menuList = new MenuList(m_ui->menuList);
     m_menuList->setWrapping(true);
@@ -161,4 +177,17 @@ void MainWindow::menuListChange(int id)
     Restaurant restaurant = m_store.FindbyNumber(id);
     m_ui->currentRestaurantName->setText(QString::fromStdString(restaurant.GetName()));
     m_menuList->addAllItems(restaurant);
+}
+
+void MainWindow::on_TripButton_clicked()
+{
+    m_planTripVector.clear();
+    m_planTripListDrop->getRestaurantIDs(m_planTripVector);
+
+    qDebug() << QString::fromUtf8("Id's from plan trip");
+    qDebug() << QString::fromUtf8("Starting from :") << QString::number(m_ui->startLocation->currentIndex());
+    for(int i = 0 ; i < m_planTripVector.size(); ++i)
+    {
+        qDebug() << QString::number(m_planTripVector[i]);
+    }
 }

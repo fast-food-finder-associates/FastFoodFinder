@@ -9,6 +9,10 @@ class RestaurantList : public QListWidget
     Q_OBJECT
 
 public:
+
+    /* Enum class for each view state */
+    enum StartFrom { Saddleback, FirstRestaurant };
+
     /* Constructor */
     RestaurantList(QWidget* parent);
 
@@ -36,16 +40,16 @@ private slots:
 
 private:
     static const QSize itemSizeHint;
-    std::vector<Restaurant> m_tripChoiceStorage;
 };
 
 /* Templated getters */
 template<typename Container>
 void RestaurantList::getRestaurantIDs(Container& container) const
 {
-    for(int i = 0; i < QListWidget::count(); i++)
+//    qDebug() << QString::number(this->count());
+    for(int i = 0; i < this->count(); i++)
     {
-        QListWidgetItem* item = QListWidget::item(i);
+        QListWidgetItem* item = this->item(i);
         QVariant data = item->data(Qt::ItemDataRole::UserRole);
         container.push_back(data.toInt());
     }
