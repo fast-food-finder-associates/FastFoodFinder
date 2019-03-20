@@ -10,6 +10,7 @@
 
 #pragma once
 #include <list>
+#include <string>
 #include "MyDblLinkList.hpp"
 #include "Trip.hpp"
 
@@ -26,6 +27,9 @@ public:
     virtual ~TripDataStore();
 
     void printAsDebug(bool printeol, bool printcontent) const;
+
+    void load(const string path);
+    void save(const string path);
 
     //std::list<Trip> list;
     MyDblLinkList<Trip> list;

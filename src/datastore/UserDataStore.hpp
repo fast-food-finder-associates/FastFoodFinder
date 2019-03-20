@@ -27,6 +27,9 @@ public:
 
     void printAsDebug(bool printeol, bool printcontent) const;
 
+    void load(const string path);
+    void save(const string path);
+
     //std::list<User> list;
     MyDblLinkList<User> list;
 private:

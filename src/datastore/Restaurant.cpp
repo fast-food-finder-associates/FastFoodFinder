@@ -150,6 +150,24 @@ float Restaurant::GetDistSaddleback(void) const
     return m_fDistToSaddleback;
 }
 
+void Restaurant::AddMenuItem(const string &Name, const float &Price)
+{
+    MenuItem tmp(m_Menu.size()+1, false, Name, Price);
+    m_Menu.push_back(tmp);
+}
+
+const MenuItem&Restaurant::FindMenuItembyNumber(int Number) const
+{
+    for (std::vector<MenuItem>::const_iterator it = m_Menu.begin(); it != m_Menu.end(); ++it)
+    {
+        if ( (*it).m_nNumber == Number)
+        {
+            return *it;
+        }
+    }
+    return *(m_Menu.end());  // never reached  - should throw exception
+}
+
 
 //! print the value of the object for external display
 //!
@@ -184,8 +202,10 @@ bool Restaurant::PrintAsDebug(bool print_endl) const
         cout << " Menu Items :";
         for (std::vector<MenuItem>::const_iterator it = m_Menu.begin(); it != m_Menu.end(); it++)
         {
-            cout << " " << it->m_MenuItemName;
-            cout << " Price " << it->m_MenuItemPrice << endl;
+            cout << " " << it->m_nNumber;
+            cout << " " << it->IsDeleted();
+            cout << " " << it->GetName();
+            cout << " Price " << it->GetPrice() << endl;
         }
         if (m_Menu.size() == 0)
         {
@@ -228,7 +248,7 @@ bool Restaurant::PrintAsDebug(bool print_endl) const
         for (std::vector<MenuItem>::const_iterator it = m_Menu.begin(); it != m_Menu.end(); it++)
         {
             cout << " " << it->m_MenuItemName;
-            cout << " Price " << it->m_MenuItemPrice;
+            cout << " Price " << it->GetPrice();
         }
         if (m_Menu.size() == 0)
         {
