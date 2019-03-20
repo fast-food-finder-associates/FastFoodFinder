@@ -13,8 +13,8 @@ const QString Login::FILE_NAME    = "authFile.txt";
 const QString Login::FILE_PATH    = QDir::homePath() + '/';
 const QString Login::FILE_ERR_MSG = "Authentication failed, contact admin!";
 
-/* Login usage */
-Login* Login::requestLogin()
+/* Getters */
+Login* Login::getInstance()
 {
     if(instance == nullptr)
     {
@@ -25,16 +25,23 @@ Login* Login::requestLogin()
         authFile.open(QIODevice::NewOnly);
     }
 
-    instance->resetUi();
-    instance->clearFields();
-    instance->show();
-
     return instance;
 }
 
 Login::Type Login::getType()
 {
     return type;
+}
+
+/* Login usage */
+void Login::requestLogin()
+{
+    //Initializes the singleton object just in case
+    getInstance();
+
+    instance->resetUi();
+    instance->clearFields();
+    instance->show();
 }
 
 /* Private slots (Login page) */

@@ -14,9 +14,13 @@ class Login : public QDialog
 public:
     enum class Type {USER, ADMIN};
 
-    /* Login usage */
-    static Login* requestLogin();
+    /* Getters */
+    static Login* getInstance();
     static Type getType();
+
+public slots:
+    /* Login usage */
+    static void requestLogin();
 
 private slots:
     /* Login page */
