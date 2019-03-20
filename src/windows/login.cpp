@@ -160,7 +160,7 @@ void Login::authSuccessful() const
     m_ui->label_loginMsg->setText("Login successful");
 
     //Delays the closing of the window
-    QTimer::singleShot(500, instance, SLOT(accept()));
+    QTimer::singleShot(500, instance, &QDialog::accept);
 }
 
 void Login::authFailed() const
