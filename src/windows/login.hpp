@@ -18,7 +18,6 @@ public:
     static Login* getInstance();
     static Type getType();
 
-public slots:
     /* Login usage */
     static void requestLogin();
 
