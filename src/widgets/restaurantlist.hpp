@@ -11,7 +11,7 @@ class RestaurantList : public QListWidget
 public:
 
     /* Enum class for each view state */
-    enum StartFrom { Saddleback, FirstRestaurant };
+    enum StartFrom { Saddleback, FirstRestaurant, None};
 
     /* Constructor */
     RestaurantList(QWidget* parent);
@@ -51,7 +51,8 @@ void RestaurantList::getRestaurantIDs(Container& container) const
     {
         QListWidgetItem* item = this->item(i);
         QVariant data = item->data(Qt::ItemDataRole::UserRole);
-        container.push_back(data.toInt());
+//        container.push_back(data.toInt());
+        container.push(data.toInt());
     }
 }
 

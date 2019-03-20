@@ -64,20 +64,37 @@ MainWindow::MainWindow()
     m_planTripListDrop = new RestaurantList(m_ui->planTripListDrop);
     m_planTripListDrop->setDragDropMode(QAbstractItemView::DragDrop);
     m_planTripListDrop->setAcceptDrops(true);
+    m_ui->activeTrip_warning_emptyList->setHidden(true);
+    m_ui->activeTrip_warning_emptyList->raise();   // ROGDEB
+    m_ui->activeTrip_warning_noStart->setHidden(true);
 
     /* Setting options within startLocation comboBox -- default is set to first restaurant on the list */
+    m_ui->startLocation->addItem(tr("-- Start From --"), RestaurantList::None);
     m_ui->startLocation->addItem(tr("Saddleback"), RestaurantList::Saddleback);
     m_ui->startLocation->addItem(tr("First Restaurant"), RestaurantList::FirstRestaurant);
-    m_ui->startLocation->setCurrentIndex(1);
+    m_ui->startLocation->setCurrentIndex(0);
 
     /* Menu list */
     m_menuList = new MenuList(m_ui->menuList);
     m_menuList->setWrapping(true);
     m_menuList->setFlow(QListView::LeftToRight);
 
+    /* Active Trip Menu list */
+    m_tripMenuList =  new MenuList(m_ui->activeTripMenuWidget);
+    m_tripMenuList->setWrapping(false);
+    m_tripMenuList->setFlow(QListView::TopToBottom);
+
+    /* Active Trip Menu list */
+    m_tripFoodCart =  new MenuList(m_ui->activeTripCart);
+    m_tripFoodCart->setWrapping(false);
+    m_tripFoodCart->setFlow(QListView::TopToBottom);
+
     //On current restaurant change, display its menu items
     connect(m_restaurantList, &RestaurantList::currentRestaurantChanged,
             this, &MainWindow::menuListChange);
+
+    //Active Trip icon for the right bar button
+    m_ui->checkout->setText("\uf218");
 }
 
 /* Destructor */
@@ -97,6 +114,7 @@ void MainWindow::changeView(int rowView)
         m_ui->mainViews->setCurrentWidget(m_ui->dashboardView);
         break;
     case 1:
+        MainWindow::resetPlanTripView();
         m_ui->mainViews->setCurrentWidget(m_ui->planTripView);
         break;
     case 2:
@@ -181,13 +199,88 @@ void MainWindow::menuListChange(int id)
 
 void MainWindow::on_TripButton_clicked()
 {
-    m_planTripVector.clear();
+    /* Deque to go from list to list make it work with vector so that I can just clear */
+    while(!m_planTripVector.empty())
+    {
+        m_planTripVector.pop();
+    }
+
     m_planTripListDrop->getRestaurantIDs(m_planTripVector);
 
-    qDebug() << QString::fromUtf8("Id's from plan trip");
-    qDebug() << QString::fromUtf8("Starting from :") << QString::number(m_ui->startLocation->currentIndex());
-    for(int i = 0 ; i < m_planTripVector.size(); ++i)
+    qDebug() <<  m_ui->startLocation->currentData().toInt(); // ROGDEB
+    if(m_planTripVector.empty() && m_ui->startLocation->currentIndex() == 0)
     {
-        qDebug() << QString::number(m_planTripVector[i]);
+        m_ui->activeTrip_warning_emptyList->setHidden(false);
+        m_ui->activeTrip_warning_noStart->setHidden(false);
+        QTimer::singleShot(3000, m_ui->activeTrip_warning_emptyList, [&]()
+        {
+            m_ui->activeTrip_warning_emptyList->setHidden(true);
+            m_ui->activeTrip_warning_noStart->setHidden(true);
+        });
+    }
+    else if (m_planTripVector.empty())
+    {
+        m_ui->activeTrip_warning_emptyList->setHidden(false);
+        QTimer::singleShot(3000, m_ui->activeTrip_warning_emptyList, [&]()
+        {
+            m_ui->activeTrip_warning_emptyList->setHidden(true);
+        });
+    }
+    else if (m_ui->startLocation->currentIndex() == 0)
+    {
+        m_ui->activeTrip_warning_noStart->setHidden(false);
+        QTimer::singleShot(3000, m_ui->activeTrip_warning_noStart, [&]()
+        {
+            m_ui->activeTrip_warning_noStart->setHidden(true);
+        });
+    }
+    else
+    {
+        qDebug() << QString::fromUtf8("Starting from :") << ((m_ui->startLocation->currentIndex() == 0)?"Saddleback":"First restaurant");
+
+        m_navbar->setHidden(true);
+        m_ui->activeTripRestaurant->setText(QString::fromStdString(m_store.FindbyNumber(m_planTripVector.front()).GetName()));
+        m_tripMenuList->addAllItems(getRestaurantPointer(m_planTripVector.front()));
+        m_ui->planTripStack->setCurrentWidget(m_ui->activeTrip);
+    }
+}
+
+void MainWindow::resetPlanTripView()
+{
+    m_ui->planTripStack->setCurrentWidget(m_ui->planTrip);
+    m_planTripListDrag->clearItems();
+    m_planTripListDrag->addItems(m_store.list.begin(), m_store.list.end());
+    m_planTripListDrop->clearItems();
+}
+
+void MainWindow::activeTrip()
+{
+    m_planTripVector.pop();
+    if(!m_planTripVector.empty())
+    {
+        m_ui->activeTripRestaurant->setText(QString::fromStdString(m_store.FindbyNumber(m_planTripVector.front()).GetName()));
+        m_tripMenuList->addAllItems(getRestaurantPointer(m_planTripVector.front()));
+    }
+    else
+    {
+        m_navbar->setHidden(false);
+        resetPlanTripView();
+    }
+}
+
+void MainWindow::on_next_clicked()
+{
+    activeTrip();
+}
+
+/* add to Eugenes data storage */
+Restaurant& MainWindow::getRestaurantPointer(int id)
+{
+    for(list<Restaurant>::iterator it = m_store.list.begin() ; it != m_store.list.end(); ++it)
+    {
+        if(id == (*it).GetNumber())
+        {
+            return *it;
+        }
     }
 }

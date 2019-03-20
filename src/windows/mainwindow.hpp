@@ -1,5 +1,6 @@
 #pragma once
 #include <QMainWindow>
+#include <queue>
 #include "src/widgets/navbar.hpp"
 #include "src/widgets/restaurantlist.hpp"
 #include "src/widgets/menulist.hpp"
@@ -32,6 +33,10 @@ private slots:
     void changeNavState(ViewStates);
     void menuListChange(int);
     void on_TripButton_clicked();
+    void resetPlanTripView();
+    void activeTrip();
+    Restaurant& getRestaurantPointer(int id);
+    void on_next_clicked();
 
 private:
     Ui::MainWindow* m_ui;
@@ -41,5 +46,7 @@ private:
     RestaurantList* m_planTripListDrop;
     MenuList* m_menuList;
     RestaurantDataStore m_store;
-    std::vector<int> m_planTripVector;
+    std::queue<int> m_planTripVector;
+    MenuList* m_tripMenuList;
+    MenuList* m_tripFoodCart;
 };
