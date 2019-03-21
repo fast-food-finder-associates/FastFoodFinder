@@ -7,6 +7,19 @@ namespace Ui
 class Login;
 }
 
+/**
+ * @brief Login class
+ *
+ * Provides a simple way to request a login in order to validate a user.
+ *
+ * To use:
+ * @code{.cpp}
+ * QObject::connect(Login::getInstance(), &Login::accepted,
+ *                  myWidgetPointer, &MyClass::mySlot);
+ * @endcode
+ *
+ * This will call &MyClass::mySlot upon myWidgetPointer when login is accepted.
+ */
 class Login : public QDialog
 {
     Q_OBJECT
@@ -60,6 +73,8 @@ private:
 
     /* Data members */
     Ui::Login* m_ui;
+
+    /* Static variables */
     static Type type;
     static Login* instance;
     static const QString FILE_NAME;
