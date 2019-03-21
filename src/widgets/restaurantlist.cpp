@@ -28,6 +28,9 @@ RestaurantList::RestaurantList(QWidget* parent)
 /* List modifiers */
 void RestaurantList::addItem(const Restaurant& rest)
 {
+    if(rest.IsDeleted())
+        return;
+
     QFont font("Font Awesome 5 Free", 12);
     QString content = "\uf2e7 " + QString::fromStdString(rest.GetName()) + "\n" +
                       "\uf3c5 " + QString::number(rest.GetDistSaddleback(), 'f', 2) + " mi.";
