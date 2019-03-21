@@ -1,7 +1,7 @@
 #include "restaurantlist.hpp"
 
 /* Static variables */
-const QSize RestaurantList::itemSizeHint(190, 70);
+const QSize RestaurantList::itemSizeHint(170, 70);
 
 /* Constructor */
 RestaurantList::RestaurantList(QWidget* parent)
