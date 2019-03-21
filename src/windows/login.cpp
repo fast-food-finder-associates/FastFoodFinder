@@ -176,6 +176,7 @@ void Login::authenticate(QString usernameInput, QString passwordInput) const
     QFile authFile(FILE_PATH + FILE_NAME);
     QTextStream qin(&authFile);
 
+    /* Check if file is open */
     if(!authFile.open(QIODevice::ReadOnly))
         throw BadFile(FILE_ERR_MSG);
 
