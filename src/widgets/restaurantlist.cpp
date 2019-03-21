@@ -25,6 +25,17 @@ RestaurantList::RestaurantList(QWidget* parent)
     connect(this, &QListWidget::currentRowChanged, this, &RestaurantList::rowToIDConverter);
 }
 
+/* Getters */
+ID RestaurantList::getSelected() const
+{
+    QListWidgetItem* item = QListWidget::currentItem();
+
+    if(item != nullptr)
+        return item->data(Qt::ItemDataRole::UserRole).toInt();
+    else
+        return -1;
+}
+
 /* List modifiers */
 void RestaurantList::addItem(const Restaurant& rest)
 {

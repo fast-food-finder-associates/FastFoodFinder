@@ -1,7 +1,8 @@
 #pragma once
-#include <vector>
 #include <QListWidget>
 #include "src/datastore/Restaurant.hpp"
+
+using ID = int;
 
 class RestaurantList : public QListWidget
 {
@@ -11,8 +12,8 @@ public:
     /* Constructor */
     RestaurantList(QWidget* parent);
 
-    /* Static getters */
-    static QSize getItemSizeHint();
+    /* Getters */
+    ID getSelected() const;
     template<typename Container>
     void getRestaurantIDs(Container&) const;
 
