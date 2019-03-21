@@ -26,7 +26,7 @@ RestaurantList::RestaurantList(QWidget* parent)
 }
 
 /* Getters */
-ID RestaurantList::getSelected() const
+RestaurantID RestaurantList::getSelected() const
 {
     QListWidgetItem* item = QListWidget::currentItem();
 

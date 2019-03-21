@@ -2,7 +2,7 @@
 #include <QListWidget>
 #include "src/datastore/Restaurant.hpp"
 
-using ID = int;
+using RestaurantID = int;
 
 class RestaurantList : public QListWidget
 {
@@ -13,7 +13,7 @@ public:
     RestaurantList(QWidget* parent);
 
     /* Getters */
-    ID getSelected() const;
+    RestaurantID getSelected() const;
     template<typename Container>
     void getRestaurantIDs(Container&) const;
 
@@ -26,7 +26,7 @@ public:
     void removeItems(Iterator begin, Iterator end);
 
 signals:
-    void currentRestaurantChanged(ID) const;
+    void currentRestaurantChanged(RestaurantID) const;
 
 private slots:
     void rowToIDConverter(int row) const;
