@@ -70,11 +70,6 @@ void RestaurantList::removeItem(const Restaurant& rest)
     }
 }
 
-void RestaurantList::clearItems()
-{
-    QListWidget::clear();
-}
-
 /* Private slots */
 void RestaurantList::rowToIDConverter(int row) const
 {

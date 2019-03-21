@@ -24,7 +24,6 @@ public:
     void removeItem(const Restaurant&);
     template<typename Iterator>
     void removeItems(Iterator begin, Iterator end);
-    void clearItems();
 
 signals:
     void currentRestaurantChanged(ID) const;
