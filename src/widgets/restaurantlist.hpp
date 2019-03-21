@@ -27,7 +27,7 @@ public:
     void clearItems();
 
 signals:
-    void currentRestaurantChanged(int ID) const;
+    void currentRestaurantChanged(ID) const;
 
 private slots:
     void rowToIDConverter(int row) const;
