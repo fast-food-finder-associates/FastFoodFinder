@@ -19,12 +19,36 @@ QWidget#chooseType{
 background: url(:/res/artboard_green.png);
 background-color: #97FFB0;
 }
+
+QWidget#planTrip{
+background: url(:/res/artboard_green.png);
+background-color: #97FFB0;
+}
+
+QWidget#activeTrip{
+background: url(:/res/artboard_green.png);
+background-color: #97FFB0;
+}
+
+QWidget#tripReceipt{
+background: url(:/res/artboard_green.png);
+background-color: #97FFB0;
+}
 QWidget#tripTypeLabel {
 font: bold;
 color: black;
 font-size: 24px;
 }
 
+QWidget#restaurantNumber_label {
+color:black;
+font: italic;
+}
+
+QWidget#displayStart_label {
+color:black;
+font: italic;
+}
 QWidget#rightBar {
 background-color: #303030;
 }
@@ -93,7 +117,7 @@ font:bold ;
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="chooseType">
     <property name="styleSheet">
@@ -261,7 +285,7 @@ font:bold ;
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="restaurantNumber_label">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -289,10 +313,10 @@ font:bold ;
       </widget>
      </widget>
      <widget class="QWidget" name="planTripSubHeader_3">
-      <widget class="QLabel" name="displayStart">
+      <widget class="QLabel" name="displayStart_label">
        <property name="geometry">
         <rect>
-         <x>25</x>
+         <x>28</x>
          <y>25</y>
          <width>151</width>
          <height>16</height>

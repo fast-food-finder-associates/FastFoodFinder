@@ -103,21 +103,7 @@ void PlanTrip::changeHeaderOptions(StartFrom state)
 
 void PlanTrip::on_pushButton_clicked()
 {
-    switch (m_ui->tripType->currentData().toInt())
-    {
-    case 0:
-        changeHeaderOptions(Saddleback);
-        break;
-    case 1:
-        changeHeaderOptions(ChosenAndN);
-        break;
-    case 2:
-        changeHeaderOptions(FirstRestaurant);
-        break;
-    case 3:
-        // Do nothing
-        break;
-    }
+     changeHeaderOptions(static_cast<StartFrom>(m_ui->tripType->currentData().toInt()));
 }
 
 void PlanTrip::on_TripButton_clicked()
