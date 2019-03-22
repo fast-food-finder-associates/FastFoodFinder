@@ -34,6 +34,7 @@ HEADERS += \
     src/widgets/restaurantlist.hpp \
     src/datastore/MyDblLinkList.hpp \
     src/datastore/Restaurant.hpp \
+    src/datastore/MenuItem.hpp \
     src/datastore/RestaurantDataStore.hpp \
     src/datastore/Trip.hpp \
     src/datastore/TripDataStore.hpp \
@@ -50,6 +51,7 @@ SOURCES += \
     src/widgets/navitem.cpp \
     src/widgets/restaurantlist.cpp \
     src/datastore/Restaurant.cpp \
+    src/datastore/MenuItem.cpp \
     src/datastore/RestaurantDataStore.cpp \
     src/datastore/Trip.cpp \
     src/datastore/TripDataStore.cpp \

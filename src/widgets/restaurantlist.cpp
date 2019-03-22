@@ -1,7 +1,7 @@
 #include "restaurantlist.hpp"
 
 /* Static variables */
-const QSize RestaurantList::itemSizeHint(190, 70);
+const QSize RestaurantList::itemSizeHint(170, 70);
 
 /* Constructor */
 RestaurantList::RestaurantList(QWidget* parent)
@@ -25,9 +25,23 @@ RestaurantList::RestaurantList(QWidget* parent)
     connect(this, &QListWidget::currentRowChanged, this, &RestaurantList::rowToIDConverter);
 }
 
+/* Getters */
+RestaurantID RestaurantList::getSelected() const
+{
+    QListWidgetItem* item = QListWidget::currentItem();
+
+    if(item != nullptr)
+        return item->data(Qt::ItemDataRole::UserRole).toInt();
+    else
+        return -1;
+}
+
 /* List modifiers */
 void RestaurantList::addItem(const Restaurant& rest)
 {
+    if(rest.IsDeleted())
+        return;
+
     QFont font("Font Awesome 5 Free", 12);
     QString content = "\uf2e7 " + QString::fromStdString(rest.GetName()) + "\n" +
                       "\uf3c5 " + QString::number(rest.GetDistSaddleback(), 'f', 2) + " mi.";
@@ -54,11 +68,6 @@ void RestaurantList::removeItem(const Restaurant& rest)
             return;
         }
     }
-}
-
-void RestaurantList::clearItems()
-{
-    QListWidget::clear();
 }
 
 /* Private slots */
