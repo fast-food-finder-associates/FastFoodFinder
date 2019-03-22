@@ -22,6 +22,9 @@ public:
     /* Enum class for each view state */
     enum class ViewStates { MAIN, ADMIN };
 
+signals:
+    void logout() const;
+
 private slots:
     void on_actionLogout_triggered();
     void changeView(int);

@@ -1,6 +1,5 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
-#include "login.hpp"
 #include <vector>
 #include <QString>
 #include <QFont>
@@ -17,9 +16,6 @@ MainWindow::MainWindow()
 
     //Doesn't allow window resizing
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
-
-    //Requests a login
-    connect(Login::requestLogin(), &Login::accepted, this, &MainWindow::show);
 
     if(QFontDatabase::addApplicationFont(":/res/fontAwesome.ttf") == -1)
         qWarning() << "FontAwesome cannot be loaded !";
@@ -67,9 +63,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionLogout_triggered()
 {
-    //TODO reset data members here
-    hide();
-    Login::requestLogin();
+    emit logout();
 }
 
 /*Swich views for stacks in mainView within the mainWindow page (page 1) in centralStack*/
