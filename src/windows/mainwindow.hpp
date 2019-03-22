@@ -26,7 +26,6 @@ signals:
     void logout() const;
 
 private slots:
-    void logout();
     void changeView(int);
     void changeNavState(ViewStates);
 
