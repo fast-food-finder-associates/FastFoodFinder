@@ -40,9 +40,6 @@ PlanTrip::PlanTrip(QWidget *parent,RestaurantDataStore *database, NavBar* bar)
     m_ui->tripType->addItem(tr("Chosen Restaurant and n number chosen"), PlanTrip::ChosenAndN);
     m_ui->tripType->addItem(tr("First Restaurant"), PlanTrip::FirstRestaurant);
 
-    // setting range on spin box
-    m_ui->spinBox->setRange(1,static_cast<int>(m_store->list.size()));
-
     // set text for checkout button
     m_ui->checkout->setText("\uf218");
 
@@ -56,10 +53,15 @@ PlanTrip::~PlanTrip()
 
 
 
-void PlanTrip::changeHeaderOptions(StartFrom state)
+void PlanTrip::changeHeaderOptions(PlanState state)
 {
     // Reset items within combobox
     m_ui->startLocation->clear();
+
+    setPlanState(state);
+
+    // Get the size of the list and let the user go to as many restaurant as there are in the list
+    int maxSize = static_cast<int>(m_store->list.size());
 
     switch (state)
     {
@@ -70,19 +72,24 @@ void PlanTrip::changeHeaderOptions(StartFrom state)
         m_ui->startLocation->addItem(tr("Saddleback"), Saddleback);
         m_planTripListDrop->addItems(m_store->list.begin(), m_store->list.end());
 
-        m_state = Saddleback;
         break;
-    case ChosenAndN:
+    case PlanTrip::ChosenAndN:
 
         m_ui->planTripStack->setCurrentWidget(m_ui->planTrip);
         m_ui->planTripListDrop_header->setCurrentWidget(m_ui->planTripSubHeader_2);
         m_planTripListDrop->addItems(m_store->list.begin(), m_store->list.end());
         m_ui->startLocation_2->addItem(QString::fromUtf8("-- Starting Location --"),-1);
 
+        // Print all restaurant in list to the QComboBox as an option and it's id as a data member
         for(Restaurant e : m_store->list)
             m_ui->startLocation_2->addItem(QString::fromStdString(e.GetName()), e.GetNumber());
 
-        m_state = ChosenAndN;
+        // Setting range on spin box
+        m_ui->spinBox->setRange(1,static_cast<int>(maxSize));
+
+        // Set default value option to the maximum size
+        m_ui->spinBox->setValue(maxSize);
+
         break;
     case FirstRestaurant:
 
@@ -90,11 +97,9 @@ void PlanTrip::changeHeaderOptions(StartFrom state)
         m_ui->planTripListDrop_header->setCurrentWidget(m_ui->planTripSubHeader_3);
         m_planTripListDrag->addItems(m_store->list.begin(), m_store->list.end());
 
-        m_state = FirstRestaurant;
         break;
     case None:
-
-        m_state = None;
+        // Do Nothing
         break;
     }
 }
@@ -103,7 +108,7 @@ void PlanTrip::changeHeaderOptions(StartFrom state)
 
 void PlanTrip::on_pushButton_clicked()
 {
-     changeHeaderOptions(static_cast<StartFrom>(m_ui->tripType->currentData().toInt()));
+    changeHeaderOptions(static_cast<PlanState>(m_ui->tripType->currentData().toInt()));
 }
 
 void PlanTrip::on_TripButton_clicked()
@@ -153,7 +158,7 @@ void PlanTrip::on_TripButton_clicked()
 
 void PlanTrip::resetPlanTripView()
 {
-    m_state = None;
+    setPlanState(PlanState::None);
     m_ui->planTripStack->setCurrentWidget(m_ui->chooseType);
     m_ui->tripType->setCurrentIndex(0);
     m_planTripListDrag->clearItems();
@@ -192,3 +197,12 @@ Restaurant& PlanTrip::getRestaurantPointer(int id)
     }
 }
 
+void PlanTrip::setPlanState(const PlanState pickedState)
+{
+    m_state = pickedState;
+}
+
+PlanTrip::PlanState PlanTrip::getPlanState() const
+{
+    return m_state;
+}
