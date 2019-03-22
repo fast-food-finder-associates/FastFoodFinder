@@ -317,11 +317,6 @@ background-color: #B19CD9;
    <zorder>NavBarWidget</zorder>
    <zorder>mainViews</zorder>
   </widget>
-  <action name="actionLogout">
-   <property name="text">
-    <string>Logout</string>
-   </property>
-  </action>
  </widget>
  <resources>
   <include location="../../res.qrc"/>
