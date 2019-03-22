@@ -117,7 +117,7 @@ font:bold ;
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="chooseType">
     <property name="styleSheet">
@@ -140,7 +140,7 @@ font:bold ;
       </palette>
      </property>
      <property name="styleSheet">
-      <string notr="true">text-align: center</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="QLabel" name="tripTypeLabel">
@@ -207,6 +207,9 @@ font:bold ;
      </property>
      <property name="text">
       <string>Enter</string>
+     </property>
+     <property name="autoDefault">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
@@ -559,7 +562,10 @@ color:white;</string>
       <string>Menu</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="margin">
+      <number>10</number>
      </property>
     </widget>
     <widget class="QWidget" name="rightBar" native="true">
@@ -1005,6 +1011,25 @@ color:white;</string>
        <string>Next</string>
       </property>
      </widget>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>80</y>
+       <width>114</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add To Cart</string>
+     </property>
+     <property name="autoDefault">
+      <bool>true</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tripReceipt"/>

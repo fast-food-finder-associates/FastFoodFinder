@@ -206,3 +206,9 @@ PlanTrip::PlanState PlanTrip::getPlanState() const
 {
     return m_state;
 }
+
+void PlanTrip::on_pushButton_2_clicked()
+{
+    m_tripMenuList->getIDQty();
+    m_tripFoodCart;
+}
