@@ -10,9 +10,6 @@ class RestaurantList : public QListWidget
 
 public:
 
-    /* Enum class for each view state */
-    enum StartFrom { Saddleback, FirstRestaurant, None};
-
     /* Constructor */
     RestaurantList(QWidget* parent);
 

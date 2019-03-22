@@ -47,10 +47,10 @@ void NavItem::shrink() const
 /* Events */
 void NavItem::enterEvent(QEvent*)
 {
-    setStyleSheet("* { color: black; }");
+    setStyleSheet("QWidget#navIcon,QWidget#navLabel { color: black; }");
 }
 
 void NavItem::leaveEvent(QEvent*)
 {
-    setStyleSheet("* { color: white; }");
+    setStyleSheet("QWidget#navIcon,QWidget#navLabel { color: white; }");
 }

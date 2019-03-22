@@ -4,5 +4,7 @@
         <file alias="/fff128.png">res/fff128.png</file>
         <file alias="/fff256.png">res/fff256.png</file>
         <file alias="/fontAwesome.ttf">res/fontawesome-webfont.ttf</file>
+        <file alias="/artboard.png">res/Artboard.png</file>
+        <file alias="/artboard_green.png">res/Artboard_green.png</file>
     </qresource>
 </RCC>

@@ -29,15 +29,20 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>49</x>
-     <y>11</y>
-     <width>141</width>
+     <x>40</x>
+     <y>10</y>
+     <width>151</width>
      <height>61</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QLabel" name="name">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>name</string>
       </property>
