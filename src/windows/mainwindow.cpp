@@ -8,6 +8,7 @@
 #include <QTimer>
 #include <QMessageBox>
 #include "src/datastore/RestaurantDataStore.hpp"
+#include "src/windows/login.hpp"
 
 /* Constructors */
 MainWindow::MainWindow()
@@ -125,7 +126,7 @@ void MainWindow::changeNavState(ViewStates state)
         m_navbar->item(0)->setHidden(false);
         m_navbar->item(1)->setHidden(false);
         m_navbar->item(2)->setHidden(false);
-        m_navbar->item(3)->setHidden(false);
+        m_navbar->item(3)->setHidden(Login::getType() == Login::Type::ADMIN ? false : true);
         m_navbar->item(4)->setHidden(false);
         m_navbar->item(5)->setHidden(true);
         m_navbar->item(6)->setHidden(true);
@@ -137,7 +138,7 @@ void MainWindow::changeNavState(ViewStates state)
         m_navbar->item(0)->setHidden(true);
         m_navbar->item(1)->setHidden(true);
         m_navbar->item(2)->setHidden(true);
-        m_navbar->item(3)->setHidden(true);
+        m_navbar->item(3)->setHidden(Login::getType() == Login::Type::ADMIN ? true : false);
         m_navbar->item(4)->setHidden(true);
         m_navbar->item(5)->setHidden(false);
         m_navbar->item(6)->setHidden(false);
