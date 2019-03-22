@@ -47,7 +47,7 @@ MainWindow::MainWindow()
     changeView(0);
 
     RestaurantDataStore store;
-    store.load("D:/Projects/FastFoodFinder/src/datastore/");
+    store.load("");
 
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
