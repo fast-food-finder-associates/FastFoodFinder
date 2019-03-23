@@ -42,6 +42,8 @@ public:
     const  string &GetHashedPasswd(void) const;
     bool MarkDeleted(bool Delete);
     bool IsDeleted(void) const;
+    bool MarkAdmin(bool Admin);
+    bool IsAdmin(void) const;
     bool MarkBlocked(bool Block);
     bool IsBlocked(void) const;
     float Purchase(float PurchaseAmount);

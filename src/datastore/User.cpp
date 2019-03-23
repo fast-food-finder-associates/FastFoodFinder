@@ -111,6 +111,17 @@ bool User::IsDeleted(void) const
 {
     return m_bDeleted;
 }
+bool User::MarkAdmin(bool Admin)
+{
+    m_bIsAdministrator = Admin;
+    return m_bIsAdministrator;
+
+}
+
+bool User::IsAdmin(void) const
+{
+    return m_bIsAdministrator;
+}
 bool User::MarkBlocked(bool Block)
 {
     m_bBlocked = Block;

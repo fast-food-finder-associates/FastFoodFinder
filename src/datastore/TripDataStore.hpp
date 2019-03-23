@@ -31,6 +31,11 @@ public:
     void load(const string path);
     void save(const string path);
 
+    // Used to take a trip
+    //int StoreTrip(const string &TripName, const vector<int> RestaurantsSelectedbyUser, RestaurantDataStore &RestSt, User &User, bool StartatSaddleback);
+    //int StoreTripNumRest(const string &TripName, int StartingRestNum, int NumtoVisit, RestaurantDataStore &RestSt, User &User);
+    Trip &FindbyNumber(int Number); 
+
     //std::list<Trip> list;
     MyDblLinkList<Trip> list;
 

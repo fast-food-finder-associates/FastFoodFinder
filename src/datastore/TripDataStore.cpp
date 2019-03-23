@@ -132,6 +132,43 @@ void TripDataStore::save(const string path)
 
 }
 
+Trip &TripDataStore::FindbyNumber(int Number)
+{
+    for (MyDblLinkList<Trip>::iterator it = list.begin(); it != list.end(); ++it)
+    {
+        if ( (*it).m_nNumber == Number)
+        {
+            return *it;
+        }
+    }
+    return *(list.end());  // never reached  - should throw exception
+}
+
+#if 0
+// Used to take a trip
+int TripDataStore::StoreTrip(const string &TripName, const vector<int> RestaurantsSelectedbyUser, RestaurantDataStore &RestSt, User &User)
+{
+    vector<int> sVec;
+    float shortest_dist = 999.9;
+    if (RestaurantsSelectedbyUser[0] == 0)
+    {
+        for (vector<int> const_iterator it = RestaurantsSelectedbyUser.begin(); RestaurantsSelectedbyUser.end(); it++)
+        {
+            float restdist;
+            int closest_restnum;
+            Restaurant *pRest = RestSt.FindbyNumber(*it);
+            restdist = pRest->GetDistSaddleback();
+            if ( pRest->restdist) < shortest_dist) 
+            {
+                shortest_dist = restdist;
+                closest_restnum = pRest->GetNumber();
+            }
+        }
+    }
+    Trip *PTrip = new Trip();
+}
+#endif
+
 void TripDataStore::printAsDebug(bool printeol, bool printcontent) const
 {
     list.printAsDebug(printeol,printcontent);

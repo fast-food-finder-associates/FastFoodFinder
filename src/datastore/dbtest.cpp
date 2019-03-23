@@ -81,6 +81,13 @@ int main (int argc, char *argv[])
     myrest.AddMenuItem("Test Item", 9.89);
     myrest.PrintAsDebug(true);
 
+    cout << endl << endl;
+    cout << "Test Trip findByNum" << endl;
+    Trip &myTrip = Trips.FindbyNumber(10);
+    myTrip.PrintAsDebug(true);
+    cout << "--------------------" << endl << endl;
+
+
     for (MyDblLinkList<User>::iterator it = Users.list.begin(); it != Users.list.end(); ++it)
     {
         cout << "User name:" << (*it).GetName() << " Total Purchases $" << (*it).GetTotalPurchase() << endl;
