@@ -2,7 +2,7 @@
 
 /* Constructor */
 MenuList::MenuList(QWidget* parent)
-    : QListWidget(parent), m_showQty(false)
+    : QListWidget(parent), m_showQty(false), m_allowDeleted(false)
 {
     /* List widget settings */
     QListWidget::setStyleSheet("QListWidget { background-color: #303030; color: white; }");
@@ -58,7 +58,7 @@ void MenuList::setQty(IDs id, int qty) const
 /* List modifiers */
 void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
 {
-    if(menuItem.IsDeleted())
+    if(menuItem.IsDeleted() && !m_allowDeleted)
         return;
 
     QListWidgetItem* listItem = new QListWidgetItem(this);
@@ -100,6 +100,11 @@ void MenuList::removeItem(IDs id)
             return;
         }
     }
+}
+
+void MenuList::allowDeleted(bool v)
+{
+    m_allowDeleted = v;
 }
 
 /* Quantity */

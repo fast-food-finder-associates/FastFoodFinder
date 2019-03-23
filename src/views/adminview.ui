@@ -232,6 +232,32 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_deleteMenuItem">
+     <property name="geometry">
+      <rect>
+       <x>99</x>
+       <y>330</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Delete</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_restoreMenuItem">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>330</y>
+       <width>80</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Restore</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

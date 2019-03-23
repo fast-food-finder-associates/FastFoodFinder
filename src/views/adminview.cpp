@@ -1,6 +1,7 @@
 #include "adminview.hpp"
 #include "ui_adminview.h"
 #include <QFileDialog>
+#include <QDebug>
 
 /* Constructor */
 AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
@@ -41,6 +42,14 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     /* Menu lists */
     m_menuListAvailable = new MenuList(m_ui->widget_menuAvailable);
     m_menuListDeleted = new MenuList(m_ui->widget_menuDeleted);
+    m_menuListDeleted->allowDeleted(true);
+
+    /* These connections are the same as the connections for the restaurant lists above */
+    connect(m_menuListAvailable, &MenuList::currentMenuItemChanged,
+            [this] { m_menuListDeleted->setCurrentRow(-1); });
+
+    connect(m_menuListDeleted, &MenuList::currentMenuItemChanged,
+            [this] { m_menuListAvailable->setCurrentRow(-1); });
 
     //Instantiates the lists
     resetUi();
@@ -76,6 +85,24 @@ void AdminView::resetUi()
 
     /* Push buttons */
     m_ui->pushButton_editMenu->setStyleSheet("QPushButton { color: black; }");
+}
+
+void AdminView::loadMenuList(RestaurantID id)
+{
+    resetUi();
+
+    Restaurant rest = m_store->FindbyNumber(id);
+
+    /* Available menu list */
+    m_menuListAvailable->addAllItems(rest);
+
+    /* Deleted menu list */
+    const std::vector<MenuItem> items = rest.GetMenu();
+    for(MenuItem item : items)
+    {
+        if(item.IsDeleted())
+            m_menuListDeleted->addItem(id, item);
+    }
 }
 
 /* Private slots */
@@ -130,7 +157,8 @@ void AdminView::on_pushButton_editMenu_clicked()
         return;
     }
 
-    m_menuListAvailable->addAllItems(m_store->FindbyNumber(id));
+    loadMenuList(id);
+
     m_ui->stackedWidget->setCurrentIndex(1);
 }
 
@@ -138,4 +166,24 @@ void AdminView::on_pushButton_selectRest_clicked()
 {
     m_ui->stackedWidget->setCurrentIndex(0);
     resetUi();
+}
+
+void AdminView::on_pushButton_deleteMenuItem_clicked()
+{
+    IDs id = m_menuListAvailable->getSelected();
+
+    Restaurant& rest = m_store->FindbyNumber(id.first);
+    rest.FindMenuItembyNumber(id.second).MarkDeleted(true); //FIXME returns const&, not just &
+
+    loadMenuList(id.first);
+}
+
+void AdminView::on_pushButton_restoreMenuItem_clicked()
+{
+    IDs id = m_menuListDeleted->getSelected();
+
+    Restaurant& rest = m_store->FindbyNumber(id.first);
+    rest.FindMenuItembyNumber(id.second).MarkDeleted(false); //FIXME returns const&, not just &
+
+    loadMenuList(id.first);
 }

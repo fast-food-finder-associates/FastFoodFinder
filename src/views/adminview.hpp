@@ -23,12 +23,15 @@ public:
 
 public slots:
     void resetUi();
+    void loadMenuList(RestaurantID);
 
 private slots:
     void on_pushButton_confirmRestChanges_clicked();
     void on_pushButton_addFromFile_clicked();
     void on_pushButton_editMenu_clicked();
     void on_pushButton_selectRest_clicked();
+    void on_pushButton_deleteMenuItem_clicked();
+    void on_pushButton_restoreMenuItem_clicked();
 
 private:
     Ui::AdminView* m_ui;
