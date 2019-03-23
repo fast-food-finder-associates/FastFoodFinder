@@ -20,8 +20,10 @@ public:
     /* Destructor */
     ~AdminView() override;
 
-private slots:
+public slots:
     void resetUi();
+
+private slots:
     void on_pushButton_confirmRestChanges_clicked();
     void on_pushButton_addFromFile_clicked();
     void on_pushButton_editMenu_clicked();

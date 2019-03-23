@@ -51,7 +51,7 @@ AdminView::~AdminView()
     delete m_restListDeleted;
 }
 
-/* Private slots */
+/* Public slots */
 void AdminView::resetUi()
 {
     /* Reset available restaurant list */
@@ -68,6 +68,7 @@ void AdminView::resetUi()
     }
 }
 
+/* Private slots */
 void AdminView::on_pushButton_confirmRestChanges_clicked()
 {
     /* Get all the IDs in the list and mark them as available */
