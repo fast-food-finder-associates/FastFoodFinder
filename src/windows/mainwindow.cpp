@@ -47,11 +47,7 @@ MainWindow::MainWindow()
     changeView(0);
 
     //Load the restaurant database from the file
-    m_store.load(""); //TODO add your database directory here (include '/' at the end)
-
-    // WARNING: Put database filepath here
-    store.load("");
-
+    m_store.load("D:/Projects/FastFoodFinder/src/datastore/RestaurantData.csv"); //WARNING Put database filepath here
 
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
