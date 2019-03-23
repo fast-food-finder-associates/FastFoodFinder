@@ -47,7 +47,10 @@ MainWindow::MainWindow()
     changeView(0);
 
     RestaurantDataStore store;
-    store.load(""); //TODO add your database directory here (include '/' at the end)
+
+    // WARNING: Put database filepath here
+    store.load("");
+
 
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);

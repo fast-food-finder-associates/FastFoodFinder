@@ -24,7 +24,7 @@ RestaurantDataStore::RestaurantDataStore()
 
 void RestaurantDataStore::load(const string path)
 {
-    string fullpath = path + "RestaurantData.csv";
+    string fullpath = path;
     std::ifstream infile(fullpath, ios::in);
     int line_count = 0;
     if (infile.is_open())
@@ -133,14 +133,14 @@ void RestaurantDataStore::load(const string path)
 
 void RestaurantDataStore::save(const string path)
 {
-    string fullpath = path + "RestaurantData.csv.tmp";
+    string fullpath = path + ".tmp";
     string outline;
     int line_count = 0;
 
     std::ofstream outfile(fullpath, ios::trunc);
     if (outfile.is_open())
     {
-        for (MyDblLinkList<Restaurant>::iterator it = list.begin(); it != list.end(); it++)
+        for (std::list<Restaurant>::iterator it = list.begin(); it != list.end(); it++)
         {
             line_count++;
 
@@ -204,7 +204,7 @@ void RestaurantDataStore::save(const string path)
 
 Restaurant &RestaurantDataStore::FindbyNumber(int Number)
 {
-    for (MyDblLinkList<Restaurant>::iterator it = list.begin(); it != list.end(); ++it)
+    for (std::list<Restaurant>::iterator it = list.begin(); it != list.end(); ++it)
     {
         if ( (*it).m_nNumber == Number)
         {
@@ -216,7 +216,7 @@ Restaurant &RestaurantDataStore::FindbyNumber(int Number)
 
 void RestaurantDataStore::printAsDebug(bool printeol, bool printcontent) const
 {
-    list.printAsDebug(printeol,printcontent);
+//    list.printAsDebug(printeol,printcontent);
 }
 
 // Destructor implementation

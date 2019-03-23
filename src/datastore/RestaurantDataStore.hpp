@@ -32,8 +32,8 @@ public:
     void load(const string path);
     void save(const string path);
 
-    //std::list<Restaurant> list;
-    MyDblLinkList<Restaurant> list;
+    std::list<Restaurant> list;
+//    MyDblLinkList<Restaurant> list;
 
 private:
 
