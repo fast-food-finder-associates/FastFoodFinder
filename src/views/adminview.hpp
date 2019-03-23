@@ -22,7 +22,7 @@ public:
     ~AdminView() override;
 
 public slots:
-    void resetUi();
+    void resetView();
     void loadMenuList(RestaurantID);
 
 private slots:

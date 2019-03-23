@@ -92,7 +92,7 @@ void MainWindow::resetUi()
     m_restaurantList->addItems(m_store.list.begin(), m_store.list.end());
 
     /* Admin view */
-    m_adminView->resetUi();
+    m_adminView->resetView();
 }
 
 void MainWindow::menuListChange(int id)
