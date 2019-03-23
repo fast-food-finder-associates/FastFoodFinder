@@ -6,7 +6,7 @@ const QSize MenuListItem::itemSizeHint(200, 80);
 
 /* Constructor */
 MenuListItem::MenuListItem(QWidget* parent, RestaurantID restID, MenuItem menuItem)
-    : QWidget(parent), m_ids(restID, 0), m_ui(new Ui::MenuListItem) //TODO replace 0 with menuItem.GetNumber()
+    : QWidget(parent), m_ids(restID, menuItem.GetNumber()), m_ui(new Ui::MenuListItem)
 {
     m_ui->setupUi(this);
 
