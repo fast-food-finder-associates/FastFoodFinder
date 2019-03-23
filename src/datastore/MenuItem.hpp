@@ -35,6 +35,7 @@ public:
     void UpdateName(const string &NewName);
     bool IsDeleted(void) const;
     bool MarkDeleted(bool Delete);
+    int GetNumber(void) const;
 
     const MenuItem&FindMenuItembyNumber(int Number) const;
 

@@ -48,6 +48,11 @@ bool MenuItem::MarkDeleted(bool Delete)
     return m_bDeleted;
 }
 
+int MenuItem::GetNumber(void) const
+{
+    return m_nNumber;
+}
+
     // used by database load only
 MenuItem::MenuItem(const int Number, const bool Deleted, const string &Name, const float &Price)
     :m_nNumber(Number), m_bDeleted(Deleted), m_MenuItemName(Name), m_fMenuItemPrice(Price)

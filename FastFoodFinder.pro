@@ -38,7 +38,8 @@ HEADERS += \
     src/datastore/Trip.hpp \
     src/datastore/TripDataStore.hpp \
     src/datastore/User.hpp \
-    src/datastore/UserDataStore.hpp
+    src/datastore/UserDataStore.hpp \
+    src/datastore/menuItem.hpp \
 
 
 SOURCES += \
@@ -54,7 +55,8 @@ SOURCES += \
     src/datastore/Trip.cpp \
     src/datastore/TripDataStore.cpp \
     src/datastore/User.cpp \
-    src/datastore/UserDataStore.cpp
+    src/datastore/UserDataStore.cpp \
+    src/datastore/menuItem.cpp \
 
 FORMS += \
     src/windows/login.ui \

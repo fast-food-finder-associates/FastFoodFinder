@@ -45,6 +45,8 @@ MainWindow::MainWindow()
     changeView(0);
 
     RestaurantDataStore store;
+    // Delete comment -  type out path and csv file -  important for adding more items
+    store.load("");
 
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
