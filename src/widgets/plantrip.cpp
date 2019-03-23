@@ -161,8 +161,8 @@ void PlanTrip::resetPlanTripView()
     setPlanState(PlanState::None);
     m_ui->planTripStack->setCurrentWidget(m_ui->chooseType);
     m_ui->tripType->setCurrentIndex(0);
-    m_planTripListDrag->clearItems();
-    m_planTripListDrop->clearItems();
+    m_planTripListDrag->clear();
+    m_planTripListDrop->clear();
 }
 
 void PlanTrip::activeTrip()

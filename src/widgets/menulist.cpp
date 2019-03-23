@@ -53,20 +53,6 @@ void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
 
         //Allows all MenuItem's to toggle its quantity widgets through the emitter
         connect(this, &MenuList::showQtyEmitter, widget, &MenuListItem::showQty);
-
-void MenuList::removeItem(IDs id)
-{
-    for(int i = 0; i < QListWidget::count(); i++)
-    {
-        QListWidgetItem* listItem = QListWidget::item(i);
-        MenuListItem* widget = dynamic_cast<MenuListItem*>(QListWidget::itemWidget(listItem));
-
-        if(widget != nullptr && id == widget->getIDs())
-        {
-            QListWidget::removeItemWidget(listItem);
-            return;
-        }
-    }
 }
 
 void MenuList::addAllItems(const Restaurant& restaurant)

@@ -26,9 +26,6 @@ public:
     template<typename Iterator>
     void removeItems(Iterator begin, Iterator end);
 
-    // m_tripCoiceStorage modifier
-    void addListToTripDB(Iterator begin, Iterator end);
-
 signals:
     void currentRestaurantChanged(RestaurantID) const;
 

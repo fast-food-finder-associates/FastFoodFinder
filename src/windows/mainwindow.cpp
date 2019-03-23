@@ -48,7 +48,7 @@ MainWindow::MainWindow()
     changeView(0);
 
     //Load the restaurant database from the file
-    m_store.load(""); //WARNING Put database filepath here
+    m_store.load("/Users/RogerChavez/Desktop/FastFoodFinder/FastFoodFinder.app/Contents/MacOs/test.csv"); //WARNING Put database filepath here
 
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
