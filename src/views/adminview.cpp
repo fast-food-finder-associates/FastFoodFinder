@@ -52,7 +52,7 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
             [this] { m_menuListAvailable->setCurrentRow(-1); });
 
     //Instantiates the lists
-    resetUi();
+    resetView();
 }
 
 /* Destructor */
@@ -64,8 +64,11 @@ AdminView::~AdminView()
 }
 
 /* Public slots */
-void AdminView::resetUi()
+void AdminView::resetView()
 {
+    //Reset stack widget
+    m_ui->stackedWidget->setCurrentIndex(0);
+
     /* Reset available restaurant list */
     m_restListAvailable->clear();
     m_restListAvailable->addItems(m_store->list.begin(), m_store->list.end());
@@ -79,9 +82,6 @@ void AdminView::resetUi()
             m_restListDeleted->addItem(rest);
     }
 
-    /* Menu lists */
-    m_menuListAvailable->clear();
-    m_menuListDeleted->clear();
 
     /* Push buttons */
     m_ui->pushButton_editMenu->setStyleSheet("QPushButton { color: black; }");
@@ -89,7 +89,9 @@ void AdminView::resetUi()
 
 void AdminView::loadMenuList(RestaurantID id)
 {
-    resetUi();
+    /* Clear lists */
+    m_menuListAvailable->clear();
+    m_menuListDeleted->clear();
 
     Restaurant rest = m_store->FindbyNumber(id);
 
@@ -129,7 +131,7 @@ void AdminView::on_pushButton_confirmRestChanges_clicked()
     }
 
     //Refills the lists
-    resetUi();
+    resetView();
 }
 
 void AdminView::on_pushButton_addFromFile_clicked()
@@ -139,7 +141,7 @@ void AdminView::on_pushButton_addFromFile_clicked()
     if(!folder.isEmpty())
         m_store->load(folder.toStdString());
 
-    resetUi();
+    resetView();
 }
 
 void AdminView::on_pushButton_editMenu_clicked()
@@ -165,7 +167,7 @@ void AdminView::on_pushButton_editMenu_clicked()
 void AdminView::on_pushButton_selectRest_clicked()
 {
     m_ui->stackedWidget->setCurrentIndex(0);
-    resetUi();
+    resetView();
 }
 
 void AdminView::on_pushButton_deleteMenuItem_clicked()
@@ -173,7 +175,7 @@ void AdminView::on_pushButton_deleteMenuItem_clicked()
     IDs id = m_menuListAvailable->getSelected();
 
     Restaurant& rest = m_store->FindbyNumber(id.first);
-    rest.FindMenuItembyNumber(id.second).MarkDeleted(true); //FIXME returns const&, not just &
+    rest.FindMenuItembyNumber(id.second).MarkDeleted(true);
 
     loadMenuList(id.first);
 }
@@ -183,7 +185,7 @@ void AdminView::on_pushButton_restoreMenuItem_clicked()
     IDs id = m_menuListDeleted->getSelected();
 
     Restaurant& rest = m_store->FindbyNumber(id.first);
-    rest.FindMenuItembyNumber(id.second).MarkDeleted(false); //FIXME returns const&, not just &
+    rest.FindMenuItembyNumber(id.second).MarkDeleted(false);
 
     loadMenuList(id.first);
 }
