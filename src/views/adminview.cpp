@@ -107,8 +107,10 @@ void AdminView::on_pushButton_confirmRestChanges_clicked()
 
 void AdminView::on_pushButton_addFromFile_clicked()
 {
-    QString folder = QFileDialog::getExistingDirectory(this, "Add restaurants") + "/";
-    m_store->load(folder.toStdString());
+    QString folder = QFileDialog::getOpenFileName(this, "Add restaurants", QDir::homePath(), "Restaurants file (*.csv)");
+
+    if(!folder.isEmpty())
+        m_store->load(folder.toStdString());
 
     resetUi();
 }
