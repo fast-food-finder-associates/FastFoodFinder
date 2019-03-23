@@ -1,6 +1,7 @@
 #pragma once
 #include <QWidget>
 #include "src/widgets/navbar.hpp"
+#include "src/widgets/menulist.hpp"
 #include "src/widgets/restaurantlist.hpp"
 #include "src/datastore/RestaurantDataStore.hpp"
 
@@ -34,4 +35,6 @@ private:
     RestaurantDataStore* m_store;
     RestaurantList* m_restListAvailable;
     RestaurantList* m_restListDeleted;
+    MenuList* m_menuListAvailable;
+    MenuList* m_menuListDeleted;
 };

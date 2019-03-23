@@ -1,7 +1,6 @@
 #include "adminview.hpp"
 #include "ui_adminview.h"
 #include <QFileDialog>
-#include <QDebug>
 
 /* Constructor */
 AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
@@ -39,6 +38,10 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     connect(m_restListDeleted, &RestaurantList::currentRestaurantChanged,
             [this] { m_restListAvailable->setCurrentRow(-1); });
 
+    /* Menu lists */
+    m_menuListAvailable = new MenuList(m_ui->widget_menuAvailable);
+    m_menuListDeleted = new MenuList(m_ui->widget_menuDeleted);
+
     //Instantiates the lists
     resetUi();
 }
@@ -66,6 +69,13 @@ void AdminView::resetUi()
         if(rest.IsDeleted())
             m_restListDeleted->addItem(rest);
     }
+
+    /* Menu lists */
+    m_menuListAvailable->clear();
+    m_menuListDeleted->clear();
+
+    /* Push buttons */
+    m_ui->pushButton_editMenu->setStyleSheet("QPushButton { color: black; }");
 }
 
 /* Private slots */
@@ -106,13 +116,24 @@ void AdminView::on_pushButton_addFromFile_clicked()
 void AdminView::on_pushButton_editMenu_clicked()
 {
     RestaurantID id = m_restListAvailable->getSelected();
+
+    /* If the available list isn't selected */
     if(id == -1)
         id = m_restListDeleted->getSelected();
 
+    /* If the deleted list isn't selected, then none of them are */
+    if(id == -1)
+    {
+        m_ui->pushButton_editMenu->setStyleSheet("QPushButton { color: red; } ");
+        return;
+    }
+
+    m_menuListAvailable->addAllItems(m_store->FindbyNumber(id));
     m_ui->stackedWidget->setCurrentIndex(1);
 }
 
 void AdminView::on_pushButton_selectRest_clicked()
 {
     m_ui->stackedWidget->setCurrentIndex(0);
+    resetUi();
 }
