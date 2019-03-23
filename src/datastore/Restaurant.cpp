@@ -158,7 +158,7 @@ void Restaurant::AddMenuItem(const string &Name, const float &Price)
 
 MenuItem&Restaurant::FindMenuItembyNumber(int Number)
 {
-    for (std::vector<MenuItem>::const_iterator it = m_Menu.begin(); it != m_Menu.end(); ++it)
+    for (std::vector<MenuItem>::iterator it = m_Menu.begin(); it != m_Menu.end(); ++it)
     {
         if ( (*it).m_nNumber == Number)
         {
