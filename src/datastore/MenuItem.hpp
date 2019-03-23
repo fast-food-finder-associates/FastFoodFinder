@@ -29,6 +29,7 @@ public:
     // Assignment operator
     MenuItem& operator=(const MenuItem& rhs);
 
+    int GetNumber(void);
     float GetPrice(void) const;
     void UpdatePrice(const float NewPrice);
     const string &GetName(void) const;

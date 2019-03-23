@@ -17,6 +17,11 @@ MenuItem::~MenuItem()
 {
 }
 
+int MenuItem::GetNumber(void)
+{
+    return m_nNumber;
+}
+
 float MenuItem::GetPrice(void) const
 {
     return (m_fMenuItemPrice);
