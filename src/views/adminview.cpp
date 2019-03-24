@@ -13,9 +13,9 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     m_ui->page_restSelect->setStyleSheet("QWidget#page_restSelect { background-color: lightgreen; }");
     m_ui->page_menuSelect->setStyleSheet("QWidget#page_menuSelect { background-color: lightblue; }");
     m_ui->label_restListAvailable->setStyleSheet("QLabel { font-size: 20px; }");
-    m_ui->label_restListDeleted->setStyleSheet("QLabel { font-size: 20px; }");
+    m_ui->label_restListHidden->setStyleSheet("QLabel { font-size: 20px; }");
     m_ui->label_menuAvailable->setStyleSheet("QLabel { font-size: 20px; }");
-    m_ui->label_menuDeleted->setStyleSheet("QLabel { font-size: 20px; }");
+    m_ui->label_menuHidden->setStyleSheet("QLabel { font-size: 20px; }");
     m_ui->label_menuAdd->setStyleSheet("QLabel { font-size: 15px; }");
     m_ui->label_menuEdit->setStyleSheet("QLabel { font-size: 15px; }");
 
@@ -25,7 +25,7 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     m_restListAvailable->setAcceptDrops(true);
 
     /* Deleted restaurant list */
-    m_restListDeleted = new RestaurantList(m_ui->widget_restListDeleted);
+    m_restListDeleted = new RestaurantList(m_ui->widget_restListHidden);
     m_restListDeleted->setDragDropMode(QAbstractItemView::DragDrop);
     m_restListDeleted->setAcceptDrops(true);
     m_restListDeleted->allowDeleted(true);
@@ -203,7 +203,7 @@ void AdminView::on_pushButton_selectRestView_clicked()
     resetView();
 }
 
-void AdminView::on_pushButton_deleteMenuItem_clicked()
+void AdminView::on_pushButton_hideMenuItem_clicked()
 {
     IDs id = m_menuListAvailable->getSelected();
 

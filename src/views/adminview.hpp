@@ -32,7 +32,7 @@ private slots:
     void on_pushButton_addFromFile_clicked();
     void on_pushButton_editMenuView_clicked();
     void on_pushButton_selectRestView_clicked();
-    void on_pushButton_deleteMenuItem_clicked();
+    void on_pushButton_hideMenuItem_clicked();
     void on_pushButton_restoreMenuItem_clicked();
     void on_pushButton_menuEdit_clicked();
 
