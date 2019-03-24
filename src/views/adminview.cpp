@@ -93,8 +93,6 @@ void AdminView::resetUi()
     }
 
     /* Menu lists */
-    m_menuListAvailable->clear();
-    m_menuListDeleted->clear();
     loadMenuList(m_currentMenu);
 
     /* Push buttons */
@@ -116,6 +114,9 @@ void AdminView::loadMenuList(RestaurantID id)
 {
     if(id == -1)
         return;
+
+    m_menuListAvailable->clear();
+    m_menuListDeleted->clear();
 
     Restaurant rest = m_store->FindbyNumber(id);
 
@@ -200,7 +201,6 @@ void AdminView::fillMenuItemEditFields(IDs id)
 
 void AdminView::on_pushButton_selectRestView_clicked()
 {
-    m_ui->stackedWidget->setCurrentIndex(0);
     resetView();
 }
 
