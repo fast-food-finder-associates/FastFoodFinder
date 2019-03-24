@@ -29,7 +29,7 @@ MainWindow::MainWindow()
     m_navbar->addItem("\uf2f5", "Logout");
 
     //Load the restaurant database from the file
-    m_store.load("D:/Projects/FastFoodFinder/src/datastore/RestaurantData.csv"); //WARNING Put database filepath here
+    m_store.load(""); //WARNING Put database filepath here
 
     /* Restaurant list */
     m_restaurantList = new RestaurantList(m_ui->restaurantList);
