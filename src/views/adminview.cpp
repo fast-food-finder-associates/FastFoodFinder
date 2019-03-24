@@ -93,7 +93,6 @@ void AdminView::resetUi()
     m_restListDeleted->clear();
     for(Restaurant& rest : m_store->list)
     {
-        //Add the item if it is deleted
         if(rest.IsDeleted())
             m_restListDeleted->addItem(rest);
     }
