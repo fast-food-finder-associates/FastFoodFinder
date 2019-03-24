@@ -96,11 +96,12 @@ void AdminView::resetUi()
     loadMenuList(m_currentMenu);
 
     /* Push buttons */
-    m_ui->pushButton_editMenuView->setStyleSheet("QPushButton { color: black; }");
-    m_ui->pushButton_menuAdd->setStyleSheet("QPushButton { color: black; } ");
-    m_ui->pushButton_menuEdit->setStyleSheet("QPushButton { color: black; }");
-    m_ui->pushButton_hideMenuItem->setStyleSheet("QPushButton { color: black; }");
-    m_ui->pushButton_restoreMenuItem->setStyleSheet("QPushButton { color: black; }");
+    QString pushbuttonReset = "QPushButton { color: black; }";
+    m_ui->pushButton_editMenuView->setStyleSheet(pushbuttonReset);
+    m_ui->pushButton_menuAdd->setStyleSheet(pushbuttonReset);
+    m_ui->pushButton_menuEdit->setStyleSheet(pushbuttonReset);
+    m_ui->pushButton_hideMenuItem->setStyleSheet(pushbuttonReset);
+    m_ui->pushButton_restoreMenuItem->setStyleSheet(pushbuttonReset);
 
     /* Line edits */
     m_ui->lineEdit_nameAdd->clear();
