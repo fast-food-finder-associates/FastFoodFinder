@@ -16,6 +16,8 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     m_ui->label_restListDeleted->setStyleSheet("QLabel { font-size: 20px; }");
     m_ui->label_menuAvailable->setStyleSheet("QLabel { font-size: 20px; }");
     m_ui->label_menuDeleted->setStyleSheet("QLabel { font-size: 20px; }");
+    m_ui->label_menuAdd->setStyleSheet("QLabel { font-size: 15px; }");
+    m_ui->label_menuEdit->setStyleSheet("QLabel { font-size: 15px; }");
 
     /* Available restaurant list */
     m_restListAvailable = new RestaurantList(m_ui->widget_restListAvailable);
@@ -51,6 +53,13 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     connect(m_menuListDeleted, &MenuList::currentMenuItemChanged,
             [this] { m_menuListAvailable->setCurrentRow(-1); });
 
+    /* These connections will fill the edit fields when a menu item is selected */
+    connect(m_menuListAvailable, &MenuList::currentMenuItemChanged,
+            this, &AdminView::fillMenuItemEditFields);
+
+    connect(m_menuListDeleted, &MenuList::currentMenuItemChanged,
+            this, &AdminView::fillMenuItemEditFields);
+
     //Instantiates the lists
     resetView();
 }
@@ -69,6 +78,11 @@ void AdminView::resetView()
     //Reset stack widget
     m_ui->stackedWidget->setCurrentIndex(0);
 
+    resetUi();
+}
+
+void AdminView::resetUi()
+{
     /* Reset available restaurant list */
     m_restListAvailable->clear();
     m_restListAvailable->addItems(m_store->list.begin(), m_store->list.end());
@@ -82,16 +96,27 @@ void AdminView::resetView()
             m_restListDeleted->addItem(rest);
     }
 
-
-    /* Push buttons */
-    m_ui->pushButton_editMenu->setStyleSheet("QPushButton { color: black; }");
-}
-
-void AdminView::loadMenuList(RestaurantID id)
-{
-    /* Clear lists */
+    /* Menu lists */
     m_menuListAvailable->clear();
     m_menuListDeleted->clear();
+
+    /* Push buttons */
+    m_ui->pushButton_editMenuView->setStyleSheet("QPushButton { color: black; }");
+    m_ui->pushButton_menuEdit->setStyleSheet("QPushButton { color: black; }");
+
+    /* Line edits */
+    m_ui->lineEdit_nameAdd->clear();
+    m_ui->lineEdit_nameEdit->clear();
+
+    /* Double spinboxes */
+    m_ui->doubleSpinBox_priceAdd->clear();
+    m_ui->doubleSpinBox_priceEdit->clear();
+}
+
+/* Private slots */
+void AdminView::loadMenuList(RestaurantID id)
+{
+    resetUi();
 
     Restaurant rest = m_store->FindbyNumber(id);
 
@@ -107,7 +132,15 @@ void AdminView::loadMenuList(RestaurantID id)
     }
 }
 
-/* Private slots */
+void AdminView::fillMenuItemEditFields(IDs id)
+{
+    Restaurant rest = m_store->FindbyNumber(id.first);
+    MenuItem item = rest.FindMenuItembyNumber(id.second);
+
+    m_ui->lineEdit_nameEdit->setText(QString::fromStdString(item.GetName()));
+    m_ui->doubleSpinBox_priceEdit->setValue(item.GetPrice());
+}
+
 void AdminView::on_pushButton_confirmRestChanges_clicked()
 {
     /* Get all the IDs in the list and mark them as available */
@@ -144,7 +177,7 @@ void AdminView::on_pushButton_addFromFile_clicked()
     resetView();
 }
 
-void AdminView::on_pushButton_editMenu_clicked()
+void AdminView::on_pushButton_editMenuView_clicked()
 {
     RestaurantID id = m_restListAvailable->getSelected();
 
@@ -155,7 +188,7 @@ void AdminView::on_pushButton_editMenu_clicked()
     /* If the deleted list isn't selected, then none of them are */
     if(id == -1)
     {
-        m_ui->pushButton_editMenu->setStyleSheet("QPushButton { color: red; } ");
+        m_ui->pushButton_editMenuView->setStyleSheet("QPushButton { color: red; } ");
         return;
     }
 
@@ -164,7 +197,7 @@ void AdminView::on_pushButton_editMenu_clicked()
     m_ui->stackedWidget->setCurrentIndex(1);
 }
 
-void AdminView::on_pushButton_selectRest_clicked()
+void AdminView::on_pushButton_selectRestView_clicked()
 {
     m_ui->stackedWidget->setCurrentIndex(0);
     resetView();
@@ -186,6 +219,29 @@ void AdminView::on_pushButton_restoreMenuItem_clicked()
 
     Restaurant& rest = m_store->FindbyNumber(id.first);
     rest.FindMenuItembyNumber(id.second).MarkDeleted(false);
+
+    loadMenuList(id.first);
+}
+
+void AdminView::on_pushButton_menuEdit_clicked()
+{
+    IDs id = m_menuListAvailable->getSelected();
+
+    /* If the available list isn't selected */
+    if(id.second == -1)
+        id = m_menuListDeleted->getSelected();
+
+    /* If the hidden list isn't selected, then none of them are */
+    if(id.second == -1)
+    {
+        m_ui->pushButton_menuEdit->setStyleSheet("QPushButton { color: red; } ");
+        return;
+    }
+
+    /* Edit the menu item */
+    MenuItem& item = m_store->FindbyNumber(id.first).FindMenuItembyNumber(id.second);
+    item.UpdateName(m_ui->lineEdit_nameEdit->text().toStdString());
+    item.UpdatePrice(m_ui->doubleSpinBox_priceEdit->value());
 
     loadMenuList(id.first);
 }
