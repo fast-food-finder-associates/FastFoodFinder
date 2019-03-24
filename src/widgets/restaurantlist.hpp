@@ -24,6 +24,7 @@ public:
     void removeItem(const Restaurant&);
     template<typename Iterator>
     void removeItems(Iterator begin, Iterator end);
+    void allowDeleted(bool);
 
 signals:
     void currentRestaurantChanged(RestaurantID) const;
@@ -33,6 +34,7 @@ private slots:
 
 private:
     static const QSize itemSizeHint;
+    bool m_allowDeleted;
 };
 
 /* Templated getters */

@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AdminView</class>
+ <widget class="QWidget" name="AdminView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>710</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QStackedWidget" name="stackedWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>710</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="page_restSelect">
+    <property name="styleSheet">
+     <string notr="true">QWidget#page_restSelect { background-color: lightgreen; }</string>
+    </property>
+    <widget class="QWidget" name="widget_restListAvailable" native="true">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>221</width>
+       <height>481</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_confirmRestChanges">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>520</y>
+       <width>111</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Confirm changes</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="widget_restListHidden" native="true">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>60</y>
+       <width>221</width>
+       <height>481</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_restListAvailable">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>30</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 20px; }</string>
+     </property>
+     <property name="text">
+      <string>Available Restaurants</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_restListHidden">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>30</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 20px; }</string>
+     </property>
+     <property name="text">
+      <string>Hidden Restaurants</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_instructionHide">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>540</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Drag restaurants here to hide</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_addFromFile">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>270</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add restaurants from file...</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_instructionRestore">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>540</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Drag restaurants here to show</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_editMenuView">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>310</y>
+       <width>111</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Menu items...</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_menuSelect">
+    <property name="styleSheet">
+     <string notr="true">QWidget#page_menuSelect { background-color: lightblue; }</string>
+    </property>
+    <widget class="QPushButton" name="pushButton_selectRestView">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>520</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Go back...</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="doubleSpinBox_priceEdit">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>350</y>
+       <width>61</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="prefix">
+      <string>$</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="widget_menuAvailable" native="true">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>221</width>
+       <height>481</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QWidget" name="widget_menuDeleted" native="true">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>60</y>
+       <width>221</width>
+       <height>481</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_menuHidden">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>30</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 20px; }</string>
+     </property>
+     <property name="text">
+      <string>Hidden Menu Items</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_menuAvailable">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>30</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 20px; }</string>
+     </property>
+     <property name="text">
+      <string>Available Menu Items</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_hideMenuItem">
+     <property name="geometry">
+      <rect>
+       <x>99</x>
+       <y>550</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Hide</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_restoreMenuItem">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>550</y>
+       <width>80</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Restore</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_menuEdit">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>280</y>
+       <width>191</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 15px; }</string>
+     </property>
+     <property name="text">
+      <string>Edit menu item</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_nameEdit">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>320</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>menu item name</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="doubleSpinBox_priceAdd">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>190</y>
+       <width>61</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="prefix">
+      <string>$</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_menuAdd">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>120</y>
+       <width>191</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 15px; }</string>
+     </property>
+     <property name="text">
+      <string>Add menu item</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_nameAdd">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>160</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>menu item name</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_menuAdd">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>190</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_menuEdit">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>350</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Confirm</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_menuInformation">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>490</y>
+       <width>191</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Changes are automatically saved</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

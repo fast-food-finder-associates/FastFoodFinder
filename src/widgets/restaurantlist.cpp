@@ -5,7 +5,7 @@ const QSize RestaurantList::itemSizeHint(170, 70);
 
 /* Constructor */
 RestaurantList::RestaurantList(QWidget* parent)
-    : QListWidget(parent)
+    : QListWidget(parent), m_allowDeleted(false)
 {
     /* List widget settings */
     QListWidget::setStyleSheet("QListWidget { background-color: #303030; color: white; }");
@@ -39,7 +39,7 @@ RestaurantID RestaurantList::getSelected() const
 /* List modifiers */
 void RestaurantList::addItem(const Restaurant& rest)
 {
-    if(rest.IsDeleted())
+    if(rest.IsDeleted() && !m_allowDeleted)
         return;
 
     QFont font("Font Awesome 5 Free", 12);
@@ -68,6 +68,11 @@ void RestaurantList::removeItem(const Restaurant& rest)
             return;
         }
     }
+}
+
+void RestaurantList::allowDeleted(bool v)
+{
+    m_allowDeleted = v;
 }
 
 /* Private slots */

@@ -34,6 +34,7 @@ HEADERS += \
     src/widgets/restaurantlist.hpp \
     src/widgets/menulist.hpp \
     src/widgets/menulistitem.hpp \
+    src/views/adminview.hpp \
     src/datastore/MyDblLinkList.hpp \
     src/datastore/Restaurant.hpp \
     src/datastore/MenuItem.hpp \
@@ -54,6 +55,7 @@ SOURCES += \
     src/widgets/restaurantlist.cpp \
     src/widgets/menulist.cpp \
     src/widgets/menulistitem.cpp \
+    src/views/adminview.cpp \
     src/datastore/Restaurant.cpp \
     src/datastore/MenuItem.cpp \
     src/datastore/RestaurantDataStore.cpp \
@@ -66,7 +68,8 @@ FORMS += \
     src/windows/login.ui \
     src/windows/mainwindow.ui \
     src/widgets/navitem.ui \
-    src/widgets/menulistitem.ui
+    src/widgets/menulistitem.ui \
+    src/views/adminview.ui
 
 RESOURCES += \
     res.qrc
