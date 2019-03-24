@@ -28,6 +28,9 @@ public:
     IDs getIDs() const;
     static QSize getItemSizeHint();
 
+    /* Setters */
+    void setQty(int);
+
 public slots:
     void showQty(bool);
     void resetQty();

@@ -2,7 +2,7 @@
 
 /* Constructor */
 MenuList::MenuList(QWidget* parent)
-    : QListWidget(parent)
+    : QListWidget(parent), m_showQty(false)
 {
     /* List widget settings */
     QListWidget::setStyleSheet("QListWidget { background-color: #303030; color: white; }");
@@ -39,6 +39,22 @@ IDs MenuList::getSelected() const
         return IDs(-1, -1);
 }
 
+/* Setters */
+void MenuList::setQty(IDs id, int qty) const
+{
+    for(int i = 0; i < QListWidget::count(); i++)
+    {
+        QListWidgetItem* listItem = QListWidget::item(i);
+        MenuListItem* widget = dynamic_cast<MenuListItem*>(QListWidget::itemWidget(listItem));
+
+        if(widget != nullptr && id == widget->getIDs())
+        {
+            widget->setQty(qty);
+            return;
+        }
+    }
+}
+
 /* List modifiers */
 void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
 {
@@ -50,6 +66,8 @@ void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
 
     MenuListItem* widget = new MenuListItem(this, restID, menuItem);
     QListWidget::setItemWidget(listItem, widget);
+
+    widget->showQty(m_showQty);
 
     //Allows all MenuItem's to toggle its quantity widgets through the emitter
     connect(this, &MenuList::showQtyEmitter, widget, &MenuListItem::showQty);
@@ -85,8 +103,9 @@ void MenuList::removeItem(IDs id)
 }
 
 /* Quantity */
-void MenuList::showQty(bool v) const
+void MenuList::showQty(bool v)
 {
+    m_showQty = v;
     emit showQtyEmitter(v);
 }
 
