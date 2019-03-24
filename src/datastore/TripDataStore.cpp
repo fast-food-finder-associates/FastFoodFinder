@@ -262,7 +262,7 @@ int TripDataStore::StoreTripNumRest(const string &TripName, int StartingRestNum,
     if (StartingRestNum == 0)
     {
         // If start number is zero, starting point is Saddleback
-        for (MyDblLinkList<Restaurant>::iterator it = RestSt.list.begin(); it != RestSt.list.end(); ++it)
+        for (std::list<Restaurant>::iterator it = RestSt.list.begin(); it != RestSt.list.end(); ++it)
         {
             float restdist = (*it).GetDistSaddleback();
             if (restdist < shortest_distance) 
