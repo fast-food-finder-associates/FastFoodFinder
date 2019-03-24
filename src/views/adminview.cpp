@@ -273,10 +273,20 @@ void AdminView::on_pushButton_menuEdit_clicked()
         return;
     }
 
+    QString name = m_ui->lineEdit_nameEdit->text();
+    double price = m_ui->doubleSpinBox_priceEdit->value();
+
+    /* Check if either of the fields are empty */
+    if(name.isEmpty() || price == 0.0)
+    {
+        m_ui->pushButton_menuEdit->setStyleSheet("QPushButton { color: red; } ");
+        return;
+    }
+
     /* Edit the menu item */
     MenuItem& item = m_store->FindbyNumber(id.first).FindMenuItembyNumber(id.second);
-    item.UpdateName(m_ui->lineEdit_nameEdit->text().toStdString());
-    item.UpdatePrice(static_cast<float>(m_ui->doubleSpinBox_priceEdit->value()));
+    item.UpdateName(name.toStdString());
+    item.UpdatePrice(static_cast<float>(price));
 
     resetUi();
 }
