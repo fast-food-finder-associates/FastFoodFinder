@@ -211,6 +211,9 @@ void AdminView::on_pushButton_hideMenuItem_clicked()
 {
     IDs id = m_menuListAvailable->getSelected();
 
+    if(id.second == -1)
+        return;
+
     Restaurant& rest = m_store->FindbyNumber(id.first);
     rest.FindMenuItembyNumber(id.second).MarkDeleted(true);
 
@@ -220,6 +223,9 @@ void AdminView::on_pushButton_hideMenuItem_clicked()
 void AdminView::on_pushButton_restoreMenuItem_clicked()
 {
     IDs id = m_menuListDeleted->getSelected();
+
+    if(id.second == -1)
+        return;
 
     Restaurant& rest = m_store->FindbyNumber(id.first);
     rest.FindMenuItembyNumber(id.second).MarkDeleted(false);
