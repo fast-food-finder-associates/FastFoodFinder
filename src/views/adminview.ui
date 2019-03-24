@@ -26,6 +26,9 @@
     <number>0</number>
    </property>
    <widget class="QWidget" name="page_restSelect">
+    <property name="styleSheet">
+     <string notr="true">QWidget#page_restSelect { background-color: lightgreen; }</string>
+    </property>
     <widget class="QWidget" name="widget_restListAvailable" native="true">
      <property name="geometry">
       <rect>
@@ -68,6 +71,9 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 20px; }</string>
+     </property>
      <property name="text">
       <string>Available Restaurants</string>
      </property>
@@ -83,6 +89,9 @@
        <width>201</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 20px; }</string>
      </property>
      <property name="text">
       <string>Hidden Restaurants</string>
@@ -151,6 +160,9 @@
     </widget>
    </widget>
    <widget class="QWidget" name="page_menuSelect">
+    <property name="styleSheet">
+     <string notr="true">QWidget#page_menuSelect { background-color: lightblue; }</string>
+    </property>
     <widget class="QPushButton" name="pushButton_selectRestView">
      <property name="geometry">
       <rect>
@@ -209,6 +221,9 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 20px; }</string>
+     </property>
      <property name="text">
       <string>Hidden Menu Items</string>
      </property>
@@ -224,6 +239,9 @@
        <width>201</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 20px; }</string>
      </property>
      <property name="text">
       <string>Available Menu Items</string>
@@ -266,6 +284,9 @@
        <width>191</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 15px; }</string>
      </property>
      <property name="text">
       <string>Edit menu item</string>
@@ -311,6 +332,9 @@
        <width>191</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 15px; }</string>
      </property>
      <property name="text">
       <string>Add menu item</string>

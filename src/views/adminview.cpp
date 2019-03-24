@@ -8,16 +8,6 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
 {
     m_ui->setupUi(this);
 
-    /* Stylesheets */
-    m_ui->page_restSelect->setStyleSheet("QWidget#page_restSelect { background-color: lightgreen; }");
-    m_ui->page_menuSelect->setStyleSheet("QWidget#page_menuSelect { background-color: lightblue; }");
-    m_ui->label_restListAvailable->setStyleSheet("QLabel { font-size: 20px; }");
-    m_ui->label_restListHidden->setStyleSheet("QLabel { font-size: 20px; }");
-    m_ui->label_menuAvailable->setStyleSheet("QLabel { font-size: 20px; }");
-    m_ui->label_menuHidden->setStyleSheet("QLabel { font-size: 20px; }");
-    m_ui->label_menuAdd->setStyleSheet("QLabel { font-size: 15px; }");
-    m_ui->label_menuEdit->setStyleSheet("QLabel { font-size: 15px; }");
-
     /* Available restaurant list */
     m_restListAvailable = new RestaurantList(m_ui->widget_restListAvailable);
     m_restListAvailable->setDragDropMode(QAbstractItemView::DragDrop);
