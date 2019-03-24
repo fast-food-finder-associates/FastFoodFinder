@@ -140,7 +140,6 @@ void AdminView::on_pushButton_confirmRestChanges_clicked()
     /* Get all the IDs in the list and mark them as available */
     std::vector<RestaurantID> available;
     m_restListAvailable->getRestaurantIDs(available);
-
     for(RestaurantID id : available)
     {
         if(id != -1)
@@ -150,14 +149,12 @@ void AdminView::on_pushButton_confirmRestChanges_clicked()
     /* Get all the IDs in the list and mark them as deleted */
     std::vector<RestaurantID> deleted;
     m_restListDeleted->getRestaurantIDs(deleted);
-
     for(RestaurantID id : deleted)
     {
         if(id != -1)
             m_store->FindbyNumber(id).MarkDeleted(true);
     }
 
-    //Refills the lists
     resetUi();
 }
 
@@ -217,6 +214,7 @@ void AdminView::on_pushButton_hideMenuItem_clicked()
         return;
     }
 
+    /* Hide the menu item */
     Restaurant& rest = m_store->FindbyNumber(id.first);
     rest.FindMenuItembyNumber(id.second).MarkDeleted(true);
 
@@ -233,6 +231,7 @@ void AdminView::on_pushButton_restoreMenuItem_clicked()
         return;
     }
 
+    /* Restore the menu item */
     Restaurant& rest = m_store->FindbyNumber(id.first);
     rest.FindMenuItembyNumber(id.second).MarkDeleted(false);
 
@@ -241,7 +240,6 @@ void AdminView::on_pushButton_restoreMenuItem_clicked()
 
 void AdminView::on_pushButton_menuAdd_clicked()
 {
-    /* Get menu item values */
     QString name = m_ui->lineEdit_nameAdd->text();
     double price = m_ui->doubleSpinBox_priceAdd->value();
 
@@ -276,7 +274,6 @@ void AdminView::on_pushButton_menuEdit_clicked()
     QString name = m_ui->lineEdit_nameEdit->text();
     double price = m_ui->doubleSpinBox_priceEdit->value();
 
-    /* Check if either of the fields are empty */
     if(name.isEmpty() || price == 0.0)
     {
         m_ui->pushButton_menuEdit->setStyleSheet("QPushButton { color: red; } ");
