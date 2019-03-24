@@ -1,7 +1,6 @@
 #include "adminview.hpp"
 #include "ui_adminview.h"
 #include <QFileDialog>
-#include <QDebug>
 
 /* Constructor */
 AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
