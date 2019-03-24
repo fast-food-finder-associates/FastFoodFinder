@@ -91,6 +91,10 @@ bool User::operator<(User &rhs)
     return (this->m_UserName < rhs.m_UserName);
 }
 
+const int User::GetNumber(void) const
+{
+    return (m_nUserNumber);
+}
 
 const string &User::GetName(void) const
 {

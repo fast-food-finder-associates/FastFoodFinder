@@ -93,6 +93,10 @@ Trip& Trip::operator=(const Trip& rhs)
    return *this;
 }
 
+int Trip::GetNumber(void) const
+{
+    return m_nNumber;
+}
 
 const string &Trip::GetName(void) const
 {

@@ -38,6 +38,7 @@ public:
     // Assignment operator
     User& operator=(const User& src);
 
+    const int GetNumber(void) const;
     const string &GetName(void) const;
     const  string &GetHashedPasswd(void) const;
     bool MarkDeleted(bool Delete);

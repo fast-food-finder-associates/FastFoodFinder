@@ -87,6 +87,43 @@ int main (int argc, char *argv[])
     myTrip.PrintAsDebug(true);
     cout << "--------------------" << endl << endl;
 
+    cout << endl << endl;
+    cout << "Test Plan a Trip - requirement #3 - start at Saddleback, visit 10 Restaurants" << endl;
+    int myTrip3x = Trips.StoreTripNumRest("Trip Test Req3", 0, 10, Restaurants, Users.list.front());
+    Trip &myTrip3 = Trips.FindbyNumber(myTrip3x);
+    myTrip3.PrintAsDebug(true);
+    cout << "--------------------" << endl << endl;
+
+    cout << endl << endl;
+    cout << "Test Plan a Trip - requirement #4 - start at Dominos, visit N (5) Restaurants" << endl;
+    int myTrip4x = Trips.StoreTripNumRest("Trip Test Req4", 3, 5, Restaurants, Users.list.front());
+    Trip &myTrip4 = Trips.FindbyNumber(myTrip4x);
+    myTrip4.PrintAsDebug(true);
+    cout << "--------------------" << endl << endl;
+
+    cout << endl << endl;
+    cout << "Test Plan a Trip - requirement #5a - start at Saddleback, visit selected Restaurants" << endl;
+    vector<int> myrests5a = { 2, 6, 3, 1, 8 };
+    int myTrip5ax = Trips.StoreTrip("Trip Test Req5a", myrests5a, Restaurants, Users.list.front(), true);
+    Trip &myTrip5a = Trips.FindbyNumber(myTrip5ax);
+    myTrip5a.PrintAsDebug(true);
+    cout << "--------------------" << endl << endl;
+
+    cout << endl << endl;
+    cout << "Test Plan a Trip - requirement #5b - visit selected Restaurants" << endl;
+    vector<int> myrests5b = { 2, 9, 3, 1, 4, 8 };
+    int myTrip5bx = Trips.StoreTrip("Trip Test Req5b", myrests5b, Restaurants, Users.list.front(), false);
+    Trip &myTrip5b = Trips.FindbyNumber(myTrip5bx);
+    myTrip5b.PrintAsDebug(true);
+    cout << "--------------------" << endl << endl;
+#if 0
+   >> Add  2 more restaurants to Resturants list
+    cout << endl << endl;
+    cout << "Test Plan a Trip - requirement #6 - start at Saddleback, visit 12 Restaurants" << endl;
+    int myTrip = StoreTripNumRest("Trip Test Req3", 0, 10, &Restaurants, Users.list.front());
+    myTrip.PrintAsDebug(true);
+    cout << "--------------------" << endl << endl;
+#endif
 
     for (MyDblLinkList<User>::iterator it = Users.list.begin(); it != Users.list.end(); ++it)
     {
