@@ -196,7 +196,7 @@ void AdminView::fillMenuItemEditFields(IDs id)
     MenuItem item = rest.FindMenuItembyNumber(id.second);
 
     m_ui->lineEdit_nameEdit->setText(QString::fromStdString(item.GetName()));
-    m_ui->doubleSpinBox_priceEdit->setValue(item.GetPrice());
+    m_ui->doubleSpinBox_priceEdit->setValue(static_cast<double>(item.GetPrice()));
 }
 
 void AdminView::on_pushButton_selectRestView_clicked()
@@ -243,12 +243,20 @@ void AdminView::on_pushButton_menuEdit_clicked()
     /* Edit the menu item */
     MenuItem& item = m_store->FindbyNumber(id.first).FindMenuItembyNumber(id.second);
     item.UpdateName(m_ui->lineEdit_nameEdit->text().toStdString());
-    item.UpdatePrice(m_ui->doubleSpinBox_priceEdit->value());
+    item.UpdatePrice(static_cast<float>(m_ui->doubleSpinBox_priceEdit->value()));
 
     loadMenuList(id.first);
 }
 
 void AdminView::on_pushButton_menuAdd_clicked()
 {
+    /* Get menu item values */
+    QString name = m_ui->lineEdit_nameAdd->text();
+    double price = m_ui->doubleSpinBox_priceAdd->value();
 
+    /* Create a new menu item */
+    Restaurant& rest = m_store->FindbyNumber(m_currentMenu);
+    rest.AddMenuItem(name.toStdString(), static_cast<float>(price));
+
+    loadMenuList(m_currentMenu);
 }
