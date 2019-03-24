@@ -22,7 +22,7 @@ public:
     void removeItem(IDs);
 
     /* Quantity */
-    void showQty(bool) const;
+    void showQty(bool);
     void resetQty();
 
 signals:
@@ -36,4 +36,5 @@ private slots:
 
 private:
     IDQtys m_IDQtys;
+    bool m_showQty;
 };
