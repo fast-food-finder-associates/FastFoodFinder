@@ -2,8 +2,6 @@
 #include <QFile>
 #include <QException>
 
-namespace fff
-{
 class GeneralException : public QException
 {
 public:
@@ -26,6 +24,7 @@ protected:
 class BadFile : public GeneralException
 {
 public:
+    /* Constructors */
     BadFile(QString);
     BadFile(const QFile&);
 };
@@ -33,7 +32,7 @@ public:
 class BadFileFormat : public GeneralException
 {
 public:
+    /* Constructors */
     BadFileFormat(QString);
     BadFileFormat(QString expected, QString recieved);
 };
-}

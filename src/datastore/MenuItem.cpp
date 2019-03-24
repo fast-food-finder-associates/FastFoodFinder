@@ -17,7 +17,7 @@ MenuItem::~MenuItem()
 {
 }
 
-int MenuItem::GetNumber(void)
+int MenuItem::GetNumber(void) const
 {
     return m_nNumber;
 }

@@ -64,7 +64,7 @@ public:
     float AddPurchasePrice(float PurchaseAmount);
     float GetDistSaddleback(void) const;
     void AddMenuItem(const string &Name, const float &Price);
-    const MenuItem&FindMenuItembyNumber(int Number) const;
+    MenuItem&FindMenuItembyNumber(int Number);
 
     bool PrintAsDebug(bool print_endl) const;
 
