@@ -110,8 +110,8 @@ void AdminView::resetUi()
     m_ui->lineEdit_nameEdit->clear();
 
     /* Double spinboxes */
-    m_ui->doubleSpinBox_priceAdd->clear();
-    m_ui->doubleSpinBox_priceEdit->clear();
+    m_ui->doubleSpinBox_priceAdd->setValue(0);
+    m_ui->doubleSpinBox_priceEdit->setValue(0);
 }
 
 /* Private slots */
