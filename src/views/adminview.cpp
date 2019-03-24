@@ -99,6 +99,8 @@ void AdminView::resetUi()
     m_ui->pushButton_editMenuView->setStyleSheet("QPushButton { color: black; }");
     m_ui->pushButton_menuAdd->setStyleSheet("QPushButton { color: black; } ");
     m_ui->pushButton_menuEdit->setStyleSheet("QPushButton { color: black; }");
+    m_ui->pushButton_hideMenuItem->setStyleSheet("QPushButton { color: black; }");
+    m_ui->pushButton_restoreMenuItem->setStyleSheet("QPushButton { color: black; }");
 
     /* Line edits */
     m_ui->lineEdit_nameAdd->clear();
@@ -209,7 +211,10 @@ void AdminView::on_pushButton_hideMenuItem_clicked()
     IDs id = m_menuListAvailable->getSelected();
 
     if(id.second == -1)
+    {
+        m_ui->pushButton_hideMenuItem->setStyleSheet("QPushButton { color: red; }");
         return;
+    }
 
     Restaurant& rest = m_store->FindbyNumber(id.first);
     rest.FindMenuItembyNumber(id.second).MarkDeleted(true);
@@ -222,7 +227,10 @@ void AdminView::on_pushButton_restoreMenuItem_clicked()
     IDs id = m_menuListDeleted->getSelected();
 
     if(id.second == -1)
+    {
+        m_ui->pushButton_restoreMenuItem->setStyleSheet("QPushButton { color: red; }");
         return;
+    }
 
     Restaurant& rest = m_store->FindbyNumber(id.first);
     rest.FindMenuItembyNumber(id.second).MarkDeleted(false);
