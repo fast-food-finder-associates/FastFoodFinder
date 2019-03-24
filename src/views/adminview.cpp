@@ -103,6 +103,7 @@ void AdminView::resetUi()
 
     /* Push buttons */
     m_ui->pushButton_editMenuView->setStyleSheet("QPushButton { color: black; }");
+    m_ui->pushButton_menuAdd->setStyleSheet("QPushButton { color: black; } ");
     m_ui->pushButton_menuEdit->setStyleSheet("QPushButton { color: black; }");
 
     /* Line edits */
@@ -225,6 +226,25 @@ void AdminView::on_pushButton_restoreMenuItem_clicked()
     loadMenuList(id.first);
 }
 
+void AdminView::on_pushButton_menuAdd_clicked()
+{
+    /* Get menu item values */
+    QString name = m_ui->lineEdit_nameAdd->text();
+    double price = m_ui->doubleSpinBox_priceAdd->value();
+
+    if(name.isEmpty() || price == 0.0)
+    {
+        m_ui->pushButton_menuAdd->setStyleSheet("QPushButton { color: red; } ");
+        return;
+    }
+
+    /* Create a new menu item */
+    Restaurant& rest = m_store->FindbyNumber(m_currentMenu);
+    rest.AddMenuItem(name.toStdString(), static_cast<float>(price));
+
+    loadMenuList(m_currentMenu);
+}
+
 void AdminView::on_pushButton_menuEdit_clicked()
 {
     IDs id = m_menuListAvailable->getSelected();
@@ -246,17 +266,4 @@ void AdminView::on_pushButton_menuEdit_clicked()
     item.UpdatePrice(static_cast<float>(m_ui->doubleSpinBox_priceEdit->value()));
 
     loadMenuList(id.first);
-}
-
-void AdminView::on_pushButton_menuAdd_clicked()
-{
-    /* Get menu item values */
-    QString name = m_ui->lineEdit_nameAdd->text();
-    double price = m_ui->doubleSpinBox_priceAdd->value();
-
-    /* Create a new menu item */
-    Restaurant& rest = m_store->FindbyNumber(m_currentMenu);
-    rest.AddMenuItem(name.toStdString(), static_cast<float>(price));
-
-    loadMenuList(m_currentMenu);
 }

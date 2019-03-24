@@ -38,8 +38,8 @@ private slots:
     void on_pushButton_selectRestView_clicked();
     void on_pushButton_hideMenuItem_clicked();
     void on_pushButton_restoreMenuItem_clicked();
-    void on_pushButton_menuEdit_clicked();
     void on_pushButton_menuAdd_clicked();
+    void on_pushButton_menuEdit_clicked();
 
 private:
     Ui::AdminView* m_ui;
