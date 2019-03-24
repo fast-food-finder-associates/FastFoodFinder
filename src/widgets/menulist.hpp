@@ -16,6 +16,9 @@ public:
     IDQtys getIDQty() const;
     IDs getSelected() const;
 
+    /* Setters */
+    void setQty(IDs, int qty) const;
+
     /* List modifiers */
     void addItem(RestaurantID, const MenuItem&);
     void addAllItems(const Restaurant&);

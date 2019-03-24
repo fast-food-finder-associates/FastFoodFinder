@@ -39,6 +39,22 @@ IDs MenuList::getSelected() const
         return IDs(-1, -1);
 }
 
+/* Setters */
+void MenuList::setQty(IDs id, int qty) const
+{
+    for(int i = 0; i < QListWidget::count(); i++)
+    {
+        QListWidgetItem* listItem = QListWidget::item(i);
+        MenuListItem* widget = dynamic_cast<MenuListItem*>(QListWidget::itemWidget(listItem));
+
+        if(widget != nullptr && id == widget->getIDs())
+        {
+            widget->setQty(qty);
+            return;
+        }
+    }
+}
+
 /* List modifiers */
 void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
 {
