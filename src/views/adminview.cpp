@@ -95,6 +95,7 @@ void AdminView::resetUi()
     /* Menu lists */
     m_menuListAvailable->clear();
     m_menuListDeleted->clear();
+    loadMenuList(m_currentMenu);
 
     /* Push buttons */
     m_ui->pushButton_editMenuView->setStyleSheet("QPushButton { color: black; }");
@@ -113,7 +114,8 @@ void AdminView::resetUi()
 /* Private slots */
 void AdminView::loadMenuList(RestaurantID id)
 {
-    resetUi();
+    if(id == -1)
+        return;
 
     Restaurant rest = m_store->FindbyNumber(id);
 
@@ -180,9 +182,10 @@ void AdminView::on_pushButton_editMenuView_clicked()
         return;
     }
 
-    loadMenuList(id);
-
     m_currentMenu = id;
+
+    resetUi();
+
     m_ui->stackedWidget->setCurrentIndex(1);
 }
 
@@ -211,7 +214,7 @@ void AdminView::on_pushButton_hideMenuItem_clicked()
     Restaurant& rest = m_store->FindbyNumber(id.first);
     rest.FindMenuItembyNumber(id.second).MarkDeleted(true);
 
-    loadMenuList(id.first);
+    resetUi();
 }
 
 void AdminView::on_pushButton_restoreMenuItem_clicked()
@@ -224,7 +227,7 @@ void AdminView::on_pushButton_restoreMenuItem_clicked()
     Restaurant& rest = m_store->FindbyNumber(id.first);
     rest.FindMenuItembyNumber(id.second).MarkDeleted(false);
 
-    loadMenuList(id.first);
+    resetUi();
 }
 
 void AdminView::on_pushButton_menuAdd_clicked()
@@ -243,7 +246,7 @@ void AdminView::on_pushButton_menuAdd_clicked()
     Restaurant& rest = m_store->FindbyNumber(m_currentMenu);
     rest.AddMenuItem(name.toStdString(), static_cast<float>(price));
 
-    loadMenuList(m_currentMenu);
+    resetUi();
 }
 
 void AdminView::on_pushButton_menuEdit_clicked()
@@ -266,5 +269,5 @@ void AdminView::on_pushButton_menuEdit_clicked()
     item.UpdateName(m_ui->lineEdit_nameEdit->text().toStdString());
     item.UpdatePrice(static_cast<float>(m_ui->doubleSpinBox_priceEdit->value()));
 
-    loadMenuList(id.first);
+    resetUi();
 }
