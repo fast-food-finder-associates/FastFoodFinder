@@ -17,7 +17,7 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     m_restListDeleted = new RestaurantList(m_ui->widget_restListHidden);
     m_restListDeleted->setDragDropMode(QAbstractItemView::DragDrop);
     m_restListDeleted->setAcceptDrops(true);
-    m_restListDeleted->allowDeleted(true);
+    m_restListDeleted->showHidden(true);
 
     /*
      * These connections will unselect items of the other list.

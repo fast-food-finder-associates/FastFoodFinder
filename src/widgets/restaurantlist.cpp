@@ -3,9 +3,16 @@
 /* Static variables */
 const QSize RestaurantList::itemSizeHint(170, 70);
 
-/* Constructor */
+/**
+ * @brief Constructor
+ *
+ * Constructs a retaurant list within the given parent widget.
+ * All default settings are set when created.
+ *
+ * @param parent Widget to display list in
+ */
 RestaurantList::RestaurantList(QWidget* parent)
-    : QListWidget(parent), m_allowDeleted(false)
+    : QListWidget(parent), m_showHidden(false)
 {
     /* List widget settings */
     QListWidget::setStyleSheet("QListWidget { background-color: #303030; color: white; }");
@@ -25,7 +32,13 @@ RestaurantList::RestaurantList(QWidget* parent)
     connect(this, &QListWidget::currentRowChanged, this, &RestaurantList::rowToIDConverter);
 }
 
-/* Getters */
+/**
+ * @brief Get selected restaurant ID
+ *
+ * Returns the selected item's restaurant ID. If nothing is selected, -1 is returned.
+ *
+ * @return The restaurant ID that was selected; if nothing is selected, -1 is returned.
+ */
 RestaurantID RestaurantList::getSelected() const
 {
     QListWidgetItem* item = QListWidget::currentItem();
@@ -36,15 +49,23 @@ RestaurantID RestaurantList::getSelected() const
         return -1;
 }
 
-/* List modifiers */
+/**
+ * @brief Add restaurant to list
+ *
+ * Appends the given restaurant to the list.
+ * If the restaurant is hidden, it isn't added to the list unless RestaurantList::showHidden(true) was called.
+ * The restaurant ID is attatched to the QListWidgetItem using Qt::ItemDataRole::UserRole.
+ *
+ * @param rest Restaurant that is being added to the list
+ */
 void RestaurantList::addItem(const Restaurant& rest)
 {
-    if(rest.IsDeleted() && !m_allowDeleted)
+    if(rest.IsDeleted() && !m_showHidden)
         return;
 
     QFont font("Font Awesome 5 Free", 12);
     QString content = "\uf2e7 " + QString::fromStdString(rest.GetName()) + "\n" +
-                      "\uf3c5 " + QString::number(rest.GetDistSaddleback(), 'f', 2) + " mi.";
+                      "\uf3c5 " + QString::number(static_cast<double>(rest.GetDistSaddleback()), 'f', 2) + " mi.";
 
     QListWidgetItem* listItem = new QListWidgetItem(content, this);
     listItem->setSizeHint(itemSizeHint);
@@ -54,6 +75,15 @@ void RestaurantList::addItem(const Restaurant& rest)
     listItem->setData(Qt::ItemDataRole::UserRole, rest.GetNumber());
 }
 
+/**
+ * @brief Remove restaurant from list
+ *
+ * Removes a given restaurant from the list.
+ * If the restaurant isn't found, nothing happens.
+ * To find the correct restaurant, we look at the QVariant of each QListWidgetItem.
+ *
+ * @param rest Restaurant that will be removed from the list
+ */
 void RestaurantList::removeItem(const Restaurant& rest)
 {
     for(int i = 0; i < QListWidget::count(); i++)
@@ -70,12 +100,26 @@ void RestaurantList::removeItem(const Restaurant& rest)
     }
 }
 
-void RestaurantList::allowDeleted(bool v)
+/**
+ * @brief Show hidden restaurants
+ *
+ * Sets whether or not to show hidden restaurants.
+ * NOTE: Calling this function after restaurants items will not affect previously added restaurants.
+ *
+ * @param v Bool value
+ */
+void RestaurantList::showHidden(bool v)
 {
-    m_allowDeleted = v;
+    m_showHidden = v;
 }
 
-/* Private slots */
+/**
+ * @brief Row to restaurant ID converter
+ *
+ * Converts a row in the list into a restaurant ID.
+ *
+ * @param row Row of the item to convert
+ */
 void RestaurantList::rowToIDConverter(int row) const
 {
     QListWidgetItem* item = QListWidget::item(row);
