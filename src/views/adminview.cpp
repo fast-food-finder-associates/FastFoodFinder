@@ -68,6 +68,8 @@ AdminView::~AdminView()
     delete m_ui;
     delete m_restListAvailable;
     delete m_restListDeleted;
+    delete m_menuListAvailable;
+    delete m_menuListDeleted;
 }
 
 /* Public slots */
