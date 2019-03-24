@@ -5,7 +5,7 @@
 
 /* Constructor */
 AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
-    : QWidget(parent), m_ui(new Ui::AdminView), m_store(dataStore)
+    : QWidget(parent), m_ui(new Ui::AdminView), m_store(dataStore), m_currentMenu(-1)
 {
     m_ui->setupUi(this);
 
@@ -60,7 +60,6 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     connect(m_menuListDeleted, &MenuList::currentMenuItemChanged,
             this, &AdminView::fillMenuItemEditFields);
 
-    //Instantiates the lists
     resetView();
 }
 
@@ -77,6 +76,8 @@ void AdminView::resetView()
 {
     //Reset stack widget
     m_ui->stackedWidget->setCurrentIndex(0);
+
+    m_currentMenu = -1;
 
     resetUi();
 }
@@ -132,15 +133,6 @@ void AdminView::loadMenuList(RestaurantID id)
     }
 }
 
-void AdminView::fillMenuItemEditFields(IDs id)
-{
-    Restaurant rest = m_store->FindbyNumber(id.first);
-    MenuItem item = rest.FindMenuItembyNumber(id.second);
-
-    m_ui->lineEdit_nameEdit->setText(QString::fromStdString(item.GetName()));
-    m_ui->doubleSpinBox_priceEdit->setValue(item.GetPrice());
-}
-
 void AdminView::on_pushButton_confirmRestChanges_clicked()
 {
     /* Get all the IDs in the list and mark them as available */
@@ -164,7 +156,7 @@ void AdminView::on_pushButton_confirmRestChanges_clicked()
     }
 
     //Refills the lists
-    resetView();
+    resetUi();
 }
 
 void AdminView::on_pushButton_addFromFile_clicked()
@@ -174,7 +166,7 @@ void AdminView::on_pushButton_addFromFile_clicked()
     if(!folder.isEmpty())
         m_store->load(folder.toStdString());
 
-    resetView();
+    resetUi();
 }
 
 void AdminView::on_pushButton_editMenuView_clicked()
@@ -194,7 +186,17 @@ void AdminView::on_pushButton_editMenuView_clicked()
 
     loadMenuList(id);
 
+    m_currentMenu = id;
     m_ui->stackedWidget->setCurrentIndex(1);
+}
+
+void AdminView::fillMenuItemEditFields(IDs id)
+{
+    Restaurant rest = m_store->FindbyNumber(id.first);
+    MenuItem item = rest.FindMenuItembyNumber(id.second);
+
+    m_ui->lineEdit_nameEdit->setText(QString::fromStdString(item.GetName()));
+    m_ui->doubleSpinBox_priceEdit->setValue(item.GetPrice());
 }
 
 void AdminView::on_pushButton_selectRestView_clicked()
@@ -244,4 +246,9 @@ void AdminView::on_pushButton_menuEdit_clicked()
     item.UpdatePrice(m_ui->doubleSpinBox_priceEdit->value());
 
     loadMenuList(id.first);
+}
+
+void AdminView::on_pushButton_menuAdd_clicked()
+{
+
 }

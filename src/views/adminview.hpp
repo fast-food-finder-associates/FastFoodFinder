@@ -27,14 +27,19 @@ public slots:
 
 private slots:
     void loadMenuList(RestaurantID);
-    void fillMenuItemEditFields(IDs);
+
+    /* Restaurant subview controls */
     void on_pushButton_confirmRestChanges_clicked();
     void on_pushButton_addFromFile_clicked();
     void on_pushButton_editMenuView_clicked();
+
+    /* Menu list subview controls */
+    void fillMenuItemEditFields(IDs);
     void on_pushButton_selectRestView_clicked();
     void on_pushButton_hideMenuItem_clicked();
     void on_pushButton_restoreMenuItem_clicked();
     void on_pushButton_menuEdit_clicked();
+    void on_pushButton_menuAdd_clicked();
 
 private:
     Ui::AdminView* m_ui;
@@ -43,4 +48,5 @@ private:
     RestaurantList* m_restListDeleted;
     MenuList* m_menuListAvailable;
     MenuList* m_menuListDeleted;
+    RestaurantID m_currentMenu;
 };
