@@ -45,19 +45,24 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     m_menuListDeleted = new MenuList(m_ui->widget_menuDeleted);
     m_menuListDeleted->allowDeleted(true);
 
-    /* These connections are the same as the connections for the restaurant lists above */
+    /*
+     * These connections are similar as the connections
+     * for the restaurant lists above. In addition,
+     * edit fields are filled when a menu item is selected
+     */
     connect(m_menuListAvailable, &MenuList::currentMenuItemChanged,
-            [this] { m_menuListDeleted->setCurrentRow(-1); });
+            [this](IDs id)
+            {
+                m_menuListDeleted->setCurrentRow(-1);
+                fillMenuItemEditFields(id);
+            });
 
     connect(m_menuListDeleted, &MenuList::currentMenuItemChanged,
-            [this] { m_menuListAvailable->setCurrentRow(-1); });
-
-    /* These connections will fill the edit fields when a menu item is selected */
-    connect(m_menuListAvailable, &MenuList::currentMenuItemChanged,
-            this, &AdminView::fillMenuItemEditFields);
-
-    connect(m_menuListDeleted, &MenuList::currentMenuItemChanged,
-            this, &AdminView::fillMenuItemEditFields);
+            [this](IDs id)
+            {
+                m_menuListAvailable->setCurrentRow(-1);
+                fillMenuItemEditFields(id);
+            });
 
     resetView();
 }
