@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page_restSelect">
     <widget class="QWidget" name="widget_restListAvailable" native="true">
@@ -40,7 +40,7 @@
      <property name="geometry">
       <rect>
        <x>300</x>
-       <y>90</y>
+       <y>290</y>
        <width>111</width>
        <height>21</height>
       </rect>
@@ -111,7 +111,7 @@
      <property name="geometry">
       <rect>
        <x>280</x>
-       <y>60</y>
+       <y>250</y>
        <width>151</width>
        <height>21</height>
       </rect>
@@ -140,13 +140,13 @@
      <property name="geometry">
       <rect>
        <x>300</x>
-       <y>520</y>
+       <y>330</y>
        <width>111</width>
        <height>21</height>
       </rect>
      </property>
      <property name="text">
-      <string>Edit menu items...</string>
+      <string>Menu items...</string>
      </property>
     </widget>
    </widget>
