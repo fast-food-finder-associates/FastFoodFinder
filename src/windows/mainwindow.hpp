@@ -5,6 +5,7 @@
 #include "src/widgets/menulist.hpp"
 #include "src/datastore/RestaurantDataStore.hpp"
 #include "src/views/adminview.hpp"
+#include "src/views/restaurantsview.hpp"
 
 namespace Ui
 {
@@ -27,14 +28,12 @@ signals:
 
 private slots:
     void changeView(int);
-    void menuListChange(int);
     void resetUi();
 
 private:
     Ui::MainWindow* m_ui;
     NavBar* m_navbar;
-    RestaurantList* m_restaurantList;
-    MenuList* m_menuList;
+    RestaurantsView* m_restView;
     AdminView* m_adminView;
     RestaurantDataStore m_store;
 };
