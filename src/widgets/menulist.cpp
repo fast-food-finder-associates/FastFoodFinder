@@ -9,7 +9,7 @@
  * @param parent The widget to display the list in
  */
 MenuList::MenuList(QWidget* parent)
-    : QListWidget(parent), m_showQty(false), m_allowDeleted(false)
+    : QListWidget(parent), m_showQty(false), m_showHidden(false)
 {
     /* List widget settings */
     QListWidget::setStyleSheet("QListWidget { background-color: #303030; color: white; }");
@@ -22,7 +22,7 @@ MenuList::MenuList(QWidget* parent)
     QListWidget::setFlow(QListView::TopToBottom);
 
     //Emits a signal when a menu item is selected with information about the menu item
-    connect(this, &QListWidget::currentRowChanged, this, &MenuList::currentMenuItemHandler);
+    connect(this, &QListWidget::currentRowChanged, this, &MenuList::rowToIDsConverter);
 }
 
 /**
@@ -90,14 +90,14 @@ void MenuList::setQty(IDs id, int qty) const
  *
  * Appends the given menu item to the list.
  * Any connections needed to the new item is done here.
- * If the menu item is hidden, it isn't added to the list unless MenuList::allowDeleted(true) is called.
+ * If the menu item is hidden, it isn't added to the list unless MenuList::showHidden(true) is called.
  *
  * @param restID The restaurant ID that the menu item belongs to
  * @param menuItem The menu item to add
  */
 void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
 {
-    if(menuItem.IsDeleted() && !m_allowDeleted)
+    if(menuItem.IsDeleted() && !m_showHidden)
         return;
 
     QListWidgetItem* listItem = new QListWidgetItem(this);
@@ -159,16 +159,16 @@ void MenuList::removeItem(IDs id)
 }
 
 /**
- * @brief Allow deleted menu items
+ * @brief Allow hidden menu items
  *
- * Sets whether or not deleted menu items will be added or not.
+ * Sets whether or not hidden menu items will be added or not.
  * NOTE: Calling this function after menu items are added will have no affect on those items.
  *
  * @param v Bool value
  */
-void MenuList::allowDeleted(bool v)
+void MenuList::showHidden(bool v)
 {
-    m_allowDeleted = v;
+    m_showHidden = v;
 }
 
 /**

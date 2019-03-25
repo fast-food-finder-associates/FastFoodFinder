@@ -38,7 +38,7 @@ public:
     void addItem(RestaurantID, const MenuItem&);
     void addAllItems(const Restaurant&);
     void removeItem(IDs);
-    void allowDeleted(bool);
+    void showHidden(bool);
 
     /* Quantity */
     void showQty(bool);
@@ -56,5 +56,5 @@ private slots:
 private:
     IDQtys m_IDQtys;
     bool m_showQty;
-    bool m_allowDeleted;
+    bool m_showHidden;
 };
