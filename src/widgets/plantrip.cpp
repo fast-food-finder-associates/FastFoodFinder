@@ -179,8 +179,8 @@ void PlanTrip::on_TripButton_clicked()
         switch(getPlanType())
         {
         case PlanTrip::Saddleback:
-             m_tripId = m_tripStore->StoreTrip(QDateTime::currentDateTime().toString().toStdString(),m_planTripList,*m_store,
-                                   test.list.front(),true);
+            m_tripId = m_tripStore->StoreTrip(QDateTime::currentDateTime().toString().toStdString(),m_planTripList,*m_store,
+                                              test.list.front(),true);
             m_sorted.clear();
             tempStore = m_tripStore->FindbyNumber(m_tripId).GetRestaurants();
             foreach(int restaurantId, tempStore)
@@ -188,16 +188,16 @@ void PlanTrip::on_TripButton_clicked()
             break;
         case PlanTrip::ChosenAndN:
             // Trip would do 1 less than the spin box value so made it +1 to whatever value the spinbox gives the function
-             m_tripId =  m_tripStore->StoreTripNumRest(QDateTime::currentDateTime().toString().toStdString(), m_ui->startLocation_2->currentData().toInt(),
-                                           m_ui->spinBox->value()+1,*m_store,test.list.front());
-             m_sorted.clear();
-             tempStore = m_tripStore->FindbyNumber(m_tripId).GetRestaurants();
-             foreach(int restaurantId, tempStore)
-                 m_sorted.push_back(restaurantId);
+            m_tripId =  m_tripStore->StoreTripNumRest(QDateTime::currentDateTime().toString().toStdString(), m_ui->startLocation_2->currentData().toInt(),
+                                                      m_ui->spinBox->value()+1,*m_store,test.list.front());
+            m_sorted.clear();
+            tempStore = m_tripStore->FindbyNumber(m_tripId).GetRestaurants();
+            foreach(int restaurantId, tempStore)
+                m_sorted.push_back(restaurantId);
             break;
         case PlanTrip::FirstRestaurant:
-             m_tripId = m_tripStore->StoreTrip(QDateTime::currentDateTime().toString().toStdString(),m_planTripList,*m_store,
-                                   test.list.front(),false);
+            m_tripId = m_tripStore->StoreTrip(QDateTime::currentDateTime().toString().toStdString(),m_planTripList,*m_store,
+                                              test.list.front(),false);
             m_sorted.clear();
             tempStore = m_tripStore->FindbyNumber(m_tripId).GetRestaurants();
             foreach(int restaurantId, tempStore)
@@ -208,23 +208,23 @@ void PlanTrip::on_TripButton_clicked()
             break;
         }
         /* have an array of sorted id's (int) made it into the trip preping the first item of the trip */
-                Restaurant *tempRest;
-                tempRest = &m_store->FindbyNumber(m_sorted.front());
+        Restaurant *tempRest;
+        tempRest = &m_store->FindbyNumber(m_sorted.front());
 
-                //Hide the navbar so that someone doesn't switch states mid trip
-                m_navbar->setHidden(true);
+        //Hide the navbar so that someone doesn't switch states mid trip
+        m_navbar->setHidden(true);
 
-                // Set name of restaurant shown at the top of the view
-                m_ui->activeTripRestaurant->setText(QString::fromStdString(tempRest->GetName()));
+        // Set name of restaurant shown at the top of the view
+        m_ui->activeTripRestaurant->setText(QString::fromStdString(tempRest->GetName()));
 
-                // Set current Restaurant
-                setCurrentRest(tempRest->GetNumber());
+        // Set current Restaurant
+        setCurrentRest(tempRest->GetNumber());
 
-                // add current restaurants menu items to the menu
-                m_tripMenuList->addAllItems(m_store->FindbyNumber(m_sorted.front()));
+        // add current restaurants menu items to the menu
+        m_tripMenuList->addAllItems(m_store->FindbyNumber(m_sorted.front()));
 
-                // Switch viewed page to activeTrip
-                m_ui->planTripStack->setCurrentWidget(m_ui->activeTrip);
+        // Switch viewed page to activeTrip
+        m_ui->planTripStack->setCurrentWidget(m_ui->activeTrip);
     }
 }
 
@@ -241,6 +241,7 @@ void PlanTrip::resetPlanTripView()
 
 void PlanTrip::activeTrip()
 {
+    bool seen = false;
     m_ui->planTripStack->setCurrentWidget(m_ui->activeTrip);
     m_sorted.pop_front();
     if(!m_sorted.empty())
@@ -255,9 +256,16 @@ void PlanTrip::activeTrip()
         m_receipt->clear();
         m_receipt->grandTotal(m_recieptVector, m_tripStore->FindbyNumber(m_tripId).GetTotalDistance());
         m_ui->planTripStack->setCurrentWidget(m_ui->tripReceipt);
-
     }
-    else {
+    else if ( m_recieptVector.size() == 0 && m_sorted.empty() && !seen)
+    {
+        m_ui->TripDistanceLabel_2->setText(QString::number(m_tripStore->FindbyNumber(m_tripId).GetTotalDistance(),'f',1)+" mi.");
+        m_ui->planTripStack->setCurrentWidget(m_ui->tripDistance);
+        seen = true;
+    }
+    else
+    {
+        //make button that does this on click
         m_navbar->setHidden(false);
         resetPlanTripView();
     }
@@ -324,8 +332,7 @@ void PlanTrip::on_addToCart_clicked()
         // as long as the choice isn't -1 add item to the cart
         if(item.second != -1)
             m_tripFoodCart->addItem(getCurrentRest(), m_store->FindbyNumber(getCurrentRest()).FindMenuItembyNumber(item.second));
-        // Set Default Qty to 2 then 1 when added to cart so that the app get's the signal that the an item was added
-        m_tripFoodCart->setQty(item,2);
+        // Set Default Qty to 1
         m_tripFoodCart->setQty(item,1);
     }
 
