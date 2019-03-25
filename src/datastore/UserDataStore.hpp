@@ -30,9 +30,12 @@ public:
     void load(const string path);
     void save(const string path);
 
+    User &FindbyNumber(int Number); 
+
     //std::list<User> list;
     MyDblLinkList<User> list;
 private:
+    bool DuplicateNumPresent(int Number);
 
     // Copy constructor
     UserDataStore(const UserDataStore& src);

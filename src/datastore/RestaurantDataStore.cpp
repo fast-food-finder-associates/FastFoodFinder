@@ -22,10 +22,10 @@ RestaurantDataStore::RestaurantDataStore()
 {
 };
 
-void RestaurantDataStore::load(const string path)
+void RestaurantDataStore::load(const string path, bool ItemsAreAdditional)
 {
-    string fullpath = path;
-    std::ifstream infile(fullpath, ios::in);
+    //string fullpath = path + "RestaurantData.csv";
+    std::ifstream infile(path, ios::in);
     int line_count = 0;
     if (infile.is_open())
     {
@@ -35,6 +35,10 @@ void RestaurantDataStore::load(const string path)
             std::getline(infile, inputline);
             if (!infile.eof())
             {
+                if (inputline[0] == '#')
+                {
+                    continue;  // ignore comment lines
+                }
                 line_count++;
                 std::vector<std::string> commaSeparated(1);
                 int commaCounter = 0;
@@ -57,6 +61,12 @@ void RestaurantDataStore::load(const string path)
                 // 1,0,8,Big Mac,3.99,2,0,French Fries,2.95,3.0,Hamburger,1.79,4,0,Double Cheeseburger,4.29,5,0,Cheeseburger,2.29,6,0,Quarter Pounder with Cheese,4.99,7,0,Filet-O-Fish,3.33,8,0,McRib,4.97
                 // 0
                 int nNumber = std::stoi(commaSeparated[0]);
+                // prevent loading of duplicate numbers by silently rejecting the load for this record
+                if (DuplicateNumPresent(nNumber))
+                {
+                    continue;
+                }
+
                 float fDistToSaddleback = std::stof(commaSeparated[2]);
                 float fTotalPurchases = std::stof(commaSeparated[3]);
                 int nTotalCustomers = std::stoi(commaSeparated[4]);
@@ -69,12 +79,35 @@ void RestaurantDataStore::load(const string path)
                 int it = 8;
                 if (nDistances > 0)
                 {
+                    RestaurantDistance tmp;
                     while(it < (8 + 2*nDistances))
                     {
-                        RestaurantDistance tmp;
                         tmp.m_nRestaurantNumber = std::stoi(commaSeparated[it]);
                         tmp.m_fDistanceMiles = std::stof(commaSeparated[it+1]);
                         Distances.push_back(tmp);
+                        if (ItemsAreAdditional)
+                        {
+                            Restaurant *pRest = &this->FindbyNumber(tmp.m_nRestaurantNumber);
+                            tmp.m_nRestaurantNumber = nNumber;
+                            // Add the new restaurant's distance grouping to every existing Restaurant
+                            if (pRest != nullptr)  
+                            {
+                                // if nullptr, then this is a forward reference to an not yet created restaurant
+                                // this test also prevents updating the restaurant we are currently adding
+                                bool distance_already_present = false;
+                                for (vector<RestaurantDistance>::iterator itc = pRest->m_Distances.begin(); itc != pRest->m_Distances.end(); itc++)
+                                {
+                                    if ((*itc).m_nRestaurantNumber == nNumber)
+                                    {
+                                        distance_already_present = true;
+                                    }
+                                }
+                                if (!distance_already_present)
+                                {
+                                    pRest->m_Distances.push_back(tmp);
+                                }
+                            }
+                        }
                         it += 2;
                     }
                 }
@@ -133,11 +166,11 @@ void RestaurantDataStore::load(const string path)
 
 void RestaurantDataStore::save(const string path)
 {
-    string fullpath = path + ".tmp";
+    //string fullpath = path + "RestaurantData.csv.tmp";
     string outline;
     int line_count = 0;
 
-    std::ofstream outfile(fullpath, ios::trunc);
+    std::ofstream outfile(path, ios::trunc);
     if (outfile.is_open())
     {
         for (std::list<Restaurant>::iterator it = list.begin(); it != list.end(); it++)
@@ -202,6 +235,11 @@ void RestaurantDataStore::save(const string path)
     }
 }
 
+void RestaurantDataStore::load_additional(const string path)
+{
+    load(path, true);
+}
+
 Restaurant &RestaurantDataStore::FindbyNumber(int Number)
 {
     for (std::list<Restaurant>::iterator it = list.begin(); it != list.end(); ++it)
@@ -214,9 +252,24 @@ Restaurant &RestaurantDataStore::FindbyNumber(int Number)
     return *(list.end());  // never reached  - should throw exception
 }
 
+bool RestaurantDataStore::DuplicateNumPresent(int Number)
+{
+    bool dupe_found = false;
+    for (std::list<Restaurant>::iterator it = list.begin(); it != list.end(); ++it)
+    {
+        if ( (*it).m_nNumber == Number)
+        {
+            dupe_found = true;
+            break;
+        }
+    }
+    return dupe_found;
+}
+
 void RestaurantDataStore::printAsDebug(bool printeol, bool printcontent) const
 {
-//    list.printAsDebug(printeol,printcontent);
+    // std::list has no printAsDebug() method - MyDblLinkList does
+    //list.printAsDebug(printeol,printcontent);
 }
 
 // Destructor implementation
