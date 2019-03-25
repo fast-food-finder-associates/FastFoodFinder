@@ -58,6 +58,9 @@ MainWindow::~MainWindow()
     delete m_navbar;
     delete m_restaurantList;
     delete m_adminView;
+
+    //Save data to database file
+    m_store.save("RestaurantData.csv");
 }
 
 /* Private slots */
