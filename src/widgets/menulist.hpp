@@ -4,6 +4,21 @@
 
 using IDQtys = std::map<IDs,Qty>;
 
+/**
+ * @brief MenuList class
+ *
+ * Provides a simple way to list menu items.
+ * This list isn't tied to a specific restaurant, any menu item can be added.
+ *
+ * To use:
+ * @code{.cpp}
+ * MenuList* list = new RestaurantList(widget);
+ * list->addAllItems(restaurant);
+ * @endcode
+ *
+ * This will create a menu list within its parent widget.
+ * Then it will add all the menu items of the restaurant to the list.
+ */
 class MenuList : public QListWidget
 {
     Q_OBJECT
@@ -35,7 +50,7 @@ signals:
     void resetQtyEmitter() const;
 
 private slots:
-    void currentMenuItemHandler(int row) const;
+    void rowToIDsConverter(int row) const;
     void quantityChangedHandler(IDs, Qty);
 
 private:
