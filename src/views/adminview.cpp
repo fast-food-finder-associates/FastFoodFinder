@@ -42,7 +42,7 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     connect(m_restListDeleted, &RestaurantList::currentRestaurantChanged,
             [this](RestaurantID id)
             {
-                m_restListDeleted->setCurrentRow(-1);
+                m_restListAvailable->setCurrentRow(-1);
                 fillRestaurantEditFields(id);
             });
 
@@ -140,6 +140,7 @@ void AdminView::resetUi()
     m_ui->pushButton_restoreMenuItem->setStyleSheet(pushbuttonReset);
 
     /* Line edits */
+	m_ui->lineEdit_restEdit->clear();
     m_ui->lineEdit_nameAdd->clear();
     m_ui->lineEdit_nameEdit->clear();
 
