@@ -42,14 +42,14 @@
     <widget class="QPushButton" name="pushButton_confirmRestChanges">
      <property name="geometry">
       <rect>
-       <x>300</x>
+       <x>280</x>
        <y>520</y>
-       <width>111</width>
+       <width>151</width>
        <height>21</height>
       </rect>
      </property>
      <property name="text">
-      <string>Confirm changes</string>
+      <string>Confirm show/hide changes</string>
      </property>
     </widget>
     <widget class="QWidget" name="widget_restListHidden" native="true">
@@ -181,7 +181,7 @@
       </rect>
      </property>
      <property name="placeholderText">
-      <string>menu item name</string>
+      <string>restaurant name</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_restEdit">
