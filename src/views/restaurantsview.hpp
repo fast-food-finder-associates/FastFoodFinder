@@ -22,7 +22,7 @@ public slots:
     void resetUi();
 
 private slots:
-    void menuListChange(RestaurantID);
+    void fillMenuList(RestaurantID);
 
 private:
     Ui::RestaurantsView* m_ui;

@@ -1,6 +1,14 @@
 #include "restaurantsview.hpp"
 #include "ui_restaurantsview.h"
 
+/**
+ * @brief Constructor
+ *
+ * Instantiates the view with list a restaurant and menu list.
+ *
+ * @param parent The parent widget that this view will be in
+ * @param store The data store that contains all the data
+ */
 RestaurantsView::RestaurantsView(QWidget* parent, RestaurantDataStore* store)
     : QWidget(parent), m_ui(new Ui::RestaurantsView), m_store(store)
 {
@@ -17,9 +25,14 @@ RestaurantsView::RestaurantsView(QWidget* parent, RestaurantDataStore* store)
 
     //On current restaurant change, display its menu items
     connect(m_restList, &RestaurantList::currentRestaurantChanged,
-            this, &RestaurantsView::menuListChange);
+            this, &RestaurantsView::fillMenuList);
 }
 
+/**
+ * @brief Destructor
+ *
+ * Deletes all dynamically allocated memory.
+ */
 RestaurantsView::~RestaurantsView()
 {
     delete m_ui;
@@ -27,11 +40,23 @@ RestaurantsView::~RestaurantsView()
     delete m_menuList;
 }
 
+/**
+ * @brief Reset view
+ *
+ * Resets the view so it looks just like it was when it was created.
+ */
 void RestaurantsView::resetView()
 {
     resetUi();
 }
 
+/**
+ * @brief Reset all ui in the view
+ *
+ * Reset the restaurant name label.
+ * Reload the restaurant list.
+ * Clear the menu list.
+ */
 void RestaurantsView::resetUi()
 {
     m_ui->label_restName->setText("Restaurant");
@@ -44,7 +69,14 @@ void RestaurantsView::resetUi()
     m_menuList->clear();
 }
 
-void RestaurantsView::menuListChange(RestaurantID id)
+/**
+ * @brief Fill menu list
+ *
+ * If the ID is valid, fill the menu list will items from the restaurant ID.
+ *
+ * @param id The restaurant ID that will fill the menu list
+ */
+void RestaurantsView::fillMenuList(RestaurantID id)
 {
     if(id == -1)
         return;
