@@ -183,7 +183,7 @@ void AdminView::on_pushButton_restEdit_clicked()
     if(id == -1)
         id = m_restListDeleted->getSelected();
 
-    /* If the hidden list isn't selected, then none of them are */
+    /* Check if the hidden list isn't selected and if the input fields are invalid */
     if(id == -1 || name.isEmpty())
     {
         m_ui->pushButton_restEdit->setStyleSheet("QPushButton { color: red; } ");
