@@ -1,7 +1,8 @@
 #pragma once
-#include <vector>
 #include <QListWidget>
 #include "src/datastore/Restaurant.hpp"
+
+using RestaurantID = int;
 
 class RestaurantList : public QListWidget
 {
@@ -11,8 +12,8 @@ public:
     /* Constructor */
     RestaurantList(QWidget* parent);
 
-    /* Static getters */
-    static QSize getItemSizeHint();
+    /* Getters */
+    RestaurantID getSelected() const;
     template<typename Container>
     void getRestaurantIDs(Container&) const;
 
@@ -23,16 +24,17 @@ public:
     void removeItem(const Restaurant&);
     template<typename Iterator>
     void removeItems(Iterator begin, Iterator end);
-    void clearItems();
+    void allowDeleted(bool);
 
 signals:
-    void currentRestaurantChanged(int ID) const;
+    void currentRestaurantChanged(RestaurantID) const;
 
 private slots:
     void rowToIDConverter(int row) const;
 
 private:
     static const QSize itemSizeHint;
+    bool m_allowDeleted;
 };
 
 /* Templated getters */

@@ -2,6 +2,9 @@
 #include <QMainWindow>
 #include "src/widgets/navbar.hpp"
 #include "src/widgets/restaurantlist.hpp"
+#include "src/widgets/menulist.hpp"
+#include "src/datastore/RestaurantDataStore.hpp"
+#include "src/views/adminview.hpp"
 
 namespace Ui
 {
@@ -19,16 +22,19 @@ public:
     /* Destructor */
     ~MainWindow() override;
 
-    /* Enum class for each view state */
-    enum class ViewStates { MAIN, ADMIN };
+signals:
+    void logout() const;
 
 private slots:
-    void on_actionLogout_triggered();
     void changeView(int);
-    void changeNavState(ViewStates);
+    void menuListChange(int);
+    void resetUi();
 
 private:
     Ui::MainWindow* m_ui;
     NavBar* m_navbar;
     RestaurantList* m_restaurantList;
+    MenuList* m_menuList;
+    AdminView* m_adminView;
+    RestaurantDataStore m_store;
 };

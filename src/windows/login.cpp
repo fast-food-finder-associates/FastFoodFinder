@@ -1,42 +1,72 @@
+#include "login.hpp"
+#include "ui_login.h"
 #include <QCryptographicHash>
 #include <QTextStream>
 #include <QTimer>
 #include <QDir>
-#include "login.hpp"
-#include "ui_login.h"
-#include "../utils/exceptions.hpp"
+#include "src/utils/exceptions.hpp"
 
-/* Static members */
-Login::Type   Login::type      = Login::Type::USER;
-Login*        Login::instance  = nullptr;
-const QString Login::FILE_NAME = "authFile.txt";
-const QString Login::FILE_PATH = QDir::homePath() + '/';
+/* Static variables */
+Login::Type   Login::type         = Login::Type::USER;
+Login*        Login::instance     = nullptr;
+const QString Login::FILE_NAME    = "authFile.txt";
+const QString Login::FILE_PATH    = QDir::homePath() + '/';
+const QString Login::FILE_ERR_MSG = "Authentication failed, contact admin!";
 
-/* Login usage */
-Login* Login::requestLogin()
+/**
+ * @brief Getter
+ *
+ * If there isn't a current instance, one will be created as well as the credential file.
+ *
+ * @return Singleton instance
+ */
+Login* Login::getInstance()
 {
     if(instance == nullptr)
     {
         instance = new Login;
 
-        /* Initialize the credential file */
+        /* Initialize the credential file if it doesn't exist */
         QFile authFile(FILE_PATH + FILE_NAME);
         authFile.open(QIODevice::NewOnly);
     }
 
-    instance->resetUi();
-    instance->clearFields();
-    instance->show();
-
     return instance;
 }
 
+/**
+ * @brief Getter
+ *
+ * Returns the login type of the last user that logged in
+ *
+ * @return Login type of the last user that logged in
+ */
 Login::Type Login::getType()
 {
     return type;
 }
 
-/* Private slots (Login page) */
+/**
+ * @brief Login usage
+ *
+ * Requests a login screen. Calls getInstance() in case it hasn't been called yet.
+ */
+void Login::requestLogin()
+{
+    //Initializes the singleton object just in case
+    getInstance();
+
+    instance->resetUi();
+    instance->clearFields();
+    instance->show();
+}
+
+/**
+ * @brief Login request button
+ *
+ * Upon clicking the login button, obtain the login credential fields and validate them.
+ * If any exception was throw, an error window will show with details.
+ */
 void Login::on_pushButton_login_clicked()
 {
     resetUi();
@@ -48,25 +78,40 @@ void Login::on_pushButton_login_clicked()
 
         authenticate(username, password);
     }
-    catch(fff::GeneralException& exception)
+    catch(GeneralException& exception)
     {
         exception.errorWindow();
     }
 }
 
+/**
+ * @brief Registeration view button
+ *
+ * Upon clicking the register button, the current view will change.
+ */
 void Login::on_pushButton_register_clicked()
 {
     resetUi();
     m_ui->stackedWidget->setCurrentWidget(m_ui->page_register);
 }
 
+/**
+ * @brief Show password button
+ *
+ * Upon toggling the show password checkbox, the password field will toggle between asterisks and letters.
+ */
 void Login::on_checkBox_showPW_stateChanged(int state)
 {
     m_ui->lineEdit_password->setEchoMode((state == Qt::CheckState::Checked ? QLineEdit::EchoMode::Normal
                                                                            : QLineEdit::EchoMode::Password));
 }
 
-/* Private slots (Registration page) */
+/**
+ * @brief Confirm registration button
+ *
+ * Upon clicking the "confirm register" button, obtain the registration credential fields and validate them.
+ * If any exception was thrown, an error window will show with details.
+ */
 void Login::on_pushButton_confirmReg_clicked()
 {
     resetUi();
@@ -79,12 +124,17 @@ void Login::on_pushButton_confirmReg_clicked()
 
         registration(username, password, pwConfirm);
     }
-    catch(fff::GeneralException& exception)
+    catch(GeneralException& exception)
     {
         exception.errorWindow();
     }
 }
 
+/**
+ * @brief Cancel registration button
+ *
+ * Upon clicking the "cancel register" button, the current view will change to the login view.
+ */
 void Login::on_pushButton_cancelReg_clicked()
 {
     resetUi();
@@ -92,9 +142,13 @@ void Login::on_pushButton_cancelReg_clicked()
     m_ui->stackedWidget->setCurrentWidget(m_ui->page_login);
 }
 
-/* Constructors */
+/**
+ * @brief Login default constructor
+ *
+ * Instantiates the login UI. Current view will be set to the login view. Window flags are set.
+ */
 Login::Login()
-    : QDialog(nullptr), m_ui(new Ui::Login), FILE_ERR_MSG("Authentication failed, contact admin!")
+    : QDialog(nullptr), m_ui(new Ui::Login)
 {
     m_ui->setupUi(this);
     setModal(true);
@@ -107,16 +161,24 @@ Login::Login()
                    Qt::WindowCloseButtonHint);
 }
 
-/* Authentication handling */
+/**
+ * @brief Login authenticator
+ *
+ * Validates the given credentials against the credentials file.
+ * Exceptions are thrown if the file couldn't be opened in ReadOnly mode and the file format is wrong.
+ * Sets the user type static variable if the credentials are correct.
+ *
+ * @param usernameInput The username to authenticate
+ * @param passwordInput The password to authenticate
+ */
 void Login::authenticate(QString usernameInput, QString passwordInput) const
 {
     QFile authFile(FILE_PATH + FILE_NAME);
     QTextStream qin(&authFile);
 
+    /* Check if file is open */
     if(!authFile.open(QIODevice::ReadOnly))
-    {
-        throw fff::BadFile(FILE_ERR_MSG);
-    }
+        throw BadFile(FILE_ERR_MSG);
 
     QString usernameFile;
     QString hashedPWFile;
@@ -133,7 +195,7 @@ void Login::authenticate(QString usernameInput, QString passwordInput) const
         if(usernameFile.isEmpty() || hashedPWFile.isEmpty() || typeFile.isEmpty() ||
           (typeFile != "admin" && typeFile != "user"))
         {
-            throw fff::BadFileFormat(FILE_ERR_MSG);
+            throw BadFileFormat(FILE_ERR_MSG);
         }
         else if(usernameFile == usernameInput && hashedPWFile == hashedPW)
         {
@@ -146,41 +208,56 @@ void Login::authenticate(QString usernameInput, QString passwordInput) const
     authFailed();
 }
 
+/**
+ * @brief Successful login
+ *
+ * Displays to the user that the login was successful and accepts the dialog.
+ */
 void Login::authSuccessful() const
 {
     m_ui->label_loginMsg->setStyleSheet("QLabel { background-color: green; color: white; }");
     m_ui->label_loginMsg->setText("Login successful");
 
     //Delays the closing of the window
-    QTimer::singleShot(500, instance, SLOT(accept()));
+    QTimer::singleShot(500, instance, &QDialog::accept);
 }
 
+/**
+ * @brief Unsuccessful login
+ *
+ * Displays to the user that the login was unsuccessful.
+ */
 void Login::authFailed() const
 {
     m_ui->label_loginMsg->setStyleSheet("QLabel { background-color: red; color: white; }");
     m_ui->label_loginMsg->setText("Invalid login");
 }
 
-/* Registration handling */
+/**
+ * @brief Login registrator
+ *
+ * Checks if any of the fields are invalid; if they are, call regFailed() and return.
+ * Exceptions are thrown if the file couldn't be opened in ReadWrite mode and the file format is wrong.
+ * Checks against the file if the username given is unique, if it isn't call regFailed() and return.
+ * If the registration is good, write to the file the given credentials.
+ *
+ * @param usernameInput The username to register
+ * @param passwordInput The password to register
+ * @param pwConfirmed The confirmation password
+ */
 void Login::registration(QString usernameInput, QString passwordInput, QString pwConfirmed) const
 {
     /* Check the validity of each input field */
     int flags = 0;
 
     if(usernameInput.isEmpty())
-    {
         flags |= RegField::UN;
-    }
 
     if(passwordInput.isEmpty())
-    {
         flags |= RegField::PW;
-    }
 
     if(pwConfirmed.isEmpty() || passwordInput != pwConfirmed)
-    {
         flags |= RegField::CPW;
-    }
 
     if(flags != 0)
     {
@@ -191,10 +268,9 @@ void Login::registration(QString usernameInput, QString passwordInput, QString p
     QFile authFile(FILE_PATH + FILE_NAME);
     QTextStream qin(&authFile);
 
+    /* Check if file is open */
     if(!authFile.open(QIODevice::ReadWrite))
-    {
-        throw fff::BadFile(FILE_ERR_MSG);
-    }
+        throw BadFile(FILE_ERR_MSG);
 
     QString usernameFile;
     QByteArray hashedPW = hashString(passwordInput);
@@ -206,7 +282,7 @@ void Login::registration(QString usernameInput, QString passwordInput, QString p
 
         if(qin.readLine().isEmpty() || qin.readLine().isEmpty()) //Skips the next 2 lines
         {
-            throw fff::BadFileFormat(FILE_ERR_MSG);
+            throw BadFileFormat(FILE_ERR_MSG);
         }
         else if(usernameInput == usernameFile)
         {
@@ -223,6 +299,12 @@ void Login::registration(QString usernameInput, QString passwordInput, QString p
     regSuccessful();
 }
 
+/**
+ * @brief Registration successful
+ *
+ * Grabs the newly registered username and put it in the login username field.
+ * Changes the view to the login view and displays that the registration was successful.
+ */
 void Login::regSuccessful() const
 {
     /* Grab the new user's username and store it into the login */
@@ -235,6 +317,14 @@ void Login::regSuccessful() const
     m_ui->label_loginMsg->setText("Registration successful");
 }
 
+/**
+ * @brief Registration unsuccessful
+ *
+ * If no flags are set, return.
+ * Sets the flag's respective field to red.
+ *
+ * @param fieldFlags The fields that were invalid
+ */
 void Login::regFailed(RegField fieldFlags) const
 {
     if(fieldFlags == 0)
@@ -261,13 +351,24 @@ void Login::regFailed(RegField fieldFlags) const
         m_ui->label_confirmPassword->setStyleSheet(txtStyle);
 }
 
-/* Hash algorithm */
+/**
+ * @brief Hash function
+ *
+ * Returns a hashed version of the given string with a cryptographic hash function.
+ *
+ * @param string The string to hash
+ * @return Hashed string
+ */
 QByteArray Login::hashString(QString string) const
 {
     return QCryptographicHash::hash(string.toStdString().data(), QCryptographicHash::Keccak_512).toHex();
 }
 
-/* Ui */
+/**
+ * @brief UI reset
+ *
+ * Called whenever a view is changed to reset the UI.
+ */
 void Login::resetUi() const
 {
     QString bgStyle = "QLabel { background-color: transparent; }";
@@ -283,6 +384,11 @@ void Login::resetUi() const
     m_ui->lineEdit_username->setFocus();
 }
 
+/**
+ * @brief Clear fields
+ *
+ * Called whenever a view is changed to clear input fields.
+ */
 void Login::clearFields() const
 {
     m_ui->lineEdit_password->setText("");

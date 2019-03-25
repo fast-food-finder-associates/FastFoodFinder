@@ -2,15 +2,17 @@
 #include <QMessageBox>
 #include <QIcon>
 
-namespace fff
-{
 /* Constructors */
 GeneralException::GeneralException()
-{}
+{
+    //Do nothing
+}
 
 GeneralException::GeneralException(QString m)
-                : message(m)
-{}
+    : message(m)
+{
+    //Do nothing
+}
 
 void GeneralException::errorWindow() const
 {
@@ -36,8 +38,10 @@ GeneralException* GeneralException::clone() const
 
 /* Constructors */
 BadFile::BadFile(QString m)
-       : GeneralException(m)
-{}
+    : GeneralException(m)
+{
+    //Do nothing
+}
 
 BadFile::BadFile(const QFile& file)
 {
@@ -46,12 +50,13 @@ BadFile::BadFile(const QFile& file)
 
 /* Constructors */
 BadFileFormat::BadFileFormat(QString m)
-             : GeneralException(m)
-{}
+    : GeneralException(m)
+{
+    //Do nothing
+}
 
 BadFileFormat::BadFileFormat(QString expected, QString recieved)
 {
     message = "Expected: "   + expected + "\r\n\r\n" +
               "Recieved: \"" + recieved + "\"";
-}
 }
