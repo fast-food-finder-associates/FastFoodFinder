@@ -140,7 +140,7 @@ void AdminView::resetUi()
     m_ui->pushButton_restoreMenuItem->setStyleSheet(pushbuttonReset);
 
     /* Line edits */
-	m_ui->lineEdit_restEdit->clear();
+    m_ui->lineEdit_restEdit->clear();
     m_ui->lineEdit_nameAdd->clear();
     m_ui->lineEdit_nameEdit->clear();
 
