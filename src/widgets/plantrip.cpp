@@ -1,7 +1,6 @@
 #include "plantrip.hpp"
 #include "ui_plantrip.h"
 #include "src/widgets/menulistitem.hpp"
-#include <QDebug>
 #include <QTimer>
 #include <map>
 #include <QDateTime>

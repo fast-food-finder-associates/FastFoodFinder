@@ -1,7 +1,6 @@
 #include "receiptlist.hpp"
 #include "src/widgets/menulistitem.hpp"
 #include <QFont>
-#include <QDebug>
 
 /* Static variables */
 const QSize ReceiptList::receiptSizeHint(390, 50);
@@ -148,7 +147,6 @@ void ReceiptList::grandTotal(vector<IDQtys> &receipts)
     Receipt* headerItem;
     QListWidgetItem* listItem;
 
-    qDebug() << QString::number(receipts.size());
     /* Making the QListWidgetItem that will a holdReceipt */
     listItem = new QListWidgetItem(this);
     listItem->setSizeHint(receiptSizeHint);
@@ -177,8 +175,6 @@ void ReceiptList::grandTotal(vector<IDQtys> &receipts)
     listItem = new QListWidgetItem(this);
     listItem->setSizeHint(receiptSizeHint);
     QListWidget::addItem(listItem);
-
-    qDebug() << QString::number(grandTotal,'f',2);
 
     /* Set the QListWidgetItem to hold a Receipt */
     headerItem = new Receipt(this, QString::number(grandTotal,'f',2), Receipt::ReceiptStates::GrandTotalFooter);
