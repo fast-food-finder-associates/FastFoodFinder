@@ -9,6 +9,11 @@ namespace Ui
 class RestaurantsView;
 }
 
+/**
+ * @class RestaurantsView class
+ *
+ * A view that will display all restaurants and their corresponding menu items.
+ */
 class RestaurantsView : public QWidget
 {
     Q_OBJECT
