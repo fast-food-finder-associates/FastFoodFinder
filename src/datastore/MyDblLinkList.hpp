@@ -852,14 +852,28 @@ typename MyDblLinkList<Elem>::const_iterator MyDblLinkList<Elem>::begin() const 
 template<typename Elem>
 typename MyDblLinkList<Elem>::iterator MyDblLinkList<Elem>::end() // iterator to one beyond last element
 {
-    return iterator(m_pLastElement->next);
+    if (m_pLastElement != nullptr)
+    {
+        return iterator(m_pLastElement->next);
+    }
+    else
+    {
+        return iterator(m_pLastElement);
+    }
 }
 
 // constant iterator to last element
 template<typename Elem>
 typename MyDblLinkList<Elem>::const_iterator MyDblLinkList<Elem>::end() const // iterator to one beyond last element
 {
-    return iterator(m_pLastElement->next);
+    if (m_pLastElement != nullptr)
+    {
+        return const_iterator(m_pLastElement->next);
+    }
+    else
+    {
+        return const_iterator(m_pLastElement);
+    }
 }
 
 

@@ -45,6 +45,7 @@ public:
     MyDblLinkList<Trip> list;
 
 private:
+    bool DuplicateNumPresent(int Number);
 
     // Copy constructor
     TripDataStore(const TripDataStore& src);

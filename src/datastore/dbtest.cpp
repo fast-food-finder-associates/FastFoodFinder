@@ -38,16 +38,17 @@ TripDataStore Trips;
 
 int main (int argc, char *argv[])
 {
-    Restaurants.load("./");
-    Restaurants.save("./");
+    Restaurants.load("./RestaurantData.csv");
+    Restaurants.load("./RestaurantData.csv");  // verify dupes do not get loaded
+    Restaurants.save("./RestaurantData.csv.tmp");
 
-    Trips.load("./");
-    Trips.save("./");
+    Trips.load("./TripData.csv");
+    Trips.save("./TripData.csv.tmp");
 
-    Users.load("./");
-    Users.save("./");
+    Users.load("./UserData.csv");
+    Users.save("./UserData.csv.tmp");
 
-    for (MyDblLinkList<Restaurant>::iterator it = Restaurants.list.begin(); it != Restaurants.list.end(); ++it)
+    for (std::list<Restaurant>::iterator it = Restaurants.list.begin(); it != Restaurants.list.end(); ++it)
     {
         cout << "Restaurant name:" << (*it).GetName() << " Distance to Saddleback (miles) " << (*it).GetDistSaddleback() << endl;
     }
@@ -116,14 +117,16 @@ int main (int argc, char *argv[])
     Trip &myTrip5b = Trips.FindbyNumber(myTrip5bx);
     myTrip5b.PrintAsDebug(true);
     cout << "--------------------" << endl << endl;
-#if 0
-   >> Add  2 more restaurants to Resturants list
+
+    cout << "Add  2 more restaurants to Restaurants list" << endl;
+    Restaurants.load_additional("./ExtraRestaurantData.csv");
+    Restaurants.save("./RestaurantDataStore.csv.tmp2");
     cout << endl << endl;
     cout << "Test Plan a Trip - requirement #6 - start at Saddleback, visit 12 Restaurants" << endl;
-    int myTrip = StoreTripNumRest("Trip Test Req3", 0, 10, &Restaurants, Users.list.front());
-    myTrip.PrintAsDebug(true);
+    int myTrip6x = Trips.StoreTripNumRest("Trip Test Req6", 0, 12, Restaurants, Users.list.front());
+    Trip &myTrip6 = Trips.FindbyNumber(myTrip6x);
+    myTrip6.PrintAsDebug(true);
     cout << "--------------------" << endl << endl;
-#endif
 
     for (MyDblLinkList<User>::iterator it = Users.list.begin(); it != Users.list.end(); ++it)
     {
@@ -134,22 +137,5 @@ int main (int argc, char *argv[])
 
     //Users.printAsDebug(true, true);
     //system("ls -l");
-#if 0
-    cout << "test list" << endl;
-    User ff("XXX","hash");
-    User ff1("TTT","hash");
-    User ff2("ZZZ","hash");
-    std::list<User> xl;
-    xl.push_back(ff);
-    xl.push_back(ff1);
-    xl.push_back(ff2);
-    auto ix = xl.begin();
-    //cout << *ix << endl;
-    sort(xl.begin(),xl.end());
-    for (auto id = xl.begin(); id != xl.end(); id++)
-    {
-        cout << *id;
-    }
-#endif
 }
 

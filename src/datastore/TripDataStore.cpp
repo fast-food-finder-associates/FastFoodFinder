@@ -28,8 +28,8 @@ TripDataStore::TripDataStore()
 
 void TripDataStore::load(const string path)
 {
-    string fullpath = path + "TripData.csv";
-    std::ifstream infile(fullpath, ios::in);
+    //string fullpath = path + "TripData.csv";
+    std::ifstream infile(path, ios::in);
     int line_count = 0;
     if (infile.is_open())
     {
@@ -39,6 +39,10 @@ void TripDataStore::load(const string path)
             std::getline(infile, inputline);
             if (!infile.eof())
             {
+                if (inputline[0] == '#')
+                {
+                    continue;  // ignore comment lines
+                }
                 line_count++;
                 std::vector<std::string> commaSeparated(1);
                 int commaCounter = 0;
@@ -58,6 +62,11 @@ void TripDataStore::load(const string path)
                 // The serialized data looks like:
                 // 10,PizzaBinge,10,21.65,0,3,1,8,9
                 int nNumber = std::stoi(commaSeparated[0]);
+                // prevent loading of duplicate numbers by silently rejecting the load for this record
+                if (DuplicateNumPresent(nNumber))
+                {
+                    continue;
+                }
                 int nCreator = std::stoi(commaSeparated[2]);
                 float fTotalDistance = std::stof(commaSeparated[3]);
                 int nDeleted = std::stoi(commaSeparated[4]);
@@ -92,11 +101,10 @@ void TripDataStore::load(const string path)
 
 void TripDataStore::save(const string path)
 {
-    string fullpath = path + "TripData.csv.tmp";
     string outline;
     int line_count = 0;
 
-    std::ofstream outfile(fullpath, ios::trunc);
+    std::ofstream outfile(path, ios::trunc);
     if (outfile.is_open())
     {
         for (MyDblLinkList<Trip>::iterator it = list.begin(); it != list.end(); it++)
@@ -145,6 +153,20 @@ Trip &TripDataStore::FindbyNumber(int Number)
         }
     }
     return *(list.end());  // never reached  - should throw exception
+}
+
+bool TripDataStore::DuplicateNumPresent(int Number)
+{
+    bool dupe_found = false;
+    for (MyDblLinkList<Trip>::iterator it = list.begin(); it != list.end(); ++it)
+    {
+        if ( (*it).m_nNumber == Number)
+        {
+            dupe_found = true;
+            break;
+        }
+    }
+    return dupe_found;
 }
 
 int TripDataStore::StoreTrip(const string &TripName, const vector<int> RestaurantsSelectedbyUser, RestaurantDataStore &RestSt, User &User, bool StartatSaddleback)
@@ -259,16 +281,20 @@ int TripDataStore::StoreTripNumRest(const string &TripName, int StartingRestNum,
     float shortest_distance = 999.9;
     float cumulative_distance = 0;
     Restaurant *pRest;
+    Restaurant *pRestDeleted;
     if (StartingRestNum == 0)
     {
         // If start number is zero, starting point is Saddleback
-        for (MyDblLinkList<Restaurant>::iterator it = RestSt.list.begin(); it != RestSt.list.end(); ++it)
+        for (std::list<Restaurant>::iterator it = RestSt.list.begin(); it != RestSt.list.end(); ++it)
         {
-            float restdist = (*it).GetDistSaddleback();
-            if (restdist < shortest_distance) 
+            if (!(*it).IsDeleted())
             {
-                shortest_distance = restdist;
-                closest_restnum = (*it).GetNumber();
+                float restdist = (*it).GetDistSaddleback();
+                if (restdist < shortest_distance) 
+                {
+                    shortest_distance = restdist;
+                    closest_restnum = (*it).GetNumber();
+                }
             }
         }
         current_restaurant = closest_restnum;
@@ -283,7 +309,9 @@ int TripDataStore::StoreTripNumRest(const string &TripName, int StartingRestNum,
         
         for (vector<RestaurantDistance>::const_iterator itrd = pRest->GetDistances().begin(); itrd != pRest->GetDistances().end(); itrd++)
         {
-            if ((*itrd).m_fDistanceMiles < shortest_distance)
+            pRestDeleted = &RestSt.FindbyNumber((*itrd).m_nRestaurantNumber);
+            if ( (!pRestDeleted->IsDeleted()) && 
+                 ( (*itrd).m_fDistanceMiles < shortest_distance) )
             {
                 bool dupe_found = false;
                 for (vector<int>::const_iterator itrs = sVec.begin(); itrs != sVec.end(); itrs++)

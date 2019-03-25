@@ -26,7 +26,7 @@ User::User(const string &Name, const string &Password)
     m_bDeleted = false;
     m_bBlocked = false;
 
-    m_nUserNumber =  sm_NextNumber++;
+    m_nNumber =  sm_NextNumber++;
 
     m_bInitialized = true;
 };
@@ -40,14 +40,14 @@ User::User(int nUserNumber,
            bool bUserDeleted,
            bool bUserBlocked,
            vector<int> &UserTrips)
-: m_nUserNumber(nUserNumber), m_UserName(Name),
+: m_nNumber(nUserNumber), m_UserName(Name),
   m_fTotalPurchases(fTotalPurchases), m_bIsAdministrator(bUserAdmin),
   m_HashedPassword(HashedPw), m_bDeleted(bUserDeleted),
   m_bBlocked(bUserBlocked), m_Trips(UserTrips)
 {
-    if (m_nUserNumber >= sm_NextNumber)
+    if (m_nNumber >= sm_NextNumber)
     {
-        sm_NextNumber = m_nUserNumber + 1;
+        sm_NextNumber = m_nNumber + 1;
     }
     m_bInitialized = true;
 }
@@ -58,7 +58,7 @@ User::~User()
 }
 
 User::User(const User& src)
-: m_nUserNumber(src.m_nUserNumber), m_UserName(src.m_UserName),
+: m_nNumber(src.m_nNumber), m_UserName(src.m_UserName),
   m_fTotalPurchases(src.m_fTotalPurchases), m_bIsAdministrator(src.m_bIsAdministrator),
   m_HashedPassword(src.m_HashedPassword), m_bDeleted(src.m_bDeleted),
   m_bBlocked(src.m_bBlocked), m_Trips(src.m_Trips)
@@ -72,7 +72,7 @@ User& User::operator=(const User& rhs)
       return *this;
    }
 
-    m_nUserNumber       = rhs.m_nUserNumber;
+    m_nNumber       = rhs.m_nNumber;
     m_UserName          = rhs.m_UserName;
     m_fTotalPurchases   = rhs.m_fTotalPurchases;
     m_bIsAdministrator  = rhs.m_bIsAdministrator;
@@ -93,7 +93,7 @@ bool User::operator<(User &rhs)
 
 const int User::GetNumber(void) const
 {
-    return (m_nUserNumber);
+    return (m_nNumber);
 }
 
 const string &User::GetName(void) const
@@ -170,8 +170,8 @@ bool User::PrintAsDebug(bool print_endl) const
 {
     if (print_endl)
     {
-        cout << "ObjAddr    :" << std::hex << std::uppercase << "0x" << (unsigned long long)this << std::nouppercase << std::dec << endl
-             << " Number     :" << m_nUserNumber << endl
+        cout << "ObjAddr     :" << std::hex << std::uppercase << "0x" << (unsigned long long)this << std::nouppercase << std::dec << endl
+             << " Number     :" << m_nNumber << endl
              << " Name       :" << m_UserName << endl
              << " Purchases  :" << m_fTotalPurchases << endl
              << " Admin      :" << m_bIsAdministrator << endl
@@ -192,14 +192,14 @@ bool User::PrintAsDebug(bool print_endl) const
     else
     {
         cout << "ObjAddr    :" << std::hex << std::uppercase << "0x" << (unsigned long long)this << std::nouppercase << std::dec
-             << " Number     :" << m_nUserNumber
-             << " Name       :" << m_UserName
-            << " Purchases  :" << m_fTotalPurchases
-            << " Admin      :" << m_bIsAdministrator
-            << " Hash PW    :" << m_HashedPassword
-            << " Deleted    :" << m_bDeleted
-            << " Blocked    :" << m_bBlocked
-            << " Trips      :";
+             << " Number    :" << m_nNumber
+             << " Name      :" << m_UserName
+             << " Purchases :" << m_fTotalPurchases
+             << " Admin     :" << m_bIsAdministrator
+             << " Hash PW   :" << m_HashedPassword
+             << " Deleted   :" << m_bDeleted
+             << " Blocked   :" << m_bBlocked
+             << " Trips     :";
         for (std::vector<int>::const_iterator it = m_Trips.begin(); it != m_Trips.end(); it++)
         {
             cout << " " << *it;

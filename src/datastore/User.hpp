@@ -24,7 +24,7 @@ public:
     friend ostream& operator<<(ostream& os, const User& user);
 
     // No arg constructor
-    User() { m_nUserNumber = -1; m_bInitialized = false; };
+    User() { m_nNumber = -1; m_bInitialized = false; };
 
     // Constructor - New User
     User(const string &Name, const string &Password);
@@ -55,7 +55,7 @@ public:
 
 private:
     bool        m_bInitialized;
-    int         m_nUserNumber;
+    int         m_nNumber;
     string      m_UserName;
     float       m_fTotalPurchases;
     bool        m_bIsAdministrator;
