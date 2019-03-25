@@ -79,7 +79,7 @@ void NavBar::setMaxWidth(int width)
  * Since NavBar uses "Font Awesome 5 Free", all unicode
  * string icons should be represented by that font.
  *
- * @param icon The unicode representation of the icon in the font "Font Awesome 5 Free"
+ * @param icon The unicode representation (ex. \uffff) of the icon using the"Font Awesome 5 Free" font
  * @param label The label of the button
  */
 void NavBar::addItem(QString icon, QString label)
@@ -100,7 +100,7 @@ void NavBar::addItem(QString icon, QString label)
 }
 
 /**
- * @brief Leave event
+ * @brief Shrinks the bar
  *
  * Overrides QWidget::leaveEvent(QEvent*).
  * When the cursor leaves the widget, the bar shrinks.
@@ -128,7 +128,7 @@ void NavBar::leaveEvent(QEvent*)
 }
 
 /**
- * @brief Enter event
+ * @brief Expands the bar
  *
  * Overrides QWidget::enterEvent(QEvent*).
  * When the cursor enters the widget, the bar expands.
