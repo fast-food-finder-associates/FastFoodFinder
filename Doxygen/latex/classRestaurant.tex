@@ -1,0 +1,135 @@
+\hypertarget{classRestaurant}{\section{Restaurant Class Reference}
+\label{classRestaurant}\index{Restaurant@{Restaurant}}
+}
+
+
+{\ttfamily \#include $<$Restaurant.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classRestaurant_a9ec8ac32f27c5e0b28376e5393bf1a46}{{\bfseries Restaurant} (const string \&Name, const float \&Distance)}\label{classRestaurant_a9ec8ac32f27c5e0b28376e5393bf1a46}
+
+\item 
+\hypertarget{classRestaurant_a509c9b7425703b48195ed2926a4e59e2}{{\bfseries Restaurant} (const \hyperlink{classRestaurant}{Restaurant} \&src)}\label{classRestaurant_a509c9b7425703b48195ed2926a4e59e2}
+
+\item 
+\hypertarget{classRestaurant_ac1f6dd1cc1e467a47134bd46330a0020}{\hyperlink{classRestaurant}{Restaurant} \& {\bfseries operator=} (const \hyperlink{classRestaurant}{Restaurant} \&rhs)}\label{classRestaurant_ac1f6dd1cc1e467a47134bd46330a0020}
+
+\item 
+\hypertarget{classRestaurant_a83808709ef46511be0ee73018b9e6d66}{const string \& {\bfseries Get\-Name} (void) const }\label{classRestaurant_a83808709ef46511be0ee73018b9e6d66}
+
+\item 
+\hypertarget{classRestaurant_a6035d861ae0ef8a8951002d6865b0362}{void {\bfseries Set\-Name} (const string \&New\-Name)}\label{classRestaurant_a6035d861ae0ef8a8951002d6865b0362}
+
+\item 
+\hypertarget{classRestaurant_aba8d743b610738dde66dd14d623b2dde}{int {\bfseries Get\-Number} (void) const }\label{classRestaurant_aba8d743b610738dde66dd14d623b2dde}
+
+\item 
+\hypertarget{classRestaurant_a918f12ce388683a75e6934b05f524a21}{const vector$<$ \hyperlink{classMenuItem}{Menu\-Item} $>$ \& {\bfseries Get\-Menu} (void) const }\label{classRestaurant_a918f12ce388683a75e6934b05f524a21}
+
+\item 
+\hypertarget{classRestaurant_aed44cf683bcec3c8d2c5f4f94f4ef936}{const vector\\*
+$<$ \hyperlink{structRestaurantDistance}{Restaurant\-Distance} $>$ \& {\bfseries Get\-Distances} (void) const }\label{classRestaurant_aed44cf683bcec3c8d2c5f4f94f4ef936}
+
+\item 
+\hypertarget{classRestaurant_aedd3f76ea3d3cb361e9a44abe60e3a76}{float {\bfseries Get\-Purchase\-Amount} (void) const }\label{classRestaurant_aedd3f76ea3d3cb361e9a44abe60e3a76}
+
+\item 
+\hypertarget{classRestaurant_a3699a6975dfefc391189710525dbfa3d}{bool {\bfseries Mark\-Deleted} (bool Delete)}\label{classRestaurant_a3699a6975dfefc391189710525dbfa3d}
+
+\item 
+\hypertarget{classRestaurant_ad0a20e329cb53d0cf8d994f8dc105949}{bool {\bfseries Is\-Deleted} (void) const }\label{classRestaurant_ad0a20e329cb53d0cf8d994f8dc105949}
+
+\item 
+\hypertarget{classRestaurant_aca4ebabbbda736dac400d1ac5c6f0146}{bool {\bfseries Add\-Trip} (int Trip\-Number)}\label{classRestaurant_aca4ebabbbda736dac400d1ac5c6f0146}
+
+\item 
+\hypertarget{classRestaurant_a2f0687bea3f4d3ca11a8fdc704fdfa36}{int {\bfseries Add\-Cust\-Count} (void)}\label{classRestaurant_a2f0687bea3f4d3ca11a8fdc704fdfa36}
+
+\item 
+\hypertarget{classRestaurant_aa56bf703c6d0c8e03117befeeda61377}{float {\bfseries Add\-Purchase\-Price} (float Purchase\-Amount)}\label{classRestaurant_aa56bf703c6d0c8e03117befeeda61377}
+
+\item 
+\hypertarget{classRestaurant_ae67e3528af9514e3bdf01f10db874586}{float {\bfseries Get\-Dist\-Saddleback} (void) const }\label{classRestaurant_ae67e3528af9514e3bdf01f10db874586}
+
+\item 
+\hypertarget{classRestaurant_ae709b1c3f23b25dd27c9f526dc536fa8}{void {\bfseries Add\-Menu\-Item} (const string \&Name, const float \&Price)}\label{classRestaurant_ae709b1c3f23b25dd27c9f526dc536fa8}
+
+\item 
+\hypertarget{classRestaurant_af483bb828a00f12643e366ecd9766565}{\hyperlink{classMenuItem}{Menu\-Item} \& {\bfseries Find\-Menu\-Itemby\-Number} (int Number)}\label{classRestaurant_af483bb828a00f12643e366ecd9766565}
+
+\item 
+bool \hyperlink{classRestaurant_aa303b241946e96f7a4316a30ac6d31df}{Print\-As\-Debug} (bool print\-\_\-endl) const 
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classRestaurant_af6d4a4f1eb97251a24add34c6978faa2}{class {\bfseries Restaurant\-Data\-Store}}\label{classRestaurant_af6d4a4f1eb97251a24add34c6978faa2}
+
+\item 
+ostream \& \hyperlink{classRestaurant_affbf9125e0ad7687db2345ea02c61607}{operator$<$$<$} (ostream \&os, const \hyperlink{classRestaurant}{Restaurant} \&restaurant)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Internal datastore for \hyperlink{classRestaurant}{Restaurant} Objects
+
+\begin{DoxyAuthor}{Author}
+edt 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classRestaurant_aa303b241946e96f7a4316a30ac6d31df}{\index{Restaurant@{Restaurant}!Print\-As\-Debug@{Print\-As\-Debug}}
+\index{Print\-As\-Debug@{Print\-As\-Debug}!Restaurant@{Restaurant}}
+\subsubsection[{Print\-As\-Debug}]{\setlength{\rightskip}{0pt plus 5cm}bool Restaurant\-::\-Print\-As\-Debug (
+\begin{DoxyParamCaption}
+\item[{bool}]{print\-\_\-endl}
+\end{DoxyParamCaption}
+) const}}\label{classRestaurant_aa303b241946e96f7a4316a30ac6d31df}
+print the value of the object for external display
+
+\begin{DoxyAuthor}{Author}
+edt (2/7/18)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em print\-\_\-endl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classRestaurant_affbf9125e0ad7687db2345ea02c61607}{\index{Restaurant@{Restaurant}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Restaurant@{Restaurant}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{os, }
+\item[{const {\bf Restaurant} \&}]{restaurant}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{classRestaurant_affbf9125e0ad7687db2345ea02c61607}
+Overloaded operator $<$$<$ to print the contents of an \hyperlink{classUser}{User} object
+
+\begin{DoxyAuthor}{Author}
+edt (2/7/18)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em os} & \\
+\hline
+{\em \hyperlink{classRestaurant}{Restaurant}} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ostream\& 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/datastore/Restaurant.\-hpp\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/datastore/Restaurant.\-cpp\end{DoxyCompactItemize}

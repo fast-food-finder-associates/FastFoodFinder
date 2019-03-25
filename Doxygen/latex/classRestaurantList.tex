@@ -1,0 +1,206 @@
+\hypertarget{classRestaurantList}{\section{Restaurant\-List Class Reference}
+\label{classRestaurantList}\index{Restaurant\-List@{Restaurant\-List}}
+}
+Inheritance diagram for Restaurant\-List\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classRestaurantList}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classRestaurantList_a288c89af96c8ac2c537b51f8d8a565ed}{void {\bfseries current\-Restaurant\-Changed} (Restaurant\-I\-D) const }\label{classRestaurantList_a288c89af96c8ac2c537b51f8d8a565ed}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRestaurantList_a233e9bb9c25a1531d754459f8e0eef81}{Restaurant\-List} (Q\-Widget $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+Restaurant\-I\-D \hyperlink{classRestaurantList_a4427f0f8f4b09d830de4687588b2fd72}{get\-Selected} () const 
+\begin{DoxyCompactList}\small\item\em Get selected restaurant I\-D. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Container $>$ }\\void \hyperlink{classRestaurantList_a72fce6ff45c3cceaa794d32e9118fe2d}{get\-Restaurant\-I\-Ds} (Container \&) const 
+\begin{DoxyCompactList}\small\item\em Get all restaurant I\-Ds. \end{DoxyCompactList}\item 
+void \hyperlink{classRestaurantList_a174ca2fb41584d6e674cfa1c79833fbd}{add\-Item} (const \hyperlink{classRestaurant}{Restaurant} \&)
+\begin{DoxyCompactList}\small\item\em Add restaurant to list. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Iterator $>$ }\\void \hyperlink{classRestaurantList_aeb4247604bf1ea14b33878c7ffc43ac4}{add\-Items} (Iterator begin, Iterator end)
+\begin{DoxyCompactList}\small\item\em Add multiple restaurants to the list. \end{DoxyCompactList}\item 
+void \hyperlink{classRestaurantList_ae29016217ee9c4d9517f5b384feb450c}{remove\-Item} (const \hyperlink{classRestaurant}{Restaurant} \&)
+\begin{DoxyCompactList}\small\item\em Remove restaurant from list. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Iterator $>$ }\\void \hyperlink{classRestaurantList_a32c2c4d381a0c1f37a6090d6a7c4f276}{remove\-Items} (Iterator begin, Iterator end)
+\begin{DoxyCompactList}\small\item\em Remove multiple restaurants from the list. \end{DoxyCompactList}\item 
+void \hyperlink{classRestaurantList_a5c9d824123dc0001ee091c6f86ede859}{show\-Hidden} (bool)
+\begin{DoxyCompactList}\small\item\em Show hidden restaurants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides a simple way to list restaurant objects.
+
+To use\-: 
+\begin{DoxyCode}
+\hyperlink{classRestaurantList}{RestaurantList}* list = \textcolor{keyword}{new} \hyperlink{classRestaurantList_a233e9bb9c25a1531d754459f8e0eef81}{RestaurantList}(widget);
+list->\hyperlink{classRestaurantList_aeb4247604bf1ea14b33878c7ffc43ac4}{addItems}(vector.begin(), vector.end());
+\end{DoxyCode}
+
+
+This will create a restaurant list within its parent widget. Then it will traverse through the iterators listing each restaurant. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classRestaurantList_a233e9bb9c25a1531d754459f8e0eef81}{\index{Restaurant\-List@{Restaurant\-List}!Restaurant\-List@{Restaurant\-List}}
+\index{Restaurant\-List@{Restaurant\-List}!RestaurantList@{Restaurant\-List}}
+\subsubsection[{Restaurant\-List}]{\setlength{\rightskip}{0pt plus 5cm}Restaurant\-List\-::\-Restaurant\-List (
+\begin{DoxyParamCaption}
+\item[{Q\-Widget $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantList_a233e9bb9c25a1531d754459f8e0eef81}
+
+
+Constructor. 
+
+Constructs a retaurant list within the given parent widget. All default settings are set when created.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Widget to display list in \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classRestaurantList_a174ca2fb41584d6e674cfa1c79833fbd}{\index{Restaurant\-List@{Restaurant\-List}!add\-Item@{add\-Item}}
+\index{add\-Item@{add\-Item}!RestaurantList@{Restaurant\-List}}
+\subsubsection[{add\-Item}]{\setlength{\rightskip}{0pt plus 5cm}void Restaurant\-List\-::add\-Item (
+\begin{DoxyParamCaption}
+\item[{const {\bf Restaurant} \&}]{rest}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantList_a174ca2fb41584d6e674cfa1c79833fbd}
+
+
+Add restaurant to list. 
+
+Appends the given restaurant to the list. If the restaurant is hidden, it isn't added to the list unless Restaurant\-List\-::show\-Hidden(true) was called. The restaurant I\-D is attatched to the Q\-List\-Widget\-Item using Qt\-::\-Item\-Data\-Role\-::\-User\-Role.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rest} & \hyperlink{classRestaurant}{Restaurant} that is being added to the list \\
+\hline
+\end{DoxyParams}
+\hypertarget{classRestaurantList_aeb4247604bf1ea14b33878c7ffc43ac4}{\index{Restaurant\-List@{Restaurant\-List}!add\-Items@{add\-Items}}
+\index{add\-Items@{add\-Items}!RestaurantList@{Restaurant\-List}}
+\subsubsection[{add\-Items}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Iterator $>$ void Restaurant\-List\-::add\-Items (
+\begin{DoxyParamCaption}
+\item[{Iterator}]{begin, }
+\item[{Iterator}]{end}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantList_aeb4247604bf1ea14b33878c7ffc43ac4}
+
+
+Add multiple restaurants to the list. 
+
+Appends multiple restaurants to the list by iterating through the given iterators. For each restaurant, \hyperlink{classRestaurantList_a174ca2fb41584d6e674cfa1c79833fbd}{Restaurant\-List\-::add\-Item()} is called.
+
+
+\begin{DoxyParams}{Parameters}
+{\em begin} & The beginning iterator \\
+\hline
+{\em end} & The end iterator \\
+\hline
+\end{DoxyParams}
+\hypertarget{classRestaurantList_a72fce6ff45c3cceaa794d32e9118fe2d}{\index{Restaurant\-List@{Restaurant\-List}!get\-Restaurant\-I\-Ds@{get\-Restaurant\-I\-Ds}}
+\index{get\-Restaurant\-I\-Ds@{get\-Restaurant\-I\-Ds}!RestaurantList@{Restaurant\-List}}
+\subsubsection[{get\-Restaurant\-I\-Ds}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Container $>$ void Restaurant\-List\-::get\-Restaurant\-I\-Ds (
+\begin{DoxyParamCaption}
+\item[{Container \&}]{container}
+\end{DoxyParamCaption}
+) const}}\label{classRestaurantList_a72fce6ff45c3cceaa794d32e9118fe2d}
+
+
+Get all restaurant I\-Ds. 
+
+Given a container supporting push\-\_\-back(), all restaurant I\-Ds are put into the container. To get the restaurant I\-D, we get the Q\-Variant of each Q\-List\-Widget\-Item
+
+
+\begin{DoxyParams}{Parameters}
+{\em container} & The container supporting push\-\_\-back() that will hold all the restaurant I\-Ds \\
+\hline
+\end{DoxyParams}
+\hypertarget{classRestaurantList_a4427f0f8f4b09d830de4687588b2fd72}{\index{Restaurant\-List@{Restaurant\-List}!get\-Selected@{get\-Selected}}
+\index{get\-Selected@{get\-Selected}!RestaurantList@{Restaurant\-List}}
+\subsubsection[{get\-Selected}]{\setlength{\rightskip}{0pt plus 5cm}Restaurant\-I\-D Restaurant\-List\-::get\-Selected (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classRestaurantList_a4427f0f8f4b09d830de4687588b2fd72}
+
+
+Get selected restaurant I\-D. 
+
+Returns the selected item's restaurant I\-D. If nothing is selected, -\/1 is returned.
+
+\begin{DoxyReturn}{Returns}
+The restaurant I\-D that was selected; if nothing is selected, -\/1 is returned. 
+\end{DoxyReturn}
+\hypertarget{classRestaurantList_ae29016217ee9c4d9517f5b384feb450c}{\index{Restaurant\-List@{Restaurant\-List}!remove\-Item@{remove\-Item}}
+\index{remove\-Item@{remove\-Item}!RestaurantList@{Restaurant\-List}}
+\subsubsection[{remove\-Item}]{\setlength{\rightskip}{0pt plus 5cm}void Restaurant\-List\-::remove\-Item (
+\begin{DoxyParamCaption}
+\item[{const {\bf Restaurant} \&}]{rest}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantList_ae29016217ee9c4d9517f5b384feb450c}
+
+
+Remove restaurant from list. 
+
+Removes a given restaurant from the list. If the restaurant isn't found, nothing happens. To find the correct restaurant, we look at the Q\-Variant of each Q\-List\-Widget\-Item.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rest} & \hyperlink{classRestaurant}{Restaurant} that will be removed from the list \\
+\hline
+\end{DoxyParams}
+\hypertarget{classRestaurantList_a32c2c4d381a0c1f37a6090d6a7c4f276}{\index{Restaurant\-List@{Restaurant\-List}!remove\-Items@{remove\-Items}}
+\index{remove\-Items@{remove\-Items}!RestaurantList@{Restaurant\-List}}
+\subsubsection[{remove\-Items}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Iterator $>$ void Restaurant\-List\-::remove\-Items (
+\begin{DoxyParamCaption}
+\item[{Iterator}]{begin, }
+\item[{Iterator}]{end}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantList_a32c2c4d381a0c1f37a6090d6a7c4f276}
+
+
+Remove multiple restaurants from the list. 
+
+Removes multiple restaurants from the list by iterating through the given iterators. For each restaurant, \hyperlink{classRestaurantList_ae29016217ee9c4d9517f5b384feb450c}{Restaurant\-List\-::remove\-Item()} is called.
+
+
+\begin{DoxyParams}{Parameters}
+{\em begin} & The beginning iterator \\
+\hline
+{\em end} & The end iterator \\
+\hline
+\end{DoxyParams}
+\hypertarget{classRestaurantList_a5c9d824123dc0001ee091c6f86ede859}{\index{Restaurant\-List@{Restaurant\-List}!show\-Hidden@{show\-Hidden}}
+\index{show\-Hidden@{show\-Hidden}!RestaurantList@{Restaurant\-List}}
+\subsubsection[{show\-Hidden}]{\setlength{\rightskip}{0pt plus 5cm}void Restaurant\-List\-::show\-Hidden (
+\begin{DoxyParamCaption}
+\item[{bool}]{v}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantList_a5c9d824123dc0001ee091c6f86ede859}
+
+
+Show hidden restaurants. 
+
+Sets whether or not to show hidden restaurants. N\-O\-T\-E\-: Calling this function after restaurants items will not affect previously added restaurants.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Bool value \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/widgets/restaurantlist.\-hpp\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/widgets/restaurantlist.\-cpp\end{DoxyCompactItemize}

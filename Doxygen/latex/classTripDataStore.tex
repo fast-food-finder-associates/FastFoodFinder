@@ -1,0 +1,214 @@
+\hypertarget{classTripDataStore}{\section{Trip\-Data\-Store Class Reference}
+\label{classTripDataStore}\index{Trip\-Data\-Store@{Trip\-Data\-Store}}
+}
+
+
+{\ttfamily \#include $<$Trip\-Data\-Store.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTripDataStore_a6ecb3b38f615cdf3a95699b75e070f64}{Trip\-Data\-Store} ()
+\item 
+virtual \hyperlink{classTripDataStore_abcc0808ffac99fce3d20fec2e6b037db}{$\sim$\-Trip\-Data\-Store} ()
+\item 
+void \hyperlink{classTripDataStore_a3e0428a62b180370acca3cef17236a13}{print\-As\-Debug} (bool printeol, bool printcontent) const 
+\item 
+void \hyperlink{classTripDataStore_a6b04d48e105f786d28a6b1c237d0d6c7}{load} (const string path)
+\item 
+void \hyperlink{classTripDataStore_ac694428dda496c811b1e46a2b206d0cd}{save} (const string path)
+\item 
+int \hyperlink{classTripDataStore_a45a7c93b2899cf0b7bf070324d686c36}{Store\-Trip} (const string \&Trip\-Name, const vector$<$ int $>$ Restaurants\-Selectedby\-User, \hyperlink{classRestaurantDataStore}{Restaurant\-Data\-Store} \&Rest\-St, \hyperlink{classUser}{User} \&\hyperlink{classUser}{User}, bool Startat\-Saddleback)
+\item 
+int \hyperlink{classTripDataStore_aef773f76a25496d624c8f7443ab393bc}{Store\-Trip\-Num\-Rest} (const string \&Trip\-Name, int Starting\-Rest\-Num, int Numto\-Visit, \hyperlink{classRestaurantDataStore}{Restaurant\-Data\-Store} \&Rest\-St, \hyperlink{classUser}{User} \&\hyperlink{classUser}{User})
+\item 
+\hyperlink{classTrip}{Trip} \& \hyperlink{classTripDataStore_a1326494915eee638e4eedbdd6bb0c09b}{Findby\-Number} (int Number)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTripDataStore_a75cb59c927937a86ba9ddeb304a1e4f5}{\hyperlink{classnsMyDblLinkList_1_1MyDblLinkList}{My\-Dbl\-Link\-List}$<$ \hyperlink{classTrip}{Trip} $>$ {\bfseries list}}\label{classTripDataStore_a75cb59c927937a86ba9ddeb304a1e4f5}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classTripDataStore}{Trip\-Data\-Store} -\/ internal storage for \hyperlink{classTrip}{Trip} objects
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19) 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTripDataStore_a6ecb3b38f615cdf3a95699b75e070f64}{\index{Trip\-Data\-Store@{Trip\-Data\-Store}!Trip\-Data\-Store@{Trip\-Data\-Store}}
+\index{Trip\-Data\-Store@{Trip\-Data\-Store}!TripDataStore@{Trip\-Data\-Store}}
+\subsubsection[{Trip\-Data\-Store}]{\setlength{\rightskip}{0pt plus 5cm}Trip\-Data\-Store\-::\-Trip\-Data\-Store (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTripDataStore_a6ecb3b38f615cdf3a95699b75e070f64}
+\hyperlink{classTripDataStore_a6ecb3b38f615cdf3a95699b75e070f64}{Trip\-Data\-Store\-::\-Trip\-Data\-Store} -\/ Default Constructor
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19) 
+\end{DoxyAuthor}
+\hypertarget{classTripDataStore_abcc0808ffac99fce3d20fec2e6b037db}{\index{Trip\-Data\-Store@{Trip\-Data\-Store}!$\sim$\-Trip\-Data\-Store@{$\sim$\-Trip\-Data\-Store}}
+\index{$\sim$\-Trip\-Data\-Store@{$\sim$\-Trip\-Data\-Store}!TripDataStore@{Trip\-Data\-Store}}
+\subsubsection[{$\sim$\-Trip\-Data\-Store}]{\setlength{\rightskip}{0pt plus 5cm}Trip\-Data\-Store\-::$\sim$\-Trip\-Data\-Store (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classTripDataStore_abcc0808ffac99fce3d20fec2e6b037db}
+\hyperlink{classTripDataStore_abcc0808ffac99fce3d20fec2e6b037db}{Trip\-Data\-Store\-::$\sim$\-Trip\-Data\-Store} -\/ Destructor
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19) 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTripDataStore_a1326494915eee638e4eedbdd6bb0c09b}{\index{Trip\-Data\-Store@{Trip\-Data\-Store}!Findby\-Number@{Findby\-Number}}
+\index{Findby\-Number@{Findby\-Number}!TripDataStore@{Trip\-Data\-Store}}
+\subsubsection[{Findby\-Number}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Trip} \& Trip\-Data\-Store\-::\-Findby\-Number (
+\begin{DoxyParamCaption}
+\item[{int}]{Number}
+\end{DoxyParamCaption}
+)}}\label{classTripDataStore_a1326494915eee638e4eedbdd6bb0c09b}
+\hyperlink{classTripDataStore_a1326494915eee638e4eedbdd6bb0c09b}{Trip\-Data\-Store\-::\-Findby\-Number}
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em Number} & -\/ number of trip to locate\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classTrip}{Trip}\& -\/ pointer to trip specified or N\-U\-L\-L if not present 
+\end{DoxyReturn}
+\hypertarget{classTripDataStore_a6b04d48e105f786d28a6b1c237d0d6c7}{\index{Trip\-Data\-Store@{Trip\-Data\-Store}!load@{load}}
+\index{load@{load}!TripDataStore@{Trip\-Data\-Store}}
+\subsubsection[{load}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\-Data\-Store\-::load (
+\begin{DoxyParamCaption}
+\item[{const string}]{path}
+\end{DoxyParamCaption}
+)}}\label{classTripDataStore_a6b04d48e105f786d28a6b1c237d0d6c7}
+\hyperlink{classTripDataStore_a6b04d48e105f786d28a6b1c237d0d6c7}{Trip\-Data\-Store\-::load} -\/ load items from external file into datastore
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em path} & -\/ location of external C\-S\-V file to load \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTripDataStore_a3e0428a62b180370acca3cef17236a13}{\index{Trip\-Data\-Store@{Trip\-Data\-Store}!print\-As\-Debug@{print\-As\-Debug}}
+\index{print\-As\-Debug@{print\-As\-Debug}!TripDataStore@{Trip\-Data\-Store}}
+\subsubsection[{print\-As\-Debug}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\-Data\-Store\-::print\-As\-Debug (
+\begin{DoxyParamCaption}
+\item[{bool}]{printeol, }
+\item[{bool}]{printcontent}
+\end{DoxyParamCaption}
+) const}}\label{classTripDataStore_a3e0428a62b180370acca3cef17236a13}
+\hyperlink{classTripDataStore_a3e0428a62b180370acca3cef17236a13}{Trip\-Data\-Store\-::print\-As\-Debug} helper function to print internal state of all objects in datastore
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em printeol} & -\/ print end of line after each element \\
+\hline
+{\em printcontent-\/} & print interanl state of each \hyperlink{classTrip}{Trip} \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTripDataStore_ac694428dda496c811b1e46a2b206d0cd}{\index{Trip\-Data\-Store@{Trip\-Data\-Store}!save@{save}}
+\index{save@{save}!TripDataStore@{Trip\-Data\-Store}}
+\subsubsection[{save}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\-Data\-Store\-::save (
+\begin{DoxyParamCaption}
+\item[{const string}]{path}
+\end{DoxyParamCaption}
+)}}\label{classTripDataStore_ac694428dda496c811b1e46a2b206d0cd}
+\hyperlink{classTripDataStore_ac694428dda496c811b1e46a2b206d0cd}{Trip\-Data\-Store\-::save} -\/ save datastore to external C\-S\-V file
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em path} & -\/ path to external C\-S\-V file (will be overwitten) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTripDataStore_a45a7c93b2899cf0b7bf070324d686c36}{\index{Trip\-Data\-Store@{Trip\-Data\-Store}!Store\-Trip@{Store\-Trip}}
+\index{Store\-Trip@{Store\-Trip}!TripDataStore@{Trip\-Data\-Store}}
+\subsubsection[{Store\-Trip}]{\setlength{\rightskip}{0pt plus 5cm}int Trip\-Data\-Store\-::\-Store\-Trip (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{Trip\-Name, }
+\item[{const vector$<$ int $>$}]{Restaurants\-Selectedby\-User, }
+\item[{{\bf Restaurant\-Data\-Store} \&}]{Rest\-St, }
+\item[{{\bf User} \&}]{User, }
+\item[{bool}]{Startat\-Saddleback}
+\end{DoxyParamCaption}
+)}}\label{classTripDataStore_a45a7c93b2899cf0b7bf070324d686c36}
+\hyperlink{classTripDataStore_a45a7c93b2899cf0b7bf070324d686c36}{Trip\-Data\-Store\-::\-Store\-Trip} -\/ create \hyperlink{classTrip}{Trip} from planning data entered by user sorts the selected restaurants by shortest distance to next restaurant
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em Trip\-Name} & -\/ name of trip \\
+\hline
+{\em Restaurants\-Selectedby\-User} & -\/ vector of ints that represent restaurants \\
+\hline
+{\em Rest\-St} & -\/ pointer to \hyperlink{classRestaurantDataStore}{Restaurant\-Data\-Store} \\
+\hline
+{\em \hyperlink{classUser}{User}} & -\/ pointer to creating user \\
+\hline
+{\em Startat\-Saddleback} & -\/ true if trip originates at Saddleback\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int -\/ Number assigned to this trip 
+\end{DoxyReturn}
+\hypertarget{classTripDataStore_aef773f76a25496d624c8f7443ab393bc}{\index{Trip\-Data\-Store@{Trip\-Data\-Store}!Store\-Trip\-Num\-Rest@{Store\-Trip\-Num\-Rest}}
+\index{Store\-Trip\-Num\-Rest@{Store\-Trip\-Num\-Rest}!TripDataStore@{Trip\-Data\-Store}}
+\subsubsection[{Store\-Trip\-Num\-Rest}]{\setlength{\rightskip}{0pt plus 5cm}int Trip\-Data\-Store\-::\-Store\-Trip\-Num\-Rest (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{Trip\-Name, }
+\item[{int}]{Starting\-Rest\-Num, }
+\item[{int}]{Numto\-Visit, }
+\item[{{\bf Restaurant\-Data\-Store} \&}]{Rest\-St, }
+\item[{{\bf User} \&}]{User}
+\end{DoxyParamCaption}
+)}}\label{classTripDataStore_aef773f76a25496d624c8f7443ab393bc}
+\hyperlink{classTripDataStore_aef773f76a25496d624c8f7443ab393bc}{Trip\-Data\-Store\-::\-Store\-Trip\-Num\-Rest} create \hyperlink{classTrip}{Trip} from planning data entered by user sorts the selected restaurants by shortest distance to next restaurant
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em Trip\-Name} & -\/ name of trip \\
+\hline
+{\em Starting\-Rest\-Num} & -\/ starting location for trip, 0 if Saddleback \\
+\hline
+{\em Numto\-Visit} & -\/ number of restaurants to visit \\
+\hline
+{\em Rest\-St} & -\/ pointer to \hyperlink{classRestaurantDataStore}{Restaurant\-Data\-Store} \\
+\hline
+{\em \hyperlink{classUser}{User}} & -\/ pointer to creating user\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int -\/ Number assigned to this trip 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/datastore/Trip\-Data\-Store.\-hpp\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/datastore/Trip\-Data\-Store.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,100 @@
+\hypertarget{classLogin}{\section{Login Class Reference}
+\label{classLogin}\index{Login@{Login}}
+}
+
+
+\hyperlink{classLogin}{Login} class.  
+
+
+
+
+{\ttfamily \#include $<$login.\-hpp$>$}
+
+Inheritance diagram for Login\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classLogin}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Type} \{ {\bfseries U\-S\-E\-R}, 
+{\bfseries A\-D\-M\-I\-N}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classLogin}{Login} $\ast$ \hyperlink{classLogin_a369d9ce9b0debac51fb72a234fd82b03}{get\-Instance} ()
+\begin{DoxyCompactList}\small\item\em Getter. \end{DoxyCompactList}\item 
+static Type \hyperlink{classLogin_ab23eec7779982cad2ceac3d25ac4aa26}{get\-Type} ()
+\begin{DoxyCompactList}\small\item\em Getter. \end{DoxyCompactList}\item 
+static void \hyperlink{classLogin_a82b6030d49444a1b60a375983b1798ca}{request\-Login} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classLogin}{Login} usage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classLogin}{Login} class. 
+
+Provides a simple way to request a login in order to validate a user.
+
+To use\-: 
+\begin{DoxyCode}
+QObject::connect(\hyperlink{classLogin_a369d9ce9b0debac51fb72a234fd82b03}{Login::getInstance}(), &Login::accepted,
+                 myWidgetPointer, &MyClass::mySlot);
+\end{DoxyCode}
+
+
+This will call \&My\-Class\-::my\-Slot upon my\-Widget\-Pointer when login is accepted. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classLogin_a369d9ce9b0debac51fb72a234fd82b03}{\index{Login@{Login}!get\-Instance@{get\-Instance}}
+\index{get\-Instance@{get\-Instance}!Login@{Login}}
+\subsubsection[{get\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Login} $\ast$ Login\-::get\-Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classLogin_a369d9ce9b0debac51fb72a234fd82b03}
+
+
+Getter. 
+
+If there isn't a current instance, one will be created as well as the credential file.
+
+\begin{DoxyReturn}{Returns}
+Singleton instance 
+\end{DoxyReturn}
+\hypertarget{classLogin_ab23eec7779982cad2ceac3d25ac4aa26}{\index{Login@{Login}!get\-Type@{get\-Type}}
+\index{get\-Type@{get\-Type}!Login@{Login}}
+\subsubsection[{get\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Login\-::\-Type Login\-::get\-Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classLogin_ab23eec7779982cad2ceac3d25ac4aa26}
+
+
+Getter. 
+
+Returns the login type of the last user that logged in
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classLogin}{Login} type of the last user that logged in 
+\end{DoxyReturn}
+\hypertarget{classLogin_a82b6030d49444a1b60a375983b1798ca}{\index{Login@{Login}!request\-Login@{request\-Login}}
+\index{request\-Login@{request\-Login}!Login@{Login}}
+\subsubsection[{request\-Login}]{\setlength{\rightskip}{0pt plus 5cm}void Login\-::request\-Login (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classLogin_a82b6030d49444a1b60a375983b1798ca}
+
+
+\hyperlink{classLogin}{Login} usage. 
+
+Requests a login screen. Calls \hyperlink{classLogin_a369d9ce9b0debac51fb72a234fd82b03}{get\-Instance()} in case it hasn't been called yet. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/windows/login.\-hpp\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/windows/login.\-cpp\end{DoxyCompactItemize}

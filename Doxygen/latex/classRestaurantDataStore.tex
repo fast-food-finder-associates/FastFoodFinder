@@ -1,0 +1,168 @@
+\hypertarget{classRestaurantDataStore}{\section{Restaurant\-Data\-Store Class Reference}
+\label{classRestaurantDataStore}\index{Restaurant\-Data\-Store@{Restaurant\-Data\-Store}}
+}
+
+
+{\ttfamily \#include $<$Restaurant\-Data\-Store.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRestaurantDataStore_af8f86d29e3a76e964cc800ca6ad558fc}{Restaurant\-Data\-Store} ()
+\item 
+virtual \hyperlink{classRestaurantDataStore_ad40b37de8908fab03e7b224ae8f90f28}{$\sim$\-Restaurant\-Data\-Store} ()
+\item 
+void \hyperlink{classRestaurantDataStore_ad93c185aa70e70775844d4e21402ec4d}{print\-As\-Debug} (bool printeol, bool printcontent) const 
+\item 
+\hyperlink{classRestaurant}{Restaurant} \& \hyperlink{classRestaurantDataStore_a23cc1d33c1f53a477a6fadc8e8894757}{Findby\-Number} (int Number)
+\item 
+void \hyperlink{classRestaurantDataStore_a110407e1b764b7eba249093358730aee}{load} (const string path, bool Items\-Are\-Additional=false)
+\item 
+void \hyperlink{classRestaurantDataStore_af0a228a38c8a77ff4d03413e36e7813b}{save} (const string path)
+\item 
+void \hyperlink{classRestaurantDataStore_abdd5fbf8695de1f8ec4de4238d0705a3}{load\-\_\-additional} (const string path)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classRestaurantDataStore_a37965da233518c654c93108824fb64b8}{std\-::list$<$ \hyperlink{classRestaurant}{Restaurant} $>$ {\bfseries list}}\label{classRestaurantDataStore_a37965da233518c654c93108824fb64b8}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classRestaurantDataStore}{Restaurant\-Data\-Store} -\/ internal storage for \hyperlink{classRestaurant}{Restaurant} objects
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19) 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classRestaurantDataStore_af8f86d29e3a76e964cc800ca6ad558fc}{\index{Restaurant\-Data\-Store@{Restaurant\-Data\-Store}!Restaurant\-Data\-Store@{Restaurant\-Data\-Store}}
+\index{Restaurant\-Data\-Store@{Restaurant\-Data\-Store}!RestaurantDataStore@{Restaurant\-Data\-Store}}
+\subsubsection[{Restaurant\-Data\-Store}]{\setlength{\rightskip}{0pt plus 5cm}Restaurant\-Data\-Store\-::\-Restaurant\-Data\-Store (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantDataStore_af8f86d29e3a76e964cc800ca6ad558fc}
+default constuctor
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19) 
+\end{DoxyAuthor}
+\hypertarget{classRestaurantDataStore_ad40b37de8908fab03e7b224ae8f90f28}{\index{Restaurant\-Data\-Store@{Restaurant\-Data\-Store}!$\sim$\-Restaurant\-Data\-Store@{$\sim$\-Restaurant\-Data\-Store}}
+\index{$\sim$\-Restaurant\-Data\-Store@{$\sim$\-Restaurant\-Data\-Store}!RestaurantDataStore@{Restaurant\-Data\-Store}}
+\subsubsection[{$\sim$\-Restaurant\-Data\-Store}]{\setlength{\rightskip}{0pt plus 5cm}Restaurant\-Data\-Store\-::$\sim$\-Restaurant\-Data\-Store (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classRestaurantDataStore_ad40b37de8908fab03e7b224ae8f90f28}
+\hyperlink{classRestaurantDataStore_ad40b37de8908fab03e7b224ae8f90f28}{Restaurant\-Data\-Store\-::$\sim$\-Restaurant\-Data\-Store} -\/ Destructor
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19) 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classRestaurantDataStore_a23cc1d33c1f53a477a6fadc8e8894757}{\index{Restaurant\-Data\-Store@{Restaurant\-Data\-Store}!Findby\-Number@{Findby\-Number}}
+\index{Findby\-Number@{Findby\-Number}!RestaurantDataStore@{Restaurant\-Data\-Store}}
+\subsubsection[{Findby\-Number}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Restaurant} \& Restaurant\-Data\-Store\-::\-Findby\-Number (
+\begin{DoxyParamCaption}
+\item[{int}]{Number}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantDataStore_a23cc1d33c1f53a477a6fadc8e8894757}
+\hyperlink{classRestaurantDataStore_a23cc1d33c1f53a477a6fadc8e8894757}{Restaurant\-Data\-Store\-::\-Findby\-Number} -\/ locate \hyperlink{classRestaurant}{Restaurant} in datastore by number
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em Number} & -\/ number to locate\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classRestaurant}{Restaurant}\& -\/ pointer to \hyperlink{classRestaurant}{Restaurant} or N\-U\-L\-L if not found 
+\end{DoxyReturn}
+\hypertarget{classRestaurantDataStore_a110407e1b764b7eba249093358730aee}{\index{Restaurant\-Data\-Store@{Restaurant\-Data\-Store}!load@{load}}
+\index{load@{load}!RestaurantDataStore@{Restaurant\-Data\-Store}}
+\subsubsection[{load}]{\setlength{\rightskip}{0pt plus 5cm}void Restaurant\-Data\-Store\-::load (
+\begin{DoxyParamCaption}
+\item[{const string}]{path, }
+\item[{bool}]{Items\-Are\-Additional = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantDataStore_a110407e1b764b7eba249093358730aee}
+\hyperlink{classRestaurantDataStore_a110407e1b764b7eba249093358730aee}{Restaurant\-Data\-Store\-::load} -\/ get object data from file
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em path} & -\/ location of C\-S\-V file to load \\
+\hline
+{\em Items\-Are\-Additional} & -\/ add items to existing datastore \\
+\hline
+\end{DoxyParams}
+\hypertarget{classRestaurantDataStore_abdd5fbf8695de1f8ec4de4238d0705a3}{\index{Restaurant\-Data\-Store@{Restaurant\-Data\-Store}!load\-\_\-additional@{load\-\_\-additional}}
+\index{load\-\_\-additional@{load\-\_\-additional}!RestaurantDataStore@{Restaurant\-Data\-Store}}
+\subsubsection[{load\-\_\-additional}]{\setlength{\rightskip}{0pt plus 5cm}void Restaurant\-Data\-Store\-::load\-\_\-additional (
+\begin{DoxyParamCaption}
+\item[{const string}]{path}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantDataStore_abdd5fbf8695de1f8ec4de4238d0705a3}
+\hyperlink{classRestaurantDataStore_abdd5fbf8695de1f8ec4de4238d0705a3}{Restaurant\-Data\-Store\-::load\-\_\-additional} -\/ helper function to add Restaurants to existing datastore
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em path} & -\/ location of C\-S\-V file to load \\
+\hline
+\end{DoxyParams}
+\hypertarget{classRestaurantDataStore_ad93c185aa70e70775844d4e21402ec4d}{\index{Restaurant\-Data\-Store@{Restaurant\-Data\-Store}!print\-As\-Debug@{print\-As\-Debug}}
+\index{print\-As\-Debug@{print\-As\-Debug}!RestaurantDataStore@{Restaurant\-Data\-Store}}
+\subsubsection[{print\-As\-Debug}]{\setlength{\rightskip}{0pt plus 5cm}void Restaurant\-Data\-Store\-::print\-As\-Debug (
+\begin{DoxyParamCaption}
+\item[{bool}]{printeol, }
+\item[{bool}]{printcontent}
+\end{DoxyParamCaption}
+) const}}\label{classRestaurantDataStore_ad93c185aa70e70775844d4e21402ec4d}
+\hyperlink{classRestaurantDataStore_ad93c185aa70e70775844d4e21402ec4d}{Restaurant\-Data\-Store\-::print\-As\-Debug} -\/ helper function to print internal state of all objects in datastore
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em printeol} & -\/ print end of lines after each data element \\
+\hline
+{\em printcontent} & -\/ print internal data of Restaurants \\
+\hline
+\end{DoxyParams}
+\hypertarget{classRestaurantDataStore_af0a228a38c8a77ff4d03413e36e7813b}{\index{Restaurant\-Data\-Store@{Restaurant\-Data\-Store}!save@{save}}
+\index{save@{save}!RestaurantDataStore@{Restaurant\-Data\-Store}}
+\subsubsection[{save}]{\setlength{\rightskip}{0pt plus 5cm}void Restaurant\-Data\-Store\-::save (
+\begin{DoxyParamCaption}
+\item[{const string}]{path}
+\end{DoxyParamCaption}
+)}}\label{classRestaurantDataStore_af0a228a38c8a77ff4d03413e36e7813b}
+\hyperlink{classRestaurantDataStore_af0a228a38c8a77ff4d03413e36e7813b}{Restaurant\-Data\-Store\-::save} -\/ save objects to external C\-S\-V file
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em path} & -\/ location of external file (will be overwritten) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/datastore/Restaurant\-Data\-Store.\-hpp\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/datastore/Restaurant\-Data\-Store.\-cpp\end{DoxyCompactItemize}

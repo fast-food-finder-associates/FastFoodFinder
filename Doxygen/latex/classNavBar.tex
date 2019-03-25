@@ -1,0 +1,159 @@
+\hypertarget{classNavBar}{\section{Nav\-Bar Class Reference}
+\label{classNavBar}\index{Nav\-Bar@{Nav\-Bar}}
+}
+Inheritance diagram for Nav\-Bar\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classNavBar}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classNavBar_a97d92d9d3a79f215b598fa507499707d}{void {\bfseries expand} ()}\label{classNavBar_a97d92d9d3a79f215b598fa507499707d}
+
+\item 
+\hypertarget{classNavBar_ab92546779d1fb94c21bbf2d7991faaa3}{void {\bfseries shrink} ()}\label{classNavBar_ab92546779d1fb94c21bbf2d7991faaa3}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNavBar_a988e7dc522635e792a5690613e80f042}{Nav\-Bar} (Q\-Widget $\ast$parent, int min\-Width, int max\-Width)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classNavBar_a02df27a57fc24bdf526e99b4fed6ad33}{set\-Height} (int)
+\begin{DoxyCompactList}\small\item\em Set height of the bar. \end{DoxyCompactList}\item 
+void \hyperlink{classNavBar_a8990d66058effa6cb08d1c86d9837443}{set\-Min\-Width} (int)
+\begin{DoxyCompactList}\small\item\em Set minimum width of the bar. \end{DoxyCompactList}\item 
+void \hyperlink{classNavBar_aa91680df575ef046c811cf665e763fa0}{set\-Max\-Width} (int)
+\begin{DoxyCompactList}\small\item\em Set maximum width of the bar. \end{DoxyCompactList}\item 
+void \hyperlink{classNavBar_afa07fd39fd9a51070186ed69ea563c89}{add\-Item} (Q\-String icon, Q\-String label)
+\begin{DoxyCompactList}\small\item\em Add button to the bar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides an easy way to list clickable buttons. Currently, the class uses \char`\"{}\-Font Awesome 5 Free\char`\"{} for its icons.
+
+To use\-: 
+\begin{DoxyCode}
+\hyperlink{classNavBar}{NavBar}* navbar = \textcolor{keyword}{new} \hyperlink{classNavBar_a988e7dc522635e792a5690613e80f042}{NavBar}(widget, 50, 100);
+navbar->addItems(\textcolor{stringliteral}{"\(\backslash\)uffff"}, \textcolor{stringliteral}{"Button"});
+\end{DoxyCode}
+
+
+This will instantiate the bar under the widget with a minimum width of 50 and maximum width of 100. Then it will add a button with the icon \char`\"{}\textbackslash{}uffff\char`\"{} from the \char`\"{}\-Font Awesome 5 Free\char`\"{} font and a label \char`\"{}\-Button\char`\"{}.
+
+\begin{DoxySeeAlso}{See Also}
+\href{https://fontawesome.com/icons?d=gallery&m=free}{\tt Font Awesome icon reference} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classNavBar_a988e7dc522635e792a5690613e80f042}{\index{Nav\-Bar@{Nav\-Bar}!Nav\-Bar@{Nav\-Bar}}
+\index{Nav\-Bar@{Nav\-Bar}!NavBar@{Nav\-Bar}}
+\subsubsection[{Nav\-Bar}]{\setlength{\rightskip}{0pt plus 5cm}Nav\-Bar\-::\-Nav\-Bar (
+\begin{DoxyParamCaption}
+\item[{Q\-Widget $\ast$}]{parent, }
+\item[{int}]{min\-Width, }
+\item[{int}]{max\-Width}
+\end{DoxyParamCaption}
+)}}\label{classNavBar_a988e7dc522635e792a5690613e80f042}
+
+
+Constructor. 
+
+Constructs a \hyperlink{classNavBar}{Nav\-Bar} object. It will resize its parent widget to whatever initial size it needs to be and its current height.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent widget the bar will be contained in \\
+\hline
+{\em min\-Width} & Minimum width the bar will shrink to \\
+\hline
+{\em max\-Width} & Maximum width the bar will expand to \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classNavBar_afa07fd39fd9a51070186ed69ea563c89}{\index{Nav\-Bar@{Nav\-Bar}!add\-Item@{add\-Item}}
+\index{add\-Item@{add\-Item}!NavBar@{Nav\-Bar}}
+\subsubsection[{add\-Item}]{\setlength{\rightskip}{0pt plus 5cm}void Nav\-Bar\-::add\-Item (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{icon, }
+\item[{Q\-String}]{label}
+\end{DoxyParamCaption}
+)}}\label{classNavBar_afa07fd39fd9a51070186ed69ea563c89}
+
+
+Add button to the bar. 
+
+Adds a new button to the bar using the given strings. Since \hyperlink{classNavBar}{Nav\-Bar} uses \char`\"{}\-Font Awesome 5 Free\char`\"{}, all unicode string icons should be represented by that font.
+
+
+\begin{DoxyParams}{Parameters}
+{\em icon} & The unicode representation (ex. ) of the icon using the\char`\"{}\-Font Awesome 5 Free\char`\"{} font \\
+\hline
+{\em label} & The label of the button \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNavBar_a02df27a57fc24bdf526e99b4fed6ad33}{\index{Nav\-Bar@{Nav\-Bar}!set\-Height@{set\-Height}}
+\index{set\-Height@{set\-Height}!NavBar@{Nav\-Bar}}
+\subsubsection[{set\-Height}]{\setlength{\rightskip}{0pt plus 5cm}void Nav\-Bar\-::set\-Height (
+\begin{DoxyParamCaption}
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)}}\label{classNavBar_a02df27a57fc24bdf526e99b4fed6ad33}
+
+
+Set height of the bar. 
+
+Sets the height of the bar and its parent. Not changing its parent will end up cutting off the bar.
+
+
+\begin{DoxyParams}{Parameters}
+{\em height} & The new height of the bar and its parent \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNavBar_aa91680df575ef046c811cf665e763fa0}{\index{Nav\-Bar@{Nav\-Bar}!set\-Max\-Width@{set\-Max\-Width}}
+\index{set\-Max\-Width@{set\-Max\-Width}!NavBar@{Nav\-Bar}}
+\subsubsection[{set\-Max\-Width}]{\setlength{\rightskip}{0pt plus 5cm}void Nav\-Bar\-::set\-Max\-Width (
+\begin{DoxyParamCaption}
+\item[{int}]{width}
+\end{DoxyParamCaption}
+)}}\label{classNavBar_aa91680df575ef046c811cf665e763fa0}
+
+
+Set maximum width of the bar. 
+
+Sets the maximum width of the bar.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The new maximum width \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNavBar_a8990d66058effa6cb08d1c86d9837443}{\index{Nav\-Bar@{Nav\-Bar}!set\-Min\-Width@{set\-Min\-Width}}
+\index{set\-Min\-Width@{set\-Min\-Width}!NavBar@{Nav\-Bar}}
+\subsubsection[{set\-Min\-Width}]{\setlength{\rightskip}{0pt plus 5cm}void Nav\-Bar\-::set\-Min\-Width (
+\begin{DoxyParamCaption}
+\item[{int}]{width}
+\end{DoxyParamCaption}
+)}}\label{classNavBar_a8990d66058effa6cb08d1c86d9837443}
+
+
+Set minimum width of the bar. 
+
+Sets the minimum width of the bar.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The new minimum width \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/widgets/navbar.\-hpp\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/widgets/navbar.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,379 @@
+\hypertarget{classTrip}{\section{Trip Class Reference}
+\label{classTrip}\index{Trip@{Trip}}
+}
+
+
+{\ttfamily \#include $<$Trip.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classTrip_a2376daed3b03469163782ef0d0533d52}{$\sim$\-Trip} ()
+\item 
+\hyperlink{classTrip_acc40ce84bd727fcf87bca52766d3e32e}{Trip} (int \hyperlink{classUser}{User}, const vector$<$ int $>$ \&Restaurants, float Total\-Distance, const string \&Name)
+\item 
+\hyperlink{classTrip_a911733e55bacf367b5525c685df4cd39}{Trip} (int Trip\-Num, int \hyperlink{classUser}{User}, const vector$<$ int $>$ \&Restaurants, float Total\-Distance, const string \&Name, bool b\-Trip\-Deleted)
+\item 
+\hyperlink{classTrip_adc03c8f6d600f0319fe083966210ae70}{Trip} (const \hyperlink{classTrip}{Trip} \&src)
+\item 
+\hyperlink{classTrip}{Trip} \& \hyperlink{classTrip_a16e1987dd99c6c5650c2f658e4c7e5c7}{operator=} (const \hyperlink{classTrip}{Trip} \&rhs)
+\item 
+int \hyperlink{classTrip_acdd93f492bafbf08f4e0d60729af1044}{Get\-Number} (void) const 
+\item 
+const string \& \hyperlink{classTrip_a3590aa8140eba5355e5fc5405ee95bb4}{Get\-Name} (void) const 
+\item 
+int \hyperlink{classTrip_a6776387c1783c392977b4ed206dbd7f7}{Get\-Creating\-User} (void) const 
+\item 
+const vector$<$ int $>$ \& \hyperlink{classTrip_a6f64deeab3d0235ff335b74715a3ff0e}{Get\-Restaurants} (void) const 
+\item 
+float \hyperlink{classTrip_a996654641498d12de7b8b86bf2cfacc2}{Get\-Total\-Distance} (void) const 
+\item 
+bool \hyperlink{classTrip_ac2f4c16262173e4eef3a9a80d13ddbf9}{Mark\-Deleted} (bool Delete)
+\item 
+bool \hyperlink{classTrip_acb8e9846f1c211d78191bdf08d1b6c2c}{Is\-Deleted} (void) const 
+\item 
+bool \hyperlink{classTrip_a68ccf536e61ca8e03082ab8b78769fbd}{Add\-Restaurant} (int \hyperlink{classRestaurant}{Restaurant})
+\item 
+bool \hyperlink{classTrip_aeb248b2f0083d775c829403681cc27ce}{Print\-As\-Debug} (bool print\-\_\-endl) const 
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTrip_a5f322cf906a710abf1da068195287044}{class {\bfseries Trip\-Data\-Store}}\label{classTrip_a5f322cf906a710abf1da068195287044}
+
+\item 
+ostream \& \hyperlink{classTrip_a2afdee2004fa7c75dd8fbd878bf9b229}{operator$<$$<$} (ostream \&os, const \hyperlink{classTrip}{Trip} \&trip)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classTrip}{Trip} -\/ store information about Trips planned or taken
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19) 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTrip_a2376daed3b03469163782ef0d0533d52}{\index{Trip@{Trip}!$\sim$\-Trip@{$\sim$\-Trip}}
+\index{$\sim$\-Trip@{$\sim$\-Trip}!Trip@{Trip}}
+\subsubsection[{$\sim$\-Trip}]{\setlength{\rightskip}{0pt plus 5cm}Trip\-::$\sim$\-Trip (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classTrip_a2376daed3b03469163782ef0d0533d52}
+\hyperlink{classTrip_a2376daed3b03469163782ef0d0533d52}{Trip\-::$\sim$\-Trip} -\/ Destructor
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19) 
+\end{DoxyAuthor}
+\hypertarget{classTrip_acc40ce84bd727fcf87bca52766d3e32e}{\index{Trip@{Trip}!Trip@{Trip}}
+\index{Trip@{Trip}!Trip@{Trip}}
+\subsubsection[{Trip}]{\setlength{\rightskip}{0pt plus 5cm}Trip\-::\-Trip (
+\begin{DoxyParamCaption}
+\item[{int}]{User, }
+\item[{const vector$<$ int $>$ \&}]{Restaurants, }
+\item[{float}]{Total\-Distance, }
+\item[{const string \&}]{Name}
+\end{DoxyParamCaption}
+)}}\label{classTrip_acc40ce84bd727fcf87bca52766d3e32e}
+Trip\-::\-Trip -\/ constructor used when adding trip manually -\/ depricated
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{classUser}{User}} & -\/ \hyperlink{classUser}{User} planning trip \\
+\hline
+{\em Restaurants} & -\/ Restaurants on trip \\
+\hline
+{\em Total\-Distance} & -\/ length of trip in miles \\
+\hline
+{\em Name} & -\/ Name of \hyperlink{classTrip}{Trip} \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTrip_a911733e55bacf367b5525c685df4cd39}{\index{Trip@{Trip}!Trip@{Trip}}
+\index{Trip@{Trip}!Trip@{Trip}}
+\subsubsection[{Trip}]{\setlength{\rightskip}{0pt plus 5cm}Trip\-::\-Trip (
+\begin{DoxyParamCaption}
+\item[{int}]{Trip\-Num, }
+\item[{int}]{User, }
+\item[{const vector$<$ int $>$ \&}]{Restaurants, }
+\item[{float}]{Total\-Distance, }
+\item[{const string \&}]{Name, }
+\item[{bool}]{b\-Trip\-Deleted}
+\end{DoxyParamCaption}
+)}}\label{classTrip_a911733e55bacf367b5525c685df4cd39}
+Trip\-::\-Trip -\/ Constructor used only by \hyperlink{classTripDataStore}{Trip\-Data\-Store} to load datastore
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em Trip\-Num} & -\/ number \\
+\hline
+{\em \hyperlink{classUser}{User}} & -\/ creating user \\
+\hline
+{\em Restaurants} & -\/ restaurants on trip \\
+\hline
+{\em Total\-Distance} & -\/ distance in miles \\
+\hline
+{\em Name} & -\/ name of trip \\
+\hline
+{\em b\-Trip\-Deleted} & -\/ true if deleted -\/ cannot be taken again \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTrip_adc03c8f6d600f0319fe083966210ae70}{\index{Trip@{Trip}!Trip@{Trip}}
+\index{Trip@{Trip}!Trip@{Trip}}
+\subsubsection[{Trip}]{\setlength{\rightskip}{0pt plus 5cm}Trip\-::\-Trip (
+\begin{DoxyParamCaption}
+\item[{const {\bf Trip} \&}]{src}
+\end{DoxyParamCaption}
+)}}\label{classTrip_adc03c8f6d600f0319fe083966210ae70}
+Trip\-::\-Trip -\/ Copy constructor
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em src} & -\/ Item to copy \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTrip_a68ccf536e61ca8e03082ab8b78769fbd}{\index{Trip@{Trip}!Add\-Restaurant@{Add\-Restaurant}}
+\index{Add\-Restaurant@{Add\-Restaurant}!Trip@{Trip}}
+\subsubsection[{Add\-Restaurant}]{\setlength{\rightskip}{0pt plus 5cm}bool Trip\-::\-Add\-Restaurant (
+\begin{DoxyParamCaption}
+\item[{int}]{Restaurant}
+\end{DoxyParamCaption}
+)}}\label{classTrip_a68ccf536e61ca8e03082ab8b78769fbd}
+\hyperlink{classTrip_a68ccf536e61ca8e03082ab8b78769fbd}{Trip\-::\-Add\-Restaurant} -\/ depricated -\/ use Store\-Trip
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{classRestaurant}{Restaurant}} & -\/ number of restaurant to add\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true if added 
+\end{DoxyReturn}
+\hypertarget{classTrip_a6776387c1783c392977b4ed206dbd7f7}{\index{Trip@{Trip}!Get\-Creating\-User@{Get\-Creating\-User}}
+\index{Get\-Creating\-User@{Get\-Creating\-User}!Trip@{Trip}}
+\subsubsection[{Get\-Creating\-User}]{\setlength{\rightskip}{0pt plus 5cm}int Trip\-::\-Get\-Creating\-User (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const}}\label{classTrip_a6776387c1783c392977b4ed206dbd7f7}
+\hyperlink{classTrip_a6776387c1783c392977b4ed206dbd7f7}{Trip\-::\-Get\-Creating\-User}
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int -\/ number of user who planned this trip 
+\end{DoxyReturn}
+\hypertarget{classTrip_a3590aa8140eba5355e5fc5405ee95bb4}{\index{Trip@{Trip}!Get\-Name@{Get\-Name}}
+\index{Get\-Name@{Get\-Name}!Trip@{Trip}}
+\subsubsection[{Get\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Trip\-::\-Get\-Name (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const}}\label{classTrip_a3590aa8140eba5355e5fc5405ee95bb4}
+\hyperlink{classTrip_a3590aa8140eba5355e5fc5405ee95bb4}{Trip\-::\-Get\-Name}
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const string\& -\/ name of trip 
+\end{DoxyReturn}
+\hypertarget{classTrip_acdd93f492bafbf08f4e0d60729af1044}{\index{Trip@{Trip}!Get\-Number@{Get\-Number}}
+\index{Get\-Number@{Get\-Number}!Trip@{Trip}}
+\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Trip\-::\-Get\-Number (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const}}\label{classTrip_acdd93f492bafbf08f4e0d60729af1044}
+\hyperlink{classTrip_acdd93f492bafbf08f4e0d60729af1044}{Trip\-::\-Get\-Number}
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int -\/ name of trip 
+\end{DoxyReturn}
+\hypertarget{classTrip_a6f64deeab3d0235ff335b74715a3ff0e}{\index{Trip@{Trip}!Get\-Restaurants@{Get\-Restaurants}}
+\index{Get\-Restaurants@{Get\-Restaurants}!Trip@{Trip}}
+\subsubsection[{Get\-Restaurants}]{\setlength{\rightskip}{0pt plus 5cm}const vector$<$ int $>$ \& Trip\-::\-Get\-Restaurants (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const}}\label{classTrip_a6f64deeab3d0235ff335b74715a3ff0e}
+\hyperlink{classTrip_a6f64deeab3d0235ff335b74715a3ff0e}{Trip\-::\-Get\-Restaurants} -\/ get list of Restaurants to allow taking the trip
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const vector$<$int$>$\& -\/ vector of ints that are restaurant numbers 
+\end{DoxyReturn}
+\hypertarget{classTrip_a996654641498d12de7b8b86bf2cfacc2}{\index{Trip@{Trip}!Get\-Total\-Distance@{Get\-Total\-Distance}}
+\index{Get\-Total\-Distance@{Get\-Total\-Distance}!Trip@{Trip}}
+\subsubsection[{Get\-Total\-Distance}]{\setlength{\rightskip}{0pt plus 5cm}float Trip\-::\-Get\-Total\-Distance (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const}}\label{classTrip_a996654641498d12de7b8b86bf2cfacc2}
+\hyperlink{classTrip_a996654641498d12de7b8b86bf2cfacc2}{Trip\-::\-Get\-Total\-Distance}
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float -\/ distance in miles for entire trip 
+\end{DoxyReturn}
+\hypertarget{classTrip_acb8e9846f1c211d78191bdf08d1b6c2c}{\index{Trip@{Trip}!Is\-Deleted@{Is\-Deleted}}
+\index{Is\-Deleted@{Is\-Deleted}!Trip@{Trip}}
+\subsubsection[{Is\-Deleted}]{\setlength{\rightskip}{0pt plus 5cm}bool Trip\-::\-Is\-Deleted (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const}}\label{classTrip_acb8e9846f1c211d78191bdf08d1b6c2c}
+\hyperlink{classTrip_acb8e9846f1c211d78191bdf08d1b6c2c}{Trip\-::\-Is\-Deleted}
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true if trip is deleted and should not be taken again 
+\end{DoxyReturn}
+\hypertarget{classTrip_ac2f4c16262173e4eef3a9a80d13ddbf9}{\index{Trip@{Trip}!Mark\-Deleted@{Mark\-Deleted}}
+\index{Mark\-Deleted@{Mark\-Deleted}!Trip@{Trip}}
+\subsubsection[{Mark\-Deleted}]{\setlength{\rightskip}{0pt plus 5cm}bool Trip\-::\-Mark\-Deleted (
+\begin{DoxyParamCaption}
+\item[{bool}]{Delete}
+\end{DoxyParamCaption}
+)}}\label{classTrip_ac2f4c16262173e4eef3a9a80d13ddbf9}
+\hyperlink{classTrip_ac2f4c16262173e4eef3a9a80d13ddbf9}{Trip\-::\-Mark\-Deleted}
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em Delete} & -\/ true if trip is deleted\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true if trip is deleted and should not be taken again 
+\end{DoxyReturn}
+\hypertarget{classTrip_a16e1987dd99c6c5650c2f658e4c7e5c7}{\index{Trip@{Trip}!operator=@{operator=}}
+\index{operator=@{operator=}!Trip@{Trip}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Trip} \& Trip\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Trip} \&}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{classTrip_a16e1987dd99c6c5650c2f658e4c7e5c7}
+\hyperlink{classTrip_a16e1987dd99c6c5650c2f658e4c7e5c7}{Trip\-::operator=}
+
+\begin{DoxyAuthor}{Author}
+edt (3/25/19)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & -\/ Item to copy\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classTrip}{Trip}\& 
+\end{DoxyReturn}
+\hypertarget{classTrip_aeb248b2f0083d775c829403681cc27ce}{\index{Trip@{Trip}!Print\-As\-Debug@{Print\-As\-Debug}}
+\index{Print\-As\-Debug@{Print\-As\-Debug}!Trip@{Trip}}
+\subsubsection[{Print\-As\-Debug}]{\setlength{\rightskip}{0pt plus 5cm}bool Trip\-::\-Print\-As\-Debug (
+\begin{DoxyParamCaption}
+\item[{bool}]{print\-\_\-endl}
+\end{DoxyParamCaption}
+) const}}\label{classTrip_aeb248b2f0083d775c829403681cc27ce}
+print the value of the object for external display
+
+\begin{DoxyAuthor}{Author}
+edt (2/7/18)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em print\-\_\-endl} & -\/ print end of line between each field\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true if no errors 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classTrip_a2afdee2004fa7c75dd8fbd878bf9b229}{\index{Trip@{Trip}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Trip@{Trip}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{os, }
+\item[{const {\bf Trip} \&}]{trip}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{classTrip_a2afdee2004fa7c75dd8fbd878bf9b229}
+Overloaded operator $<$$<$ to print the contents of an \hyperlink{classTrip}{Trip} object
+
+\begin{DoxyAuthor}{Author}
+edt (2/7/18)
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em os} & -\/ output stream being processed \\
+\hline
+{\em trip} & -\/ object to print\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ostream\&-\/ output stream being processed 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/datastore/Trip.\-hpp\item 
+/home/edt/\-C\-S1\-D/\-C\-S1\-D\-\_\-\-Fast\-\_\-\-Food\-\_\-\-Project/\-Fast\-Food\-Finder/src/datastore/Trip.\-cpp\end{DoxyCompactItemize}
