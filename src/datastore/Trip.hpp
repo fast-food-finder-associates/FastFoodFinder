@@ -12,7 +12,7 @@
 
 /**
  * TODO: Add class description
- * 
+ *
  * @author   edt
  */
 
@@ -31,7 +31,7 @@ public:
     friend ostream& operator<<(ostream& os, const Trip& trip);
 
     // No arg constructor
-    Trip() { m_nNumber = -1; m_bInitialized = false; }
+    Trip() { m_nNumber = -1; m_bInitialized = false; };
 
     // Destructor
     virtual ~Trip();
@@ -54,9 +54,10 @@ public:
     // Assignment operator
     Trip& operator=(const Trip& rhs);
 
+    int GetNumber(void) const;
     const string &GetName(void) const;
     int  GetCreatingUser(void) const;
-    const vector<int> &GetRestaurants(void) const;
+    vector<int> &GetRestaurants(void);
     float GetTotalDistance(void) const;
     bool MarkDeleted(bool Delete);
     bool IsDeleted(void) const;

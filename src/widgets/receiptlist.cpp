@@ -141,7 +141,7 @@ double ReceiptList::makeReciept(IDQtys menuData, bool grandTotal)
     return totalCost;
 }
 
-void ReceiptList::grandTotal(vector<IDQtys> &receipts)
+void ReceiptList::grandTotal(vector<IDQtys> &receipts, double distance)
 {
     double grandTotal(0);
     Receipt* headerItem;
@@ -186,7 +186,16 @@ void ReceiptList::grandTotal(vector<IDQtys> &receipts)
     QListWidget::addItem(listItem);
 
     /* Set the QListWidgetItem to hold a Receipt */
-    headerItem = new Receipt(this, QString::fromStdString(""), Receipt::ReceiptStates::GrandTotalThanks);
+    headerItem = new Receipt(this, QString::fromStdString(""), Receipt::ReceiptStates::GrandTotalDistance);
+    setItemWidget(listItem, headerItem);
+
+    /* Making the QListWidgetItem that will a holdReceipt */
+    listItem = new QListWidgetItem(this);
+    listItem->setSizeHint(receiptSizeHint);
+    QListWidget::addItem(listItem);
+
+    /* Set the QListWidgetItem to hold a Receipt */
+    headerItem = new Receipt(this, QString::number(distance,'f',1), Receipt::ReceiptStates::GrandTotalThanks);
     setItemWidget(listItem, headerItem);
 
     /* Making the QListWidgetItem that will a holdReceipt */

@@ -69,6 +69,19 @@ background-color:white
 QWidget#grandTotalFooter {
 background-color: white;
 }
+
+QWidget#grandTotalDistance {
+background-color: white;
+}
+
+QWidget#GrandTotalDistanceLabel_2 {
+font-size: 14px;
+color: black;
+}
+QWidget#GrandTotalDistanceLabel {
+font-size: 14px;
+color: black;
+}
 QWidget#time {
 font-size: 12px;
 color: black;
@@ -139,7 +152,7 @@ background-color: white;
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="grandTotalHeader">
     <widget class="QWidget" name="horizontalLayoutWidget_5">
@@ -224,6 +237,34 @@ background-color: white;
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="grandTotalDistance">
+    <widget class="QWidget" name="gridLayoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>361</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="0" column="0">
+       <widget class="QLabel" name="GrandTotalDistanceLabel">
+        <property name="text">
+         <string>Total Distance Traveled:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="GrandTotalDistanceLabel_2">
+        <property name="text">
+         <string>miles</string>
         </property>
        </widget>
       </item>

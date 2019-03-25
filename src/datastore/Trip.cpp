@@ -93,6 +93,10 @@ Trip& Trip::operator=(const Trip& rhs)
    return *this;
 }
 
+int Trip::GetNumber(void) const
+{
+    return m_nNumber;
+}
 
 const string &Trip::GetName(void) const
 {
@@ -104,7 +108,7 @@ int  Trip::GetCreatingUser(void) const
     return m_nCreatingUser;
 }
 
-const vector<int> &Trip::GetRestaurants(void) const
+vector<int> &Trip::GetRestaurants(void)
 {
     return m_Restaurants;
 }
@@ -204,5 +208,4 @@ ostream& operator<<(ostream& os, const Trip& trip)
     os << trip.PrintAsDebug(true);
     return(os);
 }
-
 

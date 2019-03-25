@@ -91,6 +91,10 @@ bool User::operator<(User &rhs)
     return (this->m_UserName < rhs.m_UserName);
 }
 
+const int User::GetNumber(void) const
+{
+    return (m_nUserNumber);
+}
 
 const string &User::GetName(void) const
 {
@@ -110,6 +114,17 @@ bool User::MarkDeleted(bool Delete)
 bool User::IsDeleted(void) const
 {
     return m_bDeleted;
+}
+bool User::MarkAdmin(bool Admin)
+{
+    m_bIsAdministrator = Admin;
+    return m_bIsAdministrator;
+
+}
+
+bool User::IsAdmin(void) const
+{
+    return m_bIsAdministrator;
 }
 bool User::MarkBlocked(bool Block)
 {
@@ -220,4 +235,3 @@ ostream& operator<<(ostream& os, const User& user)
     os << user.PrintAsDebug(true);
     return(os);
 }
-

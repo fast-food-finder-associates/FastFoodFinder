@@ -100,7 +100,7 @@ void UserDataStore::save(const string path)
     std::ofstream outfile(fullpath, ios::trunc);
     if (outfile.is_open())
     {
-        for (MyDblLinkList<User>::iterator it = list.begin(); it != list.end(); it++)
+        for (std::list<User>::iterator it = list.begin(); it != list.end(); it++)
         {
             line_count++;
 
@@ -139,7 +139,7 @@ void UserDataStore::save(const string path)
 
 void UserDataStore::printAsDebug(bool printeol, bool printcontent) const
 {
-    list.printAsDebug(printeol,printcontent);
+//    list.printAsDebug(printeol,printcontent);
 }
 
 // Destructor implementation

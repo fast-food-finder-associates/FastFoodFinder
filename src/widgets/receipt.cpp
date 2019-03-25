@@ -25,6 +25,12 @@ Receipt::Receipt(QWidget *parent, QString total_restName,  ReceiptStates thisTem
         m_ui->receiptStack->setCurrentWidget(m_ui->grandTotalThanks);
         m_ui->GrandTotalThanksLabel->setFont(m_defaultFontSyle);
         break;
+    case ReceiptStates::GrandTotalDistance:
+        m_ui->receiptStack->setCurrentWidget(m_ui->grandTotalDistance);
+        m_ui->GrandTotalDistanceLabel_2->setText(total_restName+" mi.");
+        m_ui->GrandTotalDistanceLabel->setFont(m_defaultFontSyle);
+        m_ui->GrandTotalDistanceLabel_2->setFont(m_defaultFontSyle);
+        break;
     case ReceiptStates::HeaderTitle:
         m_ui->receiptStack->setCurrentWidget(m_ui->headerTitle);
         m_ui->restaurantName->setText(total_restName);

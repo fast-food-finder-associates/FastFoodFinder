@@ -1,13 +1,20 @@
 #ifndef PLANTRIP_HPP
 #define PLANTRIP_HPP
 
+#include <map>
+#include <QTimer>
 #include <QWidget>
-#include "src/widgets/restaurantlist.hpp"
-#include "src/widgets/menulist.hpp"
-#include "src/datastore/RestaurantDataStore.hpp"
-#include "src/widgets/navbar.hpp"
-#include "src/widgets/receiptlist.hpp"
+#include <QDateTime>
 #include <QMessageBox>
+#include "src/widgets/navbar.hpp"
+#include "src/widgets/menulist.hpp"
+#include "src/widgets/receiptlist.hpp"
+#include "src/widgets/menulistitem.hpp"
+#include "src/widgets/restaurantlist.hpp"
+#include "src/datastore/UserDataStore.hpp"
+#include "src/datastore/TripDataStore.hpp"
+#include "src/datastore/RestaurantDataStore.hpp"
+
 
 namespace Ui {
 class PlanTrip;
@@ -49,9 +56,7 @@ private slots:
     void on_addToCart_clicked();
     void on_checkout_clicked();
     void on_next_clicked();
-
     void on_ContinueToNext_clicked();
-
     void on_removeItem_clicked();
 
 private:
@@ -60,13 +65,15 @@ private:
     MenuList* m_tripMenuList;
     RestaurantList* m_planTripListDrag;
     RestaurantList* m_planTripListDrop;
-    std::list<int> m_planTripList;
+    std::vector<int> m_planTripList;
     RestaurantDataStore* m_store;
     int m_currentRest;
     PlanType m_planType;
     NavBar *m_navbar;
+    list<int> m_sorted;
     vector<IDQtys> m_recieptVector;
     ReceiptList *m_receipt;
+    TripDataStore *m_tripStore;
 };
 
 #endif // PLANTRIP_HPP

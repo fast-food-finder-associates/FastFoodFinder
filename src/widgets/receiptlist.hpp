@@ -13,7 +13,7 @@ class ReceiptList : public QListWidget
 public:
     ReceiptList(QWidget* parent, RestaurantDataStore*);
     double makeReciept(IDQtys menuData, bool = false);
-    void grandTotal(vector<IDQtys>&);
+    void grandTotal(vector<IDQtys>&, double);
 private:
     static const QSize receiptSizeHint;
     RestaurantDataStore *m_store;

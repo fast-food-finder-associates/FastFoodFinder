@@ -4,7 +4,7 @@
  * Definition of the User class that provides a means for
  * validating users, collecting their trips and defines their
  * access rights
- * 
+ *
  * @author   edt
  */
 
@@ -38,10 +38,13 @@ public:
     // Assignment operator
     User& operator=(const User& src);
 
+    const int GetNumber(void) const;
     const string &GetName(void) const;
     const  string &GetHashedPasswd(void) const;
     bool MarkDeleted(bool Delete);
     bool IsDeleted(void) const;
+    bool MarkAdmin(bool Admin);
+    bool IsAdmin(void) const;
     bool MarkBlocked(bool Block);
     bool IsBlocked(void) const;
     float Purchase(float PurchaseAmount);

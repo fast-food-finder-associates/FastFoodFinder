@@ -4,7 +4,7 @@
  * Defines a data storage mechanism for User objects. These
  * objects are contained in a doublly linked list that supports
  * iterators and a comperable interfacen
- * 
+ *
  * @author   edt
  */
 
@@ -30,8 +30,8 @@ public:
     void load(const string path);
     void save(const string path);
 
-    //std::list<User> list;
-    MyDblLinkList<User> list;
+    std::list<User> list;
+//    MyDblLinkList<User> list;
 private:
 
     // Copy constructor
