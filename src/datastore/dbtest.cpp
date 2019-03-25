@@ -23,6 +23,11 @@ using namespace std;
 #include "RestaurantDataStore.hpp"
 #include "TripDataStore.hpp"
 
+//! print_state - helper function function to debug iostream issues
+//!
+//! \author edt (3/25/19)
+//!
+//! \param stream 
 void print_state (const std::ios& stream)
 {
   std::cout << " good()=" << stream.good();
@@ -35,7 +40,14 @@ void print_state (const std::ios& stream)
 UserDataStore Users;
 RestaurantDataStore Restaurants;
 TripDataStore Trips;
-
+//! Main - function for testing FastFoodAssociates datastore classes
+//!
+//! \author edt (3/25/19)
+//!
+//! \param argc - number of commandline arguments
+//! \param argv - list of command line arguments
+//!
+//! \return int - return code
 int main (int argc, char *argv[])
 {
     Restaurants.load("./RestaurantData.csv");

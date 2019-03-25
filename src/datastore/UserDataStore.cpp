@@ -17,13 +17,18 @@
 using namespace std;
 using namespace nsMyDblLinkList;
 
-static const int nMaxUserInputLine = 200;
-
-// Constructor implementation
+//! UserDataStore::UserDataStore - Default constructor
+//!
+//! \author edt (3/25/19)
 UserDataStore::UserDataStore()
 {
 }
 
+//! UserDataStore::load - load items from external file into datastore
+//!
+//! \author edt (3/25/19)
+//!
+//! \param path - path to CSV file containing USER objects
 void UserDataStore::load(const string path)
 {
     //string fullpath = path + "UserData.csv";
@@ -100,6 +105,11 @@ void UserDataStore::load(const string path)
     }
 };
 
+//! UserDataStore::save - save datastore to external CSV file
+//!
+//! \author edt (3/25/19)
+//!
+//! \param path - path to external CSV file (will be overwitten)
 void UserDataStore::save(const string path)
 {
     //string fullpath = path + "UserData.csv.tmp";
@@ -146,6 +156,13 @@ void UserDataStore::save(const string path)
 
 }
 
+//! UserDataStore::FindbyNumber - get User object for specified number
+//!
+//! \author edt (3/25/19)
+//!
+//! \param Number - User number to locate
+//!
+//! \return User&amp; - pointer to User object or NULL if not found
 User &UserDataStore::FindbyNumber(int Number)
 {
     for (MyDblLinkList<User>::iterator it = list.begin(); it != list.end(); ++it)
@@ -158,6 +175,13 @@ User &UserDataStore::FindbyNumber(int Number)
     return *(list.end());  // never reached  - should throw exception
 }
 
+//! UserDataStore::DuplicateNumPresent - internal helper function to prevent duplicate Users
+//!
+//! \author edt (3/25/19)
+//!
+//! \param Number - User number to verify
+//!
+//! \return bool - true if User already in datastore
 bool UserDataStore::DuplicateNumPresent(int Number)
 {
     bool dupe_found = false;
@@ -172,13 +196,20 @@ bool UserDataStore::DuplicateNumPresent(int Number)
     return dupe_found;
 }
 
+//! UserDataStore::printAsDebug - print state of contained User objects
+//!
+//! \author edt (3/25/19)
+//!
+//! \param printeol - print end of line after each element
+//! \param printcontent - print internal sstate of User objects
 void UserDataStore::printAsDebug(bool printeol, bool printcontent) const
 {
     list.printAsDebug(printeol,printcontent);
 }
 
-// Destructor implementation
+//! UserDataStore::~UserDataStore - Destructor
+//!
+//! \author edt (3/25/19)
 UserDataStore::~UserDataStore()
 {
-
 };

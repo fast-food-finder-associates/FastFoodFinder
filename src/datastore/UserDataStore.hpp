@@ -16,6 +16,9 @@
 using namespace std;
 using namespace nsMyDblLinkList;
 
+//! UserDataStore - internal storage for User objects
+//!
+//! \author edt (3/25/19)
 class UserDataStore
 {
 public:
