@@ -10,6 +10,11 @@ namespace Ui
 class AdminView;
 }
 
+/**
+ * @class AdminView class
+ *
+ * A view that handles tools for editing items of the given RestaurantDataStore.
+ */
 class AdminView : public QWidget
 {
     Q_OBJECT
