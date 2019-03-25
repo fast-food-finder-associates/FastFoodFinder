@@ -17,6 +17,9 @@
 using namespace std;
 using namespace nsMyDblLinkList;
 
+//! RestaurantDataStore - internal storage for Restaurant objects
+//!
+//! \author edt (3/25/19)
 class RestaurantDataStore
 {
 public:

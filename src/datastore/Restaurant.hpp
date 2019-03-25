@@ -1,7 +1,7 @@
 /**
  * CS1D - Fast Food Associates
  *
- * Definitionn of the Restaurant class that provides a means for
+ * Definition of the Restaurant class that provides a means for
  * validating restaurants, string menu items and distances to
  * other restaurants
  *
@@ -18,13 +18,17 @@
 
 using namespace std;
 
+//! RestaurantDistance - container for restaurant numbers and their related distances
+//!  from the containing Restaurant
+//!
+//! \author edt (3/25/19)
 struct RestaurantDistance
 {
     int m_nRestaurantNumber;
     float m_fDistanceMiles;
 };
 /**
- * TODO: Add class description
+ * Internal datastore for Restaurant Objects
  * 
  * @author   edt
  */

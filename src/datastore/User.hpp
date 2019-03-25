@@ -15,6 +15,9 @@
 
 using namespace std;
 
+//! Stores User data and provides accessors/mutators
+//!
+//! \author edt (3/25/19)
 class User
 {
 friend class UserDataStore;

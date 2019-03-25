@@ -19,13 +19,18 @@
 using namespace std;
 using namespace nsMyDblLinkList;
 
-static const int nMaxUserInputLine = 200;
-
-// Constructor implementation
+//! TripDataStore::TripDataStore - Default Constructor
+//!
+//! \author edt (3/25/19)
 TripDataStore::TripDataStore()
 {
 }
 
+//! TripDataStore::load - load items from external file into datastore
+//!
+//! \author edt (3/25/19)
+//!
+//! \param path - location of external CSV file to load
 void TripDataStore::load(const string path)
 {
     //string fullpath = path + "TripData.csv";
@@ -99,6 +104,11 @@ void TripDataStore::load(const string path)
     }
 }
 
+//! TripDataStore::save - save datastore to external CSV file
+//!
+//! \author edt (3/25/19)
+//!
+//! \param path - path to external CSV file (will be overwitten)
 void TripDataStore::save(const string path)
 {
     string outline;
@@ -142,7 +152,13 @@ void TripDataStore::save(const string path)
     }
 
 }
-
+//! TripDataStore::FindbyNumber
+//!
+//! \author edt (3/25/19)
+//!
+//! \param Number - number of trip to locate
+//!
+//! \return Trip&amp; - pointer to trip specified or NULL if not present
 Trip &TripDataStore::FindbyNumber(int Number)
 {
     for (MyDblLinkList<Trip>::iterator it = list.begin(); it != list.end(); ++it)
@@ -155,6 +171,13 @@ Trip &TripDataStore::FindbyNumber(int Number)
     return *(list.end());  // never reached  - should throw exception
 }
 
+//! TripDataStore::DuplicateNumPresent - internal helper function to find duplicates
+//!
+//! \author edt (3/25/19)
+//!
+//! \param Number - trip number to verify
+//!
+//! \return bool - true if number specified already in datastore
 bool TripDataStore::DuplicateNumPresent(int Number)
 {
     bool dupe_found = false;
@@ -169,6 +192,18 @@ bool TripDataStore::DuplicateNumPresent(int Number)
     return dupe_found;
 }
 
+//! TripDataStore::StoreTrip - create Trip from planning data entered by user
+//! sorts the selected restaurants by shortest distance to next restaurant
+//!
+//! \author edt (3/25/19)
+//!
+//! \param TripName - name of trip
+//! \param RestaurantsSelectedbyUser - vector of ints that represent restaurants
+//! \param RestSt - pointer to RestaurantDataStore
+//! \param User - pointer to creating user
+//! \param StartatSaddleback - true if trip originates at Saddleback
+//!
+//! \return int - Number assigned to this trip
 int TripDataStore::StoreTrip(const string &TripName, const vector<int> RestaurantsSelectedbyUser, RestaurantDataStore &RestSt, User &User, bool StartatSaddleback)
 {
     int current_restaurant;
@@ -273,6 +308,18 @@ int TripDataStore::StoreTrip(const string &TripName, const vector<int> Restauran
     return(tmp.GetNumber());
 }
 
+//! TripDataStore::StoreTripNumRest create Trip from planning data entered by user
+//! sorts the selected restaurants by shortest distance to next restaurant
+//!
+//! \author edt (3/25/19)
+//!
+//! \param TripName - name of trip
+//! \param StartingRestNum - starting location for trip, 0 if Saddleback
+//! \param NumtoVisit - number of restaurants to visit
+//! \param RestSt - pointer to RestaurantDataStore
+//! \param User - pointer to creating user
+//!
+//! \return int - Number assigned to this trip
 int TripDataStore::StoreTripNumRest(const string &TripName, int StartingRestNum, int NumtoVisit, RestaurantDataStore &RestSt, User &User)
 {
     int current_restaurant = StartingRestNum;
@@ -355,12 +402,21 @@ int TripDataStore::StoreTripNumRest(const string &TripName, int StartingRestNum,
     return(tmp.GetNumber());
 }
 
+//! TripDataStore::printAsDebug helper function to print internal state of
+//! all objects in datastore
+//!
+//! \author edt (3/25/19)
+//!
+//! \param printeol - print end of line after each element
+//! \param printcontent- print interanl state of each Trip
 void TripDataStore::printAsDebug(bool printeol, bool printcontent) const
 {
     list.printAsDebug(printeol,printcontent);
 }
 
-// Destructor implementation
+//! TripDataStore::~TripDataStore - Destructor
+//!
+//! \author edt (3/25/19)
 TripDataStore::~TripDataStore()
 {
 

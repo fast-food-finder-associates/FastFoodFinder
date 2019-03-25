@@ -14,7 +14,9 @@
 #include <string>
 
 using namespace std;
-
+//! MenuItem Class
+//!
+//! \author edt (3/25/19)
 class MenuItem
 {
 friend class Restaurant;

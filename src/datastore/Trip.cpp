@@ -14,9 +14,19 @@
 #include <ostream>
 #include <iostream>
 
+//! Trip::sm_NextNumber - next number to use for new Trip
+//!
+//! \author edt (3/25/19)
 int Trip::sm_NextNumber = 1;
 
-// Constructor - New Trip
+//! Trip::Trip - constructor used when adding trip manually - depricated
+//!
+//! \author edt (3/25/19)
+//!
+//! \param User - User planning trip
+//! \param Restaurants - Restaurants on trip
+//! \param TotalDistance - length of trip in miles
+//! \param Name - Name of Trip
 Trip::Trip(int User,
            const vector<int> &Restaurants,
            float TotalDistance,
@@ -33,7 +43,16 @@ Trip::Trip(int User,
     m_bInitialized = true;
 };
 
-// Constructor implementation
+//! Trip::Trip - Constructor used only by TripDataStore to load datastore
+//!
+//! \author edt (3/25/19)
+//!
+//! \param TripNum - number
+//! \param User - creating user
+//! \param Restaurants - restaurants on trip
+//! \param TotalDistance - distance in miles
+//! \param Name - name of trip
+//! \param bTripDeleted - true if deleted - cannot be taken again
 Trip::Trip(int TripNum,
            int User,
            const vector<int> &Restaurants,
@@ -54,19 +73,18 @@ Trip::Trip(int TripNum,
     m_bInitialized = true;
 };
 
-// Destructor implementation
+//! Trip::~Trip - Destructor
+//!
+//! \author edt (3/25/19)
 Trip::~Trip()
 {
 }
 
-    bool        m_bInitialized;
-    int         m_nNumber;
-    string      m_Name;
-    int         m_nCreatingUser;
-    vector<int> m_Restaurants;
-    bool        m_bDeleted; // if true, do not display on general GUI (maybe in admin GUI)
-    float       m_fTotalDistance;
-
+//! Trip::Trip - Copy constructor
+//!
+//! \author edt (3/25/19)
+//!
+//! \param src - Item to copy
 Trip::Trip(const Trip& src)
 : m_nNumber(src.m_nNumber), m_Name(src.m_Name),
   m_nCreatingUser(src.m_nCreatingUser), m_Restaurants(src.m_Restaurants),
@@ -75,6 +93,13 @@ Trip::Trip(const Trip& src)
     m_bInitialized      = true;
 }
 
+//! Trip::operator=
+//!
+//! \author edt (3/25/19)
+//!
+//! \param rhs - Item to copy
+//!
+//! \return Trip&amp; 
 Trip& Trip::operator=(const Trip& rhs)
 {
    if (this == &rhs) {
@@ -92,43 +117,98 @@ Trip& Trip::operator=(const Trip& rhs)
 
    return *this;
 }
-
+//! Trip::GetNumber
+//!
+//! \author edt (3/25/19)
+//!
+//! \param void 
+//!
+//! \return int - name of trip
 int Trip::GetNumber(void) const
 {
     return m_nNumber;
 }
 
+//! Trip::GetName
+//!
+//! \author edt (3/25/19)
+//!
+//! \param void 
+//!
+//! \return const string&amp; - name of trip
 const string &Trip::GetName(void) const
 {
     return m_Name;
 }
 
+//! Trip::GetCreatingUser
+//!
+//! \author edt (3/25/19)
+//!
+//! \param void 
+//!
+//! \return int - number of user who planned this trip
 int  Trip::GetCreatingUser(void) const
 {
     return m_nCreatingUser;
 }
 
+//! Trip::GetRestaurants - get list of Restaurants to allow taking the trip
+//!
+//! \author edt (3/25/19)
+//!
+//! \param void 
+//!
+//! \return const vector&lt;int&gt;&amp; - vector of ints that are restaurant numbers
 const vector<int> &Trip::GetRestaurants(void) const
 {
     return m_Restaurants;
 }
 
+//! Trip::GetTotalDistance
+//!
+//! \author edt (3/25/19)
+//!
+//! \param void 
+//!
+//! \return float - distance in miles for entire trip
 float Trip::GetTotalDistance(void) const
 {
     return m_fTotalDistance;
 }
 
+//! Trip::MarkDeleted
+//!
+//! \author edt (3/25/19)
+//!
+//! \param Delete - true if trip is deleted
+//!
+//! \return bool - true if trip is deleted and should not be taken again
 bool Trip::MarkDeleted(bool Delete)
 {
     m_bDeleted = Delete;
     return m_bDeleted;
 }
 
+//! Trip::IsDeleted
+//!
+//! \author edt (3/25/19)
+//!
+//! \param void 
+//!
+//! \return bool - true if trip is deleted and should not be taken again
 bool Trip::IsDeleted(void) const
 {
     return m_bDeleted;
 }
 
+//! Trip::AddRestaurant - depricated - use StoreTrip
+//!
+//! \author edt (3/25/19)
+//!
+//! \param Restaurant - number of restaurant to add
+//!
+//! \return bool - true if added
 bool Trip::AddRestaurant(int Restaurant)
 {
     // prevent dupes
@@ -140,9 +220,9 @@ bool Trip::AddRestaurant(int Restaurant)
 //!
 //! \author edt (2/7/18)
 //!
-//! \param print_endl
+//! \param print_endl - print end of line between each field
 //!
-//! \return bool
+//! \return bool - true if no errors
 bool Trip::PrintAsDebug(bool print_endl) const
 {
     if (print_endl)
@@ -195,14 +275,14 @@ bool Trip::PrintAsDebug(bool print_endl) const
     return m_bInitialized;
 }
 
-//! Overloaded operator << to print the contents of an User object
+//! Overloaded operator << to print the contents of an Trip object
 //!
 //! \author edt (2/7/18)
 //!
-//! \param os
-//! \param user
+//! \param os - output stream being processed
+//! \param trip - object to print
 //!
-//! \return ostream&amp;
+//! \return ostream&amp;- output stream being processed
 ostream& operator<<(ostream& os, const Trip& trip)
 {
     os << trip.PrintAsDebug(true);
