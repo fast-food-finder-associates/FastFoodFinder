@@ -49,7 +49,7 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     /* Menu lists */
     m_menuListAvailable = new MenuList(m_ui->widget_menuAvailable);
     m_menuListDeleted = new MenuList(m_ui->widget_menuDeleted);
-    m_menuListDeleted->allowDeleted(true);
+    m_menuListDeleted->showHidden(true);
 
     /*
      * These connections are similar as the connections
