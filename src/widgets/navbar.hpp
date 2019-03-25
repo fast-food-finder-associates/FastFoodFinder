@@ -2,7 +2,7 @@
 #include <QListWidget>
 
 /**
- * @brief NavBar class
+ * @class NavBar class
  *
  * Provides an easy way to list clickable buttons.
  * Currently, the class uses "Font Awesome 5 Free" for its icons.
