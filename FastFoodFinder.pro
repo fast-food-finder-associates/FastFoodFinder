@@ -42,7 +42,8 @@ HEADERS += \
     src/datastore/Trip.hpp \
     src/datastore/TripDataStore.hpp \
     src/datastore/User.hpp \
-    src/datastore/UserDataStore.hpp
+    src/datastore/UserDataStore.hpp \
+    src/views/restaurantsview.hpp
 
 
 SOURCES += \
@@ -62,14 +63,16 @@ SOURCES += \
     src/datastore/Trip.cpp \
     src/datastore/TripDataStore.cpp \
     src/datastore/User.cpp \
-    src/datastore/UserDataStore.cpp
+    src/datastore/UserDataStore.cpp \
+    src/views/restaurantsview.cpp
 
 FORMS += \
     src/windows/login.ui \
     src/windows/mainwindow.ui \
     src/widgets/navitem.ui \
     src/widgets/menulistitem.ui \
-    src/views/adminview.ui
+    src/views/adminview.ui \
+    src/views/restaurantsview.ui
 
 RESOURCES += \
     res.qrc

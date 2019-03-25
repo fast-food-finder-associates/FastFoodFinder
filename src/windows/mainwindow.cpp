@@ -31,20 +31,8 @@ MainWindow::MainWindow()
     //Load the restaurant database from the file
     m_store.load("RestaurantData.csv"); //WARNING Put database filepath here
 
-    /* Restaurant list */
-    m_restaurantList = new RestaurantList(m_ui->restaurantList);
-    m_restaurantList->addItems(m_store.list.begin(), m_store.list.end());
-
-    /* Menu list */
-    m_menuList = new MenuList(m_ui->menuList);
-    m_menuList->setWrapping(true);
-    m_menuList->setFlow(QListView::LeftToRight);
-
-    //On current restaurant change, display its menu items
-    connect(m_restaurantList, &RestaurantList::currentRestaurantChanged,
-            this, &MainWindow::menuListChange);
-
-    /* Admin view */
+    /* Initialize views */
+    m_restView = new RestaurantsView(m_ui->restaurantsView, &m_store);
     m_adminView = new AdminView(m_ui->adminView, &m_store);
 
     //Triggers changeView() and changes the navbar item
@@ -56,7 +44,7 @@ MainWindow::~MainWindow()
 {
     delete m_ui;
     delete m_navbar;
-    delete m_restaurantList;
+    delete m_restView;
     delete m_adminView;
 
     //Save data to database file
@@ -90,17 +78,7 @@ void MainWindow::changeView(int view)
 
 void MainWindow::resetUi()
 {
-    /* Restaurant list */
-    m_restaurantList->clear();
-    m_restaurantList->addItems(m_store.list.begin(), m_store.list.end());
-
-    /* Admin view */
+    /* Reset views */
+    m_restView->resetView();
     m_adminView->resetView();
-}
-
-void MainWindow::menuListChange(int id)
-{
-    Restaurant restaurant = m_store.FindbyNumber(id);
-    m_ui->currentRestaurantName->setText(QString::fromStdString(restaurant.GetName()));
-    m_menuList->addAllItems(restaurant);
 }
