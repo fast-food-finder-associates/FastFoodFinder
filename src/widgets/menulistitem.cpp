@@ -72,6 +72,12 @@ QSize MenuListItem::getItemSizeHint()
     return itemSizeHint;
 }
 
+/* Setters */
+void MenuListItem::setQty(int v)
+{
+    m_ui->spinBox_qty->setValue(v);
+}
+
 /* Public slots */
 void MenuListItem::showQty(bool v)
 {

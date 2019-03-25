@@ -16,13 +16,17 @@ public:
     IDQtys getIDQty() const;
     IDs getSelected() const;
 
+    /* Setters */
+    void setQty(IDs, int qty) const;
+
     /* List modifiers */
     void addItem(RestaurantID, const MenuItem&);
     void addAllItems(const Restaurant&);
     void removeItem(IDs);
+    void allowDeleted(bool);
 
     /* Quantity */
-    void showQty(bool) const;
+    void showQty(bool);
     void resetQty();
 
 signals:
@@ -36,4 +40,6 @@ private slots:
 
 private:
     IDQtys m_IDQtys;
+    bool m_showQty;
+    bool m_allowDeleted;
 };

@@ -44,6 +44,9 @@ QWidget#searchView{
 background-color: orange;
 }
 
+QWidget#NavBarWidget {
+background-color: #303030;
+}
 QWidget#deleteView {
 background-color: #B19CD9;
 }
@@ -52,11 +55,14 @@ QWidget#editView {
 background-color: lightblue;
 }
 
-QWidget#viewRestaurantView { background-color: #7DD8FF; }
+QWidget#viewRestaurantView {
+/*background: url(:/res/artboard.png);*/
+background-color: #7DD8FF; 
+}
 
 QWidget#currentRestaurantName {
 background-color: #303030;
-font-size: 46px;
+font-size: 38px;
 color: white;
 font:bold italic;
 }
@@ -64,7 +70,7 @@ font:bold italic;
 QWidget#menu {
 color: black;
 background-color: #7F7F7F;
-font-size: 28px;
+font-size: 24px;
 font: bold italic;
 }
 
@@ -91,7 +97,7 @@ background-color: lightgreen;
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
@@ -136,7 +142,7 @@ background-color: lightgreen;
         <x>0</x>
         <y>0</y>
         <width>530</width>
-        <height>90</height>
+        <height>55</height>
        </rect>
       </property>
       <property name="styleSheet">

@@ -6,7 +6,8 @@
 #include "src/widgets/menulist.hpp"
 #include "src/datastore/RestaurantDataStore.hpp"
 #include "src/widgets/navbar.hpp"
-#include <queue>
+#include "src/widgets/receiptlist.hpp"
+#include <QMessageBox>
 
 namespace Ui {
 class PlanTrip;
@@ -16,42 +17,56 @@ class PlanTrip : public QWidget
 {
     Q_OBJECT
 
-    /* Enum class for each view state */
-    enum PlanState { Saddleback, ChosenAndN, FirstRestaurant, None};
+    /* Enum class for each plan type */
+    enum PlanType { Saddleback, ChosenAndN, FirstRestaurant, None};
 
-//TODO: make enum for page states
-
-// Make enum for choice states
 public:
-     PlanTrip(QWidget *parent = nullptr, RestaurantDataStore *m_store = nullptr, NavBar * m_navbar = nullptr);
+
+    /* Constructor */
+    PlanTrip(QWidget *parent = nullptr, RestaurantDataStore *m_store = nullptr, NavBar * m_navbar = nullptr);
+
+    /* Destructor */
     ~PlanTrip();
 
-     void setPlanState(const PlanState);
-     PlanState getPlanState() const;
+    /* setters */
+    void changeHeaderOptions(PlanType);
+    void setCurrentRest(const int);
+    void setPlanType(const PlanType);
+    void resetPlanTripView();
+    void activeTrip();
+
+    /* getters */
+    QMessageBox::StandardButton promptToContinue();
+    PlanType getPlanType() const;
+    int getCurrentRest() const;
 
 public slots:
-     void changeHeaderOptions(PlanState);
-        void on_TripButton_clicked();
-        void resetPlanTripView();
-        void activeTrip();
-        Restaurant& getRestaurantPointer(int id);
-        void on_next_clicked();
+
 
 private slots:
-    void on_pushButton_clicked();
+    void on_startPlanning_clicked();
+    void on_TripButton_clicked();
+    void on_addToCart_clicked();
+    void on_checkout_clicked();
+    void on_next_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_ContinueToNext_clicked();
+
+    void on_removeItem_clicked();
 
 private:
     Ui::PlanTrip *m_ui;
-    std::queue<int> m_planTripVector;
-    MenuList* m_tripMenuList;
     MenuList* m_tripFoodCart;
+    MenuList* m_tripMenuList;
     RestaurantList* m_planTripListDrag;
     RestaurantList* m_planTripListDrop;
+    std::list<int> m_planTripList;
     RestaurantDataStore* m_store;
+    int m_currentRest;
+    PlanType m_planType;
     NavBar *m_navbar;
-    PlanState m_state;
+    vector<IDQtys> m_recieptVector;
+    ReceiptList *m_receipt;
 };
 
 #endif // PLANTRIP_HPP

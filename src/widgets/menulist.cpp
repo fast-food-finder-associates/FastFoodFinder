@@ -2,7 +2,7 @@
 
 /* Constructor */
 MenuList::MenuList(QWidget* parent)
-    : QListWidget(parent)
+    : QListWidget(parent), m_showQty(false), m_allowDeleted(false)
 {
     /* List widget settings */
     QListWidget::setStyleSheet("QListWidget { background-color: #303030; color: white; }");
@@ -39,10 +39,26 @@ IDs MenuList::getSelected() const
         return IDs(-1, -1);
 }
 
+/* Setters */
+void MenuList::setQty(IDs id, int qty) const
+{
+    for(int i = 0; i < QListWidget::count(); i++)
+    {
+        QListWidgetItem* listItem = QListWidget::item(i);
+        MenuListItem* widget = dynamic_cast<MenuListItem*>(QListWidget::itemWidget(listItem));
+
+        if(widget != nullptr && id == widget->getIDs())
+        {
+            widget->setQty(qty);
+            return;
+        }
+    }
+}
+
 /* List modifiers */
 void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
 {
-    if(menuItem.IsDeleted())
+    if(menuItem.IsDeleted() && !m_allowDeleted)
         return;
 
     QListWidgetItem* listItem = new QListWidgetItem(this);
@@ -51,8 +67,16 @@ void MenuList::addItem(RestaurantID restID, const MenuItem& menuItem)
     MenuListItem* widget = new MenuListItem(this, restID, menuItem);
     QListWidget::setItemWidget(listItem, widget);
 
-        //Allows all MenuItem's to toggle its quantity widgets through the emitter
-        connect(this, &MenuList::showQtyEmitter, widget, &MenuListItem::showQty);
+    widget->showQty(m_showQty);
+
+    //Allows all MenuItem's to toggle its quantity widgets through the emitter
+    connect(this, &MenuList::showQtyEmitter, widget, &MenuListItem::showQty);
+
+    //Handles the quantity change of a menu item
+    connect(widget, &MenuListItem::quantityChanged, this, &MenuList::quantityChangedHandler);
+
+    //Resets each spinbox of each MenuItem when emitted
+    connect(this, &MenuList::resetQtyEmitter, widget, &MenuListItem::resetQty);
 }
 
 void MenuList::addAllItems(const Restaurant& restaurant)
@@ -72,15 +96,22 @@ void MenuList::removeItem(IDs id)
 
         if(widget != nullptr && id == widget->getIDs())
         {
-            QListWidget::removeItemWidget(listItem);
+            m_IDQtys.erase(widget->getIDs());
+            QListWidget::takeItem(i);
             return;
         }
     }
 }
 
-/* Quantity */
-void MenuList::showQty(bool v) const
+void MenuList::allowDeleted(bool v)
 {
+    m_allowDeleted = v;
+}
+
+/* Quantity */
+void MenuList::showQty(bool v)
+{
+    m_showQty = v;
     emit showQtyEmitter(v);
 }
 
@@ -109,5 +140,5 @@ void MenuList::quantityChangedHandler(IDs id, int qty)
     if(qty != 0)
         m_IDQtys[id] = qty; //Store/replace the key with the value
     else
-        m_IDQtys.erase(id); //Erase the the key-value pair
+        this->removeItem(id); //Erase the the key-value pair
 }

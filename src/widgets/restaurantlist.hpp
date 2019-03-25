@@ -40,13 +40,13 @@ private:
 template<typename Container>
 void RestaurantList::getRestaurantIDs(Container& container) const
 {
-//    qDebug() << QString::number(this->count());
+
     for(int i = 0; i < this->count(); i++)
     {
         QListWidgetItem* item = this->item(i);
         QVariant data = item->data(Qt::ItemDataRole::UserRole);
-//        container.push_back(data.toInt());
-        container.push(data.toInt());
+
+        container.push_back(data.toInt());
     }
 }
 

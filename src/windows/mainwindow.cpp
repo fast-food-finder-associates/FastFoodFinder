@@ -22,6 +22,9 @@ MainWindow::MainWindow()
     if(QFontDatabase::addApplicationFont(":/res/fontAwesome.ttf") == -1)
         qWarning() << "FontAwesome cannot be loaded !";
 
+    if(QFontDatabase::addApplicationFont(":/res/IBMPlexMono-Regular.ttf") == -1)
+        qWarning() << "IBMPlexMono-Regular cannot be loaded !";
+
     /* Initialize navigation bar and items */
     m_navbar = new NavBar(m_ui->NavBarWidget, 90, 220);
     connect(m_navbar, &NavBar::currentRowChanged, this, &MainWindow::changeView);
