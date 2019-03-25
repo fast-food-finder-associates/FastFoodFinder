@@ -54,6 +54,7 @@ public:
     // Assignment operator
     Trip& operator=(const Trip& rhs);
 
+    int GetNumber(void) const;
     const string &GetName(void) const;
     int  GetCreatingUser(void) const;
     const vector<int> &GetRestaurants(void) const;

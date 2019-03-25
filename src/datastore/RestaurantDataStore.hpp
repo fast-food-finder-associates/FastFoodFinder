@@ -29,13 +29,15 @@ public:
     void printAsDebug(bool printeol, bool printcontent) const;
     Restaurant &FindbyNumber(int Number);
 
-    void load(const string path);
+    void load(const string path, bool ItemsAreAdditional = false);
     void save(const string path);
+    void load_additional(const string path);
 
     std::list<Restaurant> list;
 //    MyDblLinkList<Restaurant> list;
 
 private:
+    bool DuplicateNumPresent(int Number);
 
     // Copy constructor
     RestaurantDataStore(const RestaurantDataStore& src);

@@ -52,6 +52,7 @@ public:
     Restaurant& operator=(const Restaurant& rhs);
 
     const string &GetName(void) const;
+    void SetName(const string &NewName);
     int GetNumber(void) const;
     const vector<MenuItem> &GetMenu(void) const;
     const vector<RestaurantDistance> &GetDistances(void) const;

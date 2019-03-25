@@ -17,6 +17,11 @@ MenuItem::~MenuItem()
 {
 }
 
+int MenuItem::GetNumber(void) const
+{
+    return m_nNumber;
+}
+
 float MenuItem::GetPrice(void) const
 {
     return (m_fMenuItemPrice);
@@ -46,11 +51,6 @@ bool MenuItem::MarkDeleted(bool Delete)
 {
     m_bDeleted = Delete;
     return m_bDeleted;
-}
-
-int MenuItem::GetNumber(void) const
-{
-    return m_nNumber;
 }
 
     // used by database load only

@@ -96,6 +96,11 @@ const string &Restaurant::GetName(void) const
     return m_Name;
 }
 
+void Restaurant::SetName(const string &NewName)
+{
+    m_Name = NewName;
+}
+
 int Restaurant::GetNumber(void) const
 {
     return m_nNumber;

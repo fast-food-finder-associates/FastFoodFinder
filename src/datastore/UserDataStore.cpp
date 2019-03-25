@@ -26,8 +26,8 @@ UserDataStore::UserDataStore()
 
 void UserDataStore::load(const string path)
 {
-    string fullpath = path + "UserData.csv";
-    std::ifstream infile(fullpath, ios::in);
+    //string fullpath = path + "UserData.csv";
+    std::ifstream infile(path, ios::in);
     int line_count = 0;
     if (infile.is_open())
     {
@@ -37,6 +37,10 @@ void UserDataStore::load(const string path)
             std::getline(infile, inputline);
             if (!infile.eof())
             {
+                if (inputline[0] == '#')
+                {
+                    continue;  // ignore comment lines
+                }
                 line_count++;
                 std::vector<std::string> commaSeparated(1);
                 int commaCounter = 0;
@@ -55,7 +59,12 @@ void UserDataStore::load(const string path)
                 // of our object
                 // The serialized data looks like:
                 // 10,Dale,123.45,1,nopass,0,0,0,
-                int nUserNumber = std::stoi(commaSeparated[0]);
+                int nNumber = std::stoi(commaSeparated[0]);
+                // prevent loading of duplicate numbers by silently rejecting the load for this record
+                if (DuplicateNumPresent(nNumber))
+                {
+                    continue;
+                }
                 float fTotalPurchases = std::stof(commaSeparated[2]);
                 int nUserAdmin = std::stoi(commaSeparated[3]);
                 int nUserDeleted = std::stoi(commaSeparated[5]);
@@ -69,7 +78,7 @@ void UserDataStore::load(const string path)
                 {
                         UserTrips.push_back(stoi(commaSeparated[it++]));
                     }
-                User *pUser = new User(nUserNumber,
+                User *pUser = new User(nNumber,
                                  commaSeparated[1],
                                  fTotalPurchases,
                                  nUserAdmin,
@@ -93,18 +102,18 @@ void UserDataStore::load(const string path)
 
 void UserDataStore::save(const string path)
 {
-    string fullpath = path + "UserData.csv.tmp";
+    //string fullpath = path + "UserData.csv.tmp";
     string outline;
     int line_count = 0;
 
-    std::ofstream outfile(fullpath, ios::trunc);
+    std::ofstream outfile(path, ios::trunc);
     if (outfile.is_open())
     {
         for (MyDblLinkList<User>::iterator it = list.begin(); it != list.end(); it++)
         {
             line_count++;
 
-            outfile << (*it).m_nUserNumber << ",";
+            outfile << (*it).m_nNumber << ",";
             outfile << (*it).m_UserName << ",";
             outfile << (*it).m_fTotalPurchases << ",";
             outfile << (*it).m_bIsAdministrator << ",";
@@ -135,6 +144,32 @@ void UserDataStore::save(const string path)
         throw std::invalid_argument("Trip Save File Empty");
     }
 
+}
+
+User &UserDataStore::FindbyNumber(int Number)
+{
+    for (MyDblLinkList<User>::iterator it = list.begin(); it != list.end(); ++it)
+    {
+        if ( (*it).m_nNumber == Number)
+        {
+            return *it;
+        }
+    }
+    return *(list.end());  // never reached  - should throw exception
+}
+
+bool UserDataStore::DuplicateNumPresent(int Number)
+{
+    bool dupe_found = false;
+    for (MyDblLinkList<User>::iterator it = list.begin(); it != list.end(); ++it)
+    {
+        if ( (*it).m_nNumber == Number)
+        {
+            dupe_found = true;
+            break;
+        }
+    }
+    return dupe_found;
 }
 
 void UserDataStore::printAsDebug(bool printeol, bool printcontent) const
