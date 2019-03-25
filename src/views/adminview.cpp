@@ -25,10 +25,18 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
      * when editing a menu.
      */
     connect(m_restListAvailable, &RestaurantList::currentRestaurantChanged,
-            [this] { m_restListDeleted->setCurrentRow(-1); });
+            [this](RestaurantID id)
+            {
+                m_restListDeleted->setCurrentRow(-1);
+                fillRestaurantEditFields(id);
+            });
 
     connect(m_restListDeleted, &RestaurantList::currentRestaurantChanged,
-            [this] { m_restListAvailable->setCurrentRow(-1); });
+            [this](RestaurantID id)
+            {
+                m_restListDeleted->setCurrentRow(-1);
+                fillRestaurantEditFields(id);
+            });
 
     /* Menu lists */
     m_menuListAvailable = new MenuList(m_ui->widget_menuAvailable);
@@ -97,6 +105,7 @@ void AdminView::resetUi()
 
     /* Push buttons */
     QString pushbuttonReset = "QPushButton { color: black; }";
+    m_ui->pushButton_restEdit->setStyleSheet(pushbuttonReset);
     m_ui->pushButton_editMenuView->setStyleSheet(pushbuttonReset);
     m_ui->pushButton_menuAdd->setStyleSheet(pushbuttonReset);
     m_ui->pushButton_menuEdit->setStyleSheet(pushbuttonReset);
@@ -154,6 +163,36 @@ void AdminView::on_pushButton_confirmRestChanges_clicked()
         if(id != -1)
             m_store->FindbyNumber(id).MarkDeleted(true);
     }
+
+    resetUi();
+}
+
+void AdminView::fillRestaurantEditFields(RestaurantID id)
+{
+    Restaurant rest = m_store->FindbyNumber(id);
+
+    m_ui->lineEdit_restEdit->setText(QString::fromStdString(rest.GetName()));
+}
+
+void AdminView::on_pushButton_restEdit_clicked()
+{
+    RestaurantID id = m_restListAvailable->getSelected();
+    QString name = m_ui->lineEdit_restEdit->text();
+
+    /* If the available list isn't selected */
+    if(id == -1)
+        id = m_restListDeleted->getSelected();
+
+    /* If the hidden list isn't selected, then none of them are */
+    if(id == -1 || name.isEmpty())
+    {
+        m_ui->pushButton_restEdit->setStyleSheet("QPushButton { color: red; } ");
+        return;
+    }
+
+    /* Edit the menu item */
+    Restaurant& rest = m_store->FindbyNumber(id);
+    rest.SetName(name.toStdString());
 
     resetUi();
 }

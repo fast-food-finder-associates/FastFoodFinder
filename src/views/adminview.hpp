@@ -29,7 +29,9 @@ private slots:
     void loadMenuList(RestaurantID);
 
     /* Restaurant subview controls */
+    void fillRestaurantEditFields(RestaurantID);
     void on_pushButton_confirmRestChanges_clicked();
+    void on_pushButton_restEdit_clicked();
     void on_pushButton_addFromFile_clicked();
     void on_pushButton_editMenuView_clicked();
 

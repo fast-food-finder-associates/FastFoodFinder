@@ -120,7 +120,7 @@
      <property name="geometry">
       <rect>
        <x>280</x>
-       <y>270</y>
+       <y>440</y>
        <width>151</width>
        <height>21</height>
       </rect>
@@ -149,13 +149,58 @@
      <property name="geometry">
       <rect>
        <x>300</x>
-       <y>310</y>
+       <y>480</y>
        <width>111</width>
        <height>21</height>
       </rect>
      </property>
      <property name="text">
       <string>Menu items...</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_restEdit">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>320</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Confirm</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_restEdit">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>320</y>
+       <width>111</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>menu item name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_restEdit">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>280</y>
+       <width>191</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { font-size: 15px; }</string>
+     </property>
+     <property name="text">
+      <string>Edit restaurant name</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>
