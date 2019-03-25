@@ -135,6 +135,7 @@ void PlanTrip::on_TripButton_clicked()
 {
     /* Needs to be cleared before using */
     m_planTripList.clear();
+    m_recieptVector.clear();
     UserDataStore test;
     vector<int> tempStore;
 
@@ -174,31 +175,31 @@ void PlanTrip::on_TripButton_clicked()
     }
     else
     {
-
+        /* now input errors - call the right sorter based on the plan type */
         switch(getPlanType())
         {
         case PlanTrip::Saddleback:
-            m_tripStore->StoreTrip(QDateTime::currentDateTime().toString().toStdString(),m_planTripList,*m_store,
+             m_tripId = m_tripStore->StoreTrip(QDateTime::currentDateTime().toString().toStdString(),m_planTripList,*m_store,
                                    test.list.front(),true);
             m_sorted.clear();
-            tempStore = m_tripStore->list.begin()->GetRestaurants();
+            tempStore = m_tripStore->FindbyNumber(m_tripId).GetRestaurants();
             foreach(int restaurantId, tempStore)
                 m_sorted.push_back(restaurantId);
             break;
         case PlanTrip::ChosenAndN:
             // Trip would do 1 less than the spin box value so made it +1 to whatever value the spinbox gives the function
-             m_tripStore->StoreTripNumRest(QDateTime::currentDateTime().toString().toStdString(), m_ui->startLocation_2->currentData().toInt(),
+             m_tripId =  m_tripStore->StoreTripNumRest(QDateTime::currentDateTime().toString().toStdString(), m_ui->startLocation_2->currentData().toInt(),
                                            m_ui->spinBox->value()+1,*m_store,test.list.front());
              m_sorted.clear();
-             tempStore = m_tripStore->list.begin()->GetRestaurants();
+             tempStore = m_tripStore->FindbyNumber(m_tripId).GetRestaurants();
              foreach(int restaurantId, tempStore)
                  m_sorted.push_back(restaurantId);
             break;
         case PlanTrip::FirstRestaurant:
-            m_tripStore->StoreTrip(QDateTime::currentDateTime().toString().toStdString(),m_planTripList,*m_store,
+             m_tripId = m_tripStore->StoreTrip(QDateTime::currentDateTime().toString().toStdString(),m_planTripList,*m_store,
                                    test.list.front(),false);
             m_sorted.clear();
-            tempStore = m_tripStore->list.begin()->GetRestaurants();
+            tempStore = m_tripStore->FindbyNumber(m_tripId).GetRestaurants();
             foreach(int restaurantId, tempStore)
                 m_sorted.push_back(restaurantId);
             break;
@@ -206,7 +207,7 @@ void PlanTrip::on_TripButton_clicked()
             // Do Nothing
             break;
         }
-        /* No erros, made it into the trip preping the first item of the trip */
+        /* have an array of sorted id's (int) made it into the trip preping the first item of the trip */
                 Restaurant *tempRest;
                 tempRest = &m_store->FindbyNumber(m_sorted.front());
 
@@ -252,8 +253,7 @@ void PlanTrip::activeTrip()
     else if( m_recieptVector.size() != 0)
     {
         m_receipt->clear();
-        qDebug() << m_tripStore->list.front().GetTotalDistance();
-        m_receipt->grandTotal(m_recieptVector, m_tripStore->list.front().GetTotalDistance());
+        m_receipt->grandTotal(m_recieptVector, m_tripStore->FindbyNumber(m_tripId).GetTotalDistance());
         m_ui->planTripStack->setCurrentWidget(m_ui->tripReceipt);
 
     }

@@ -74,6 +74,7 @@ private:
     vector<IDQtys> m_recieptVector;
     ReceiptList *m_receipt;
     TripDataStore *m_tripStore;
+    int m_tripId;
 };
 
 #endif // PLANTRIP_HPP
