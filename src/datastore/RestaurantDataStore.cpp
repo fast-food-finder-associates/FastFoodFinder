@@ -90,7 +90,7 @@ void RestaurantDataStore::load(const string path, bool ItemsAreAdditional)
                             Restaurant *pRest = &this->FindbyNumber(tmp.m_nRestaurantNumber);
                             tmp.m_nRestaurantNumber = nNumber;
                             // Add the new restaurant's distance grouping to every existing Restaurant
-                            if (pRest != nullptr)  
+                            if (pRest != NULL)  
                             {
                                 // if nullptr, then this is a forward reference to an not yet created restaurant
                                 // this test also prevents updating the restaurant we are currently adding

@@ -40,7 +40,8 @@ int main (int argc, char *argv[])
 {
     Restaurants.load("./RestaurantData.csv");
     Restaurants.load("./RestaurantData.csv");  // verify dupes do not get loaded
-    Restaurants.save("./RestaurantData.csv.tmp");
+    //Restaurants.load("./ExtraStacksRestaurantData.csv", true);  // verify dupes do not get loaded
+    //Restaurants.save("./RestaurantData.csv.tmp");
 
     Trips.load("./TripData.csv");
     Trips.save("./TripData.csv.tmp");
