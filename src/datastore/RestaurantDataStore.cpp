@@ -17,11 +17,19 @@
 using namespace std;
 using namespace nsMyDblLinkList;
 
-// Constructor implementation
+//! default constuctor
+//!
+//! \author edt (3/25/19)
 RestaurantDataStore::RestaurantDataStore()
 {
 };
 
+//! RestaurantDataStore::load - get object data from file
+//!
+//! \author edt (3/25/19)
+//!
+//! \param path - location of CSV file to load
+//! \param ItemsAreAdditional - add items to existing datastore
 void RestaurantDataStore::load(const string path, bool ItemsAreAdditional)
 {
     //string fullpath = path + "RestaurantData.csv";
@@ -90,7 +98,7 @@ void RestaurantDataStore::load(const string path, bool ItemsAreAdditional)
                             Restaurant *pRest = &this->FindbyNumber(tmp.m_nRestaurantNumber);
                             tmp.m_nRestaurantNumber = nNumber;
                             // Add the new restaurant's distance grouping to every existing Restaurant
-                            if (pRest != nullptr)  
+                            if (pRest != NULL)  
                             {
                                 // if nullptr, then this is a forward reference to an not yet created restaurant
                                 // this test also prevents updating the restaurant we are currently adding
@@ -164,6 +172,11 @@ void RestaurantDataStore::load(const string path, bool ItemsAreAdditional)
     }
 }
 
+//! RestaurantDataStore::save - save objects to external CSV file
+//!
+//! \author edt (3/25/19)
+//!
+//! \param path - location of external file (will be overwritten)
 void RestaurantDataStore::save(const string path)
 {
     //string fullpath = path + "RestaurantData.csv.tmp";
@@ -235,11 +248,23 @@ void RestaurantDataStore::save(const string path)
     }
 }
 
+//! RestaurantDataStore::load_additional - helper function to add Restaurants to existing datastore
+//!
+//! \author edt (3/25/19)
+//!
+//! \param path - location of CSV file to load
 void RestaurantDataStore::load_additional(const string path)
 {
     load(path, true);
 }
 
+//! RestaurantDataStore::FindbyNumber - locate Restaurant in datastore by number
+//!
+//! \author edt (3/25/19)
+//!
+//! \param Number - number to locate
+//!
+//! \return Restaurant&amp; - pointer to Restaurant or NULL if not found
 Restaurant &RestaurantDataStore::FindbyNumber(int Number)
 {
     for (std::list<Restaurant>::iterator it = list.begin(); it != list.end(); ++it)
@@ -252,6 +277,14 @@ Restaurant &RestaurantDataStore::FindbyNumber(int Number)
     return *(list.end());  // never reached  - should throw exception
 }
 
+//! RestaurantDataStore::DuplicateNumPresent - internal helper to determine if
+//!  this number already in datastore
+//!
+//! \author edt (3/25/19)
+//!
+//! \param Number - number to search for
+//!
+//! \return bool - true if Restaurant already in datastore
 bool RestaurantDataStore::DuplicateNumPresent(int Number)
 {
     bool dupe_found = false;
@@ -266,34 +299,25 @@ bool RestaurantDataStore::DuplicateNumPresent(int Number)
     return dupe_found;
 }
 
+//! RestaurantDataStore::printAsDebug - helper function to print internal state of
+//! all objects in datastore
+//!
+//! \author edt (3/25/19)
+//!
+//! \param printeol - print end of lines after each data element
+//! \param printcontent - print internal data of Restaurants
 void RestaurantDataStore::printAsDebug(bool printeol, bool printcontent) const
 {
     // std::list has no printAsDebug() method - MyDblLinkList does
     //list.printAsDebug(printeol,printcontent);
 }
 
-// Destructor implementation
+//! RestaurantDataStore::~RestaurantDataStore - Destructor
+//!
+//! \author edt (3/25/19)
 RestaurantDataStore::~RestaurantDataStore()
 {
 
 };
 
-// TODO: Uncomment the copy constructor when you need it.
-//inline RestaurantDataStore::RestaurantDataStore(const RestaurantDataStore& src)
-//{
-//   // TODO: copy
-//}
-
-// TODO: Uncomment the assignment operator when you need it.
-//inline RestaurantDataStore& RestaurantDataStore::operator=(const RestaurantDataStore& rhs)
-//{
-//   if (this == &rhs) {
-//      return *this;
-//   }
-//
-//   // TODO: assignment
-//
-//   return *this;
-//}
-// TODO: your implementation here
 

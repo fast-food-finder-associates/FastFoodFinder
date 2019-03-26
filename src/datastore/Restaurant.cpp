@@ -14,6 +14,9 @@
 #include <ostream>
 #include <iostream>
 
+//! Restaurant::sm_NextNumber - holds next Restaurant number to use for new Restaurant
+//!
+//! \author edt (3/25/19)
 int Restaurant::sm_NextNumber = 1;
 
 // Constructor - New Restaurant

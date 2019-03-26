@@ -11,7 +11,7 @@
 #pragma once
 
 /**
- * TODO: Add class description
+ * Information and methods about Trips taken by Foodies
  * 
  * @author   edt
  */
@@ -21,7 +21,9 @@
 
 using namespace std;
 
-
+//! Trip - store information about Trips planned or taken
+//!
+//! \author edt (3/25/19)
 class Trip
 {
 friend class TripDataStore;
