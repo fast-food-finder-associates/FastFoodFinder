@@ -19,6 +19,7 @@ MainWindow::MainWindow()
     if(QFontDatabase::addApplicationFont(":/res/fontAwesome.ttf") == -1)
         qWarning() << "FontAwesome cannot be loaded !";
 
+
     if(QFontDatabase::addApplicationFont(":/res/IBMPlexMono-Regular.ttf") == -1)
         qWarning() << "IBMPlexMono-Regular cannot be loaded !";
 
@@ -33,7 +34,7 @@ MainWindow::MainWindow()
     m_navbar->addItem("\uf2f5", "Logout");
 
     //Load the restaurant database from the file
-    m_store.load("RestaurantData.csv"); //WARNING Put database filepath here
+    m_store.load("/Users/RogerChavez/Desktop/Group-docs/FastFoodFinder/src/datastore/RestaurantData.csv"); //WARNING Put database filepath here
 
     /* Initialize views */
     m_restView = new RestaurantsView(m_ui->restaurantsView, &m_store);
@@ -53,7 +54,7 @@ MainWindow::~MainWindow()
     delete m_adminView;
 
     //Save data to database file
-    m_store.save("RestaurantData.csv");
+    m_store.save("/Users/RogerChavez/Desktop/Group-docs/FastFoodFinder/src/datastore/RestaurantData.csv");
 }
 
 /* Private slots */
@@ -89,3 +90,8 @@ void MainWindow::resetUi()
     m_planTrip->resetPlanTripView();
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    m_navbar->setCurrentRow(1);
+}

@@ -79,6 +79,9 @@ QWidget#rightBar_2 {
 background-color: #303030;
 }
 
+QWidget#rightBar_3 {
+background-color: #303030;
+}
 QWidget#planTripView { background-color: #99C2E8; }
 
 QWidget#planTrip_header {
@@ -121,6 +124,19 @@ font-size: 24px;
 color: black;
 font:bold;
 }
+
+QWidget#TripDistanceLabel {
+font-size: 32px;
+color: black;
+font:bold ;
+}
+
+QWidget#TripDistanceLabel_2 {
+font-size: 24px;
+color: black;
+font:bold;
+}
+
 
 QWidget#activeTripMenu {
 background-color: #E5E5E5;
@@ -805,9 +821,9 @@ border-radius:5px;</string>
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>140</x>
        <y>140</y>
-       <width>571</width>
+       <width>511</width>
        <height>80</height>
       </rect>
      </property>
@@ -821,12 +837,52 @@ border-radius:5px;</string>
       </item>
       <item>
        <widget class="QLabel" name="TripDistanceLabel_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>place distance here</string>
         </property>
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QPushButton" name="ContinueToNext_2">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>350</y>
+       <width>115</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:black;
+background:#D5D5D5;
+border-radius:5px;</string>
+     </property>
+     <property name="text">
+      <string>Continue</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="rightBar_3" native="true">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>0</y>
+       <width>90</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
     </widget>
    </widget>
   </widget>

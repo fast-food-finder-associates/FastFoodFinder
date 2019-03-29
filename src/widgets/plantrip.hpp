@@ -1,5 +1,4 @@
-#ifndef PLANTRIP_HPP
-#define PLANTRIP_HPP
+#pragma once
 
 #include <map>
 #include <QTimer>
@@ -59,6 +58,8 @@ private slots:
     void on_ContinueToNext_clicked();
     void on_removeItem_clicked();
 
+    void on_ContinueToNext_2_clicked();
+
 private:
     Ui::PlanTrip *m_ui;
     MenuList* m_tripFoodCart;
@@ -75,6 +76,6 @@ private:
     ReceiptList *m_receipt;
     TripDataStore *m_tripStore;
     int m_tripId;
+    UserDataStore test;
 };
 
-#endif // PLANTRIP_HPP

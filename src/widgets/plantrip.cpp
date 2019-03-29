@@ -45,6 +45,8 @@ PlanTrip::PlanTrip(QWidget *parent,RestaurantDataStore *database, NavBar* bar)
     m_receipt = new ReceiptList(m_ui->ReceiptWidget, m_store);
 
     m_tripStore = new TripDataStore();
+
+    test.load("/Users/RogerChavez/Desktop/Group-docs/FastFoodFinder/src/datastore/UserData.csv");
 }
 
 PlanTrip::~PlanTrip()
@@ -136,10 +138,8 @@ void PlanTrip::on_TripButton_clicked()
     /* Needs to be cleared before using */
     m_planTripList.clear();
     m_recieptVector.clear();
-    UserDataStore test;
     vector<int> tempStore;
 
-    test.load("/Users/RogerChavez/Desktop/FastFoodFinder/src/datastore/");
     /* This list below will be passed into the restaurant list to collect the id's of it's items */
     m_planTripListDrop->getRestaurantIDs(m_planTripList);
 
@@ -265,7 +265,6 @@ void PlanTrip::activeTrip()
     }
     else
     {
-        //make button that does this on click
         m_navbar->setHidden(false);
         resetPlanTripView();
     }
@@ -394,4 +393,10 @@ void PlanTrip::on_removeItem_clicked()
 
     // Removes selected item from cart when this button is clicked
     m_tripFoodCart->removeItem(item);
+}
+
+void PlanTrip::on_ContinueToNext_2_clicked()
+{
+    m_navbar->setHidden(false);
+    resetPlanTripView();
 }

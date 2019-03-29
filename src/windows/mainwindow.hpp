@@ -31,6 +31,8 @@ private slots:
     void changeView(int);
     void resetUi();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow* m_ui;
     NavBar* m_navbar;

@@ -6,8 +6,11 @@
         <file alias="/fontAwesome.ttf">res/fontawesome-webfont.ttf</file>
         <file alias="/artboard.png">res/Artboard.png</file>
         <file alias="/artboard_green.png">res/Artboard_green.png</file>
+        <file alias="/artboard_purple.png">res/Artboard_purple.png</file>
+        <file alias="/artboard_admin.png">res/Artboard_admin.png</file>
         <file alias="/receipt_top.png">res/receipt_top.png</file>
         <file alias="/receipt_bottom.png">res/receipt_bottom.png</file>
+        <file alias="/dashboard.png">res/dashboard.png</file>
         <file alias="/IBMPlexMono-Regular.ttf">res/IBMPlexMono-Regular.ttf</file>
     </qresource>
 </RCC>

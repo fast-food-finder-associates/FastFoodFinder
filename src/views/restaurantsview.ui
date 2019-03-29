@@ -49,7 +49,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget
+    <string notr="true">QWidget#label_menu
 {
 	color: black;
 	background-color: #7F7F7F;
@@ -80,7 +80,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget
+    <string notr="true">QWidget#label_restName
 {
 	background-color: #303030;
 	font-size: 46px;
@@ -105,7 +105,9 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget#widget_background { background-color: #7DD8FF; }</string>
+    <string notr="true">QWidget#widget_background {
+background: url(:/res/artboard_purple.png);
+}</string>
    </property>
   </widget>
   <zorder>widget_background</zorder>

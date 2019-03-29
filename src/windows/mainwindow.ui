@@ -40,6 +40,14 @@ background-color: #D2E1FF;
 color: #BDCAE5
 }
 
+QWidget#adWidget  { 
+background: url(:/res/dashboard.png);
+}
+
+QWidget#divBar {
+background-color: lightgray;
+}
+
 QWidget#searchView{
 background-color: orange;
 }
@@ -103,6 +111,42 @@ background-color: lightgreen;
      <property name="styleSheet">
       <string notr="true"/>
      </property>
+     <widget class="QWidget" name="divBar" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>711</width>
+        <height>396</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="adWidget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>36</y>
+         <width>710</width>
+         <height>327</height>
+        </rect>
+       </property>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>13</x>
+          <y>238</y>
+          <width>128</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:gray</string>
+        </property>
+        <property name="text">
+         <string>Take a Trip</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="planTripView">
      <property name="styleSheet">

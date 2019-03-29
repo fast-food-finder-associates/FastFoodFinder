@@ -27,7 +27,9 @@
    </property>
    <widget class="QWidget" name="page_restSelect">
     <property name="styleSheet">
-     <string notr="true">QWidget#page_restSelect { background-color: lightgreen; }</string>
+     <string notr="true">QWidget#page_restSelect {
+background: url(:/res/artboard_admin.png);
+}</string>
     </property>
     <widget class="QWidget" name="widget_restListAvailable" native="true">
      <property name="geometry">
@@ -42,11 +44,16 @@
     <widget class="QPushButton" name="pushButton_confirmRestChanges">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>260</x>
        <y>520</y>
-       <width>151</width>
-       <height>21</height>
+       <width>191</width>
+       <height>26</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:lightgray;
+border-radius:5px;
+color:black;</string>
      </property>
      <property name="text">
       <string>Confirm show/hide changes</string>
@@ -65,14 +72,14 @@
     <widget class="QLabel" name="label_restListAvailable">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>30</y>
-       <width>201</width>
+       <x>30</x>
+       <y>28</y>
+       <width>221</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QLabel { font-size: 20px; }</string>
+      <string notr="true">QLabel { font-size: 20px; background-color:white;color:black;}</string>
      </property>
      <property name="text">
       <string>Available Restaurants</string>
@@ -84,14 +91,18 @@
     <widget class="QLabel" name="label_restListHidden">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>30</y>
-       <width>201</width>
+       <x>460</x>
+       <y>28</y>
+       <width>221</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QLabel { font-size: 20px; }</string>
+      <string notr="true">QLabel { 
+font-size: 20px;
+background-color:white;
+color:black;
+}</string>
      </property>
      <property name="text">
       <string>Hidden Restaurants</string>
@@ -103,11 +114,15 @@
     <widget class="QLabel" name="label_instructionHide">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>540</y>
-       <width>201</width>
+       <x>460</x>
+       <y>542</y>
+       <width>221</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;
+color:black;</string>
      </property>
      <property name="text">
       <string>Drag restaurants here to hide</string>
@@ -119,11 +134,16 @@
     <widget class="QPushButton" name="pushButton_addFromFile">
      <property name="geometry">
       <rect>
-       <x>280</x>
-       <y>440</y>
-       <width>151</width>
-       <height>21</height>
+       <x>260</x>
+       <y>420</y>
+       <width>191</width>
+       <height>26</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:lightgray;
+border-radius:5px;
+color:black;</string>
      </property>
      <property name="text">
       <string>Add restaurants from file...</string>
@@ -132,11 +152,15 @@
     <widget class="QLabel" name="label_instructionRestore">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>540</y>
-       <width>201</width>
+       <x>30</x>
+       <y>542</y>
+       <width>221</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:white;
+color:black;</string>
      </property>
      <property name="text">
       <string>Drag restaurants here to show</string>
@@ -151,8 +175,13 @@
        <x>300</x>
        <y>480</y>
        <width>111</width>
-       <height>21</height>
+       <height>25</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:lightgray;
+border-radius:5px;
+color:black;</string>
      </property>
      <property name="text">
       <string>Menu items...</string>
@@ -162,10 +191,15 @@
      <property name="geometry">
       <rect>
        <x>380</x>
-       <y>320</y>
+       <y>318</y>
        <width>71</width>
-       <height>21</height>
+       <height>25</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:lightgray;
+border-radius:5px;
+color:black;</string>
      </property>
      <property name="text">
       <string>Confirm</string>
@@ -194,7 +228,11 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QLabel { font-size: 15px; }</string>
+      <string notr="true">QLabel { 
+font-size: 15px; 
+background-color:white;
+color:black;
+}</string>
      </property>
      <property name="text">
       <string>Edit restaurant name</string>
@@ -206,7 +244,9 @@
    </widget>
    <widget class="QWidget" name="page_menuSelect">
     <property name="styleSheet">
-     <string notr="true">QWidget#page_menuSelect { background-color: lightblue; }</string>
+     <string notr="true">QWidget#page_menuSelect {
+background: url(:/res/artboard_admin.png);
+}</string>
     </property>
     <widget class="QPushButton" name="pushButton_selectRestView">
      <property name="geometry">

@@ -42,7 +42,7 @@ AdminView::AdminView(QWidget* parent, RestaurantDataStore* dataStore)
     connect(m_restListDeleted, &RestaurantList::currentRestaurantChanged,
             [this](RestaurantID id)
             {
-                m_restListDeleted->setCurrentRow(-1);
+                m_restListAvailable->setCurrentRow(-1);
                 fillRestaurantEditFields(id);
             });
 
@@ -131,7 +131,7 @@ void AdminView::resetUi()
     loadMenuList(m_currentMenu);
 
     /* Push buttons */
-    QString pushbuttonReset = "QPushButton { color: black; }";
+    QString pushbuttonReset = "QPushButton { color: black; background-color: lightgray; border-radius:5px;}";
     m_ui->pushButton_restEdit->setStyleSheet(pushbuttonReset);
     m_ui->pushButton_editMenuView->setStyleSheet(pushbuttonReset);
     m_ui->pushButton_menuAdd->setStyleSheet(pushbuttonReset);
@@ -140,12 +140,16 @@ void AdminView::resetUi()
     m_ui->pushButton_restoreMenuItem->setStyleSheet(pushbuttonReset);
 
     /* Line edits */
+    m_ui->lineEdit_restEdit->clear();
     m_ui->lineEdit_nameAdd->clear();
     m_ui->lineEdit_nameEdit->clear();
 
     /* Double spinboxes */
     m_ui->doubleSpinBox_priceAdd->setValue(0);
     m_ui->doubleSpinBox_priceEdit->setValue(0);
+
+    /* Per Chris comment doesn't matter */
+    m_store->save("/Users/RogerChavez/Desktop/Group-docs/FastFoodFinder/src/datastore/RestaurantData.csv");
 }
 
 /**
@@ -246,7 +250,7 @@ void AdminView::on_pushButton_restEdit_clicked()
     /* Check if the hidden list isn't selected and if the input fields are invalid */
     if(id == -1 || name.isEmpty())
     {
-        m_ui->pushButton_restEdit->setStyleSheet("QPushButton { color: red; } ");
+        m_ui->pushButton_restEdit->setStyleSheet("QPushButton { color: red; lightgray; border-radius:5px; } ");
         return;
     }
 
@@ -268,7 +272,7 @@ void AdminView::on_pushButton_addFromFile_clicked()
     QString folder = QFileDialog::getOpenFileName(this, "Add restaurants", QDir::homePath(), "Restaurants file (*.csv)");
 
     if(!folder.isEmpty())
-        m_store->load(folder.toStdString());
+        m_store->load_additional(folder.toStdString());
 
     resetUi();
 }
