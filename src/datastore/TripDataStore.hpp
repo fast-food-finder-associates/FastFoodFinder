@@ -20,6 +20,9 @@
 using namespace std;
 using namespace nsMyDblLinkList;
 
+//! TripDataStore - internal storage for Trip objects
+//!
+//! \author edt (3/25/19)
 class TripDataStore
 {
 public:
