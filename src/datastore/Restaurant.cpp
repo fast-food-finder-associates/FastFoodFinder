@@ -164,7 +164,7 @@ void Restaurant::AddMenuItem(const string &Name, const float &Price)
     m_Menu.push_back(tmp);
 }
 
-MenuItem&Restaurant::FindMenuItembyNumber(int Number)
+MenuItem &Restaurant::FindMenuItembyNumber(int Number)
 {
     for (std::vector<MenuItem>::iterator it = m_Menu.begin(); it != m_Menu.end(); ++it)
     {

@@ -6,6 +6,7 @@
 #include "src/datastore/RestaurantDataStore.hpp"
 #include "src/views/adminview.hpp"
 #include "src/views/restaurantsview.hpp"
+#include "src/widgets/plantrip.hpp"
 
 namespace Ui
 {
@@ -30,10 +31,13 @@ private slots:
     void changeView(int);
     void resetUi();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow* m_ui;
     NavBar* m_navbar;
     RestaurantsView* m_restView;
     AdminView* m_adminView;
     RestaurantDataStore m_store;
+    PlanTrip* m_planTrip;
 };

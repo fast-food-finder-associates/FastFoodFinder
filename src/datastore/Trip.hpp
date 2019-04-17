@@ -59,7 +59,7 @@ public:
     int GetNumber(void) const;
     const string &GetName(void) const;
     int  GetCreatingUser(void) const;
-    const vector<int> &GetRestaurants(void) const;
+    vector<int> &GetRestaurants(void);
     float GetTotalDistance(void) const;
     bool MarkDeleted(bool Delete);
     bool IsDeleted(void) const;

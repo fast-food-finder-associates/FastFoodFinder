@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "src/datastore/RestaurantDataStore.hpp"
 #include "src/windows/login.hpp"
+#include "src/datastore/TripDataStore.hpp"
 
 /* Constructors */
 MainWindow::MainWindow()
@@ -18,6 +19,10 @@ MainWindow::MainWindow()
     if(QFontDatabase::addApplicationFont(":/res/fontAwesome.ttf") == -1)
         qWarning() << "FontAwesome cannot be loaded !";
 
+
+    if(QFontDatabase::addApplicationFont(":/res/IBMPlexMono-Regular.ttf") == -1)
+        qWarning() << "IBMPlexMono-Regular cannot be loaded !";
+
     /* Initialize navigation bar and items */
     m_navbar = new NavBar(m_ui->NavBarWidget, 90, 220);
     connect(m_navbar, &NavBar::currentRowChanged, this, &MainWindow::changeView);
@@ -29,11 +34,12 @@ MainWindow::MainWindow()
     m_navbar->addItem("\uf2f5", "Logout");
 
     //Load the restaurant database from the file
-    m_store.load("RestaurantData.csv"); //WARNING Put database filepath here
+    m_store.load("/Users/RogerChavez/Desktop/Group-docs/FastFoodFinder/src/datastore/RestaurantData.csv"); //WARNING Put database filepath here
 
     /* Initialize views */
     m_restView = new RestaurantsView(m_ui->restaurantsView, &m_store);
     m_adminView = new AdminView(m_ui->adminView, &m_store);
+    m_planTrip = new PlanTrip(m_ui->planTripView, &m_store, m_navbar);
 
     //Triggers changeView() and changes the navbar item
     m_navbar->setCurrentRow(0);
@@ -48,7 +54,7 @@ MainWindow::~MainWindow()
     delete m_adminView;
 
     //Save data to database file
-    m_store.save("RestaurantData.csv");
+    m_store.save("/Users/RogerChavez/Desktop/Group-docs/FastFoodFinder/src/datastore/RestaurantData.csv");
 }
 
 /* Private slots */
@@ -81,4 +87,11 @@ void MainWindow::resetUi()
     /* Reset views */
     m_restView->resetView();
     m_adminView->resetView();
+    m_planTrip->resetPlanTripView();
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    m_navbar->setCurrentRow(1);
 }

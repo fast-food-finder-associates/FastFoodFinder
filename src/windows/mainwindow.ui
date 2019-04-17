@@ -23,12 +23,68 @@
    <iconset resource="../../res.qrc">
     <normaloff>:/res/fff128.png</normaloff>:/res/fff128.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#dashboardView { 
+background: url(:/res/artboard.png);
+background-color: #D2E1FF;
+color: #BDCAE5
+}
+
+QWidget#adWidget  { 
+background: url(:/res/dashboard.png);
+}
+
+QWidget#divBar {
+background-color: lightgray;
+}
+
+QWidget#searchView{
+background-color: orange;
+}
+
+QWidget#NavBarWidget {
+background-color: #303030;
+}
+QWidget#deleteView {
+background-color: #B19CD9;
+}
+
+QWidget#editView {
+background-color: lightblue;
+}
+
+QWidget#viewRestaurantView {
+/*background: url(:/res/artboard.png);*/
+background-color: #7DD8FF; 
+}
+
+QWidget#currentRestaurantName {
+background-color: #303030;
+font-size: 38px;
+color: white;
+font:bold italic;
+}
+
+QWidget#menu {
+color: black;
+background-color: #7F7F7F;
+font-size: 24px;
+font: bold italic;
+}
+
+QWidget#addView {
+background-color: lightgreen;
+}</string>
    </property>
    <widget class="QStackedWidget" name="mainViews">
     <property name="geometry">
@@ -45,53 +101,57 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
     <widget class="QWidget" name="dashboardView">
      <property name="styleSheet">
-      <string notr="true">QWidget#dashboardView { background-color: #D2E1FF; }</string>
+      <string notr="true"/>
      </property>
-     <widget class="QLabel" name="label_3">
+     <widget class="QWidget" name="divBar" native="true">
       <property name="geometry">
        <rect>
-        <x>229</x>
-        <y>170</y>
-        <width>181</width>
-        <height>151</height>
+        <x>0</x>
+        <y>70</y>
+        <width>711</width>
+        <height>396</height>
        </rect>
       </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Dashboard View</string>
-      </property>
+      <widget class="QWidget" name="adWidget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>36</y>
+         <width>710</width>
+         <height>327</height>
+        </rect>
+       </property>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>13</x>
+          <y>238</y>
+          <width>128</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:gray</string>
+        </property>
+        <property name="text">
+         <string>Take a Trip</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="planTripView">
      <property name="styleSheet">
-      <string notr="true">QWidget#planTripView { background-color: #99C2E8; }</string>
+      <string notr="true"/>
      </property>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>140</y>
-        <width>121</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Plan Trip View</string>
-      </property>
-      <property name="scaledContents">
-       <bool>false</bool>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="restaurantsView"/>
     <widget class="QWidget" name="adminView"/>
@@ -110,6 +170,9 @@
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
    </widget>
   </widget>

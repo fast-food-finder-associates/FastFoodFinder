@@ -153,6 +153,7 @@ int  Trip::GetCreatingUser(void) const
     return m_nCreatingUser;
 }
 
+
 //! Trip::GetRestaurants - get list of Restaurants to allow taking the trip
 //!
 //! \author edt (3/25/19)
@@ -160,7 +161,7 @@ int  Trip::GetCreatingUser(void) const
 //! \param void 
 //!
 //! \return const vector&lt;int&gt;&amp; - vector of ints that are restaurant numbers
-const vector<int> &Trip::GetRestaurants(void) const
+vector<int> &Trip::GetRestaurants(void)
 {
     return m_Restaurants;
 }
@@ -288,5 +289,4 @@ ostream& operator<<(ostream& os, const Trip& trip)
     os << trip.PrintAsDebug(true);
     return(os);
 }
-
 

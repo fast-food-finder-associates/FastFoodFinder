@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PlanTrip</class>
+ <widget class="QWidget" name="PlanTrip">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>710</width>
+    <height>599</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* plan trip view start */
+QWidget#chooseType {
+background: url(:/res/artboard_green.png);
+background-color: #97FFB0;
+}
+
+QWidget#widget {
+background-color: #303030;
+border-radius: 5px;
+}
+
+QWidget#startPlanningBackground {
+background-color: #303030;
+border-radius: 5px;
+}
+
+QWidget#tripTypeBackground {
+background-color: #303030;
+border-radius: 5px;
+}
+
+QWidget#planTrip {
+background: url(:/res/artboard_green.png);
+background-color: #97FFB0;
+}
+
+QWidget#activeTrip{
+background: url(:/res/artboard_green.png);
+background-color: #97FFB0;
+}
+
+QWidget#tripReceipt{
+background: url(:/res/artboard_green.png);
+background-color: #97FFB0;
+}
+QWidget#tripDistance{
+background: url(:/res/artboard_green.png);
+background-color: #97FFB0;
+}
+QWidget#ReceiptWidget {
+background-color: transparent;
+}
+QWidget#tripTypeLabel {
+font: bold;
+color: black;
+font-size: 24px;
+}
+
+QWidget#restaurantNumber_label {
+color:black;
+font: italic;
+}
+
+QWidget#displayStart_label {
+color:black;
+font: italic;
+}
+QWidget#rightBar {
+background-color: #303030;
+}
+
+QWidget#rightBar_2 {
+background-color: #303030;
+}
+
+QWidget#rightBar_3 {
+background-color: #303030;
+}
+QWidget#planTripView { background-color: #99C2E8; }
+
+QWidget#planTrip_header {
+background-color: #303030;
+color:white;
+}
+
+QWidget#planTripSubHeader_1{
+background-color: #e5e5e5 ;
+}
+
+QWidget#planTripSubHeader_2{
+background-color: #e5e5e5 ;
+}
+
+QWidget#planTripSubHeader_3{
+background-color: #e5e5e5 ;
+}
+
+QWidget#activeTrip_warning_noStart {
+background-color: red;
+color:white;
+}
+
+QWidget#activeTrip_warning_emptyList {
+background-color: red;
+color:white;
+}
+
+QWidget#activeTripRestaurant {
+background-color: #303030;
+font-size: 32px;
+color: white;
+font:bold italic;
+}
+
+QWidget#activeTripFoodCart {
+background-color: #E5E5E5;
+font-size: 24px;
+color: black;
+font:bold;
+}
+
+QWidget#TripDistanceLabel {
+font-size: 32px;
+color: black;
+font:bold ;
+}
+
+QWidget#TripDistanceLabel_2 {
+font-size: 24px;
+color: black;
+font:bold;
+}
+
+
+QWidget#activeTripMenu {
+background-color: #E5E5E5;
+font-size: 24px;
+color: black;
+font:bold ;
+}
+/* plan trip view end */</string>
+  </property>
+  <widget class="QStackedWidget" name="planTripStack">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>711</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="currentIndex">
+    <number>4</number>
+   </property>
+   <widget class="QWidget" name="chooseType">
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <widget class="QLabel" name="tripTypeLabel">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>150</y>
+       <width>431</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Choose your trip type below</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="tripType">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>220</y>
+       <width>420</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="palette">
+      <palette>
+       <active/>
+       <inactive/>
+       <disabled/>
+      </palette>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="startPlanning">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>300</y>
+       <width>113</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="216">
+           <red>180</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="216">
+           <red>180</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="63">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> * {
+    image: url(:/res/enter_button.png);
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Enter</string>
+     </property>
+     <property name="autoDefault">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="planTrip">
+    <widget class="QLabel" name="planTrip_header">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>520</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Microsoft Sans Serif</family>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Plan Trip View</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QWidget" name="planTripListDrag" native="true">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>0</y>
+       <width>190</width>
+       <height>600</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QWidget" name="planTripListDrop" native="true">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>100</y>
+       <width>380</width>
+       <height>480</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QStackedWidget" name="planTripListDrop_header">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>50</y>
+       <width>380</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="QWidget" name="planTripSubHeader_1">
+      <widget class="QComboBox" name="startLocation">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>15</y>
+         <width>160</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:black;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="startLocation_label">
+       <property name="geometry">
+        <rect>
+         <x>35</x>
+         <y>-2</y>
+         <width>130</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:black;</string>
+       </property>
+       <property name="text">
+        <string>Starting Location</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="planTripSubHeader_2">
+      <widget class="QSpinBox" name="spinBox">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>30</y>
+         <width>40</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="restaurantNumber_label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>140</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Number of restaurants</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="startLocation_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>181</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:black;</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="planTripSubHeader_3">
+      <widget class="QLabel" name="displayStart_label">
+       <property name="geometry">
+        <rect>
+         <x>28</x>
+         <y>25</y>
+         <width>151</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>First item in this list</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="startLocation_label_2">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>5</y>
+         <width>181</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:black;</string>
+       </property>
+       <property name="text">
+        <string>Starting Location</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="TripButton">
+     <property name="geometry">
+      <rect>
+       <x>275</x>
+       <y>65</y>
+       <width>160</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:black;</string>
+     </property>
+     <property name="text">
+      <string>Ready To Take Trip</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="activeTrip_warning_noStart">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>30</y>
+       <width>160</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+       <underline>false</underline>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: red;
+color:white;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>Start Not Set!</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="activeTrip_warning_emptyList">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>40</y>
+       <width>150</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+       <underline>false</underline>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>Empty List!</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="activeTrip">
+    <widget class="QLabel" name="activeTripRestaurant">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>620</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Restaurant</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QWidget" name="activeTripCart" native="true">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>110</y>
+       <width>280</width>
+       <height>490</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+    </widget>
+    <widget class="QWidget" name="activeTripMenuWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>110</y>
+       <width>280</width>
+       <height>490</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="activeTripFoodCart">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>70</y>
+       <width>280</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Food Cart</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="margin">
+      <number>10</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="activeTripMenu">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>70</y>
+       <width>280</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Menu</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="margin">
+      <number>10</number>
+     </property>
+    </widget>
+    <widget class="QWidget" name="rightBar" native="true">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>0</y>
+       <width>90</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <widget class="QPushButton" name="checkout">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>90</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Font Awesome 5 Free</family>
+        <pointsize>42</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="next">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>150</y>
+        <width>90</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>16</red>
+            <green>128</green>
+            <blue>64</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>16</red>
+            <green>128</green>
+            <blue>64</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>16</red>
+            <green>128</green>
+            <blue>64</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Next</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="addToCart">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>75</y>
+       <width>114</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:black;</string>
+     </property>
+     <property name="text">
+      <string>Add To Cart</string>
+     </property>
+     <property name="autoDefault">
+      <bool>true</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="removeItem">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>75</y>
+       <width>114</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:black;</string>
+     </property>
+     <property name="text">
+      <string>Remove Item</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tripReceipt">
+    <widget class="QWidget" name="ReceiptWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>50</y>
+       <width>400</width>
+       <height>500</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QWidget" name="rightBar_2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>0</y>
+       <width>90</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ContinueToNext">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>560</y>
+       <width>115</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:black;
+background:#D5D5D5;
+border-radius:5px;</string>
+     </property>
+     <property name="text">
+      <string>Continue</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tripDistance">
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>140</y>
+       <width>561</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="TripDistanceLabel">
+        <property name="text">
+         <string>Total Trip Distance: </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="TripDistanceLabel_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>place distance here</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="ContinueToNext_2">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>350</y>
+       <width>115</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:black;
+background:#D5D5D5;
+border-radius:5px;</string>
+     </property>
+     <property name="text">
+      <string>Continue</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="rightBar_3" native="true">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>0</y>
+       <width>90</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

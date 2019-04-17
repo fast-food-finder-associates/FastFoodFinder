@@ -117,7 +117,7 @@ void TripDataStore::save(const string path)
     std::ofstream outfile(path, ios::trunc);
     if (outfile.is_open())
     {
-        for (MyDblLinkList<Trip>::iterator it = list.begin(); it != list.end(); it++)
+        for (std::list<Trip>::iterator it = list.begin(); it != list.end(); it++)
         {
             line_count++;
 
@@ -161,7 +161,7 @@ void TripDataStore::save(const string path)
 //! \return Trip&amp; - pointer to trip specified or NULL if not present
 Trip &TripDataStore::FindbyNumber(int Number)
 {
-    for (MyDblLinkList<Trip>::iterator it = list.begin(); it != list.end(); ++it)
+    for (std::list<Trip>::iterator it = list.begin(); it != list.end(); ++it)
     {
         if ( (*it).m_nNumber == Number)
         {
@@ -181,7 +181,7 @@ Trip &TripDataStore::FindbyNumber(int Number)
 bool TripDataStore::DuplicateNumPresent(int Number)
 {
     bool dupe_found = false;
-    for (MyDblLinkList<Trip>::iterator it = list.begin(); it != list.end(); ++it)
+    for (std::list<Trip>::iterator it = list.begin(); it != list.end(); ++it)
     {
         if ( (*it).m_nNumber == Number)
         {
@@ -219,7 +219,7 @@ int TripDataStore::StoreTrip(const string &TripName, const vector<int> Restauran
         {
             pRest = &RestSt.FindbyNumber(*it);
             float restdist = pRest->GetDistSaddleback();
-            if (restdist < shortest_distance) 
+            if (restdist < shortest_distance)
             {
                 shortest_distance = restdist;
                 closest_restnum = pRest->GetNumber();
@@ -250,7 +250,6 @@ int TripDataStore::StoreTrip(const string &TripName, const vector<int> Restauran
     {
         shortest_distance = 999.9;
         pRest = &RestSt.FindbyNumber(current_restaurant);
-        
         for (vector<int>::iterator next_restaurant = selected_restaurants.begin(); next_restaurant != selected_restaurants.end(); next_restaurant++)
         {
             // search Restaurant Distances list for an item in the selected restaurants list
@@ -272,7 +271,7 @@ int TripDataStore::StoreTrip(const string &TripName, const vector<int> Restauran
             }
         }
 
-        // we now have the closest restaurant remaining in the selected list 
+        // we now have the closest restaurant remaining in the selected list
         current_restaurant = closest_restnum;
         cumulative_distance += shortest_distance;
         sVec.push_back(current_restaurant);
@@ -411,7 +410,7 @@ int TripDataStore::StoreTripNumRest(const string &TripName, int StartingRestNum,
 //! \param printcontent- print interanl state of each Trip
 void TripDataStore::printAsDebug(bool printeol, bool printcontent) const
 {
-    list.printAsDebug(printeol,printcontent);
+//    list.printAsDebug(printeol,printcontent);
 }
 
 //! TripDataStore::~TripDataStore - Destructor

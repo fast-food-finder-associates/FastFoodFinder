@@ -4,7 +4,7 @@
  * Definition of the User class that provides a means for
  * validating users, collecting their trips and defines their
  * access rights
- * 
+ *
  * @author   edt
  */
 
